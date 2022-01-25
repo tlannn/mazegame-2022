@@ -40,6 +40,10 @@
 # Journal de bord
 
 ## Semaine 1
+tout le monde: diagramme uml on est ok dessus
+Emma: commencé codé classe cell
+Damien et Rayan: commencé codé maze and wallOrientation 
+theo : aide tout le monde et commencé algo kruchkall
 
 ## Semaine 2
 
