@@ -1,0 +1,14 @@
+# Compiled class files
+classes/
+*.class
+
+# Documentation
+docs/
+
+# Package files
+*.jar
+!test4poo.jar
+
+# Others
+.DS_Store/
+.vscode/
