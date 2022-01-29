@@ -8,3 +8,7 @@ docs/
 # Package files
 *.jar
 !test4poo.jar
+
+# Others
+.DS_Store/
+.vscode/
