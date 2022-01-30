@@ -38,7 +38,7 @@ public class KruskalMaze extends Maze {
 		 * @return the value of the attribute
 		 */
 		public Node getParent() {
-			this.parent = parent;
+			return this.parent;
 		}
 
 		/**
@@ -46,7 +46,7 @@ public class KruskalMaze extends Maze {
 		 * @return the value of the attribute
 		 */
 		public int getIndex() {
-			this.index = index;
+			return this.index;
 		}
 
 		/**
@@ -54,7 +54,7 @@ public class KruskalMaze extends Maze {
 		 * @return the value of the attribute
 		 */
 		public int getRank() {
-			this.rank = rank;
+			return this.rank;
 		}
 
 		/**
@@ -63,14 +63,6 @@ public class KruskalMaze extends Maze {
 		 */
 		public void setParent(Node parent) {
 			this.parent = parent;
-		}
-
-		/**
-		 * Setter for attribute `index`
-		 * @param index the value to set to the attribute
-		 */
-		public void setIndex(int index) {
-			this.index = index;
 		}
 
 		/**
