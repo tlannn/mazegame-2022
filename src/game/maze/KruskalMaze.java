@@ -1,5 +1,9 @@
 package game.maze;
 
+import java.util.List;
+import java.util.ArrayList;
+import game.util.Random;
+
 /**
  * Class KruskalMaze that represents a maze in the game, generated using the randomized Kruskal's algorithm.
  * The algorithm is defined like this :
@@ -104,7 +108,62 @@ public class KruskalMaze extends Maze {
 	/**
 	 * Generate the maze by opening random walls using the Kruskal's algorithm
 	 */
-	public void generate() {}
+	protected void generate() {
+		/* 
+		 * Create an array that will contain nodes (aka cells).
+		 * See nodes as if each one belong to their own set. If nodes were to belong to the same set,
+		 * it would mean they are connected together through an opened wall in the maze
+		 */
+		Node[] nodes = new Node[this.nbCells];
+
+		// Create the sets (nodes) for the maze generation
+		for (int i = 0; i < this.nbCells; ++i)
+			nodes[i] = new Node(i);
+
+		// Execute the algorithm to randomly open walls
+		int nbUnion = 0;
+		while (nbUnion < nodes.length - 1) { // Maze is done when all sets are united
+			/*
+			 * First step is to choose a wall to remove.
+			 * We establish the cells that can be selected according to the orientation
+			 * randomly chose, to prevent external walls being selected
+			 */
+			List<Integer> possibleIndex = new ArrayList<>();
+			WallOrientation orientation = Random.randInt(0, 2) == 0 ? WallOrientation.SOUTH : WallOrientation.EAST;
+
+			// Add all cells index except those whose oriented wall is the border of the maze
+			for (int i = 0; i < this.nbCells; ++i) {
+				if (!this.isExternalWall(this.getCellByNodeIndex(i), orientation))
+					possibleIndex.add(i);
+			}
+
+			// Choose a random cell index among the remaining cells
+			int randIndex = possibleIndex.get(Random.randInt(0, possibleIndex.size()-1));
+			int adjacentIndex = orientation == WallOrientation.EAST ? randIndex + 1 : randIndex + this.length; // Depending on the orientation (south, east) the adjacent is wether to the right or below
+
+			/*
+			 * Next step is to unite the sets corresponding to the selected nodes
+			 * If sets are united, the wall can be removed
+			 */
+			if (this.union(nodes[randIndex], nodes[adjacentIndex])) {
+				// Remove the wall from the chosen cell and the adjacent cell, since they share the same wall
+				this.removeWall(this.getCellByNodeIndex(randIndex), orientation);;
+
+				++nbUnion;
+			}
+		}
+	}
+
+	/**
+	 * Cells are stored by coordinates, and nodes by an index. This function returns the cell associated to a node
+	 * @param index the index of the node
+	 * @return the cell associated
+	 */
+	private Cell getCellByNodeIndex(int index) {
+		int i = (int)index / this.length;
+		int j = (int)index % this.length;
+		return this.getCell(i, j);
+	}
 
 	/**
 	 * Search the root of a node (the upmost node in the tree). To do this, find() is called recursively on the parent of the node until the root is found.
