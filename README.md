@@ -40,10 +40,10 @@
 # Journal de bord
 
 ## Semaine 1
-tout le monde: diagramme uml on est ok dessus
-Emma: commencé codé classe cell
-Damien et Rayan: commencé codé maze and wallOrientation 
-theo : aide tout le monde et commencé algo kruchkall
+Tout le monde: diagramme UML de la partie labyrinthe on est ok dessus
+Emma: commence à coder la classe Cell
+Damien et Rayan: commencent à coder Maze et WallOrientation 
+Theo : création de la classe KruskalMaze (à priori terminée) qui utilise l'algorithme de Kruskal pour générer un labyrinthe, et d'une classe Random pour générer des entiers aléatoires dans un intervalle
 
 ## Semaine 2
 
