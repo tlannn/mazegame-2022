@@ -22,7 +22,25 @@ public class Cell{
     	this.westWall=true;
     	this.characters= new ArrayList<Character>();
     }
+    
+    /**
+     * return x which the coordonate at the cell
+     * 
+     * @return (int) x;
+     */
+    public int getX() {
+		return x;
+	}
+    /**
+     * return y which the coordonate at the cell
+     * 
+     * @return (int) y;
+     */
+	public int getY() {
+		return y;
+	}
 
+	
     /** tell if there is a north wall to the cell
     @return true if there is a north wall
     */
@@ -102,10 +120,16 @@ public class Cell{
 			this.characters.remove(character);
 		}
 		catch(Exception e) {
-			throw new notInListException();
+			throw new notInListException("Error "+character.toString()+" can't delete this character because it isn't in the list.");
 		}
 	}
 
+	public boolean equals (Object objet) {
+		if (object instanceof Cell) {
+			Cell cell= (Cell) object;
+			if (this.x == cell.get)
+		}
+	}
 }
 
 
