@@ -82,6 +82,30 @@ public class Cell{
 	public void setWestWall(boolean westWall) {
 		this.westWall = westWall;
 	}
+	
+	/*Add character at the list character
+	 * 
+	 * @param character (Character) : the character we want to add at the list.
+	 */
+	public void addCharacter(Character character) {
+		this.characters.add(character);
+	}
+	
+	/* Remove a character in the liste, 
+	 * 
+	 * @param character (Character): the Character we want to remove in the liste character
+	 * 
+	 *@exception notInListException: if the character we want to remove is not in the list
+	 */
+	public void removeCharacter(Character character) throws notInListException {
+		try {
+			this.characters.remove(character);
+		}
+		catch(Exception e) {
+			throw new notInListException();
+		}
+	}
+
 }
 
 
