@@ -39,7 +39,6 @@ public class Cell{
 	public int getY() {
 		return y;
 	}
-
 	
     /** tell if there is a north wall to the cell
     @return true if there is a north wall
@@ -124,10 +123,21 @@ public class Cell{
 		}
 	}
 
+	/*return true if the 2 cell have the same coordinate
+	 * 
+	 *@return (boolean) true if the 2 cell have the same coordinate 
+	 */
 	public boolean equals (Object objet) {
 		if (object instanceof Cell) {
 			Cell cell= (Cell) object;
-			if (this.x == cell.get)
+			if (this.x == cell.getX() && this.y==cell.getY()) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		else {
+			return false;
 		}
 	}
 }
