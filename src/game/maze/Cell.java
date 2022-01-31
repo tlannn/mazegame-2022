@@ -127,7 +127,7 @@ public class Cell{
 	 * 
 	 *@return (boolean) true if the 2 cell have the same coordinate 
 	 */
-	public boolean equals (Object objet) {
+	public boolean equals (Object object) {
 		if (object instanceof Cell) {
 			Cell cell= (Cell) object;
 			if (this.x == cell.getX() && this.y==cell.getY()) {
@@ -136,10 +136,12 @@ public class Cell{
 			else {
 				return false;
 			}
+		}
 		else {
 			return false;
 		}
 	}
+
 }
 
 
