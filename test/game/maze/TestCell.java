@@ -148,6 +148,6 @@ public class TestCell {
 	}
 
 	public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(CellTest.class);
+        return new junit.framework.JUnit4TestAdapter(TestCell.class);
     }
 }
