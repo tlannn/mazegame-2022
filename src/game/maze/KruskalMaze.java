@@ -21,7 +21,7 @@ public class KruskalMaze extends Maze {
 		/* Instance attributes */
 		private Node parent; // Parent node in the tree
 		private int index; // Index of the associated cell in the maze
-		private int rank; // Depth of the tree (number of children), but this no longer makes sense with the path compression in method find()
+		private int rank; // Depth of the tree, but this no longer makes sense with the path compression in method find()
 
 		/**
 		 * Node class constructor
