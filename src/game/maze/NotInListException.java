@@ -1,3 +1,4 @@
+package game.maze;
 
 public class NotInListException extends Exception {
 	public NotInListException(){
