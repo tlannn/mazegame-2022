@@ -46,6 +46,7 @@ Damien et Rayan: commencent à coder Maze et WallOrientation
 Theo : création de la classe KruskalMaze (à priori terminée) qui utilise l'algorithme de Kruskal pour générer un labyrinthe, et d'une classe Random pour générer des entiers aléatoires dans un intervalle
 
 ## Semaine 2
+Emma : finit classe Cell. Vérification et compréhension de KruskalMaze
 
 ## Semaine 3
 
