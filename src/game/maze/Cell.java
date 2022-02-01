@@ -100,6 +100,14 @@ public class Cell{
 		this.westWall = westWall;
 	}
 	
+	/*return the list of character
+	 * 
+	 * @return character (ArrayList<character>) the list of character
+	 */
+	public ArrayList<Character> getCharacters() {
+		return this.characters;
+	}
+
 	/*Add character at the list character
 	 * 
 	 * @param character (Character) : the character we want to add at the list.
@@ -140,6 +148,14 @@ public class Cell{
 		else {
 			return false;
 		}
+	}
+
+	@Override
+	/*
+	 * display the coordonnate at the cellule
+	 */
+	public String toString() {
+		return "Cell x="+x+" y="+y;
 	}
 
 }
