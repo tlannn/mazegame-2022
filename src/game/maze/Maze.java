@@ -27,28 +27,47 @@ public abstract class Maze{
 
     public void removeWall(Cell cell, WallOrientation orientation){
         switch(orientation){
-            case WallOrientation.NORTH:
+            case NORTH:
                 cell.setNorthWall(false);
+                if (!this.isExternalWall(cell,orientation)){
+                    cells[cell.getX()][cell.getY()-1].setSouthWall(false);
+                }
                 break;
-            case WallOrientation.SOUTH:
+            case SOUTH:
                 cell.setSouthWall(false);
+                if (!this.isExternalWall(cell,orientation)){
+                    cells[cell.getX()][cell.getY()+1].setNorthWall(false);
+                }
                 break;
-            case WallOrientation.EAST:
+            case EAST:
                 cell.setEastWall(false);
+                if (!this.isExternalWall(cell,orientation)){
+                    cells[cell.getX()+1][cell.getY()].setEastWall(false);
+                }
                 break;
-            case WallOrientation.WEST:
+            case WEST:
                 cell.setWestWall(false);
+                if (!this.isExternalWall(cell,orientation)){
+                    cells[cell.getX()-1][cell.getY()].setWestWall(false);
+                }
                 break;
         }
     }
 
     public boolean isExternalWall(Cell cell, WallOrientation orientation){
-        
-    }
-
-
-
-
-
-
+        switch(orientation){
+            case NORTH:
+                return(cell.hasNorthWall() && cell.getY()==0);
+            case SOUTH:
+                return(cell.hasSouthWall() && cell.getX()==this.height);
+            case EAST:
+                return(cell.hasEastWall() && cell.getY()==this.length);               
+            case WEST:
+                return(cell.hasWestWall() && cell.getX()==0); 
+            default:
+                return false;             
+            }
+        }
+    
+    
 }
