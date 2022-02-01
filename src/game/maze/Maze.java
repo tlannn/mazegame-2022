@@ -69,5 +69,7 @@ public abstract class Maze{
             }
         }
     
-    
+    public int nbCell(){
+        return this.length * this.height;
+    }
 }
