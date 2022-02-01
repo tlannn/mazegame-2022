@@ -122,12 +122,12 @@ public class Cell{
 	 * 
 	 *@exception notInListException: if the character we want to remove is not in the list
 	 */
-	public void removeCharacter(Character character) throws notInListException {
+	public void removeCharacter(Character character) throws NotInListException {
 		try {
 			this.characters.remove(character);
 		}
 		catch(Exception e) {
-			throw new notInListException("Error "+character.toString()+" can't delete this character because it isn't in the list.");
+			throw new NotInListException("Error "+character.toString()+" can't delete this character because it isn't in the list.");
 		}
 	}
 
