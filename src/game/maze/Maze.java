@@ -7,10 +7,13 @@ public abstract class Maze{
     protected int length;
     protected int height;
     protected Cell[][] cells;
+    protected int nbCells;
+
 
     public Maze(int length, int height){
         this.length = length;
         this.height = height;
+        this.nbCells = length * height;
         this.cells = new Cell[length][height];
         for(int i = 0; i < length; i++ ){
             for(int j = 0; j < height; j++){
@@ -69,7 +72,7 @@ public abstract class Maze{
             }
         }
     
-    public int nbCell(){
-        return this.length * this.height;
+    public int getnbCell(){
+        return this.nbCells;
     }
 }
