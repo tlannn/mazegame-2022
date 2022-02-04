@@ -47,6 +47,7 @@ Theo : création de la classe KruskalMaze (à priori terminée) qui utilise l'al
 
 ## Semaine 2
 Emma : finit classe Cell. Vérification et compréhension de KruskalMaze
+Rayan et Damien : Finit removeWall , ExternalWall, nbCell, et commencement du toString
 
 ## Semaine 3
 
