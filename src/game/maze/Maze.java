@@ -1,7 +1,5 @@
 package game.maze;
 
-import javax.swing.plaf.basic.BasicHorizontalLayoutManager;
-
 import game.maze.WallOrientation;
 
 public abstract class Maze{
@@ -16,9 +14,9 @@ public abstract class Maze{
         this.length = length;
         this.height = height;
         this.nbCells = length * height;
-        this.cells = new Cell[length][height];
-        for(int i = 0; i < length; i++ ){
-            for(int j = 0; j < height; j++){
+        this.cells = new Cell[height][length];
+        for(int i = 0; i < height; i++ ){
+            for(int j = 0; j < length; j++){
                 this.cells[i][j] = new Cell(i, j);
             }
         }
@@ -83,26 +81,30 @@ public abstract class Maze{
     }
     
     public String toString(){
-        res="";
+        String res="";
+        for (int j = 0;j<this.length;j++) {
+            res+="+---";
+        }
+        res+="+\n";
         for(int i=0;i<this.height;i++){
-            for (int j = 0;j<this.length;j++) {
-                res+="+---";
-            }
-            res+="+\n";
             for (int k =0;k<this.length;k++){
                 res+="|   ";
             }
             res+="|\n";
+            for (int j = 0;j<this.length;j++) {
+                
+                res+="+---";
+            }
+            res+="+\n";
         }
-        for (int j = 0;j<this.length;j++) {
-            res+="+---";
-        }
-        res+="+";
-        System.out.println(res);
+        
+        //System.out.println(res);
+
+        return res;
     }
 
     public static void main(String[] args){
-        Maze m = new Maze(2, 2);
-        m.toString();  
+        Maze m = new KruskalMaze(5, 3);
+        System.out.println(m);
     }
 }
