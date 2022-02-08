@@ -20,6 +20,8 @@ public abstract class Maze{
                 this.cells[i][j] = new Cell(i, j);
             }
         }
+
+        this.generate();
     }
 
     public Cell getCell(int x, int y){
@@ -54,11 +56,8 @@ public abstract class Maze{
                     cells[cell.getX()-1][cell.getY()].setWestWall(false);
                 }
                 break;
-
-            default:
-                break;             
-            }
         }
+    }
 
     public boolean isExternalWall(Cell cell, WallOrientation orientation){
         switch(orientation){
@@ -74,6 +73,7 @@ public abstract class Maze{
                 return false;             
             }
         }
+
     
     
     public int getnbCell(){
@@ -88,12 +88,19 @@ public abstract class Maze{
         res+="+\n";
         for(int i=0;i<this.height;i++){
             for (int k =0;k<this.length;k++){
-                res+="|   ";
+                if (this.isExternalWall(getCell(i, k),WallOrientation.EAST) || this.getCell(i, k).hasEastWall()){
+                    res+="|   ";}
+                else{
+                    res+="    ";
+                }
             }
             res+="|\n";
             for (int j = 0;j<this.length;j++) {
-                
-                res+="+---";
+                if (this.isExternalWall(getCell(i, j),WallOrientation.SOUTH) || this.getCell(i, j).hasSouthWall()){
+                    res+="+---";}
+                else{
+                    res+="+   ";
+                }
             }
             res+="+\n";
         }
