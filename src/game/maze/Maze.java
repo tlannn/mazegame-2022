@@ -1,5 +1,7 @@
 package game.maze;
 
+import javax.swing.plaf.basic.BasicHorizontalLayoutManager;
+
 import game.maze.WallOrientation;
 
 public abstract class Maze{
@@ -54,8 +56,11 @@ public abstract class Maze{
                     cells[cell.getX()-1][cell.getY()].setWestWall(false);
                 }
                 break;
+
+            default:
+                break;             
+            }
         }
-    }
 
     public boolean isExternalWall(Cell cell, WallOrientation orientation){
         switch(orientation){
@@ -72,7 +77,32 @@ public abstract class Maze{
             }
         }
     
+    
     public int getnbCell(){
         return this.nbCells;
+    }
+    
+    public String toString(){
+        res="";
+        for(int i=0;i<this.height;i++){
+            for (int j = 0;j<this.length;j++) {
+                res+="+---";
+            }
+            res+="+\n";
+            for (int k =0;k<this.length;k++){
+                res+="|   ";
+            }
+            res+="|\n";
+        }
+        for (int j = 0;j<this.length;j++) {
+            res+="+---";
+        }
+        res+="+";
+        System.out.println(res);
+    }
+
+    public static void main(String[] args){
+        Maze m = new Maze(2, 2);
+        m.toString();  
     }
 }
