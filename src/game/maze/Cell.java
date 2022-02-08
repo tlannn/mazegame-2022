@@ -11,6 +11,7 @@ public class Cell{
     private boolean eastWall;
     private boolean westWall;
     private ArrayList <Character> characters;
+    private ArrayList <Item> item;
 
     /*a cell must have its 4 walls */
     public Cell(int x, int y){
@@ -22,10 +23,10 @@ public class Cell{
     	this.westWall=true;
     	this.characters= new ArrayList<Character>();
     }
-    
+
     /**
      * return x which the coordonate at the cell
-     * 
+     *
      * @return (int) x;
      */
     public int getX() {
@@ -33,13 +34,13 @@ public class Cell{
 	}
     /**
      * return y which the coordonate at the cell
-     * 
+     *
      * @return (int) y;
      */
 	public int getY() {
 		return y;
 	}
-	
+
     /** tell if there is a north wall to the cell
     @return true if there is a north wall
     */
@@ -67,41 +68,57 @@ public class Cell{
     public boolean hasWestWall(){
         return this.westWall;
     }
-    
+
     /**can add or delete the northWall
-     * 
-     * @param: boolean true if there is a wall 
+     *
+     * @param: boolean true if there is a wall
      * */
 	public void setNorthWall(boolean northWall) {
 		this.northWall = northWall;
 	}
 
     /**can add or delete the southWall
-     * 
-     * @param: boolean true if there is a wall 
+     *
+     * @param: boolean true if there is a wall
      * */
 	public void setSouthWall(boolean southWall) {
 		this.southWall = southWall;
 	}
-	
+
     /**can add or delete the eastWall
-     * 
-     * @param: boolean true if there is a wall 
+     *
+     * @param: boolean true if there is a wall
      * */
 	public void setEastWall(boolean eastWall) {
 		this.eastWall = eastWall;
 	}
 
     /**can add or delete the westWall
-     * 
-     * @param: boolean true if there is a wall 
+     *
+     * @param: boolean true if there is a wall
      * */
 	public void setWestWall(boolean westWall) {
 		this.westWall = westWall;
 	}
-	
+
+	/*return the list of item
+	 *
+	 * @return item (ArrayList<item>) the list of item
+	 */
+	public ArrayList<Item> getItem() {
+		return item;
+	}
+
+	/*Add item at the list item
+	 *
+	 * @param item (Item) : the item we want to add at the list.
+	 */
+	public void setItem(ArrayList<Item> item) {
+		this.item = item;
+	}
+
 	/*return the list of character
-	 * 
+	 *
 	 * @return character (ArrayList<character>) the list of character
 	 */
 	public ArrayList<Character> getCharacters() {
@@ -109,17 +126,17 @@ public class Cell{
 	}
 
 	/*Add character at the list character
-	 * 
+	 *
 	 * @param character (Character) : the character we want to add at the list.
 	 */
 	public void addCharacter(Character character) {
 		this.characters.add(character);
 	}
-	
-	/* Remove a character in the liste, 
-	 * 
+
+	/* Remove a character in the liste,
+	 *
 	 * @param character (Character): the Character we want to remove in the liste character
-	 * 
+	 *
 	 *@exception notInListException: if the character we want to remove is not in the list
 	 */
 	public void removeCharacter(Character character) throws NotInListException {
@@ -132,8 +149,8 @@ public class Cell{
 	}
 
 	/*return true if the 2 cell have the same coordinate
-	 * 
-	 *@return (boolean) true if the 2 cell have the same coordinate 
+	 *
+	 *@return (boolean) true if the 2 cell have the same coordinate
 	 */
 	public boolean equals (Object object) {
 		if (object instanceof Cell) {
