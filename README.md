@@ -50,7 +50,7 @@ Emma : finit classe Cell. Vérification et compréhension de KruskalMaze
 Rayan et Damien : Finit removeWall , ExternalWall, nbCell, et commencement du toString
 
 ## Semaine 3
-
+Emma: finit classe Cell, reflexion sur les test de KruskalMaze et reflexion sur DepthFirstSearchMaze
 ## Semaine 4
 
 ## Semaine 5
