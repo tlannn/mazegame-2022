@@ -2,7 +2,7 @@ package game.maze;
 
 import java.util.ArrayList;
 
-/**a cell in the maze*/
+/**a cell with its 4 walls in the maze*/
 public class Cell{
     private int x;
     private int y;
