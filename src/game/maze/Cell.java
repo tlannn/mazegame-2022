@@ -10,8 +10,8 @@ public class Cell{
     private boolean southWall;
     private boolean eastWall;
     private boolean westWall;
-    private ArrayList <Character> characters;
-    private ArrayList <Item> item;
+    /*private ArrayList <Character> characters;
+    private ArrayList <Item> item;*/
 
     /*a cell must have its 4 walls */
     public Cell(int x, int y){
@@ -21,7 +21,7 @@ public class Cell{
     	this.southWall=true;
     	this.eastWall=true;
     	this.westWall=true;
-    	this.characters= new ArrayList<Character>();
+    	//this.characters= new ArrayList<Character>();
     }
 
     /**
@@ -105,33 +105,33 @@ public class Cell{
 	 *
 	 * @return item (ArrayList<item>) the list of item
 	 */
-	public ArrayList<Item> getItem() {
+	/*public ArrayList<Item> getItem() {
 		return item;
-	}
+	}*/
 
 	/*Add item at the list item
 	 *
 	 * @param item (Item) : the item we want to add at the list.
 	 */
-	public void setItem(ArrayList<Item> item) {
+	/*public void setItem(ArrayList<Item> item) {
 		this.item = item;
-	}
+	}*/
 
 	/*return the list of character
 	 *
 	 * @return character (ArrayList<character>) the list of character
 	 */
-	public ArrayList<Character> getCharacters() {
+	/*public ArrayList<Character> getCharacters() {
 		return this.characters;
-	}
+	}*/
 
 	/*Add character at the list character
 	 *
 	 * @param character (Character) : the character we want to add at the list.
 	 */
-	public void addCharacter(Character character) {
+	/*public void addCharacter(Character character) {
 		this.characters.add(character);
-	}
+	}*/
 
 	/* Remove a character in the liste,
 	 *
@@ -139,14 +139,14 @@ public class Cell{
 	 *
 	 *@exception notInListException: if the character we want to remove is not in the list
 	 */
-	public void removeCharacter(Character character) throws NotInListException {
+	/*public void removeCharacter(Character character) throws NotInListException {
 		try {
 			this.characters.remove(character);
 		}
 		catch(Exception e) {
 			throw new NotInListException("Error "+character.toString()+" can't delete this character because it isn't in the list.");
 		}
-	}
+	}*/
 
 	/*return true if the 2 cell have the same coordinate
 	 *
@@ -169,22 +169,10 @@ public class Cell{
 
 	@Override
 	/*
-	 * display the coordonnate at the cellule
+	 * Display the coordinates of the cell
 	 */
 	public String toString() {
 		return "Cell x="+x+" y="+y;
 	}
 
 }
-
-
-
-/*
-GAME
-main.java
-game.java
-----MAZE
-----maze.java
-----cell.java
-----PERSO
-----character.java*/
