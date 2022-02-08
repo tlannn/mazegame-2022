@@ -47,13 +47,13 @@ public abstract class Maze{
             case EAST:
                 cell.setEastWall(false);
                 if (!this.isExternalWall(cell,orientation)){
-                    cells[cell.getX()-1][cell.getY()].setEastWall(false);
+                    cells[cell.getX()-1][cell.getY()].setWestWall(false);
                 }
                 break;
             case WEST:
                 cell.setWestWall(false);
                 if (!this.isExternalWall(cell,orientation)){
-                    cells[cell.getX()+1][cell.getY()].setWestWall(false);
+                    cells[cell.getX()+1][cell.getY()].setEastWall(false);
                 }
                 break;
         }
