@@ -87,10 +87,10 @@ public class DepthFirstSearchMaze extends Maze {
         actualCell= neighborCell;
       }
       else{
-        alreadyVisited.pop();
-        actualCell= alreadyVisited.peek(); //au dernire tour on regardera une liste vide donc actualCell vaudra null
+        areVisited.pop();
+        actualCell= areVisited.peek(); //au dernire tour on regardera une pile vide donc actualCell vaudra null
       }
-    }while (! alreadyVisited.empty());
+    }while (! areVisited.isEmpty());
 
 
     //on crée une hashmap avec comme clé la cellule et comme valeur un boolean qui nous dit si elle a déjà été visité ou non
