@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**a cell with its 4 walls in the maze*/
 public class Cell{
     private int x;//l'abcisse
-    private int y// l'ordonnée
+    private int y; // l'ordonnée
     private boolean northWall;
     private boolean southWall;
     private boolean eastWall;
