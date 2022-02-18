@@ -27,7 +27,6 @@ public abstract class Maze{
                 this.cells[i][j] = new Cell(i, j);
             }
         }
-
         this.generate();
     }
 
@@ -174,5 +173,13 @@ public abstract class Maze{
         }
 
         return res;
+    }
+
+    public int getLength(){
+        return this.length;
+    }
+
+    public int getHeight(){
+        return this.height;
     }
 }

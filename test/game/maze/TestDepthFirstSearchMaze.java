@@ -8,14 +8,13 @@ import java.beans.Transient;
 import game.maze.*;
 
 
-
-public class TestKruskalMaze{
+public class TestDepthFirstSearchMaze{
 
     //tester que tous les murs sont à l'extérieur
     //tester que toutes les cases à l'intérieurs ont au moins un coté ouvert
     @Test
-    public void testPerfectKruskalMaze(){
-        KruskalMaze maze = new KruskalMaze(2,2);
+    public void testPerfectDepthFirstSearchMaze(){
+        DepthFirstSearchMaze maze = new DepthFirstSearchMaze(2,2);
         for(int i = 0; i<maze.getLength(); i++){
             for(int j = 0; j<maze.getHeight(); j++){
                 assertFalse(maze.getCell(i, j).hasEastWall() && maze.getCell(i, j).hasWestWall() && maze.getCell(i, j).hasNorthWall() && maze.getCell(i, j).hasSouthWall());
@@ -37,7 +36,7 @@ public class TestKruskalMaze{
 
      @Test
     public void testRemoveWallwithOrientation(){
-        KruskalMaze maze = new KruskalMaze(2,2);
+        DepthFirstSearchMaze maze = new DepthFirstSearchMaze(2,2);
         Cell cell = new Cell(0,0);
         Cell cell2 = new Cell(1,0);
         if(cell.hasEastWall()){
@@ -55,7 +54,7 @@ public class TestKruskalMaze{
 
     @Test
     public void testRmoveWallwithCellAdjacent(){
-        KruskalMaze maze = new KruskalMaze(2,2);
+        DepthFirstSearchMaze maze = new DepthFirstSearchMaze(2,2);
         Cell cell = new Cell(0,0);
         Cell cell2 = new Cell(1,0);
         if(cell.hasEastWall()){
@@ -73,7 +72,7 @@ public class TestKruskalMaze{
 
     @Test
     public void testisExternalWall(){
-        KruskalMaze maze = new KruskalMaze(2,2);
+        DepthFirstSearchMaze maze = new DepthFirstSearchMaze(2,2);
         Cell cell = maze.getCell(0, 0);
         assertTrue(cell.hasWestWall());
         assertTrue(maze.isExternalWall(cell, WallOrientation.WEST));
@@ -82,20 +81,9 @@ public class TestKruskalMaze{
 
     @Test
     public void testgetNbCell(){
-        KruskalMaze maze = new KruskalMaze(2,2);
+        DepthFirstSearchMaze maze = new DepthFirstSearchMaze(2,2);
         assertEquals(4, maze.getNbCell());
     }
-
-//je ne peux pas tester car c'est privé
-/*
-    @Test
-    public void testGetCellByNodeIndex(){
-        Maze maze=new KruskalMaze(6,5);
-        Cell cell=new Cell(0,0);
-        assertTrue(cell.equal(maze.getCellByNodeIndex(0)));
-    }
-    */
-
 
     public static junit.framework.Test suite() {
     return new junit.framework.JUnit4TestAdapter(TestKruskalMaze.class);
