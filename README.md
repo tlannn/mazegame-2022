@@ -52,7 +52,9 @@ Rayan et Damien : Finit removeWall , ExternalWall, nbCell, et commencement du to
 ## Semaine 3
 Emma: finit classe Cell, reflexion sur les test de KruskalMaze et reflexion sur DepthFirstSearchMaze
 Emma et Damien ont décidé de:  "on fait une liste qui retient le chemin de mur déjà visité" dans  DepthFirstSearchMaze
+
 ## Semaine 4
+Damien et Rayan : Realisation des tests pour les algos de labyrinthe (KruskalMaze et DepthFirstSearchMaze) + Doc de Maze
 
 ## Semaine 5
 
