@@ -13,56 +13,57 @@ import java.util.Deque;
 //on fait une pile qui retient le chemin de mur déjà visité
 public class DepthFirstSearchMaze extends Maze {
 
-  private Map <Cell, Boolean> alreadyVisited;
+    private Map<Cell, Boolean> alreadyVisited;
 
-  public DepthFirstSearchMaze(int length, int height){
-    super(length, height);
-    this.alreadyVisited = new HashMap <Cell, Boolean>();
-    for(int i = 0; i < length; i++ ){
-        for(int j = 0; j < height; j++){
-          alreadyVisited.put(this.getCell(i,j), false);
+    public DepthFirstSearchMaze(int length, int height) {
+        super(length, height);
+        this.alreadyVisited = new HashMap<Cell, Boolean>();
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < height; j++) {
+                alreadyVisited.put(this.getCell(i, j), false);
+            }
         }
+        this.generate();
     }
-    this.generate();
-  }
 
     /**
-    *return the neighboring cells which are not already visited
-    *@param cell : the cell we want the neighboring cells
-    *@return the neighboring cells of the cell "cell" which are not already visited
-    */
+     * return the neighboring cells which are not already visited
+     *
+     * @param cell : the cell we want the neighboring cells
+     * @return the neighboring cells of the cell "cell" which are not already visited
+     */
 
-    private List<Cell> neighboringCells(Cell cell){
-      List<Cell> neighboring = new ArrayList <Cell> ();
-      if (cell.getY()!=0){//si la cellule est pas en haut, on ajoute l'index du dessus
-        //la cellule du dessus n'a pas déjà eté visité
-        //Cell cellFrontOf=this.cells[cell.getX()-1][cell.getY()];
-        Cell cellFrontOf=this.getCell(cell.getX(),cell.getY()-1);
-        if (! alreadyVisited.get(cellFrontOf)){
-            neighboring.add(cellFrontOf);
+    private List<Cell> neighboringCells(Cell cell) {
+        List<Cell> neighboring = new ArrayList<Cell>();
+        if (cell.getY() != 0) {//si la cellule est pas en haut, on ajoute l'index du dessus
+            //la cellule du dessus n'a pas déjà eté visité
+            //Cell cellFrontOf=this.cells[cell.getX()-1][cell.getY()];
+            Cell cellFrontOf = this.getCell(cell.getX(), cell.getY() - 1);
+            if (!alreadyVisited.get(cellFrontOf)) {
+                neighboring.add(cellFrontOf);
+            }
         }
-      }
-      if (cell.getY()!=this.height-1){//si la cellule est pas en bas, on ajoute l'index du dessous
-        Cell cellFrontOf=this.getCell(cell.getX(),cell.getY()+1);
-        if (! alreadyVisited.get(cellFrontOf)){
-            neighboring.add(cellFrontOf);
-          }
-      }
+        if (cell.getY() != this.height - 1) {//si la cellule est pas en bas, on ajoute l'index du dessous
+            Cell cellFrontOf = this.getCell(cell.getX(), cell.getY() + 1);
+            if (!alreadyVisited.get(cellFrontOf)) {
+                neighboring.add(cellFrontOf);
+            }
+        }
 
-      if (cell.getX()!=0){//si la cellule est pas à gauche du tableau, on ajoute la cellule de gauche
-        Cell cellFrontOf=this.getCell(cell.getX()-1,cell.getY());
-        if (! alreadyVisited.get(cellFrontOf)){
-            neighboring.add(cellFrontOf);
-          }
-      }
+        if (cell.getX() != 0) {//si la cellule est pas à gauche du tableau, on ajoute la cellule de gauche
+            Cell cellFrontOf = this.getCell(cell.getX() - 1, cell.getY());
+            if (!alreadyVisited.get(cellFrontOf)) {
+                neighboring.add(cellFrontOf);
+            }
+        }
 
-      if (cell.getX()!=this.length-1){//si la cellule est pas tout à droite du tableau, on ajoute la cellule de droite
-        Cell cellFrontOf=this.getCell(cell.getX()+1,cell.getY());
-        if (! alreadyVisited.get(cellFrontOf)){
-            neighboring.add(cellFrontOf);
-          }
-      }
-    return neighboring;
+        if (cell.getX() != this.length - 1) {//si la cellule est pas tout à droite du tableau, on ajoute la cellule de droite
+            Cell cellFrontOf = this.getCell(cell.getX() + 1, cell.getY());
+            if (!alreadyVisited.get(cellFrontOf)) {
+                neighboring.add(cellFrontOf);
+            }
+        }
+        return neighboring;
     }
 
     protected void generate(){

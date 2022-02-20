@@ -82,8 +82,9 @@ public abstract class Maze{
      *
      * @param cell cell with the wall at deleted
      * @param adjacentCell the cell which share the wall at deleted
+     * @throws InvalidAdjacentCellException when adjacentCell is not next to cell
      */
-    public void removeWall(Cell cell, Cell adjacentCell) {
+    public void removeWall(Cell cell, Cell adjacentCell) throws InvalidAdjacentCellException {
         WallOrientation orientation;
 
         if (adjacentCell.getX() == cell.getX() + 1 && adjacentCell.getY() == cell.getY()) // adjacentCell is on the right of cell
@@ -94,8 +95,8 @@ public abstract class Maze{
             orientation = WallOrientation.SOUTH;
         else if (adjacentCell.getY() == cell.getY() - 1 && adjacentCell.getX() == cell.getX()) // adjacentCell is above cell
             orientation = WallOrientation.NORTH;
-        else // adjacentCell is not adjacent to cell, do nothing
-            return;
+        else // adjacentCell is not adjacent to cell
+            throw new InvalidAdjacentCellException();
 
         this.removeWall(cell, orientation);
     }
