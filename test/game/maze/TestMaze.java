@@ -15,7 +15,7 @@ public class TestMaze {
     @Before
     public void before() {
         // Create an anonymous concrete class of Maze
-        this.maze = new Maze(2, 2) {
+        this.maze = new Maze(3, 3) {
             @Override
             protected void generate() {}
         };
@@ -125,11 +125,11 @@ public class TestMaze {
 
     @Test
     public void testGetNbCell() {
-        assertEquals(4, maze.getNbCell());
+        assertEquals(9, maze.getNbCell());
     }
 
     public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestCell.class);
+        return new junit.framework.JUnit4TestAdapter(TestMaze.class);
     }
 }
 
