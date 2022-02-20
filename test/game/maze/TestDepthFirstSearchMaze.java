@@ -53,7 +53,7 @@ public class TestDepthFirstSearchMaze{
     }
 
     @Test
-    public void testRmoveWallwithCellAdjacent(){
+    public void testRmoveWallwithCellAdjacent() throws InvalidAdjacentCellException {
         DepthFirstSearchMaze maze = new DepthFirstSearchMaze(2,2);
         Cell cell = new Cell(0,0);
         Cell cell2 = new Cell(1,0);

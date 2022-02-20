@@ -37,7 +37,7 @@ public class TestMaze {
     }
 
     @Test
-    public void testRmoveWallwithCellAdjacent(){
+    public void testRmoveWallwithCellAdjacent() throws InvalidAdjacentCellException {
         Maze maze = new KruskalMaze(2,2);
         Cell cell = maze.getCell(1, 1);
         Cell cell2 = maze.getCell(2, 1);
