@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.Stack;
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 //on fait une pile qui retient le chemin de mur déjà visité
 public class DepthFirstSearchMaze extends Maze {
@@ -73,15 +70,15 @@ public class DepthFirstSearchMaze extends Maze {
 		Cell actualCell = this.getCell(x, y);
 
 		//intialisation
-		Deque<Cell> areVisited = new ArrayDeque<Cell>();
+		Stack<Cell> areVisited = new Stack<Cell>();
 		List<Cell> neighboring = new ArrayList<Cell>();
 
 		//tant que je n'ai pas visité tout le labyrinthe
 		do {
-			areVisited.push(actualCell);
 			alreadyVisited.put(actualCell, true);
 			neighboring = this.neighboringCells(actualCell);
 			if (!neighboring.isEmpty()) {
+				areVisited.push(actualCell);
 				Cell neighborCell = neighboring.get(new Random().nextInt(neighboring.size()));//on choisit une case aléatoirement parmi les cases voisines
 				try {
 					this.removeWall(actualCell, neighborCell);
@@ -90,7 +87,6 @@ public class DepthFirstSearchMaze extends Maze {
 				}
 				actualCell = neighborCell;
 			} else {
-				areVisited.pop();
 				actualCell = areVisited.pop(); //au dernire tour on regardera une pile vide donc actualCell vaudra null
 			}
 		} while (!areVisited.isEmpty());
