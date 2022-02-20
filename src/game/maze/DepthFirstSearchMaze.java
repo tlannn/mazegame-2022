@@ -16,13 +16,13 @@ public class DepthFirstSearchMaze extends Maze {
     private Map <Cell, Boolean> alreadyVisited;
 
     public DepthFirstSearchMaze(int length, int height){
-        super(length, height);
         this.alreadyVisited = new HashMap <Cell, Boolean>();
         for(int i = 0; i < length; i++ ){
             for(int j = 0; j < height; j++){
-              alreadyVisited.put(this.cells[i][j], false);
+              alreadyVisited.put(this.getCell(i,j), false);
             }
         }
+        super(length, height);
     }
 
     /**
