@@ -86,6 +86,6 @@ public class TestDepthFirstSearchMaze{
     }
 
     public static junit.framework.Test suite() {
-    return new junit.framework.JUnit4TestAdapter(TestKruskalMaze.class);
+    return new junit.framework.JUnit4TestAdapter(TestDepthFirstSearchMaze.class);
     }
 }
