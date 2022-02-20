@@ -1,7 +1,7 @@
 package game.maze;
 
 public abstract class Maze{
-    
+
     /**
      * this Maze are a array of lenght "length" and height "height" with a number of cells
      */
@@ -13,7 +13,7 @@ public abstract class Maze{
 
     /**
      * Make Maze, the cells have all the walls
-     * 
+     *
      * @param length length of this Maze
      * @param height height of this Maze
      */
@@ -27,12 +27,11 @@ public abstract class Maze{
                 this.cells[i][j] = new Cell(i, j);
             }
         }
-        this.generate();
     }
 
     /**
      * Return the Cell of coodinate x and y
-     * 
+     *
      * @param x coordinate x
      * @param y coordinate y
      * @return this Cell
@@ -45,9 +44,9 @@ public abstract class Maze{
 
     /**
      * Delete the wall of the cell with orientation
-     * 
-     * @param cell the cell with the wall at deleted 
-     * @param orientation orientation of this wall at deleted 
+     *
+     * @param cell the cell with the wall at deleted
+     * @param orientation orientation of this wall at deleted
      */
     public void removeWall(Cell cell, WallOrientation orientation){
         switch(orientation){
@@ -80,9 +79,9 @@ public abstract class Maze{
 
     /**
      * Delete the wall between cell and adjacentCell
-     * 
-     * @param cell cell with the wall at deleted 
-     * @param adjacentCell the cell which share the wall at deleted 
+     *
+     * @param cell cell with the wall at deleted
+     * @param adjacentCell the cell which share the wall at deleted
      */
     public void removeWall(Cell cell, Cell adjacentCell) {
         WallOrientation orientation;
@@ -103,7 +102,7 @@ public abstract class Maze{
 
     /**
      * Return true if the wall is an external wall false if else
-     * 
+     *
      * @param cell Cell to test
      * @param orientation orientation to test
      * @return true if is extternal wall
@@ -119,7 +118,7 @@ public abstract class Maze{
             case WEST:
                 return cell.getY()==0;
             default:
-                return false;             
+                return false;
         }
     }
 
@@ -129,7 +128,7 @@ public abstract class Maze{
     public int getNbCell(){
         return this.nbCells;
     }
-    
+
     /**
      * Display this Maze with type +, - and | for a wall
      */

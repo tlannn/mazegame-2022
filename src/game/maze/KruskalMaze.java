@@ -95,13 +95,14 @@ public class KruskalMaze extends Maze {
 	 */
 	public KruskalMaze(int length, int height) {
 		super(length, height);
+    this.generate();
 	}
 
 	/**
 	 * Generate the maze by opening random walls using the Kruskal's algorithm
 	 */
 	protected void generate() {
-		/* 
+		/*
 		 * Create an array that will contain nodes (aka cells).
 		 * See nodes as if each one belong to their own set. If nodes were to belong to the same set,
 		 * it would mean they are connected together through an opened wall in the maze
