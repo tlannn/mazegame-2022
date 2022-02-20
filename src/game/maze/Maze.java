@@ -110,13 +110,13 @@ public abstract class Maze{
     public boolean isExternalWall(Cell cell, WallOrientation orientation){
         switch(orientation){
             case NORTH:
-                return cell.getX()==0;
+                return cell.getY()==0;
             case SOUTH:
                 return cell.getY()==this.height-1;
             case EAST:
                 return cell.getX()==this.length-1;
             case WEST:
-                return cell.getY()==0;
+                return cell.getX()==0;
             default:
                 return false;
         }

@@ -23,7 +23,7 @@ public class DepthFirstSearchMaze extends Maze {
           alreadyVisited.put(this.getCell(i,j), false);
         }
     }
-    this.generate();    
+    this.generate();
   }
 
     /**
@@ -75,23 +75,30 @@ public class DepthFirstSearchMaze extends Maze {
       Deque <Cell> areVisited = new ArrayDeque<Cell>();
       List<Cell> neighboring = new ArrayList <Cell> ();
 
+      int compteur=0;
 
 
       //tant que je n'ai pas visité tout le labyrinthe
       do{
-      neighboring = this.neighboringCells(actualCell);
-      if (! neighboring.isEmpty()){
-        Cell neighborCell = neighboring.get(neighboring.size());
-        this.removeWall(actualCell, neighborCell);
-        areVisited.push(actualCell);
-        alreadyVisited.put(actualCell, true);
-        actualCell= neighborCell;
-      }
-      else{
-        areVisited.pop();
-        actualCell= areVisited.peek(); //au dernire tour on regardera une pile vide donc actualCell vaudra null
-      }
-    }while (! areVisited.isEmpty());
+        System.out.println("je suis dans le do while pour la "+compteur+"ème fois");
+        System.out.println(this.toString());
+        compteur+=1;
+        neighboring = this.neighboringCells(actualCell);
+        System.out.println("la cellule actuelle est "+actualCell.toString());
+        if (! neighboring.isEmpty()){
+          System.out.println("ces cellules voisines sont "+neighboring);
+          Cell neighborCell = neighboring.get(new Random ().nextInt(neighboring.size()));//on choisit une case aléatoirement parmi les cases voisines
+          System.out.println("la cellule voisine choisi est "+ neighborCell.toString());
+          this.removeWall(actualCell, neighborCell);
+          areVisited.push(actualCell);
+          alreadyVisited.put(actualCell, true);
+          actualCell= neighborCell;
+        }
+        else{
+          areVisited.pop();
+          actualCell= areVisited.peek(); //au dernire tour on regardera une pile vide donc actualCell vaudra null
+        }
+      }while (! areVisited.isEmpty() && compteur<20);
 
 
     //on crée une hashmap avec comme clé la cellule et comme valeur un boolean qui nous dit si elle a déjà été visité ou non
