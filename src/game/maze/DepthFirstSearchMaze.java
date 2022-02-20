@@ -81,25 +81,32 @@ public class DepthFirstSearchMaze extends Maze {
 
       //tant que je n'ai pas visité tout le labyrinthe
       do{
+
         System.out.println("je suis dans le do while pour la "+compteur+"ème fois");
+        System.out.println("la file d'attente est composé de :"+areVisited);
+        System.out.println("\n le hashmap est :" +alreadyVisited);
         System.out.println(this.toString());
         compteur+=1;
+        areVisited.push(actualCell);
+        alreadyVisited.put(actualCell, true);
         neighboring = this.neighboringCells(actualCell);
         System.out.println("la cellule actuelle est "+actualCell.toString());
         if (! neighboring.isEmpty()){
-          System.out.println("ces cellules voisines sont "+neighboring);
+          //System.out.println("ces cellules voisines sont "+neighboring);
           Cell neighborCell = neighboring.get(new Random ().nextInt(neighboring.size()));//on choisit une case aléatoirement parmi les cases voisines
           System.out.println("la cellule voisine choisi est "+ neighborCell.toString());
-          this.removeWall(actualCell, neighborCell);
-          areVisited.push(actualCell);
-          alreadyVisited.put(actualCell, true);
+          try{
+          this.removeWall(actualCell, neighborCell);}
+          catch(InvalidAdjacentCellException e){
+            System.out.println("Error : Trying to open wall between two non-adjacent cells");
+          }
           actualCell= neighborCell;
         }
         else{
           areVisited.pop();
-          actualCell= areVisited.peek(); //au dernire tour on regardera une pile vide donc actualCell vaudra null
+          actualCell= areVisited.pop(); //au dernire tour on regardera une pile vide donc actualCell vaudra null
         }
-      }while (! areVisited.isEmpty() && compteur<20);
+      }while (! areVisited.isEmpty() );
 
 
     //on crée une hashmap avec comme clé la cellule et comme valeur un boolean qui nous dit si elle a déjà été visité ou non
