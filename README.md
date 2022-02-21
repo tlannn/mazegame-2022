@@ -55,6 +55,7 @@ Emma et Damien ont décidé de:  "on fait une liste qui retient le chemin de mur
 
 ## Semaine 4
 Damien et Rayan : Realisation des tests pour les algos de labyrinthe (KruskalMaze et DepthFirstSearchMaze) + Doc de Maze
+Emma : finit le code de DepthFirstSearchMaze.
 
 ## Semaine 5
 
