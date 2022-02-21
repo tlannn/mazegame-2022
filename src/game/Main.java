@@ -4,9 +4,10 @@ import game.maze.*;
 
 public class Main {
 	public static void main(String[] args) {
-		Maze maze = new KruskalMaze(9, 9);
-		System.out.println(maze);
-		Maze mazeEmma = new DepthFirstSearchMaze(9,9);
-		System.out.println(mazeEmma);
+		Maze kruskalMaze = new KruskalMaze(7, 4);
+		System.out.println(kruskalMaze);
+
+		Maze depthFirstSearchMaze = new DepthFirstSearchMaze(7, 4);
+		System.out.println(depthFirstSearchMaze);
 	}
 }
