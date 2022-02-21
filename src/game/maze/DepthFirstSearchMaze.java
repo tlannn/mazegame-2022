@@ -81,20 +81,11 @@ public class DepthFirstSearchMaze extends Maze {
 
       //tant que je n'ai pas visité tout le labyrinthe
       do{
-
-        System.out.println("je suis dans le do while pour la "+compteur+"ème fois");
-        System.out.println("la file d'attente est composé de :"+areVisited);
-        System.out.println("\n le hashmap est :" +alreadyVisited);
-        System.out.println(this.toString());
-        compteur+=1;
         areVisited.push(actualCell);
         alreadyVisited.put(actualCell, true);
         neighboring = this.neighboringCells(actualCell);
-        System.out.println("la cellule actuelle est "+actualCell.toString());
         if (! neighboring.isEmpty()){
-          //System.out.println("ces cellules voisines sont "+neighboring);
           Cell neighborCell = neighboring.get(new Random ().nextInt(neighboring.size()));//on choisit une case aléatoirement parmi les cases voisines
-          System.out.println("la cellule voisine choisi est "+ neighborCell.toString());
           try{
           this.removeWall(actualCell, neighborCell);}
           catch(InvalidAdjacentCellException e){
