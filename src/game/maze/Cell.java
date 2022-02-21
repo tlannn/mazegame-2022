@@ -12,7 +12,6 @@ public class Cell{
     private boolean westWall;
     /*private ArrayList <Character> characters;
     private ArrayList <Item> item;*/
-	private boolean alreadyVisited;
 
     /*a cell must have its 4 walls */
     public Cell(int x, int y){
@@ -174,18 +173,6 @@ public class Cell{
 	 */
 	public String toString() {
 		return "Cell x="+x+" y="+y;
-	}
-
-	public boolean getAlreadyVisited(){
-		return this.alreadyVisited;
-	}
-
-	public void setAlreadyVisited(boolean alreadyVisited){
-		this.alreadyVisited = alreadyVisited;
-	}
-
-	public boolean alreadyVisited(){
-		return true;
 	}
 
 }
