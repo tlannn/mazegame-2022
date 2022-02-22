@@ -18,17 +18,17 @@
 Les 2 algorithmes (Kruskal et DepthFirstSearchMaze) fonctionnent correctement.
 Tous les tests sont fait sur toutes les classes et tous fonctionnent correctement.
 
-On a donc les classes :
+On a donc les classes :  
 -Maze (la classe parente de KruskalMaze et DepthFirstSearchMaze)  
 -KruskalMaze  
 -DepthFirstSearchMaze  
 -Cell  
 -Random
 
-On a les exceptions:
+On a les exceptions:  
 InvalidAdjacentCellException :  on essaie d'enlever un mur entre 2 cases non adjacentes.
 
-On a une enum:
+On a une enum:  
 -WallOrientation
 
 On a un main qui affiche les 2 labyrinthes.
