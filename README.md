@@ -20,6 +20,7 @@ Tous les tests sont fait sur toutes les classes et tous fonctionnent correctemen
 
 On a donc les classes :
 -Maze (la classe parente de KruskalMaze et DepthFirstSearchMaze)
+<\br>
 -KruskalMaze
 -DepthFirstSearchMaze
 -Cell
