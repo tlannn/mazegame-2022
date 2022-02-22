@@ -100,14 +100,17 @@ Theo : création de la classe KruskalMaze (à priori terminée) qui utilise l'al
 ## Semaine 2
 Emma : finit classe Cell. Vérification et compréhension de KruskalMaze
 Rayan et Damien : Finit removeWall , ExternalWall, nbCell, et commencement du toString
+Theo : tests pour la classe Cell
 
 ## Semaine 3
-Emma: finit classe Cell, reflexion sur les test de KruskalMaze et reflexion sur DepthFirstSearchMaze
+Emma: finit classe Cell, reflexion sur les tests de KruskalMaze et reflexion sur DepthFirstSearchMaze
 Emma et Damien ont décidé de:  "on fait une liste qui retient le chemin de mur déjà visité" dans  DepthFirstSearchMaze
+Theo : correction d'un bug lors de la génération des labyrinthes dû à un probable d'index dans une liste lors de l'accès aux cellules
 
 ## Semaine 4 (vacances)
 Damien et Rayan : Realisation des tests pour les algos de labyrinthe (KruskalMaze et DepthFirstSearchMaze) + Doc de Maze
 Emma : finit le code de DepthFirstSearchMaze.
+Theo : Documentation des classes, revue des tests
 
 ## Semaine 5
 Emma verification des tests.
