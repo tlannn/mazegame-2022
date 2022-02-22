@@ -15,8 +15,8 @@
 
 ## Livrable 1
 
-Les 2 algorithmes (Kruskal et DepthFirstSearchMaze) fonctionnent correctement.  
-Tous les tests sont fait sur toutes les classes et tous fonctionnent correctement.
+Les 2 algorithmes (Kruskal et Depth First Search) fonctionnent correctement.
+Tous les tests sont faits sur toutes les classes et tous fonctionnent correctement.
 
 On a donc les classes :  
 -Maze (la classe parente de KruskalMaze et DepthFirstSearchMaze)  
@@ -25,8 +25,8 @@ On a donc les classes :
 -Cell  
 -Random
 
-On a les exceptions:  
-InvalidAdjacentCellException :  on essaie d'enlever un mur entre 2 cases non adjacentes.
+On a les exceptions:
+InvalidAdjacentCellException : on essaie d'enlever un mur entre 2 cases non adjacentes.
 
 On a une enum:  
 -WallOrientation
@@ -34,28 +34,39 @@ On a une enum:
 On a un main qui affiche les 2 labyrinthes.
 
 ## Exécution
-Pour compiler: 
+Pour générer la javadoc:
+```console
+$ javadoc -sourcepath src -d docs -subpackages game # Crée la documentation dans le dossier 'docs'
+```
+
+Pour compiler les fichiers sources:
 ```console
 $ javac -sourcepath src -d classes src/game/*.java
 ```
-Pour executer le main:
+
+Pour exécuter le main:
 ``` console
 # Compiler les classes au préalable
 $ java -classpath classes game.Main
 ```
 
+Pour lancer les tests:
+```console
+$ javac -sourcepath src -classpath test4poo.jar test/game/maze/*.java # Compilation des classes de test
+$ java -jar test4poo.jar -classpath test game.maze.TestMaze # Lancement des tests de la classe MAze
+```
+
 Pour créer un jar:
 ```console
 # Compiler les classes au préalable
-$ jar cvfe  game.jar game.Main -C classes game
-$ java -jar game.jar
-# Affichage du programme
+$ jar cvfe  game.jar game.Main -C classes game # Création de l'archive
+$ java -jar game.jar # Lancement du programme
 ```
 
 
 
 ### Atteinte des objectifs
-Les objectifs sont atteints: Les 2 algorithmes (Kruskal et DepthFirstSearchMaze) fonctionnent correctement et les tests sont valides.
+Les objectifs sont atteints : Les 2 algorithmes (Kruskal et Depth First Search) fonctionnent correctement et les tests sont valides.
 
 ### Difficultés restant à résoudre
 Aucune
