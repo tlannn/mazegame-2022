@@ -1,131 +1,114 @@
 package game.maze;
 
-import java.util.ArrayList;
-
-/**a cell in the maze*/
-public class Cell{
-    private int x;
-    private int y;
+/**
+ * Represents a cell in the maze with 4 walls in each direction. The walls are closed when the cell is created.
+ */
+public class Cell {
+    private int x; // Abscissa
+    private int y; // Ordinate
     private boolean northWall;
     private boolean southWall;
     private boolean eastWall;
     private boolean westWall;
-    private ArrayList <Character> characters;
 
-    /*a cell must have its 4 walls */
-    public Cell(int x, int y){
+	/**
+	 * Class constructor
+	 *
+	 * @param x the abscissa of the cell in the maze
+	 * @param y the ordinate of the cell in the maze
+	 */
+	public Cell(int x, int y){
     	this.x=x;
     	this.y=y;
     	this.northWall=true;
     	this.southWall=true;
     	this.eastWall=true;
     	this.westWall=true;
-    	this.characters= new ArrayList<Character>();
     }
-    
+
     /**
-     * return x which the coordonate at the cell
-     * 
+     * Return the abscissa of the cell
      * @return (int) x;
      */
     public int getX() {
 		return x;
 	}
+
     /**
-     * return y which the coordonate at the cell
-     * 
+     * Return the ordinate of the cell
      * @return (int) y;
      */
 	public int getY() {
 		return y;
 	}
-	
-    /** tell if there is a north wall to the cell
-    @return true if there is a north wall
-    */
+
+    /**
+	 * Tell if there is a north wall to the cell
+     * @return true if there is a north wall
+     */
     public boolean hasNorthWall(){
         return this.northWall;
     }
 
-    /** tell if there is a south wall to the cell
-    @return true if there is a south wall
-    */
+    /**
+	 * Tell if there is a south wall to the cell
+     * @return true if there is a south wall
+     */
     public boolean hasSouthWall(){
         return this.southWall;
     }
 
-    /** tell if there is a east wall to the cell
-    @return true if there is a east wall
-    */
+    /**
+	 * Tell if there is an east wall to the cell
+     * @return true if there is an east wall
+     */
     public boolean hasEastWall(){
         return this.eastWall;
     }
 
-    /** tell if there is a west wall to the cell
-    @return true if there is a west wall
-    */
+    /**
+	 * Tell if there is a west wall to the cell
+     * @return true if there is a west wall
+     */
     public boolean hasWestWall(){
         return this.westWall;
     }
-    
-    /**can add or delete the northWall
-     * 
-     * @param: boolean true if there is a wall 
-     * */
+
+    /**
+	 * Change the status of the north wall (opened or closed)
+     * @param northWall the status of the north wall
+     */
 	public void setNorthWall(boolean northWall) {
 		this.northWall = northWall;
 	}
 
-    /**can add or delete the southWall
-     * 
-     * @param: boolean true if there is a wall 
-     * */
+	/**
+	 * Change the status of the south wall (opened or closed)
+	 * @param southWall the status of the south wall
+	 */
 	public void setSouthWall(boolean southWall) {
 		this.southWall = southWall;
 	}
-	
-    /**can add or delete the eastWall
-     * 
-     * @param: boolean true if there is a wall 
-     * */
+
+	/**
+	 * Change the status of the east wall (opened or closed)
+	 * @param eastWall the status of the east wall
+	 */
 	public void setEastWall(boolean eastWall) {
 		this.eastWall = eastWall;
 	}
 
-    /**can add or delete the westWall
-     * 
-     * @param: boolean true if there is a wall 
-     * */
+	/**
+	 * Change the status of the west wall (opened or closed)
+	 * @param westWall the status of the west wall
+	 */
 	public void setWestWall(boolean westWall) {
 		this.westWall = westWall;
 	}
-	
-	/*Add character at the list character
-	 * 
-	 * @param character (Character) : the character we want to add at the list.
-	 */
-	public void addCharacter(Character character) {
-		this.characters.add(character);
-	}
-	
-	/* Remove a character in the liste, 
-	 * 
-	 * @param character (Character): the Character we want to remove in the liste character
-	 * 
-	 *@exception notInListException: if the character we want to remove is not in the list
-	 */
-	public void removeCharacter(Character character) throws notInListException {
-		try {
-			this.characters.remove(character);
-		}
-		catch(Exception e) {
-			throw new notInListException("Error "+character.toString()+" can't delete this character because it isn't in the list.");
-		}
-	}
 
-	/*return true if the 2 cell have the same coordinate
-	 * 
-	 *@return (boolean) true if the 2 cell have the same coordinate 
+	/**
+	 * Test the equality with another cell. Cells are the same if they have the same coordinates
+	 * @return true if the 2 cells have the same coordinates
 	 */
 	public boolean equals (Object object) {
 		if (object instanceof Cell) {
@@ -142,16 +125,10 @@ public class Cell{
 		}
 	}
 
+	/**
+	 * Returns a string representation of the cell with its coordinates
+	 */
+	public String toString() {
+		return "Cell x="+x+" y="+y;
+	}
 }
-
-
-
-/*
-GAME
-main.java
-game.java
-----MAZE
-----maze.java
-----cell.java
-----PERSO
-----character.java*/

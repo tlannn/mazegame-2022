@@ -21,7 +21,7 @@ public class KruskalMaze extends Maze {
 		/* Instance attributes */
 		private Node parent; // Parent node in the tree
 		private int index; // Index of the associated cell in the maze
-		private int rank; // Depth of the tree (number of children), but this no longer makes sense with the path compression in method find()
+		private int rank; // Depth of the tree, but this no longer makes sense with the path compression in method find()
 
 		/**
 		 * Node class constructor
@@ -95,13 +95,14 @@ public class KruskalMaze extends Maze {
 	 */
 	public KruskalMaze(int length, int height) {
 		super(length, height);
+    this.generate();
 	}
 
 	/**
 	 * Generate the maze by opening random walls using the Kruskal's algorithm
 	 */
 	protected void generate() {
-		/* 
+		/*
 		 * Create an array that will contain nodes (aka cells).
 		 * See nodes as if each one belong to their own set. If nodes were to belong to the same set,
 		 * it would mean they are connected together through an opened wall in the maze
@@ -125,13 +126,14 @@ public class KruskalMaze extends Maze {
 
 			// Add all cells index except those whose oriented wall is the border of the maze
 			for (int i = 0; i < this.nbCells; ++i) {
-				if (!this.isExternalWall(this.getCellByNodeIndex(i), orientation))
+				if (!this.isExternalWall(this.getCellByNodeIndex(i), orientation)) {
 					possibleIndex.add(i);
+				}
 			}
 
 			// Choose a random cell index among the remaining cells
 			int randIndex = possibleIndex.get(Random.randInt(0, possibleIndex.size()-1));
-			int adjacentIndex = orientation == WallOrientation.EAST ? randIndex + 1 : randIndex + this.length; // Depending on the orientation (south, east) the adjacent is wether to the right or below
+			int adjacentIndex = orientation == WallOrientation.EAST ? randIndex + 1 : randIndex + this.length; // Depending on the orientation (south, east) the adjacent is whether to the right or below
 
 			/*
 			 * Next step is to unite the sets corresponding to the selected nodes
@@ -139,7 +141,7 @@ public class KruskalMaze extends Maze {
 			 */
 			if (this.union(nodes[randIndex], nodes[adjacentIndex])) {
 				// Remove the wall from the chosen cell and the adjacent cell, since they share the same wall
-				this.removeWall(this.getCellByNodeIndex(randIndex), orientation);;
+				this.removeWall(this.getCellByNodeIndex(randIndex), orientation);
 
 				++nbUnion;
 			}
@@ -152,9 +154,9 @@ public class KruskalMaze extends Maze {
 	 * @return the cell associated
 	 */
 	private Cell getCellByNodeIndex(int index) {
-		int i = (int)index / this.length;
-		int j = (int)index % this.length;
-		return this.getCell(i, j);
+		int x = (int)(index % this.length);
+		int y = (int)(index / this.length);
+		return this.getCell(x, y);
 	}
 
 	/**
@@ -184,15 +186,15 @@ public class KruskalMaze extends Maze {
 	 * @return true if nodes has been united, false otherwise
 	 */
 	private boolean union(Node x, Node y) {
-		boolean unionOccured = false;
+		boolean unionOccurred = false;
 
-		// Search the root node of each nodes
+		// Search the root node of each node
 		Node xRoot = find(x);
 		Node yRoot = find(y);
 
 		// If nodes haven't the same root, they don't belong to the same tree
 		if (xRoot != yRoot) {
-			unionOccured = true;
+			unionOccurred = true;
 
 			if (xRoot.getRank() < yRoot.getRank()) // The tree containing node X is the smallest
 				xRoot.setParent(yRoot);
@@ -204,6 +206,6 @@ public class KruskalMaze extends Maze {
 			}
 		}
 
-		return unionOccured;
+		return unionOccurred;
 	}
 }
