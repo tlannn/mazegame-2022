@@ -86,7 +86,7 @@ public class TestMaze {
         assertFalse(cell.hasEastWall());
         assertFalse(cellEast.hasWestWall());
     }
-    
+
     @Test(expected = InvalidAdjacentCellException.class)
     public void testRemoveWallBetweenNonAdjacentCellsThrowsException() throws InvalidAdjacentCellException {
         Cell cell = maze.getCell(0, 0);
@@ -132,4 +132,3 @@ public class TestMaze {
         return new junit.framework.JUnit4TestAdapter(TestMaze.class);
     }
 }
-
