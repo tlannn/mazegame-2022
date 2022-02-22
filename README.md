@@ -33,7 +33,7 @@ On a une enum:
 
 On a un main qui affiche les 2 labyrinthes.
 
-##Exécution
+## Exécution
 Pour compiler: 
 ```console
 $ javac -sourcepath src -d classes src/game/*.java
