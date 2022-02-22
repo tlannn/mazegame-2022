@@ -15,7 +15,7 @@
 
 ## Livrable 1
 
-Les 2 algorithmes (Kruskal et DepthFirstSearchMaze) fonctionnent correctement.
+Les 2 algorithmes (Kruskal et DepthFirstSearchMaze) fonctionnent correctement.  
 Tous les tests sont fait sur toutes les classes et tous fonctionnent correctement.
 
 On a donc les classes :  
