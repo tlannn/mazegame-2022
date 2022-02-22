@@ -19,11 +19,10 @@ Les 2 algorithmes (Kruskal et DepthFirstSearchMaze) fonctionnent correctement.
 Tous les tests sont fait sur toutes les classes et tous fonctionnent correctement.
 
 On a donc les classes :
--Maze (la classe parente de KruskalMaze et DepthFirstSearchMaze)
-<\br>
--KruskalMaze
--DepthFirstSearchMaze
--Cell
+-Maze (la classe parente de KruskalMaze et DepthFirstSearchMaze)  
+-KruskalMaze  
+-DepthFirstSearchMaze  
+-Cell  
 -Random
 
 On a les exceptions:
