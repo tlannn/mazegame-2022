@@ -106,7 +106,7 @@ public class TestCell {
 		cell.setNorthWall(true);
 		assertTrue(cell.hasNorthWall());
 	}
-	
+
 	@Test
 	public void testSetSouthWall() {
 		Cell cell = new Cell(3, 5);
@@ -143,8 +143,9 @@ public class TestCell {
 		Cell cell2 = new Cell(8, 2);
 		assertFalse(cell.equals(cell2));
 
-		cell2 = cell;
+		cell2 = new Cell(3,5);
 		assertEquals(cell, cell2);
+
 	}
 
 	public static junit.framework.Test suite() {

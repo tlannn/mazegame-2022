@@ -18,7 +18,7 @@ public class TestKruskalMaze {
         // Check that vertical external walls are not removed
         for (int i = 0; i < maze.getHeight(); i++) {
             assertTrue(maze.getCell(0, i).hasWestWall());
-            assertTrue(maze.getCell(maze.getHeight() - 1, 0).hasEastWall());
+            assertTrue(maze.getCell(maze.getHeight() - 1, i).hasEastWall());
         }
 
         // Check that horizontal external walls are not removed
