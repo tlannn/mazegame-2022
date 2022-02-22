@@ -15,9 +15,50 @@
 
 ## Livrable 1
 
+Les 2 algorithmes (Kruskal et DepthFirstSearchMaze) fonctionnent correctement.
+Tous les tests sont fait sur toutes les classes et tous fonctionnent correctement.
+
+On a donc les classes :
+-Maze (la classe parente de KruskalMaze et DepthFirstSearchMaze)
+-KruskalMaze
+-DepthFirstSearchMaze
+-Cell
+-Random
+
+On a les exceptions:
+InvalidAdjacentCellException :  on essaie d'enlever un mur entre 2 cases non adjacentes.
+
+On a une enum:
+-WallOrientation
+
+On a un main qui affiche les 2 labyrinthes.
+
+##Exécution
+Pour compiler: 
+```console
+$ javac -sourcepath src -d classes src/game/*.java
+```
+Pour executer le main:
+``` console
+# Compiler les classes au préalable
+$ java -classpath classes game.Main
+```
+
+Pour créer un jar:
+```console
+# Compiler les classes au préalable
+$ jar cvfe  game.jar game.Main -C classes game
+$ java -jar game.jar
+# Affichage du programme
+```
+
+
+
 ### Atteinte des objectifs
+Les objectifs sont atteints: Les 2 algorithmes (Kruskal et DepthFirstSearchMaze) fonctionnent correctement et les tests sont valides.
 
 ### Difficultés restant à résoudre
+Aucune
 
 ## Livrable 2
 
