@@ -4,6 +4,7 @@ package game.item;
 public class Character {
     
     private Cell currentCell;
+    protected String name;
 
     public Character(){
 
