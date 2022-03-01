@@ -41,7 +41,7 @@ public class Player {
     }
 
     public list<Item> getInventoryItems() {
-        return this.inventory
+        return this.inventory;
 
     }
 
