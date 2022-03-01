@@ -1,14 +1,16 @@
-package game.item;
+package game.character;
+
 import java.util.*;
 
+import game.item.*;
 
-public class Player {
-    private String name;
+public class Player extends Character {
+
     private int gold;
     private List<Item> inventory;
     
     public Player(String name,int gold){
-        this.name = name;
+        super(name);
         this.gold = gold;
         this.inventory = new ArrayList<Item>();
     }
@@ -37,10 +39,16 @@ public class Player {
     
     public void useItem(Item i){
         i.use();
-        this.removeItem(i);
+        try{
+            this.removeItem(i);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
     }
 
-    public list<Item> getInventoryItems() {
+    public List<Item> getInventoryItems() {
         return this.inventory;
 
     }

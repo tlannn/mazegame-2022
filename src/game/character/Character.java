@@ -1,15 +1,15 @@
-package game.item;
+package game.character;
 
 import game.maze.*;
 
 
-public class Character {
+public abstract class Character {
     
     private Cell currentCell;
     protected String name;
 
-    public Character(){
-
+    public Character(String name){
+        this.name = name;
     }
 
     public Cell getCurrentCell(){
@@ -18,5 +18,9 @@ public class Character {
 
     public void setCurentCell(Cell cell){
         this.currentCell = cell;
+    }
+
+    public String getName(){
+        return this.name;
     }
 }

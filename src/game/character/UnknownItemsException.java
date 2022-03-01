@@ -1,4 +1,4 @@
-package game.item;
+package game.character;
 
 public class UnknownItemsException extends Exception {
 

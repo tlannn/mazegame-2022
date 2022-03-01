@@ -4,6 +4,6 @@ public abstract class Item {
     
     public Item(){}
 
-    protected abstract void use();
+    public abstract void use();
 
 }
