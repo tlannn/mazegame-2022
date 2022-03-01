@@ -2,7 +2,6 @@ package game.character;
 
 import game.maze.*;
 
-
 public abstract class Character {
     
     private Cell currentCell;

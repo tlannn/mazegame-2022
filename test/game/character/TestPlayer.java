@@ -3,6 +3,10 @@ package game.character;
 import java.beans.Transient;
 
 import game.character.*;
+import game.item.*;
+import game.maze.*;
+
+
 import game.item.Parchment;
 
 public class TestPlayer{
@@ -26,14 +30,33 @@ public class TestPlayer{
     }
 
     @Test
-    public testaddItem(){
+    public void testaddItem(){
         Player player = new Player("Rayan", 5);
-        Hint hint = new Hint("Avance a gauche akhi");
+        Hint hint = new Hint("Avance à gauche akhi");
         Item parchment = new Parchment(hint);
         assertequals(0, player.getInventoryItems().lenght());
-        player.addItem(parch);
-        
+        player.addItem(parchment);
+        assertequals(1, player.getInventoryItems().lenght());
     }
     
+    @Test(expected=UnknownItemsException.class)
+    public void testUnknownItemsException() throws Exception{
+        Player player = new Player("Rayan", 5);
+        Hint hint = new Hint("Avance à gauche akhi");
+        Item parchment = new Parchment(hint);
+        player.removeItem(parchment);
+    }
+
+    @Test
+    public void testremoveIem() throws Exception{
+        Player player = new Player("Rayan", 5);
+        Hint hint = new Hint("Avance à gauche akhi");
+        Item parchment = new Parchment(hint);
+        player.addItem(parchment);
+        assertequals(1, player.getInventoryItems().lenght());
+        player.removeItem(parchment);
+        assertequals(0, player.getInventoryItems().lenght());
+    }
+
     
 }
