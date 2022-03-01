@@ -1,5 +1,7 @@
 package game.item;
 
+import game.maze.*;
+
 
 public class Character {
     
