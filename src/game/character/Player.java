@@ -9,9 +9,9 @@ public class Player extends Character {
     private int gold;
     private List<Item> inventory;
     
-    public Player(String name,int gold){
+    public Player(String name){
         super(name);
-        this.gold = gold;
+        this.gold = 0;
         this.inventory = new ArrayList<Item>();
     }
 
@@ -20,7 +20,7 @@ public class Player extends Character {
     }
 
     public void addGold(int amount){
-        this.gold += amount; 
+        this.gold += amount;
     }
 
     public void removeGold(int amount){
