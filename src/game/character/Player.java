@@ -24,6 +24,9 @@ public class Player extends Character {
     }
 
     public void removeGold(int amount){
+        if (amount >= this.gold){
+            this.gold = 0;
+        }
         this.gold -= amount;
     }
 

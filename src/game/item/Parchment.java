@@ -4,7 +4,7 @@ public class Parchment extends Item {
 
     private Hint hint;
 
-    public Prachement(Hint hint){
+    public Parchement(Hint hint){
         super();
         this.hint = hint;
     }
