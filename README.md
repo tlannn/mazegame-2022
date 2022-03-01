@@ -114,12 +114,12 @@ Theo : Documentation des classes, revue des tests
 
 ## Semaine 5
 Emma verification des tests.
-Tout le monde: UML sur les NonePlayerCharacter
+Tout le monde: UML sur NonPlayerCharacter et ses enfants (Trader, Sphinx, Fool et Altruist) ainsi que les Items
 
 ## Semaine 6
-Emma et Theo travaille sur UML
-Emma code le début de ItemPositionHint
+Emma : UML sur les Hint + code le début de ItemPositionHint
 Damien et Rayan code les class Player, Character, Item, Parchment et les différents enum + réalisation des tests pour Player
+Theo : UML dans la globalité + début sur la classe NonPlayerCharacter et ses enfants, ainsi que les classes FakeHint et InputReader. Correctifs sur Player et ses tests
 
 ## Semaine 7
 
