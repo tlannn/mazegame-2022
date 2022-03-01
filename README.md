@@ -117,6 +117,8 @@ Emma verification des tests.
 Tout le monde: UML sur les NonePlayerCharacter
 
 ## Semaine 6
+Emma et Theo travaille sur UML
+Emma code le début de ItemPositionHint
 
 ## Semaine 7
 
