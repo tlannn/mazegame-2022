@@ -148,6 +148,6 @@ public class Cell {
 	 * Returns a string representation of the cell with its coordinates
 	 */
 	public String toString() {
-		return "Cell x="+x+" y="+y;
+        return "("+x+","+y+")";
 	}
 }
