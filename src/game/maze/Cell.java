@@ -10,6 +10,8 @@ public class Cell {
     private boolean southWall;
     private boolean eastWall;
     private boolean westWall;
+	private List<Item> theItems;
+	private List<Character> theCharacters;
 
 	/**
 	 * Class constructor
@@ -105,6 +107,23 @@ public class Cell {
 	public void setWestWall(boolean westWall) {
 		this.westWall = westWall;
 	}
+
+	public List<Item> getItems(){
+		return this.theItems;
+	}
+
+	public List<Character> getCharacters(){
+		return this.theCharacters;
+	}
+
+	public void addItem(Item item){
+		this.theItems.add(item);
+	}
+
+	public void addCharacter(Character character){
+		this.theItems.add(character);
+	}
+
 
 	/**
 	 * Test the equality with another cell. Cells are the same if they have the same coordinates
