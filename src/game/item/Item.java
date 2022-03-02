@@ -5,7 +5,7 @@ import game.maze.*;
 public abstract class Item {
 
     protected Cell actualCell;
-    
+
     public Item(Cell cell){
         this.actualCell = cell;
     }
@@ -14,7 +14,7 @@ public abstract class Item {
         return this.actualCell;
     }
 
-    public void setCell(cell cell){
+    public void setCell(Cell cell){
         this.actualCell = cell;
     }
 

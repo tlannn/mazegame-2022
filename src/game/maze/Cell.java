@@ -1,5 +1,8 @@
 package game.maze;
 
+import java.util.*;
+import game.item.*;
+
 /**
  * Represents a cell in the maze with 4 walls in each direction. The walls are closed when the cell is created.
  */
@@ -121,7 +124,7 @@ public class Cell {
 	}
 
 	public void addCharacter(Character character){
-		this.theItems.add(character);
+		this.theCharacters.add(character);
 	}
 
 
