@@ -7,6 +7,6 @@ public class ItemPositionHint extends FixedHint {
     public ItemPositionHint(Item item){
         super();
 
-        this.statement = "Il y a " + item.toString() + " à la case " + item.getCell().toString();
+        this.statement = "Il y a " + item.toString() + " à la case " + item.getCurrentCell().toString();
     }
 }

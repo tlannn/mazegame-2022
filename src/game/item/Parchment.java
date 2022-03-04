@@ -1,22 +1,23 @@
 package game.item;
 
 import game.enigma.*;
+import game.maze.Cell;
 
 public class Parchment extends Item {
 
     private Hint hint;
 
-    public Parchment(int x, int y, Hint hint){
-        super(x, y);
+    public Parchment(Cell currentCell, Hint hint){
+        super(currentCell);
         this.hint = hint;
     }
 
     public void use(){
-        this.hint.toString();
+        System.out.println("Vous découvrez un indice :");
+        System.out.println(this.hint);
     }
 
-    public String to_String(){
+    public String toString() {
         return "un parchemin";
     }
-    
 }

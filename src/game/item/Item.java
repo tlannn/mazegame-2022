@@ -4,26 +4,19 @@ import game.maze.*;
 
 public abstract class Item {
 
-    protected Cell actualCell;
+    protected Cell currentCell;
 
     public Item(Cell cell){
-        this.actualCell = cell;
+        this.currentCell = cell;
     }
 
-    public Cell getCell(){
-        return this.actualCell;
+    public Cell getCurrentCell(){
+        return this.currentCell;
     }
 
-    public void setCell(Cell cell){
-        this.actualCell = cell;
+    public void setCurrentCell(Cell cell){
+        this.currentCell = cell;
     }
-
 
     public abstract void use();
-
-
-    public abstract String to_String();
-
-
-
 }

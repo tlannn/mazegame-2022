@@ -6,7 +6,7 @@ public class WinningCellCoordinatesHint extends FixedHint{
 
     public WinningCellCoordinatesHint(Cell winningCell, boolean abscissa, boolean ordinate){
         super();
-        
+
         if (abscissa && ordinate){
             this.statement = "Pour gagner il faut aller à la case (" + winningCell.getX() + "," + winningCell.getY() + ")";
         }
