@@ -10,12 +10,11 @@ public class TestItem{
     public void testCurrentCellJewel(){
         Cell cellJewel= new Cell(1,2);
         Item monJewel=new Jewel(cellJewel, JewelRarity.GREEN);
-        assertEquals(monJewel.getCurrentCell(),cellJewell);
+        assertEquals(monJewel.getCurrentCell(),cellJewel);
 
         Cell secondCell= new Cell(2,2);
         monJewel.setCurrentCell(secondCell);
         assertEquals(monJewel.getCurrentCell(),secondCell);
-
     }
 
     public static junit.framework.Test suite() {
