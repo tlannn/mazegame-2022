@@ -1,6 +1,7 @@
 package game.character;
 
 import java.util.*;
+
 import game.enigma.*;
 import game.item.*;
 
@@ -64,15 +65,15 @@ public class Player extends Character {
     }
 
     public void look(){
-        ArrayList items=this.currentCell.getItem();
+        List<Item> items = this.currentCell.getItems();
         if (items.isEmpty()){
-            System.out.println("Nous ne trouvons rien dans cette case.")
+            System.out.println("Nous ne trouvons rien dans cette case.");
         }
 
         else{
             System.out.print("Nous trouvons ");
-        for item in items{
-            Sytem.out.print(item.toString()+" ");
+        for(Item item  : items){
+            System.out.print(item.toString()+" ");
             }
             System.out.println("dans cette case");
         }
