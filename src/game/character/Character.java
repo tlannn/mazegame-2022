@@ -15,7 +15,7 @@ public abstract class Character {
         return this.currentCell;
     }
 
-    public void setCurentCell(Cell cell){
+    public void move(Cell cell){
         this.currentCell = cell;
     }
 

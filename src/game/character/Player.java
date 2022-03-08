@@ -1,7 +1,7 @@
 package game.character;
 
 import java.util.*;
-
+import game.enigma.*;
 import game.item.*;
 
 public class Player extends Character {
@@ -9,6 +9,7 @@ public class Player extends Character {
     private int gold;
     private List<Item> inventory;
     private List<Character> charactersMet;
+    private List<Hint> hintsSeen;
 
     public Player(String name){
         super(name);
@@ -35,6 +36,10 @@ public class Player extends Character {
     public void addItem(Item i){
         this.inventory.add(i);
     }
+    
+    public void addHint(Hint h){
+        this.hintsSeen.add(h);
+    }
 
     public void addCharacterMet(Character c){
         this.charactersMet.add(c);
@@ -51,14 +56,7 @@ public class Player extends Character {
     }
     
     public void useItem(Item i){
-        i.use();
-        try{
-            this.removeItem(i);
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        
+        i.use(this);
     }
 
     public List<Item> getInventoryItems() {
