@@ -29,6 +29,8 @@ public class Cell {
     	this.southWall=true;
     	this.eastWall=true;
     	this.westWall=true;
+        this.theItems= new ArrayList<Item>();
+        this.theCharacters= new ArrayList<Character>();
     }
 
     /**
