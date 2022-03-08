@@ -123,6 +123,7 @@ Theo : UML dans la globalité + début sur la classe NonPlayerCharacter et ses e
 
 ## Semaine 7
 Emma: add look in Player, add testItem
+Theo : résolution de la partie Quest de l'UML, et création des classes Quest/QuestCondition
 
 ## Semaine 8
 
