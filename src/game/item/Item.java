@@ -1,6 +1,7 @@
 package game.item;
 
 import game.maze.*;
+import game.character.*;
 
 public abstract class Item {
 
@@ -18,5 +19,5 @@ public abstract class Item {
         this.currentCell = cell;
     }
 
-    public abstract void use();
+    public abstract void use(Player player);
 }
