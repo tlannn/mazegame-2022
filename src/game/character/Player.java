@@ -72,11 +72,19 @@ public class Player extends Character {
 
         else{
             System.out.print("Nous trouvons ");
-        for(Item item  : items){
-            System.out.print(item.toString()+" ");
+            for(Item item : items){
+                System.out.print(item.toString()+" ");
             }
             System.out.println("dans cette case");
         }
 
+    }
+    
+    public List<Character> getCharactersMet(){
+        return this.charactersMet;
+    }
+
+    public List<Hint> getHints(){
+        return this.hintsSeen;
     }
 }
