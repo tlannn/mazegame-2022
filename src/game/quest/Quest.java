@@ -15,7 +15,7 @@ public class Quest {
 	}
 
 	public boolean isFinished() {
-		ListIterator<QuestCondition> it = this.winningConditions.iterator();
+		ListIterator<QuestCondition> it = this.winningConditions.listIterator();
 		boolean isFinished = true;
 
 		while (it.hasNext() && isFinished) {
