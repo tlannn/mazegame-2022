@@ -8,11 +8,13 @@ public class Player extends Character {
 
     private int gold;
     private List<Item> inventory;
-    
+    private List<Character> charactersMet;
+
     public Player(String name){
         super(name);
         this.gold = 0;
         this.inventory = new ArrayList<Item>();
+        this.charactersMet = new ArrayList<Character>();
     }
 
     public int getGold(){
@@ -32,6 +34,14 @@ public class Player extends Character {
 
     public void addItem(Item i){
         this.inventory.add(i);
+    }
+
+    public void addCharacterMet(Character c){
+        this.charactersMet.add(c);
+    }
+
+    public int getNumbersCharactersMet(){
+        return this.charactersMet.size();
     }
 
     public void removeItem(Item i) throws UnknownItemsException {
@@ -55,5 +65,4 @@ public class Player extends Character {
         return this.inventory;
 
     }
-
 }
