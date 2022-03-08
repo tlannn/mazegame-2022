@@ -1,4 +1,4 @@
-package game.maze.item;
+package game.item;
 
 import org.junit.*;
 import static org.junit.Assert.*;
