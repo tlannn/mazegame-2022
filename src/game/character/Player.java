@@ -36,7 +36,7 @@ public class Player extends Character {
     public void addItem(Item i){
         this.inventory.add(i);
     }
-    
+
     public void addHint(Hint h){
         this.hintsSeen.add(h);
     }
@@ -50,17 +50,32 @@ public class Player extends Character {
     }
 
     public void removeItem(Item i) throws UnknownItemsException {
-        if (!this.inventory.contains(i)) 
+        if (!this.inventory.contains(i))
            throw new UnknownItemsException("Item inconnue");
         this.inventory.remove(i);
     }
-    
+
     public void useItem(Item i){
         i.use(this);
     }
 
     public List<Item> getInventoryItems() {
         return this.inventory;
+    }
+
+    public void look(){
+        ArrayList items=this.currentCell.getItem();
+        if (items.isEmpty()){
+            System.out.println("Nous ne trouvons rien dans cette case.")
+        }
+
+        else{
+            System.out.print("Nous trouvons ");
+        for item in items{
+            Sytem.out.print(item.toString()+" ");
+            }
+            System.out.println("dans cette case");
+        }
 
     }
 }
