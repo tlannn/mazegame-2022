@@ -122,6 +122,7 @@ Damien et Rayan code les class Player, Character, Item, Parchment et les différ
 Theo : UML dans la globalité + début sur la classe NonPlayerCharacter et ses enfants, ainsi que les classes FakeHint et InputReader. Correctifs sur Player et ses tests
 
 ## Semaine 7
+Emma: add look in Player, add testItem
 
 ## Semaine 8
 
