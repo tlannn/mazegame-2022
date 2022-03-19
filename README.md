@@ -126,6 +126,7 @@ Emma: add look in Player, add testItem
 Theo : résolution de la partie Quest de l'UML, et création des classes Quest/QuestCondition
 
 ## Semaine 8
+Emma : test de tous les items (TestParchment et TestJewel)
 
 ## Semaine 9
 
