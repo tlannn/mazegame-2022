@@ -12,8 +12,8 @@ public class Player extends Character {
     private List<Character> charactersMet;
     private List<Hint> hintsSeen;
 
-    public Player(String name){
-        super(name);
+    public Player(String name, Maze maze){
+        super(name,maze);
         this.gold = 0;
         this.inventory = new ArrayList<Item>();
         this.charactersMet = new ArrayList<Character>();

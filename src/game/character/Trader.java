@@ -10,8 +10,8 @@ public class Trader extends NonPlayerCharacter {
 	/**
 	 * Class constructor
 	 */
-	public Trader(Parchment[] parchments) {
-		super("Trader");
+	public Trader(Parchment[] parchments, Maze maze) {
+		super("Trader", maze);
 
 		this.parchments = parchments;
 		this.parchmentCost = 5;

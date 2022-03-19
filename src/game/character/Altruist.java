@@ -5,8 +5,8 @@ import game.enigma.Hint;
 public class Altruist extends NonPlayerCharacter {
 	private Hint hint;
 
-	public Altruist(Hint hint) {
-		super("Altruist");
+	public Altruist(Hint hint, Maze maze) {
+		super("Altruist",maze);
 
 		this.hint = hint;
 	}

@@ -5,8 +5,8 @@ import game.enigma.FakeHint;
 public class Fool extends NonPlayerCharacter {
 	private FakeHint fakeHint;
 
-	public Fool(FakeHint fakeHint) {
-		super("Fool");
+	public Fool(FakeHint fakeHint, Maze maze) {
+		super("Fool", maze);
 
 		this.fakeHint = fakeHint;
 	}

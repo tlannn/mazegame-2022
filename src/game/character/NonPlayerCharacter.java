@@ -9,8 +9,8 @@ public abstract class NonPlayerCharacter extends Character {
 	/**
 	 * Class constructor
 	 */
-	public NonPlayerCharacter(String name) {
-		super(name);
+	public NonPlayerCharacter(String name, Maze maze) {
+		super(name, maze);
 	}
 
 	public abstract void talk();

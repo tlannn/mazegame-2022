@@ -9,8 +9,8 @@ public class Sphinx extends NonPlayerCharacter {
 	private int indexCurrentEnigma;
 	private boolean hasGivenHint;
 
-	public Sphinx(Hint hint, Enigma[] enigmas) {
-		super("Sphinx");
+	public Sphinx(Hint hint, Enigma[] enigmas, Maze maze) {
+		super("Sphinx", maze);
 
 		this.hint = hint;
 		this.enigmas = enigmas;
