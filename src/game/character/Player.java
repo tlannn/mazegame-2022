@@ -17,6 +17,7 @@ public class Player extends Character {
         this.gold = 0;
         this.inventory = new ArrayList<Item>();
         this.charactersMet = new ArrayList<Character>();
+        this.hintsSeen = new ArrayList<Hint>();
     }
 
     public int getGold(){
@@ -79,7 +80,7 @@ public class Player extends Character {
         }
 
     }
-    
+
     public List<Character> getCharactersMet(){
         return this.charactersMet;
     }
