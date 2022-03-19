@@ -1,17 +1,22 @@
 package game.enigma;
-from Math import abs;
+import java.lang.Math;
 import game.maze.Cell;
 
 public class DistanceFromWinningCellHint extends DynamicHint{
+  private Player player;
 
-    public DistanceFromWinningCellHint(Cell winningCell, Cell playerCell){
+    public DistanceFromWinningCellHint(Cell winningCell, Player player){
         super();
-        int distanceX=abs(winningCell.getX-playerCell.getX);
-        int distanceY= abs((winningCell.getY-playerCell.gety);
-        int distance= distanceX+distanceY;
+        this.player=player;
+    }
 
-        this.statement= "La case gagnante se trouve à une distance de "+distance+" cases.";
+    @overiding
+    public void toString(){
+      int distanceX=Math.abs(winningCell.getX()-player.getCurrentCell().getX());
+      int distanceY= Math.abs(winningCell.getY()-player.getCurrentCell().gety());
+      int distance= distanceX+distanceY;
 
+      this.statement= "La case gagnante se trouve à une distance de "+distance+" cases.";
     }
 }
 
