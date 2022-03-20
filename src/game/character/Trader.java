@@ -12,7 +12,7 @@ public class Trader extends NonPlayerCharacter {
 	 * Class constructor
 	 */
 	public Trader(Parchment[] parchments, Cell startingCell) {
-		super("Trader", startingCell);
+		super("Marchand", startingCell);
 
 		this.parchments = parchments;
 		this.parchmentCost = 5;

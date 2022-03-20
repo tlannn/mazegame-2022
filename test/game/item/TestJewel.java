@@ -25,7 +25,7 @@ public class TestJewel{
         assertEquals(5, armin.getGold());
 
         blueJewel.use(armin);
-        assertEquals(15, armin.getGold();
+        assertEquals(15, armin.getGold());
 
         purpleJewel.use(armin);
         assertEquals(35, armin.getGold());

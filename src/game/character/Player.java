@@ -31,7 +31,7 @@ public class Player extends Character {
 
     public void removeGold(int amount) throws NotEnoughGoldException {
         if (amount >= this.gold)
-            throw new NotEnoughGoldException("You do not have enough gold");
+            throw new NotEnoughGoldException("Vous n'avez pas assez de gold");
 
         this.gold -= amount;
     }
@@ -54,7 +54,7 @@ public class Player extends Character {
 
     public void removeItem(Item i) throws UnknownItemException {
         if (!this.inventory.contains(i))
-           throw new UnknownItemException("Item inconnue");
+           throw new UnknownItemException("Item inconnu");
         this.inventory.remove(i);
     }
 
@@ -69,15 +69,14 @@ public class Player extends Character {
     public void look(){
         List<Item> items = this.currentCell.getItemsInCell();
         if (items.isEmpty()){
-            System.out.println("Nous ne trouvons rien dans cette case.");
+            System.out.println("Il n'y a rien sur cette case.");
         }
 
         else{
-            System.out.print("Nous trouvons ");
-            for(Item item : items){
-                System.out.print(item.toString()+" ");
+            System.out.print("Sur cette case se trouve :");
+            for(Item item : items) {
+                System.out.println("- " + item);
             }
-            System.out.println("dans cette case");
         }
 
     }

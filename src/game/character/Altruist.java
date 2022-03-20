@@ -7,13 +7,13 @@ public class Altruist extends NonPlayerCharacter {
 	private Hint hint;
 
 	public Altruist(Hint hint, Cell startingCell) {
-		super("Altruist", startingCell);
+		super("Altruiste", startingCell);
 
 		this.hint = hint;
 	}
 
 	public void talk() {
-		System.out.println("You are on a quest ? Let me give you a hint :");
+		System.out.println("Vous êtes sur une quête ? Laissez-moi vous donner un indice :");
 		System.out.println(this.hint);
 	}
 }

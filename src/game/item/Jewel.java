@@ -13,7 +13,7 @@ public class Jewel extends Item {
     }
 
     public void use(Player player){
-        System.out.println("Vous utilisez un joyau de valeurs : " + this.rarity.getGoldValue());
+        System.out.println("Vous utilisez un joyau de valeur : " + this.rarity.getGoldValue() + " golds");
         player.addGold(this.rarity.getGoldValue());
         try{
             player.removeItem(this);
@@ -23,5 +23,7 @@ public class Jewel extends Item {
         }
     }
 
-    
+    public String toString() {
+        return "un joyau";
+    }
 }

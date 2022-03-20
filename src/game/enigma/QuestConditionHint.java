@@ -4,10 +4,10 @@ import game.quest.*;
 
 public class QuestConditionHint extends FixedHint {
 
-    public QuestConditionHint(QuestCondition quest){
+    public QuestConditionHint(QuestCondition condition){
         super();
 
-        this.statement = quest.toString();
+        this.statement = condition.toString();
     }
 
 
