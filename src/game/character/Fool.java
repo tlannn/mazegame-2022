@@ -1,6 +1,7 @@
 package game.character;
 
 import game.enigma.FakeHint;
+import game.maze.*;
 
 public class Fool extends NonPlayerCharacter {
 	private FakeHint fakeHint;

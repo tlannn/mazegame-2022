@@ -5,6 +5,5 @@ public abstract class DynamicHint extends Hint{
 
     public DynamicHint() {}
 
-    abstract public String toString();
 
 }

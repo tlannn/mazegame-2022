@@ -4,6 +4,7 @@ import java.util.*;
 
 import game.enigma.*;
 import game.item.*;
+import game.maze.*;
 
 public class Player extends Character {
 

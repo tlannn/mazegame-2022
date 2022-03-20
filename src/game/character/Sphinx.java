@@ -1,6 +1,7 @@
 package game.character;
 
 import game.enigma.*;
+import game.maze.*;
 
 public class Sphinx extends NonPlayerCharacter {
 

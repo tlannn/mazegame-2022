@@ -1,5 +1,7 @@
 package game.character;
 
+import game.maze.*;
+
 /**
  * Class NonPlayerCharacter that represents any character the player doesn't control,
  * but can interact with
