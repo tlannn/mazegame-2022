@@ -1,7 +1,7 @@
 package game.character;
 
 import game.maze.*;
-import java.util.*;
+import game.util.*;
 
 public abstract class Character {
 
@@ -9,11 +9,9 @@ public abstract class Character {
     protected String name;
 
 
-    public Character(String name, Maze maze){
+    public Character(String name, Cell startingCell) {
         this.name = name;
-        int x=new Random().nextInt(maze.getLength());
-        int y=new Random().nextInt(maze.getHeight());
-        this.currentCell=new Cell(x,y);
+        this.currentCell = startingCell;
     }
 
     public Cell getCurrentCell(){
@@ -24,7 +22,7 @@ public abstract class Character {
         this.currentCell = cell;
     }
 
-    public String getName(){
+    public String toString(){
         return this.name;
     }
 }

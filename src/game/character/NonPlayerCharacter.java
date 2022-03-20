@@ -11,8 +11,8 @@ public abstract class NonPlayerCharacter extends Character {
 	/**
 	 * Class constructor
 	 */
-	public NonPlayerCharacter(String name, Maze maze) {
-		super(name, maze);
+	public NonPlayerCharacter(String name, Cell startingCell) {
+		super(name, startingCell);
 	}
 
 	public abstract void talk();

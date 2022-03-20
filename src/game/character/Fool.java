@@ -6,8 +6,8 @@ import game.maze.*;
 public class Fool extends NonPlayerCharacter {
 	private FakeHint fakeHint;
 
-	public Fool(FakeHint fakeHint, Maze maze) {
-		super("Fool", maze);
+	public Fool(FakeHint fakeHint, Cell startingCell) {
+		super("Fool", startingCell);
 
 		this.fakeHint = fakeHint;
 	}

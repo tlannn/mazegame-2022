@@ -6,8 +6,8 @@ import game.maze.*;
 public class Altruist extends NonPlayerCharacter {
 	private Hint hint;
 
-	public Altruist(Hint hint, Maze maze) {
-		super("Altruist",maze);
+	public Altruist(Hint hint, Cell startingCell) {
+		super("Altruist", startingCell);
 
 		this.hint = hint;
 	}

@@ -13,8 +13,8 @@ public class Player extends Character {
     private List<Character> charactersMet;
     private List<Hint> hintsSeen;
 
-    public Player(String name, Maze maze){
-        super(name,maze);
+    public Player(String name, Cell startingCell){
+        super(name, startingCell);
         this.gold = 0;
         this.inventory = new ArrayList<Item>();
         this.charactersMet = new ArrayList<Character>();

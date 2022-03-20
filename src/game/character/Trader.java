@@ -1,6 +1,7 @@
 package game.character;
 
 import game.item.Parchment;
+import game.maze.Cell;
 import game.util.InputReader;
 
 public class Trader extends NonPlayerCharacter {
@@ -10,8 +11,8 @@ public class Trader extends NonPlayerCharacter {
 	/**
 	 * Class constructor
 	 */
-	public Trader(Parchment[] parchments, Maze maze) {
-		super("Trader", maze);
+	public Trader(Parchment[] parchments, Cell startingCell) {
+		super("Trader", startingCell);
 
 		this.parchments = parchments;
 		this.parchmentCost = 5;
