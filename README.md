@@ -19,17 +19,17 @@ Les 2 algorithmes (Kruskal et Depth First Search) fonctionnent correctement.
 Tous les tests sont faits sur toutes les classes et tous fonctionnent correctement.
 
 On a donc les classes :  
--Maze (la classe parente de KruskalMaze et DepthFirstSearchMaze)  
--KruskalMaze  
--DepthFirstSearchMaze  
--Cell  
--Random
+- Maze (la classe parente de KruskalMaze et DepthFirstSearchMaze)  
+- KruskalMaze  
+- DepthFirstSearchMaze  
+- Cell  
+- Random
 
 On a les exceptions:
-InvalidAdjacentCellException : on essaie d'enlever un mur entre 2 cases non adjacentes.
+- InvalidAdjacentCellException : on essaie d'enlever un mur entre 2 cases non adjacentes.
 
 On a une enum:  
--WallOrientation
+- WallOrientation
 
 On a un main qui affiche les 2 labyrinthes.
 
@@ -66,14 +66,58 @@ $ java -jar game.jar # Lancement du programme
 
 
 ### Atteinte des objectifs
-Les objectifs sont atteints : Les 2 algorithmes (Kruskal et Depth First Search) fonctionnent correctement et les tests sont valides.
+Les objectifs sont atteints : Les 2 algorithmes (Kruskal et Depth First Search) fonctionnent correctement et les tests sont validés.
 
 ### Difficultés restant à résoudre
 Aucune
 
 ## Livrable 2
 
+Les classes des personnages et des items ont été codés. Nous avons également pris de l'avance et créé les classes relatives aux indices et à la quête, étant donné que les personnages et items en dépendent. Les tests ont été réalisés pour toutes les classes créées.
+
+Une modification a été réalisée sur la classe Cell, nous avons rajouté deux attributs permettant de retrouver les items et personnages qui sont présents sur une cellule, ainsi qu'une méthode permettant de déterminer les directions dans lesquelles un personnage peut se déplacer en fonction des murs ouverts de la cellule. Nous avons également renommé la classe WallOrientation en Orientation, afin de la généraliser.
+
+Concernant les personnages, nous trouvons donc les nouvelles classes suivantes :
+- Character
+- NonPlayerCharacter
+- Player
+- Trader
+- Sphinx
+- Fool
+- Altruist
+
+Pour les items :
+- Item
+- Parchment
+- Jewel
+- JewelRarity (une enum)
+
+Pour les indices :
+- Hint
+- FixedHint
+- DynamicHint
+- FakeHint
+- WinningCellCoordinatesHint
+- ItemPositionHint
+- QuestConditionHint
+- WinningCellOrientationHint
+- DistanceFromWinningCellHint
+
+Pour la quête :
+- Quest
+- QuestCondition
+- EarnGoldCondition
+- MeetSpecificCharacterCondition
+
+On trouve également les exceptions suivantes :
+- NotEnoughGoldException
+- UnknownItemException
+
+On ajoute à cela une classe Enigma, mais qui n'a pas été complétée (uniquement dans le but de valider la compilation).
+
 ### Atteinte des objectifs
+
+Les objectifs sont atteints : les personnages et les items ont été créés (hormis les interactions, telles que parler aux personnages) et les tests sont validés.
 
 ### Difficultés restant à résoudre
 
