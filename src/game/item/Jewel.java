@@ -13,8 +13,8 @@ public class Jewel extends Item {
     }
 
     public void use(Player player){
-        System.out.println("Vous utilisez un joyau de valeurs : " + this.rarity.getNb_gold());
-        player.addGold(this.rarity.getNb_gold());
+        System.out.println("Vous utilisez un joyau de valeurs : " + this.rarity.getGoldValue());
+        player.addGold(this.rarity.getGoldValue());
         try{
             player.removeItem(this);
         }

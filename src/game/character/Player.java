@@ -67,7 +67,7 @@ public class Player extends Character {
     }
 
     public void look(){
-        List<Item> items = this.currentCell.getItems();
+        List<Item> items = this.currentCell.getItemsInCell();
         if (items.isEmpty()){
             System.out.println("Nous ne trouvons rien dans cette case.");
         }
