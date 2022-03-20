@@ -10,17 +10,18 @@ public class DistanceFromWinningCellHint extends DynamicHint{
 
     public DistanceFromWinningCellHint(Cell winningCell, Player player){
         super();
-        this.player=player;
+        this.player = player;
         this.winningCell = winningCell;
     }
 
-    public String toString(){
-      int distanceX=Math.abs(winningCell.getX()-player.getCurrentCell().getX());
-      int distanceY= Math.abs(winningCell.getY()-player.getCurrentCell().getY());
-      int distance= distanceX+distanceY;
+    private int distanceFromCell() {
+        int distanceX = Math.abs(winningCell.getX() - player.getCurrentCell().getX());
+        int distanceY = Math.abs(winningCell.getY() - player.getCurrentCell().getY());
+        return distanceX + distanceY;
+    }
 
-      this.statement= "La case gagnante se trouve à une distance de "+distance+" cases.";
-      return this.statement;
+    public String toString(){
+        return "La case gagnante se trouve à une distance de " + this.distanceFromCell() + " cases.";
     }
 }
 
