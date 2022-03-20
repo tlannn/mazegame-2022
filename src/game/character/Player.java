@@ -52,9 +52,9 @@ public class Player extends Character {
         return this.charactersMet.size();
     }
 
-    public void removeItem(Item i) throws UnknownItemsException {
+    public void removeItem(Item i) throws UnknownItemException {
         if (!this.inventory.contains(i))
-           throw new UnknownItemsException("Item inconnue");
+           throw new UnknownItemException("Item inconnue");
         this.inventory.remove(i);
     }
 

@@ -18,7 +18,7 @@ public class Jewel extends Item {
         try{
             player.removeItem(this);
         }
-        catch(UnknownItemsException e){
+        catch(UnknownItemException e){
             System.out.println(e.getMessage());
         }
     }

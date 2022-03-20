@@ -64,8 +64,8 @@ public class TestPlayer{
         assertEquals(1, player.getInventoryItems().size());
     }
     
-    @Test(expected=UnknownItemsException.class)
-    public void testRemoveItemNotInInventoryThrowsException() throws UnknownItemsException {
+    @Test(expected=UnknownItemException.class)
+    public void testRemoveItemNotInInventoryThrowsException() throws UnknownItemException {
         Player player = new Player("Rayan");
         Hint hint = new Hint("Avance à gauche akhi");
         Item parchment = new Parchment(hint);
