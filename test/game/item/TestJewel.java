@@ -8,49 +8,56 @@ import game.character.*;
 
 public class TestJewel{
     @Test
-    public void testUseGoodAddGold(){
+    public void testAddCorrectAmountOfGoldWhenUsingJewel(){
         Cell cellJewel = new Cell(1,2);
-        Item monJewel = new Jewel(cellJewel, JewelRarity.GREEN);
+        Item greenJewel = new Jewel(cellJewel, JewelRarity.GREEN);
         Item blueJewel = new Jewel(cellJewel, JewelRarity.BLUE);
         Item purpleJewel = new Jewel(cellJewel, JewelRarity.PURPLE);
-        Player armin = new Player("Armin");
+        Player armin = new Player("Armin", cellJewel);
 
-        armin.addItem(monJewel);
+        armin.addItem(greenJewel);
         armin.addItem(blueJewel);
         armin.addItem(purpleJewel);
 
-        assertTrue(armin.getGold()==0);
-        monJewel.use(armin);
-        assertTrue(armin.getGold()==5);
+        assertEquals(0, armin.getGold());
+
+        greenJewel.use(armin);
+        assertEquals(5, armin.getGold());
+
         blueJewel.use(armin);
-        assertTrue(armin.getGold()==15);
+        assertEquals(15, armin.getGold();
+
         purpleJewel.use(armin);
-        assertTrue(armin.getGold()==35);
+        assertEquals(35, armin.getGold());
       }
 
     @Test
-    public void testUseGoodRemoveItem(){
+    public void testUseJewelRemovesFromPlayerInventory(){
       Cell cellJewel = new Cell(1,2);
       Item purpleJewel = new Jewel(cellJewel, JewelRarity.PURPLE);
-      Player armin = new Player("Armin");
+      Player armin = new Player("Armin", cellJewel);
+
       armin.addItem(purpleJewel);
-      assertTrue(armin.getInventoryItems().get(0)==purpleJewel);
+      assertEquals(purpleJewel, armin.getInventoryItems().get(0));
+
       purpleJewel.use(armin);
-      assertTrue(armin.getInventoryItems().size()==0);
+      assertEquals(0, armin.getInventoryItems().size());
     }
 
     @Test
-    public void testUseGoodNotRemoveItemNotInInventory(){
+    public void testUseJewelNotInPlayerInventoryDoesNotRemoveIt(){
       Cell cellJewel = new Cell(1,2);
       Item purpleJewel = new Jewel(cellJewel, JewelRarity.PURPLE);
       Item blueJewel = new Jewel(cellJewel, JewelRarity.BLUE);
-      Player armin = new Player("Armin");
+      Player armin = new Player("Armin", cellJewel);
+
       armin.addItem(purpleJewel);
-      assertTrue(armin.getInventoryItems().size()==1);
-      assertTrue(armin.getInventoryItems().get(0)==purpleJewel);
-      blueJewel.use(armin);//il ne peut pas l'utiliser comme il n'est pas dans l'inventaire
-      assertTrue(armin.getInventoryItems().size()==1);
-      assertTrue(armin.getInventoryItems().get(0)==purpleJewel);
+      assertEquals(1, armin.getInventoryItems().size());
+      assertEquals(purpleJewel, armin.getInventoryItems().get(0));
+
+      blueJewel.use(armin); // Il ne peut pas l'utiliser comme il n'est pas dans l'inventaire
+      assertEquals(1, armin.getInventoryItems().size());
+      assertEquals(purpleJewel, armin.getInventoryItems().get(0));
     }
 
     public static junit.framework.Test suite() {
