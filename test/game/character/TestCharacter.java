@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import game.character.*;
 import game.character.Character;
 import game.item.*;
+import game.maze.*;
 
 public class TestCharacter{
 
