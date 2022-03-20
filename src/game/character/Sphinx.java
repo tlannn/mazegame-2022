@@ -17,6 +17,7 @@ public class Sphinx extends NonPlayerCharacter {
 		this.enigmas = enigmas;
 		this.indexCurrentEnigma = 0;
 		this.hasGivenHint = false;
+		this.movable = false;
 	}
 
 	public void talk() {

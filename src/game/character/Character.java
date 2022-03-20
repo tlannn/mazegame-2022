@@ -7,11 +7,13 @@ public abstract class Character {
 
     protected Cell currentCell;
     protected String name;
+    protected boolean movable;
 
 
     public Character(String name, Cell startingCell) {
         this.name = name;
         this.currentCell = startingCell;
+        this.movable = true;
     }
 
     public Cell getCurrentCell(){

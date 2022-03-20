@@ -1,6 +1,7 @@
 package game.maze;
 
 import java.util.*;
+
 import game.item.*;
 
 /**
@@ -127,6 +128,27 @@ public class Cell {
 
 	public void addCharacter(Character character){
 		this.theCharacters.add(character);
+	}
+
+	public List<Orientation> possibleOrientations(){
+		List<Orientation> orientations = new ArrayList<Orientation>();
+		if(!this.hasNorthWall()){
+			orientations.add(Orientation.NORTH);
+		}
+
+		if(!this.hasSouthWall()){
+			orientations.add(Orientation.SOUTH);
+		}
+
+		if(!this.hasEastWall()){
+			orientations.add(Orientation.EAST);
+		}
+
+		if(!this.hasWestWall()){
+			orientations.add(Orientation.WEST);
+		}
+
+		return orientations;
 	}
 
 
