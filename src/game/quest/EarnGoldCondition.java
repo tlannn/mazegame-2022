@@ -14,4 +14,8 @@ public class EarnGoldCondition extends QuestCondition {
 	public boolean isCompleted() {
 		return this.player.getGold() >= this.goldRequired;
 	}
+
+	public String toString(){
+		return "Tu dois récupérer " + this.goldRequired + " gold !";
+	}
 }
