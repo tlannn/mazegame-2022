@@ -5,20 +5,24 @@ import static org.junit.Assert.*;
 
 import game.character.*;
 import game.item.*;
+import game.maze.*;
+import game.enigma.*;
 
 public class TestPlayer{
 
     @Test
     public void testConstuctor(){
-        Player player = new Player("Rayan");
-        assertEquals("Rayan", player.getName());
+        Cell cell = new Cell(2, 1);
+        Player player = new Player("Rayan", cell);
+        assertEquals("Rayan", player.toString());
         assertEquals(0, player.getGold());
         assertEquals(0, player.getInventoryItems().size());
     }
 
     @Test
     public void testGoldCorrectlyAddedAndRemoved() {
-        Player player = new Player("Damien");
+        Cell cell = new Cell(2, 1);
+        Player player = new Player("Damien", cell);
 
         // Player starts with 0 gold
         assertEquals(0, player.getGold());
@@ -50,15 +54,18 @@ public class TestPlayer{
 
     @Test(expected = NotEnoughGoldException.class)
     public void testRemoveTooMuchGoldThrowsError() throws NotEnoughGoldException {
-        Player player = new Player("Damien");
+        Cell cell = new Cell(2, 1);
+        Player player = new Player("Damien", cell);
         player.removeGold(10);
     }
 
-    /*@Test
+    @Test
     public void testItemCorrectlyRemovedToInventory(){
-        Player player = new Player("Rayan");
-        Hint hint = new Hint("Avance à gauche akhi");
-        Item parchment = new Parchment(hint);
+        Cell cell = new Cell(2, 1);
+        Cell winningcell = new Cell(3,3);
+        Player player = new Player("Rayan", cell);
+        Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
+        Item parchment = new Parchment(cell, distanceHint);
         assertEquals(0, player.getInventoryItems().size());
         player.addItem(parchment);
         assertEquals(1, player.getInventoryItems().size());
@@ -66,22 +73,26 @@ public class TestPlayer{
     
     @Test(expected=UnknownItemsException.class)
     public void testRemoveItemNotInInventoryThrowsException() throws UnknownItemsException {
-        Player player = new Player("Rayan");
-        Hint hint = new Hint("Avance à gauche akhi");
-        Item parchment = new Parchment(hint);
+        Cell cell = new Cell(2, 1);
+        Cell winningcell = new Cell(3,3);
+        Player player = new Player("Rayan", cell);
+        Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
+        Item parchment = new Parchment(cell, distanceHint);
         player.removeItem(parchment);
     }
 
     @Test
     public void testItemCorrectlyRemovedFromInventory() throws Exception {
-        Player player = new Player("Rayan");
-        Hint hint = new Hint("Avance à gauche akhi");
-        Item parchment = new Parchment(hint);
+        Cell cell = new Cell(2, 1);
+        Cell winningcell = new Cell(3,3);
+        Player player = new Player("Rayan", cell);
+        Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
+        Item parchment = new Parchment(cell, distanceHint);
         player.addItem(parchment);
         assertEquals(1, player.getInventoryItems().size());
         player.removeItem(parchment);
         assertEquals(0, player.getInventoryItems().size());
-    }*/
+    }
 
     public static junit.framework.Test suite() {
         return new junit.framework.JUnit4TestAdapter(TestPlayer.class);
