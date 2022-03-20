@@ -14,4 +14,8 @@ public class MeetSpecificCharacterCondition extends QuestCondition {
 	public boolean isCompleted() {
 		return this.player.getCharactersMet().contains(this.characterToMeet);
 	}
+
+	public String toString() {
+		return "Tu dois absolument voir le " + this.characterToMeet;
+	}
 }
