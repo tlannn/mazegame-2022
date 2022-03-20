@@ -1,5 +1,15 @@
 package game.maze;
 
+import game.character.Altruist;
+import game.character.Character;
+import game.character.Fool;
+import game.enigma.FakeHint;
+import game.enigma.Hint;
+import game.enigma.ItemPositionHint;
+import game.item.Item;
+import game.item.Jewel;
+import game.item.JewelRarity;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -25,6 +35,18 @@ public class TestCell {
 		cell = new Cell(8, 2);
 		assertEquals(cell.getX(), 8);
 		assertEquals(cell.getY(), 2);
+	}
+
+	@Test
+	public void testNoItemsInCellWhenCreated() {
+		Cell cell = new Cell(3, 5);
+		assertEquals(0, cell.getItemsInCell().size());
+	}
+
+	@Test
+	public void testNoCharactersInCellWhenCreated() {
+		Cell cell = new Cell(3, 5);
+		assertEquals(0, cell.getCharactersInCell().size());
 	}
 
 	/* Getters tests */
@@ -135,6 +157,129 @@ public class TestCell {
 
 		cell.setWestWall(true);
 		assertTrue(cell.hasWestWall());
+	}
+
+	@Test
+	public void testPossibleOrientationsAreCorrects() {
+		Cell cell = new Cell(3, 5);
+		assertTrue(cell.possibleOrientations().contains(Orientation.NORTH));
+		assertTrue(cell.possibleOrientations().contains(Orientation.SOUTH));
+		assertTrue(cell.possibleOrientations().contains(Orientation.EAST));
+		assertTrue(cell.possibleOrientations().contains(Orientation.WEST));
+
+		cell.setNorthWall(false);
+		cell.setWestWall(false);
+
+		assertFalse(cell.possibleOrientations().contains(Orientation.NORTH));
+		assertTrue(cell.possibleOrientations().contains(Orientation.SOUTH));
+		assertTrue(cell.possibleOrientations().contains(Orientation.EAST));
+		assertFalse(cell.possibleOrientations().contains(Orientation.WEST));
+	}
+
+	@Test
+	public void testItemIsCorrectlyAdded() {
+		Cell cell = new Cell(3, 5);
+		Item greenJewel = new Jewel(cell, JewelRarity.GREEN);
+		Item blueJewel = new Jewel(cell, JewelRarity.BLUE);
+
+		cell.addItem(greenJewel);
+		assertTrue(cell.getItemsInCell().contains(greenJewel));
+		assertFalse(cell.getItemsInCell().contains(blueJewel));
+
+		cell.addItem(blueJewel);
+		assertTrue(cell.getItemsInCell().contains(greenJewel));
+		assertTrue(cell.getItemsInCell().contains(blueJewel));
+	}
+
+	@Test
+	public void testItemIsCorrectlyRemoved() {
+		Cell cell = new Cell(3, 5);
+		Item greenJewel = new Jewel(cell, JewelRarity.GREEN);
+		Item blueJewel = new Jewel(cell, JewelRarity.BLUE);
+
+		try {
+			cell.addItem(greenJewel);
+			cell.addItem(blueJewel);
+			assertTrue(cell.getItemsInCell().contains(greenJewel));
+			assertTrue(cell.getItemsInCell().contains(blueJewel));
+
+			cell.removeItem(blueJewel);
+			assertTrue(cell.getItemsInCell().contains(greenJewel));
+			assertFalse(cell.getItemsInCell().contains(blueJewel));
+
+			cell.removeItem(greenJewel);
+			assertFalse(cell.getItemsInCell().contains(greenJewel));
+			assertFalse(cell.getItemsInCell().contains(blueJewel));
+		}
+
+		catch (ItemNotInCellException e) {
+			fail();
+		}
+	}
+
+	@Test(expected = game.maze.ItemNotInCellException.class)
+	public void testRemoveItemNotInCellThrowsException() throws ItemNotInCellException {
+		Cell cell = new Cell(3, 5);
+		Item jewel = new Jewel(cell, JewelRarity.GREEN);
+
+		cell.removeItem(jewel);
+	}
+
+	@Test
+	public void testCharacterIsCorrectlyAdded() {
+		Cell cell = new Cell(3, 5);
+		Hint hint = new ItemPositionHint(new Jewel(cell, JewelRarity.GREEN));
+		FakeHint fakeHint = new FakeHint("Je suis le meilleur");
+		Character altruist = new Altruist(hint, cell);
+		Character fool = new Fool(fakeHint, cell);
+
+		assertFalse(cell.getCharactersInCell().contains(altruist));
+		assertFalse(cell.getCharactersInCell().contains(fool));
+
+		cell.addCharacter(altruist);
+		assertTrue(cell.getCharactersInCell().contains(altruist));
+		assertFalse(cell.getCharactersInCell().contains(fool));
+
+		cell.addCharacter(fool);
+		assertTrue(cell.getCharactersInCell().contains(altruist));
+		assertTrue(cell.getCharactersInCell().contains(fool));
+	}
+
+	@Test
+	public void testCharacterIsCorrectlyRemoved() {
+		Cell cell = new Cell(3, 5);
+		Hint hint = new ItemPositionHint(new Jewel(cell, JewelRarity.GREEN));
+		FakeHint fakeHint = new FakeHint("Je suis le meilleur");
+		Character altruist = new Altruist(hint, cell);
+		Character fool = new Fool(fakeHint, cell);
+
+		try {
+			cell.addCharacter(altruist);
+			cell.addCharacter(fool);
+			assertTrue(cell.getCharactersInCell().contains(altruist));
+			assertTrue(cell.getCharactersInCell().contains(fool));
+
+			cell.removeCharacter(fool);
+			assertTrue(cell.getCharactersInCell().contains(altruist));
+			assertFalse(cell.getCharactersInCell().contains(fool));
+
+			cell.removeCharacter(altruist);
+			assertFalse(cell.getCharactersInCell().contains(altruist));
+			assertFalse(cell.getCharactersInCell().contains(fool));
+		}
+
+		catch (CharacterNotInCellException e) {
+			fail();
+		}
+	}
+
+	@Test(expected = game.maze.CharacterNotInCellException.class)
+	public void testRemoveCharacterNotInCellThrowsException() throws CharacterNotInCellException {
+		Cell cell = new Cell(3, 5);
+		Hint hint = new ItemPositionHint(new Jewel(cell, JewelRarity.GREEN));
+		Character altruist = new Altruist(hint, cell);
+
+		cell.removeCharacter(altruist);
 	}
 
 	@Test
