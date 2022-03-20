@@ -9,50 +9,55 @@ import game.enigma.*;
 
 public class TestParchment{
     @Test
-    public void testUseGoodAddHint(){
+    public void testAddCorrectHintToPlayerWhenUsingParchment(){
         Cell cellParchment = new Cell(1,2);
-        // je ne sais  pas comment récupérer la vrai winningCell
         Cell winningCell = new Cell (20,17);
-        Hint hint= new WinningCellCoordinatesHint(winningCell, true, false);
+        Hint hint = new WinningCellCoordinatesHint(winningCell, true, false);
         Parchment parchment = new Parchment(cellParchment,hint);
-        Player gaby = new Player("gaby");
+        Player gaby = new Player("gaby", cellParchment);
+
         gaby.addItem(parchment);
-        assertTrue(gaby.getInventoryItems().get(0)==parchment);//on regarde l'adresse comme ça on eset vraiment sure que c'est le meme objet
-        assertTrue(gaby.getHints().size()==0);
+        assertEquals(parchment, gaby.getInventoryItems().get(0)); // On regarde l'adresse comme ça on est vraiment certain que c'est le même objet
+        assertEquals(0, gaby.getHints().size());
+
         parchment.use(gaby);
-        assertTrue(gaby.getHints().size()==1);
+        assertEquals(1, gaby.getHints().size());
+        assertEquals(hint, gaby.getHints().get(0));
       }
 
     @Test
-    public void testUseGoodRemoveItem(){
+    public void testUseParchmentRemovesFromPlayerInventory(){
       Cell cellParchment = new Cell(3,2);
       Cell winningCell = new Cell (20,17);
-      Hint hint= new WinningCellCoordinatesHint(winningCell, true, false);
+      Hint hint = new WinningCellCoordinatesHint(winningCell, true, false);
       Parchment parchment = new Parchment(cellParchment,hint);
-      Player gaby = new Player("gaby");
+      Player gaby = new Player("gaby", cellParchment);
+
       gaby.addItem(parchment);
-      assertTrue(gaby.getInventoryItems().get(0)==parchment);
+      assertEquals(parchment, gaby.getInventoryItems().get(0));
+
       parchment.use(gaby);
-      assertTrue(gaby.getInventoryItems().size()==0);
+      assertEquals(0, gaby.getInventoryItems().size());
     }
 
     @Test
-    public void testUseGoodNotRemoveItemNotInInventory(){
+    public void testUseParchmentNotInPlayerInventoryDoesNotRemoveIt(){
       Cell cellParchment = new Cell(1,2);
       Cell winningCell = new Cell (20,17);
-      Hint hint= new WinningCellCoordinatesHint(winningCell, true, false);
-      Hint bigHint= new WinningCellCoordinatesHint(winningCell, true, true);
+      Hint hint = new WinningCellCoordinatesHint(winningCell, true, false);
+      Hint bigHint = new WinningCellCoordinatesHint(winningCell, true, true);
       Parchment parchment1 = new Parchment(cellParchment,hint);
       Parchment parchment2 = new Parchment(cellParchment,bigHint);
 
-      Player gaby = new Player("gaby");
+      Player gaby = new Player("gaby", cellParchment);
       gaby.addItem(parchment1);
 
-      assertTrue(gaby.getInventoryItems().size()==1);
-      assertTrue(gaby.getInventoryItems().get(0)==parchment1);
-      parchment2.use(gaby);//il ne peut pas l'utiliser comme il n'est pas dans l'inventaire
-      assertTrue(gaby.getInventoryItems().size()==1);
-      assertTrue(gaby.getInventoryItems().get(0)==parchment1);
+      assertEquals(1, gaby.getInventoryItems().size());
+      assertEquals(parchment1, gaby.getInventoryItems().get(0));
+
+      parchment2.use(gaby); // Il ne peut pas l'utiliser comme il n'est pas dans l'inventaire
+      assertEquals(1, gaby.getInventoryItems().size());
+      assertEquals(parchment1, gaby.getInventoryItems().get(0));
     }
 
     public static junit.framework.Test suite() {

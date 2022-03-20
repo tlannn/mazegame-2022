@@ -162,18 +162,18 @@ public class TestCell {
 	@Test
 	public void testPossibleOrientationsAreCorrects() {
 		Cell cell = new Cell(3, 5);
-		assertTrue(cell.possibleOrientations().contains(Orientation.NORTH));
-		assertTrue(cell.possibleOrientations().contains(Orientation.SOUTH));
-		assertTrue(cell.possibleOrientations().contains(Orientation.EAST));
-		assertTrue(cell.possibleOrientations().contains(Orientation.WEST));
+		assertFalse(cell.possibleOrientations().contains(Orientation.NORTH));
+		assertFalse(cell.possibleOrientations().contains(Orientation.SOUTH));
+		assertFalse(cell.possibleOrientations().contains(Orientation.EAST));
+		assertFalse(cell.possibleOrientations().contains(Orientation.WEST));
 
 		cell.setNorthWall(false);
 		cell.setWestWall(false);
 
-		assertFalse(cell.possibleOrientations().contains(Orientation.NORTH));
-		assertTrue(cell.possibleOrientations().contains(Orientation.SOUTH));
-		assertTrue(cell.possibleOrientations().contains(Orientation.EAST));
-		assertFalse(cell.possibleOrientations().contains(Orientation.WEST));
+		assertTrue(cell.possibleOrientations().contains(Orientation.NORTH));
+		assertFalse(cell.possibleOrientations().contains(Orientation.SOUTH));
+		assertFalse(cell.possibleOrientations().contains(Orientation.EAST));
+		assertTrue(cell.possibleOrientations().contains(Orientation.WEST));
 	}
 
 	@Test

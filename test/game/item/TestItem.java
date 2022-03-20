@@ -7,14 +7,14 @@ import game.item.*;
 
 public class TestItem{
     @Test
-    public void testCurrentCellJewel(){
-        Cell cellJewel= new Cell(1,2);
-        Item monJewel=new Jewel(cellJewel, JewelRarity.GREEN);
-        assertEquals(monJewel.getCurrentCell(),cellJewel);
+    public void testCurrentCellIsCorrectlyUpdated(){
+        Cell cell1 = new Cell(1,2);
+        Item greenJewel = new Jewel(cell1, JewelRarity.GREEN);
+        assertEquals(greenJewel.getCurrentCell(), cell1);
 
-        Cell secondCell= new Cell(2,2);
-        monJewel.setCurrentCell(secondCell);
-        assertEquals(monJewel.getCurrentCell(),secondCell);
+        Cell cell2 = new Cell(2,2);
+        greenJewel.setCurrentCell(cell2);
+        assertEquals(greenJewel.getCurrentCell(), cell2);
     }
 
     public static junit.framework.Test suite() {
