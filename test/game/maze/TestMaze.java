@@ -4,10 +4,6 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-import java.beans.Transient;
-
-import game.maze.*;
-
 public class TestMaze {
 
     private Maze maze;
@@ -43,19 +39,19 @@ public class TestMaze {
         Cell cellEast = maze.getCell(2, 1);
 
         // Check walls are correctly removed
-        maze.removeWall(cell, WallOrientation.NORTH);
+        maze.removeWall(cell, Orientation.NORTH);
         assertFalse(cell.hasNorthWall());
         assertFalse(cellNorth.hasSouthWall());
 
-        maze.removeWall(cell, WallOrientation.SOUTH);
+        maze.removeWall(cell, Orientation.SOUTH);
         assertFalse(cell.hasSouthWall());
         assertFalse(cellSouth.hasNorthWall());
 
-        maze.removeWall(cell, WallOrientation.WEST);
+        maze.removeWall(cell, Orientation.WEST);
         assertFalse(cell.hasWestWall());
         assertFalse(cellWest.hasEastWall());
 
-        maze.removeWall(cell, WallOrientation.EAST);
+        maze.removeWall(cell, Orientation.EAST);
         assertFalse(cell.hasEastWall());
         assertFalse(cellEast.hasWestWall());
     }
@@ -100,15 +96,15 @@ public class TestMaze {
         Cell cell = maze.getCell(0, 0);
         Cell cell2 = maze.getCell(2, 2);
 
-        assertTrue(maze.isExternalWall(cell, WallOrientation.WEST));
-        assertTrue(maze.isExternalWall(cell, WallOrientation.NORTH));
-        assertFalse(maze.isExternalWall(cell, WallOrientation.EAST));
-        assertFalse(maze.isExternalWall(cell, WallOrientation.SOUTH));
+        assertTrue(maze.isExternalWall(cell, Orientation.WEST));
+        assertTrue(maze.isExternalWall(cell, Orientation.NORTH));
+        assertFalse(maze.isExternalWall(cell, Orientation.EAST));
+        assertFalse(maze.isExternalWall(cell, Orientation.SOUTH));
 
-        assertFalse(maze.isExternalWall(cell2, WallOrientation.WEST));
-        assertFalse(maze.isExternalWall(cell2, WallOrientation.NORTH));
-        assertTrue(maze.isExternalWall(cell2, WallOrientation.EAST));
-        assertTrue(maze.isExternalWall(cell2, WallOrientation.SOUTH));
+        assertFalse(maze.isExternalWall(cell2, Orientation.WEST));
+        assertFalse(maze.isExternalWall(cell2, Orientation.NORTH));
+        assertTrue(maze.isExternalWall(cell2, Orientation.EAST));
+        assertTrue(maze.isExternalWall(cell2, Orientation.SOUTH));
     }
 
     @Test

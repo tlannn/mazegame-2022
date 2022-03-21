@@ -54,7 +54,7 @@ public class DepthFirstSearchMaze extends Maze {
 		List<Cell> neighboring = new ArrayList<>();
 
 		// Case for neighboring cell above
-		if (!isExternalWall(cell, WallOrientation.NORTH)) {
+		if (!isExternalWall(cell, Orientation.NORTH)) {
 			Cell cellFrontOf = this.getCell(cell.getX(), cell.getY() - 1);
 			if (!cellsAlreadyVisited.get(cellFrontOf)) {
 				neighboring.add(cellFrontOf);
@@ -62,7 +62,7 @@ public class DepthFirstSearchMaze extends Maze {
 		}
 
 		// Case for neighboring cell below
-		if (!isExternalWall(cell, WallOrientation.SOUTH)) {
+		if (!isExternalWall(cell, Orientation.SOUTH)) {
 			Cell cellFrontOf = this.getCell(cell.getX(), cell.getY() + 1);
 			if (!cellsAlreadyVisited.get(cellFrontOf)) {
 				neighboring.add(cellFrontOf);
@@ -70,7 +70,7 @@ public class DepthFirstSearchMaze extends Maze {
 		}
 
 		// Case for neighboring cell to the left
-		if (!isExternalWall(cell, WallOrientation.WEST)) {
+		if (!isExternalWall(cell, Orientation.WEST)) {
 			Cell cellFrontOf = this.getCell(cell.getX() - 1, cell.getY());
 			if (!cellsAlreadyVisited.get(cellFrontOf)) {
 				neighboring.add(cellFrontOf);
@@ -78,7 +78,7 @@ public class DepthFirstSearchMaze extends Maze {
 		}
 
 		// Case for neighboring cell to the right
-		if (!isExternalWall(cell, WallOrientation.EAST)) {
+		if (!isExternalWall(cell, Orientation.EAST)) {
 			Cell cellFrontOf = this.getCell(cell.getX() + 1, cell.getY());
 			if (!cellsAlreadyVisited.get(cellFrontOf)) {
 				neighboring.add(cellFrontOf);

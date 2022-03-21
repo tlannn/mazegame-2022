@@ -52,7 +52,7 @@ public abstract class Maze {
 	 * @param cell the cell whose wall we want to remove
 	 * @param orientation the orientation of the wall relative to the cell
 	 */
-	public void removeWall(Cell cell, WallOrientation orientation) {
+	public void removeWall(Cell cell, Orientation orientation) {
 		switch (orientation) {
 			case NORTH:
 				if (!this.isExternalWall(cell, orientation)) {
@@ -89,16 +89,16 @@ public abstract class Maze {
 	 * @throws InvalidAdjacentCellException when adjacentCell is not next to cell
 	 */
 	public void removeWall(Cell cell, Cell adjacentCell) throws InvalidAdjacentCellException {
-		WallOrientation orientation;
+		Orientation orientation;
 
 		if (adjacentCell.getX() == cell.getX() + 1 && adjacentCell.getY() == cell.getY()) // adjacentCell is on the right of cell
-			orientation = WallOrientation.EAST;
+			orientation = Orientation.EAST;
 		else if (adjacentCell.getX() == cell.getX() - 1 && adjacentCell.getY() == cell.getY()) // adjacentCell is on the left of cell
-			orientation = WallOrientation.WEST;
+			orientation = Orientation.WEST;
 		else if (adjacentCell.getY() == cell.getY() + 1 && adjacentCell.getX() == cell.getX()) // adjacentCell is under cell
-			orientation = WallOrientation.SOUTH;
+			orientation = Orientation.SOUTH;
 		else if (adjacentCell.getY() == cell.getY() - 1 && adjacentCell.getX() == cell.getX()) // adjacentCell is above cell
-			orientation = WallOrientation.NORTH;
+			orientation = Orientation.NORTH;
 		else // adjacentCell is not adjacent to cell
 			throw new InvalidAdjacentCellException();
 
@@ -112,7 +112,7 @@ public abstract class Maze {
 	 * @param orientation the orientation of the wall relative to the cell
 	 * @return true if the wall is an external wall
 	 */
-	public boolean isExternalWall(Cell cell, WallOrientation orientation) {
+	public boolean isExternalWall(Cell cell, Orientation orientation) {
 		switch (orientation) {
 			case NORTH:
 				return cell.getY() == 0;
@@ -170,7 +170,7 @@ public abstract class Maze {
 
 			// Draw the line of vertical walls
 			for (int k = 0; k < this.length; k++) {
-				if (this.isExternalWall(getCell(k, i), WallOrientation.EAST) || this.getCell(k, i).hasEastWall()) {
+				if (this.isExternalWall(getCell(k, i), Orientation.EAST) || this.getCell(k, i).hasEastWall()) {
 					res += "   |";
 				} else {
 					res += "    ";
@@ -181,7 +181,7 @@ public abstract class Maze {
 
 			// Draw the line of horizontal walls
 			for (int j = 0; j < this.length; j++) {
-				if (this.isExternalWall(getCell(j, i), WallOrientation.SOUTH) || this.getCell(j, i).hasSouthWall()) {
+				if (this.isExternalWall(getCell(j, i), Orientation.SOUTH) || this.getCell(j, i).hasSouthWall()) {
 					res += "+---";
 				} else {
 					res += "+   ";

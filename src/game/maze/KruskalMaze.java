@@ -122,7 +122,7 @@ public class KruskalMaze extends Maze {
 			 * randomly chose, to prevent external walls being selected
 			 */
 			List<Integer> possibleIndex = new ArrayList<>();
-			WallOrientation orientation = Random.randInt(0, 2) == 0 ? WallOrientation.SOUTH : WallOrientation.EAST;
+			Orientation orientation = Random.randInt(0, 2) == 0 ? Orientation.SOUTH : Orientation.EAST;
 
 			// Add all cells index except those whose oriented wall is the border of the maze
 			for (int i = 0; i < this.nbCells; ++i) {
@@ -133,7 +133,7 @@ public class KruskalMaze extends Maze {
 
 			// Choose a random cell index among the remaining cells
 			int randIndex = possibleIndex.get(Random.randInt(0, possibleIndex.size()-1));
-			int adjacentIndex = orientation == WallOrientation.EAST ? randIndex + 1 : randIndex + this.length; // Depending on the orientation (south, east) the adjacent is whether to the right or below
+			int adjacentIndex = orientation == Orientation.EAST ? randIndex + 1 : randIndex + this.length; // Depending on the orientation (south, east) the adjacent is whether to the right or below
 
 			/*
 			 * Next step is to unite the sets corresponding to the selected nodes
