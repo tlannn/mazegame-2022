@@ -2,11 +2,11 @@ package game;
 
 import java.util.*;
 import game.maze.*;
-import game.character.*;
+import game.character.Character;
 
 public class Game{
     
-    public game(){
+    public Game(){
 
     }
 
@@ -21,26 +21,35 @@ public class Game{
         }
     }
 
-    public void move_orientation(Orientation orientation, Maze maze, Character character){
-        int x = character.currentCell.getX();
-        int y = character.currentCell.getY();
+    public void moveOrientation(Orientation orientation, Maze maze, Character character){
+        int x = character.getCurrentCell().getX();
+        int y = character.getCurrentCell().getY();
+        // On supprime le character de la liste des perso présentent dans la cellule courrante
+        try{
+            character.getCurrentCell().removeCharacter(character);
+        }
+        catch(Exception e){
+            System.out.println("Pas possible");
+        }
         if (orientation == Orientation.EAST){
-            character.currentCell = maze.getCell(x+1, y);
+            character.setCurrentCell(maze.getCell(x+1, y));
         }
-        if (orientation == Orientation.WEST){
-            character.currentCell = maze.getCell(x-1, y);
+        else if (orientation == Orientation.WEST){
+            character.setCurrentCell(maze.getCell(x-1, y));
         }
-        if (orientation == Orientation.NORTH){
-            character.currentCell = maze.getCell(x, y-1);
+        else if (orientation == Orientation.NORTH){
+            character.setCurrentCell(maze.getCell(x, y-1));
         }
-        if (orientation == Orientation.SOUTH){
-            character.currentCell = maze.getCell(x, y+1);
+        else if (orientation == Orientation.SOUTH){
+            character.setCurrentCell(maze.getCell(x, y+1));
         }
+        // On ajoute le charcter dans la liste des pesro dans la nouvelle cellule
+        character.getCurrentCell().addCharacter(character);
     }
 
     public boolean move(Orientation orientation, Maze maze, Character character){
-        if (character.movable && character.currentCell.possibleOrientations().contains(orientation) ){
-            this.move_orientation(orientation, maze, character);
+        if (character.isMovable() && character.getCurrentCell().possibleOrientations().contains(orientation) ){
+            this.moveOrientation(orientation, maze, character);
             return true;
         }
         else{return false;}
