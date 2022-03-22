@@ -168,9 +168,12 @@ Theo : UML dans la globalité + début sur la classe NonPlayerCharacter et ses e
 ## Semaine 7
 Emma: add look in Player, add testItem
 Theo : résolution de la partie Quest de l'UML, et création des classes Quest/QuestCondition
+Rayan : class player et character
+Damien : class jewel et Parchment
 
 ## Semaine 8
 Emma : test de tous les items (TestParchment et TestJewel)
+Damien et Rayan : TestPlayer + TestCharacter mise en place des methodes toString() et indices de conditions de victoire.
 
 ## Semaine 9
 
