@@ -176,6 +176,7 @@ Emma : test de tous les items (TestParchment et TestJewel)
 Damien et Rayan : TestPlayer + TestCharacter mise en place des methodes toString() et indices de conditions de victoire.
 
 ## Semaine 9
+Emma: dans game creation de l'IHM (playTurn)
 
 ## Semaine 10
 
