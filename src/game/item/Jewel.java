@@ -24,6 +24,14 @@ public class Jewel extends Item {
     }
 
     public String toString() {
-        return "un joyau";
+        if(this.rarity.getGoldValue()==5){
+            return "un joyau vert";
+        }
+        else if(this.rarity.getGoldValue()==10){
+            return "un joyau bleu";
+        }    
+        else{
+            return "un joyau violet";
+        }
     }
 }
