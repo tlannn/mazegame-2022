@@ -40,6 +40,16 @@ public class Game{
         }
     }
 
+
+    public String inventoryToString(Player player){
+        String res="";
+        int i=0;
+        for (Item item : player.getInventoryItems()){
+            res+=i+"-"+item.toString();
+        }
+    }
+
+    
     public void moveOrientation(Orientation orientation, Maze maze, Character character){
         int x = character.getCurrentCell().getX();
         int y = character.getCurrentCell().getY();
@@ -72,12 +82,4 @@ public class Game{
             return true;
         }
         else{return false;}
-
-    public String inventoryToString(Player player){
-        String res="";
-        int i=0;
-        for (Item item : player.getInventoryItems()){
-            res+=i+"-"+item.toString();
-        }
-    }
 }
