@@ -10,7 +10,10 @@ public class Game{
 
     }
 
-    public boolean playTurn(Player player){
+    public boolean playTurn(Player player,, Maze maze){
+      boolean bonText=false
+      while (! bonText){//ATTENTION actuellement je fais une boucle infini
+
         Scanner scan= new Scanner(System.in);
         String text= scan.nextLine();
         System.out.println("Pour avancer d'une case appuyé sur a ");
@@ -18,25 +21,56 @@ public class Game{
         System.out.println("Pour utiliser un objet de votre inventaire appuyer sur u ");
 
         if text.equals("a"){
+          boolean bonAvancement=false;
+          while(! bonAvancement){
+
             System.out.println("appuyer sur z pour avancer vers le nord, sur d pour aller vers l'est, sur q pour aller vers l'ouest sur s pour aller vers le sud");
-            this.move();
+            String text= scan.nextLine();
+
+            if(text.equals("z")){
+              bonAvancement=this.move(Orientation.NORTH, maze, player)
+            }
+            else if(text.equals("d")){
+              bonAvancement=this.move(Orientation.EAST, maze, player)
+            }
+            else if(text.equals("q")){
+              bonAvancement=this.move(Orientation.WEAST, maze, player)
+            }
+            else if(text.equals("s")){
+              bonAvancement=this.move(Orientation.SOUTH, maze, player)
+            }
+            else if (text.equals("a")){
+              bonAvancement=true;
+            }
+            if{ bonAvancement==false){
+              system.out.println("Ce déplacement n'est pas possible, taper a pour quitter");
+            }
+          }
+
         }
 
-        if text.equals("r"){
+        if text.equals("r"){// PAS FINI faut voir ce qu'on fait quand on trouve un objet
             player.look();
         }
         if text.equals("u"){
             //faire une boucle tant que l'utilisateur a pas envoyé le bon num et faire un truc retour pour si finalement il ne veut plus utiliser d'objet
-            System.out.println("Quel objet voulez vous utiliser ? (entrer son indice)");
-            int num=scan.nextInt();
-            if (num>=0 && num<player.getInventoryItems().size()){
-
+            boolean bonNum=false;
+            while (!bonNum){
+              System.out.println("Quel objet voulez vous utiliser ? (entrer son indice)");
+              System.out.println(inventoryToString());
+              int num=scan.nextInt();
+              if (num>=0 && num<player.getInventoryItems().size()){
+                bonNum=true;
+                player.getInventoryItems()[num].use()//on utilise l'item
+              }
+              else if(num.equals("q")){
+                bonNum=true;
+              }
+              else{
+                System.out.println("Ce numero n'est pas valide, si vous ne voulez pas utiliser d'objet appyer sur q");
+              }
             }
-            else{}
-
-
-
-
+          }
         }
     }
 
@@ -47,9 +81,10 @@ public class Game{
         for (Item item : player.getInventoryItems()){
             res+=i+"-"+item.toString();
         }
+        return res;
     }
 
-    
+
     public void moveOrientation(Orientation orientation, Maze maze, Character character){
         int x = character.getCurrentCell().getX();
         int y = character.getCurrentCell().getY();
