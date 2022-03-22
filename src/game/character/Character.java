@@ -37,8 +37,10 @@ public abstract class Character {
         }
     }
 
-    public void move(Cell cell){
-        this.currentCell = cell;
+    public void move(Orientation orientation){
+        if (this.movable && this.currentCell.possibleOrientations().contains(orientation) ){
+            this.move_orientation(orientation);
+        }
     }
 
     public String toString(){
