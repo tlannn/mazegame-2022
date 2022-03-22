@@ -1,5 +1,10 @@
 package game.maze;
 
+import game.util.InputReader;
+import game.util.Random;
+
+import java.io.IOException;
+
 /**
  * Abstract class Maze that represents a random maze in the game
  */
@@ -39,6 +44,18 @@ public abstract class Maze {
 	 */
 	public Cell getCell(int x, int y) {
 		return this.cells[x][y];
+	}
+
+	/**
+	 * Return a random cell in the maze
+	 *
+	 * @return a random cell
+	 */
+	public Cell getRandomCell() {
+		int randomX = Random.randInt(0, this.length-1);
+		int randomY = Random.randInt(0, this.height-1);
+
+		return this.getCell(randomX, randomY);
 	}
 
 	/**
