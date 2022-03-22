@@ -20,7 +20,16 @@ public abstract class Character {
         return this.currentCell;
     }
 
+    public void setCurrentCell(Cell cell){
+        this.currentCell = cell;
+    }
+
+    public boolean isMovable(){
+        return this.movable;
+    }
+
     public String toString(){
         return this.name;
     }
+
 }
