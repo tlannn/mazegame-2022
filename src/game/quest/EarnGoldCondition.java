@@ -1,8 +1,10 @@
 package game.quest;
 
 import game.character.Player;
-import game.character.Character;
+import game.observer.Observable;
 import game.util.Event;
+
+import static game.util.Event.EVENT_PICK_UP_GOLD;
 
 public class EarnGoldCondition extends QuestCondition {
 	private Player player;
@@ -17,12 +19,9 @@ public class EarnGoldCondition extends QuestCondition {
 		return this.player.getGold() >= this.goldRequired;
 	}
 
-	public void onNotify(Character character, Event event) {
-		switch (event) {
-			case EVENT_PICK_UP_GOLD:
-				this.completed = ((Player)character).getGold() >= this.goldRequired;
-				break;
-		}
+	public void onNotify(Observable observable, Event event) {
+		if (event == EVENT_PICK_UP_GOLD)
+			this.completed = ((Player)observable).getGold() >= this.goldRequired;
 	}
 
 	public String toString(){

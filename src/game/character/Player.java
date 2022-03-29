@@ -5,8 +5,6 @@ import java.util.*;
 import game.enigma.*;
 import game.item.*;
 import game.maze.*;
-import game.util.Event;
-import game.util.Observer;
 
 public class Player extends Character {
 
@@ -14,7 +12,6 @@ public class Player extends Character {
     private List<Item> inventory;
     private List<Character> charactersMet;
     private List<Hint> hintsSeen;
-    private List<Observer> observers;
 
     public Player(String name, Cell startingCell){
         super(name, startingCell);
@@ -92,19 +89,5 @@ public class Player extends Character {
 
     public List<Hint> getHints(){
         return this.hintsSeen;
-    }
-
-    public void addObserver(Observer observer) {
-        this.observers.add(observer);
-    }
-
-    public void removeObserver(Observer observer) {
-        this.observers.remove(observer);
-    }
-
-    public void notify(Character character, Event event) {
-        for (Observer observer : this.observers) {
-            observer.onNotify(character, event);
-        }
     }
 }

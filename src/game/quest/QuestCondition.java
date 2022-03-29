@@ -1,6 +1,6 @@
 package game.quest;
 
-import game.util.Observer;
+import game.observer.Observer;
 
 public abstract class QuestCondition implements Observer {
 	protected boolean completed;

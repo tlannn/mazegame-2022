@@ -2,10 +2,16 @@ package game.item;
 
 import game.maze.*;
 import game.character.*;
+import game.observer.Observable;
+import game.util.Event;
+import game.observer.Observer;
 
-public abstract class Item {
+import java.util.List;
+
+public abstract class Item implements Observable {
 
     protected Cell currentCell;
+    protected List<Observer> observers;
 
     public Item(Cell cell){
         this.currentCell = cell;
@@ -20,5 +26,18 @@ public abstract class Item {
     }
 
     public abstract void use(Player player);
-    
+
+    public void addObserver(Observer observer) {
+        this.observers.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        this.observers.remove(observer);
+    }
+
+    public void notify(Observable observable, Event event) {
+        for (Observer observer : this.observers) {
+            observer.onNotify(observable, event);
+        }
+    }
 }

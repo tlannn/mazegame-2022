@@ -1,19 +1,40 @@
 package game.character;
 
 import game.maze.*;
+import game.observer.Observable;
+import game.observer.Observer;
 import game.util.*;
 
-public abstract class Character {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Character implements Observable {
 
     protected Cell currentCell;
     protected String name;
     protected boolean movable;
+    protected List<Observer> observers;
 
 
     public Character(String name, Cell startingCell) {
         this.name = name;
         this.currentCell = startingCell;
         this.movable = true;
+        this.observers = new ArrayList<>();
+    }
+
+    public void addObserver(Observer observer) {
+        this.observers.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        this.observers.remove(observer);
+    }
+
+    public void notify(Observable observable, Event event) {
+        for (Observer observer : this.observers) {
+            observer.onNotify(observable, event);
+        }
     }
 
     public Cell getCurrentCell(){
