@@ -17,15 +17,19 @@ public class Game{
 
     }
 
-    public boolean playTurn(Player player,, Maze maze){
+    public boolean playTurn(Player player, Maze maze){
       boolean bonText=false
       while (! bonText){//ATTENTION actuellement je fais une boucle infini
-
+        player.look();
         Scanner scan= new Scanner(System.in);
         String text= scan.nextLine();
         System.out.println("Pour avancer d'une case appuyé sur a ");
         System.out.println("Pour regarder autour de vous appuyer sur r ");
         System.out.println("Pour utiliser un objet de votre inventaire appuyer sur u ");
+        System.out.println("Pour parler avec un personnage appuyer sur p ");
+        System.out.println("Pour ramasser un objet appuyer sur t ");
+
+
 
         if text.equals("a"){
           boolean bonAvancement=false;
@@ -35,29 +39,28 @@ public class Game{
             String text= scan.nextLine();
 
             if(text.equals("z")){
-              bonAvancement=this.move(Orientation.NORTH, maze, player)
+              bonAvancement=this.move(Orientation.NORTH, maze, player);
             }
             else if(text.equals("d")){
-              bonAvancement=this.move(Orientation.EAST, maze, player)
+              bonAvancement=this.move(Orientation.EAST, maze, player);
             }
             else if(text.equals("q")){
-              bonAvancement=this.move(Orientation.WEAST, maze, player)
+              bonAvancement=this.move(Orientation.WEAST, maze, player);
             }
             else if(text.equals("s")){
-              bonAvancement=this.move(Orientation.SOUTH, maze, player)
+              bonAvancement=this.move(Orientation.SOUTH, maze, player);
             }
             else if (text.equals("a")){
               bonAvancement=true;
             }
             if{ bonAvancement==false){
-              system.out.println("Ce déplacement n'est pas possible, taper a pour quitter");
+              system.out.println("Ce déplacement n'est pas possible, taper 'a' pour quitter");
             }
           }
-
         }
 
-        if text.equals("r"){// PAS FINI faut voir ce qu'on fait quand on trouve un objet
-            player.look();
+        if text.equals("r"){//regarde les déplacements possibles
+
         }
         if text.equals("u"){
             //faire une boucle tant que l'utilisateur a pas envoyé le bon num et faire un truc retour pour si finalement il ne veut plus utiliser d'objet

@@ -3,7 +3,8 @@ package game.maze;
 import java.util.*;
 
 import game.item.Item;
-import game.character.Character;
+import game.character.NonPlayerCharacter;
+
 
 /**
  * Represents a cell in the maze with 4 walls in each direction. The walls are closed when the cell is created.
@@ -16,7 +17,7 @@ public class Cell {
     private boolean eastWall;
     private boolean westWall;
 	private List<Item> items;
-	private List<Character> characters;
+	private List<NonPlayerCharacter> characters;
 
 	/**
 	 * Class constructor
@@ -32,7 +33,7 @@ public class Cell {
     	this.eastWall=true;
     	this.westWall=true;
         this.items= new ArrayList<Item>();
-        this.characters= new ArrayList<Character>();
+        this.characters= new ArrayList<NonPlayerCharacter>();
     }
 
     /**
@@ -119,7 +120,7 @@ public class Cell {
 		return this.items;
 	}
 
-	public List<Character> getCharactersInCell(){
+	public List<NonPlayerCharacter> getCharactersInCell(){
 		return this.characters;
 	}
 
@@ -134,11 +135,11 @@ public class Cell {
 			throw new ItemNotInCellException();
 	}
 
-	public void addCharacter(Character character){
+	public void addCharacter(NonPlayerCharacter character){
 		this.characters.add(character);
 	}
 
-	public void removeCharacter(Character character) throws CharacterNotInCellException {
+	public void removeCharacter(NonPlayerCharacter character) throws CharacterNotInCellException {
 		if (this.characters.contains(character))
 			this.characters.remove(character);
 		else

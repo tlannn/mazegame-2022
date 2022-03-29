@@ -9,7 +9,12 @@ import game.maze.*;
 public class Player extends Character {
 
     private int gold;
+<<<<<<< HEAD
     private Inventory inventory;
+=======
+    private List<Item> inventory;
+    private List<NonPlayerCharacter> charactersMet;
+>>>>>>> aab3481 (correction with nonPlayerCharacter)
     private List<Hint> hintsSeen;
 
     public Player(String name, Cell startingCell){
@@ -46,18 +51,22 @@ public class Player extends Character {
         return this.inventory;
     }
 
-    //return true if there is an item on the cell.
+    //return true if there is an item or a character on the cell. else false.
     public boolean look(){
+        int i=0;
         List<Item> items = this.currentCell.getItemsInCell();
-        if (items.isEmpty()){
-            System.out.println("Il n'y a rien sur cette case.");
+        List<NonPlayerCharacter> characters = this.currentCell.getCharactersInCell();
+        if (items.isEmpty() && characters.isEmpty()){
+            System.out.println("Il n'y a rien sur cette case");
             return false;
         }
-
         else{
             System.out.print("Sur cette case se trouve :");
-            for (int i=0; i<items.size(); i++){
-                System.out.println(i+"-"+item);
+            for (i=0; i<items.size(); i++){
+                System.out.println(i+"-"+items.get(i));
+            }
+            for(int j=i; j< characters.size(); j++){
+                System.out.println(i+"-"+characters.get(j));
             }
             return true;
         }
