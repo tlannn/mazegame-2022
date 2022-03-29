@@ -10,14 +10,12 @@ public class Player extends Character {
 
     private int gold;
     private Inventory inventory;
-    private List<Character> charactersMet;
     private List<Hint> hintsSeen;
 
     public Player(String name, Cell startingCell){
         super(name, startingCell);
         this.gold = 0;
         this.inventory = new Inventory();
-        this.charactersMet = new ArrayList<Character>();
         this.hintsSeen = new ArrayList<Hint>();
     }
 
@@ -38,14 +36,6 @@ public class Player extends Character {
 
     public void addHint(Hint h){
         this.hintsSeen.add(h);
-    }
-
-    public void addCharacterMet(Character c){
-        this.charactersMet.add(c);
-    }
-
-    public int getNumbersCharactersMet(){
-        return this.charactersMet.size();
     }
 
     public void useItem(Item item){
@@ -71,10 +61,6 @@ public class Player extends Character {
             }
             return true;
         }
-    }
-
-    public List<Character> getCharactersMet(){
-        return this.charactersMet;
     }
 
     public List<Hint> getHints(){
