@@ -69,19 +69,21 @@ public class Player extends Character {
         return this.inventory;
     }
 
-    public void look(){
+    //return true if there is an item on the cell.
+    public boolean look(){
         List<Item> items = this.currentCell.getItemsInCell();
         if (items.isEmpty()){
             System.out.println("Il n'y a rien sur cette case.");
+            return false;
         }
 
         else{
             System.out.print("Sur cette case se trouve :");
-            for(Item item : items) {
-                System.out.println("- " + item);
+            for (int i=0; i<items.size(); i++){
+                System.out.println(i+"-"+item);
             }
+            return true;
         }
-
     }
 
     public List<Character> getCharactersMet(){
