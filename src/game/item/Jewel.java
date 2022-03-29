@@ -16,7 +16,7 @@ public class Jewel extends Item {
         System.out.println("Vous utilisez un joyau de valeur : " + this.rarity.getGoldValue() + " golds");
         player.addGold(this.rarity.getGoldValue());
         try{
-            player.removeItem(this);
+            player.getInventory().removeItem(this);
         }
         catch(UnknownItemException e){
             System.out.println(e.getMessage());

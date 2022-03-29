@@ -59,9 +59,9 @@ public class Game{
               System.out.println("Quel objet voulez vous utiliser ? (entrer son indice)");
               System.out.println(inventoryToString());
               int num=scan.nextInt();
-              if (num>=0 && num<player.getInventoryItems().size()){
+              if (num>=0 && num<player.getInventory().getItems().size()){
                 bonNum=true;
-                player.getInventoryItems()[num].use()//on utilise l'item
+                player.getInventory().getItems()[num].use()//on utilise l'item
               }
               else if(num.equals("q")){
                 bonNum=true;
@@ -78,7 +78,7 @@ public class Game{
     public String inventoryToString(Player player){
         String res="";
         int i=0;
-        for (Item item : player.getInventoryItems()){
+        for (Item item : player.getInventory().getItems()){
             res+=i+"-"+item.toString();
         }
         return res;

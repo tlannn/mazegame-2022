@@ -18,7 +18,7 @@ public class Parchment extends Item {
         System.out.println(this.hint);
         player.addHint(this.hint);
         try{
-            player.removeItem(this);
+            player.getInventory().removeItem(this);
         }
         catch(UnknownItemException e){
             System.out.println(e.getMessage());

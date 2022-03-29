@@ -9,14 +9,14 @@ import game.maze.*;
 public class Player extends Character {
 
     private int gold;
-    private List<Item> inventory;
+    private Inventory inventory;
     private List<Character> charactersMet;
     private List<Hint> hintsSeen;
 
     public Player(String name, Cell startingCell){
         super(name, startingCell);
         this.gold = 0;
-        this.inventory = new ArrayList<Item>();
+        this.inventory = new Inventory();
         this.charactersMet = new ArrayList<Character>();
         this.hintsSeen = new ArrayList<Hint>();
     }
@@ -36,10 +36,6 @@ public class Player extends Character {
         this.gold -= amount;
     }
 
-    public void addItem(Item i){
-        this.inventory.add(i);
-    }
-
     public void addHint(Hint h){
         this.hintsSeen.add(h);
     }
@@ -52,17 +48,11 @@ public class Player extends Character {
         return this.charactersMet.size();
     }
 
-    public void removeItem(Item i) throws UnknownItemException {
-        if (!this.inventory.contains(i))
-           throw new UnknownItemException("Item inconnu");
-        this.inventory.remove(i);
+    public void useItem(Item item){
+        item.use(this);
     }
 
-    public void useItem(Item i){
-        i.use(this);
-    }
-
-    public List<Item> getInventoryItems() {
+    public inventory getInventory() {
         return this.inventory;
     }
 
