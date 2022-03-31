@@ -9,12 +9,7 @@ import game.maze.*;
 public class Player extends Character {
 
     private int gold;
-<<<<<<< HEAD
     private Inventory inventory;
-=======
-    private List<Item> inventory;
-    private List<NonPlayerCharacter> charactersMet;
->>>>>>> aab3481 (correction with nonPlayerCharacter)
     private List<Hint> hintsSeen;
 
     public Player(String name, Cell startingCell){
