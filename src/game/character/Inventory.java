@@ -1,5 +1,6 @@
 package game.character;
 
+import game.item.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class Inventory {
     public void removeItem(Item item) throws UnknownItemException {
         if (!this.items.contains(item))
            throw new UnknownItemException("Item inconnu");
-        
+
         this.inventory.remove(item);
     }
 
@@ -31,7 +32,7 @@ public class Inventory {
 
     public String toString() {
     	String str = "Vous avez dans votre inventaire :\n";
-    	
+
     	for (int i = 0; i < this.items.size(); ++i)
     		str += i + " - " + item + "\n";
 

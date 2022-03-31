@@ -5,6 +5,7 @@ import java.util.*;
 import game.enigma.*;
 import game.item.*;
 import game.maze.*;
+import game.character.*;
 
 public class Player extends Character {
 
@@ -42,7 +43,7 @@ public class Player extends Character {
         item.use(this);
     }
 
-    public inventory getInventory() {
+    public Inventory getInventory() {
         return this.inventory;
     }
 
