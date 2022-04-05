@@ -21,13 +21,13 @@ public class Game{
         boolean bonText=false;
         while (! bonText){//ATTENTION actuellement je fais une boucle infini
             player.look();
-            Scanner scan= new Scanner(System.in);
-            String text= scan.nextLine();
             System.out.println("Pour avancer d'une case appuyé sur a ");
             System.out.println("Pour regarder autour de vous appuyer sur r ");
             System.out.println("Pour utiliser un objet de votre inventaire appuyer sur u ");
             System.out.println("Pour parler avec un personnage appuyer sur p ");
             System.out.println("Pour ramasser un objet appuyer sur t ");
+            Scanner scan= new Scanner(System.in);
+            String text= scan.nextLine();
 
             if (text.equals("a")){
                 boolean bonAvancement=false;
