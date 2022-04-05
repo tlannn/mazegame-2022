@@ -73,13 +73,13 @@ public class Game{
             while (!bonNum){
               System.out.println("Quel objet voulez vous utiliser ? (entrer son indice)");
               System.out.println(this.character.getInventory().ToString());
-              int num=scan.nextInt();
-              if (num>=0 && num<player.getInventory().getItems().size()){
+              String text2= scan.nextLine();
+              if(text2.equals("q")){
                 bonNum=true;
-                player.getInventory().getItems().get(num).use(); // on utilise l'item
               }
-              else if(num.equals("q")){
+              else if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<player.getInventory().getItems().size()){
                 bonNum=true;
+                player.getInventory().getItems().get(Integer.parseInt(text2)).use(); // on utilise l'item
               }
               else{
                 System.out.println("Ce numero n'est pas valide, si vous ne voulez pas utiliser d'objet appyer sur q");
@@ -113,13 +113,13 @@ public class Game{
               while (!bonNum){
                   System.out.println("Quel objet voulez vous utiliser ? (entrer son indice)");
                   System.out.println(inventoryToString());
-                  int num=scan.nextInt();
-                  if (num>=0 && num<player.getInventoryItems().size()){
-                      bonNum=true;
-                      player.getInventory().getItems().get(num).use();//on utilise l'item
+                  String text2= scan.nextLine();
+                  if(text2.equals("q")){
+                    bonNum=true;
                   }
-                  else if(num.equals("q")){
+                  else if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<player.getInventoryItems().size()){
                       bonNum=true;
+                      player.getInventory().getItems().get(Integer.parseInt(text2)).use();//on utilise l'item
                   }
                   else{
                       System.out.println("Ce numero n'est pas valide, si vous ne voulez pas utiliser d'objet appuyer sur q");
@@ -135,13 +135,13 @@ public class Game{
                   for (int i=0; i<items.size();i++){
                       System.out.print(i+"-"+items.get(i)+" ");
                   }
-                  int num=scan.nextInt();
-                  if (num>=0 && num<items.size()){
-                      bonNum=true;
-                      player.addItem(items.get(num));
+                  String text2= scan.nextLine();
+                  if(text2.equals("q")){
+                    bonNum=true;
                   }
-                  else if(num.equals("q")){
+                  else if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<items.size()){
                       bonNum=true;
+                      player.addItem(items.get(Integer.parseInt(text2)));
                   }
                   else{
                       System.out.println("Ce numero n'est pas valide, si vous ne voulez pas ramasser d'objet appuyer sur q");
@@ -156,13 +156,13 @@ public class Game{
                   for (int i=0; i<characters.size();i++){
                       System.out.print(i+"-"+characters.get(i)+" ");
                   }
-                  int num=scan.nextInt();
-                  if (num>=0 && num<characters.size()){
-                      bonNum=true;
-                      characters.get(num).talk();
+                  String text2= scan.nextLine();
+                  if(text2.equals("q")){
+                    bonNum=true;
                   }
-                  else if(num.equals("q")){
+                  if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<characters.size()){
                       bonNum=true;
+                      characters.get(Integer.parseInt(text2)).talk();
                   }
                   else{
                       System.out.println("Ce numero n'est pas valide, si vous ne voulez pas parler avec un personnage appuyer sur q");
