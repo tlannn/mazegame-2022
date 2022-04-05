@@ -19,10 +19,10 @@ public class Inventory {
         if (!this.items.contains(item))
            throw new UnknownItemException("Item inconnu");
 
-        this.inventory.remove(item);
+        this.items.remove(item);
     }
 
-    public List<Item> getItem(int index) {
+    public Item getItem(int index) {
     	return this.items.get(index);
     }
 
@@ -34,7 +34,7 @@ public class Inventory {
     	String str = "Vous avez dans votre inventaire :\n";
 
     	for (int i = 0; i < this.items.size(); ++i)
-    		str += i + " - " + item + "\n";
+    		str += i + " - " + this.getItem(i) + "\n";
 
     	return str;
     }
