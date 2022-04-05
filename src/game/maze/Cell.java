@@ -130,8 +130,8 @@ public class Cell {
         List <NonPlayerCharacter> nonPlayerCharacters = new ArrayList <NonPlayerCharacter>();
         for (Character character : this.characters){
             if (character instanceof NonPlayerCharacter){
-                NonPlayerCharacter bonCharacter = (NonPlayerCharacter) character
-                nonPlayerCharacters.add(bonCharacter)
+                NonPlayerCharacter bonCharacter = (NonPlayerCharacter) character;
+                nonPlayerCharacters.add(bonCharacter);
             }
         }
         return nonPlayerCharacters;
