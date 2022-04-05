@@ -17,16 +17,6 @@ public class Game{
         this.player = player;
     }
 
-    public String afficheAide(){
-        String res="";
-        res += "appuyer sur:\n";
-        res += "a - avancer\n";
-        //System.out.println("r - regarder autour de vous");
-        res += "u - utiliser un objet de votre inventaire\n";
-        res += "p - parler avec un personnage\n";
-        res += "t - ramasser un objet\n";
-        return res;
-    }
 
     public void playTurn(Player player, Maze maze){
         System.out.println("---------------------------------------------------");
@@ -43,7 +33,6 @@ public class Game{
             if (text.equals("h")){
                 System.out.println(this.afficheAide());
                 text= scan.nextLine();
-
             }
 
             if (text.equals("a")){
@@ -74,9 +63,6 @@ public class Game{
                 }
             }
 
-
-
-
             if (text.equals("u")){
                 //faire une boucle tant que l'utilisateur a pas envoyé le bon num et faire un truc retour pour si finalement il ne veut plus utiliser d'objet
                 boolean bonNum=false;
@@ -96,29 +82,6 @@ public class Game{
                     }
                     catch(Exception NumberFormatException) {
                         System.out.println("Ce numero n'est pas valide, si vous ne voulez pas utiliser d'objet appyer sur q");
-                    }
-                }
-            }
-
-            if (text.equals("u")){
-                //faire une boucle tant que l'utilisateur a pas envoyé le bon num et faire un truc retour pour si finalement il ne veut plus utiliser d'objet
-                boolean bonNum=false;
-                while (!bonNum){
-                    System.out.println("Quel objet voulez vous utiliser ? (entrer son indice)");
-                    System.out.println(player.getInventory().toString());
-                    String text2= scan.nextLine();
-                    if(text2.equals("q")){
-                        bonNum=true;
-                    }
-                    try{
-                        if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<player.getInventory().getItems().size()){
-                            bonNum=true;
-                            Item item = player.getInventory().getItem(Integer.parseInt(text2));
-                            player.useItem(item);
-                            }
-                    }
-                    catch(Exception NumberFormatException){
-                        System.out.println("Ce numero n'est pas valide, si vous ne voulez pas utiliser d'objet appuyer sur q");
                     }
                 }
             }
@@ -167,8 +130,6 @@ public class Game{
                     }
                 }
             }
-
-        //}
     }
 
 
@@ -195,6 +156,16 @@ public class Game{
         return res.substring(0,res.length()-1);
     }
 
+    public String afficheAide(){
+        String res="";
+        res += "appuyer sur:\n";
+        res += "a - avancer\n";
+        //System.out.println("r - regarder autour de vous");
+        res += "u - utiliser un objet de votre inventaire\n";
+        res += "p - parler avec un personnage\n";
+        res += "t - ramasser un objet\n";
+        return res;
+    }
 
     public String inventoryToString(Player player){
         String res="";

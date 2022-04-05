@@ -10,8 +10,10 @@ import game.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
+// quand on ajoute le player il ne faut pas oublier que la case sur laquelle on l'ajoute le player doit avoir player dans ses characters
 
 public class GameGenerator {
+
 	private Maze maze;
 	private Quest quest;
 	private Player player;
@@ -31,6 +33,7 @@ public class GameGenerator {
 		// 4. Créer la quête
 
 		// 5. Assigner les items
+
 	}
 
 	private Quest createQuest() {
