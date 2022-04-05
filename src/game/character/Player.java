@@ -53,7 +53,7 @@ public class Player extends Character {
     public boolean look(){
         int i=0;
         List<Item> items = this.currentCell.getItemsInCell();
-        List<Character> characters = this.currentCell.getCharactersInCell();
+        List<NonPlayerCharacter> characters = this.currentCell.getNonPlayerCharactersInCell();
         if (items.isEmpty() && characters.isEmpty()){
             System.out.println("Il n'y a rien sur cette case");
             return false;

@@ -17,46 +17,59 @@ public class Game{
         this.player = player;
     }
 
+    public String afficheAide(){
+        String res="";
+        res += "appuyer sur:\n";
+        res += "a - avancer\n";
+        //System.out.println("r - regarder autour de vous");
+        res += "u - utiliser un objet de votre inventaire\n";
+        res += "p - parler avec un personnage\n";
+        res += "t - ramasser un objet\n";
+        return res;
+    }
+
     public void playTurn(Player player, Maze maze){
+        System.out.println("---------------------------------------------------");
+        System.out.println(maze);
+        System.out.println("h - aide");
+        System.out.println("Je suis case"+this.player.getCurrentCell().toString());
+        player.look();
         boolean bonText=false;
-        while (! bonText){//ATTENTION actuellement je fais une boucle infini
-            player.look();
-            System.out.println("Pour avancer d'une case appuyé sur a ");
-            System.out.println("Pour regarder autour de vous appuyer sur r ");
-            System.out.println("Pour utiliser un objet de votre inventaire appuyer sur u ");
-            System.out.println("Pour parler avec un personnage appuyer sur p ");
-            System.out.println("Pour ramasser un objet appuyer sur t ");
+        //while (! bonText){//ATTENTION actuellement je fais une boucle infini
+
             Scanner scan= new Scanner(System.in);
             String text= scan.nextLine();
+
+            if (text.equals("h")){
+                System.out.println(this.afficheAide());
+                text= scan.nextLine();
+
+            }
 
             if (text.equals("a")){
                 boolean bonAvancement=false;
                 while(! bonAvancement){
-
-                    System.out.println("appuyer sur z pour avancer vers le nord, sur d pour aller vers l'est, sur q pour aller vers l'ouest sur s pour aller vers le sud");
+                    System.out.println(this.regarderAutour());
+                    //System.out.println("appuyer sur z pour avancer vers le nord, sur d pour aller vers l'est, sur q pour aller vers l'ouest sur s pour aller vers le sud");
                     text= scan.nextLine();
 
                     if(text.equals("z")){
                         bonAvancement=this.move(Orientation.NORTH, this.player);
-                        bonAvancement=true;
                     }
                     else if(text.equals("d")){
                         bonAvancement=this.move(Orientation.EAST, this.player);
-                        bonAvancement=true;
                     }
                     else if(text.equals("q")){
                         bonAvancement=this.move(Orientation.WEST, this.player);
-                        bonAvancement=true;
                     }
                     else if(text.equals("s")){
                         bonAvancement=this.move(Orientation.SOUTH, this.player);
-                        bonAvancement=true;
                     }
                     else if (text.equals("a")){
                         bonAvancement=true;
                     }
                     if(bonAvancement==false){
-                        System.out.println("Ce déplacement n'est pas possible, taper 'a' pour quitter");
+                        System.out.println("Ce déplacement n'est pas possible, taper 'a' pour quitter ou choisissez une position correcte");
                     }
                 }
             }
@@ -83,28 +96,6 @@ public class Game{
                     }
                     catch(Exception NumberFormatException) {
                         System.out.println("Ce numero n'est pas valide, si vous ne voulez pas utiliser d'objet appyer sur q");
-                    }
-                }
-            }
-
-
-            if (text.equals("r")){//regarde les déplacements possibles
-                List <Orientation> orientationPossible = player.getCurrentCell().possibleOrientations();
-                System.out.println("Vous pouvez aller au:");
-                for(Orientation orientation : orientationPossible){
-                    switch (orientation){
-                        case NORTH:
-                        orientation.toString();
-                        break;
-                        case SOUTH:
-                        orientation.toString();
-                        break;
-                        case EAST:
-                        orientation.toString();
-                        break;
-                        case WEST:
-                        orientation.toString();
-                        break;
                     }
                 }
             }
@@ -177,8 +168,33 @@ public class Game{
                 }
             }
 
-        }
+        //}
     }
+
+
+    public String regarderAutour(){
+        List <Orientation> orientationPossible = player.getCurrentCell().possibleOrientations();
+        System.out.println("Vous pouvez aller au:");
+        String res = "";
+        for(Orientation orientation : orientationPossible){
+            switch (orientation){
+                case NORTH:
+                res += "z - "+orientation.toString()+"\n";
+                break;
+                case SOUTH:
+                res += "s - "+orientation.toString()+"\n";
+                break;
+                case EAST:
+                res += "d - "+orientation.toString()+"\n";
+                break;
+                case WEST:
+                res += "q - "+orientation.toString()+"\n";
+                break;
+            }
+        }
+        return res.substring(0,res.length()-1);
+    }
+
 
     public String inventoryToString(Player player){
         String res="";
@@ -197,6 +213,7 @@ public class Game{
             character.getCurrentCell().removeCharacter(character);
         }
         catch(Exception e){
+            System.out.println(e.getMessage());
             System.out.println("Pas possible");
         }
         if (orientation == Orientation.EAST){
