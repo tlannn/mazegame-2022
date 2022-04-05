@@ -3,6 +3,7 @@ package game.maze;
 import java.util.*;
 
 import game.item.Item;
+import game.character.Character;
 import game.character.NonPlayerCharacter;
 
 
@@ -17,7 +18,7 @@ public class Cell {
     private boolean eastWall;
     private boolean westWall;
 	private List<Item> items;
-	private List<NonPlayerCharacter> characters;
+	private List<Character> characters;
 
 	/**
 	 * Class constructor
@@ -33,7 +34,7 @@ public class Cell {
     	this.eastWall=true;
     	this.westWall=true;
         this.items= new ArrayList<Item>();
-        this.characters= new ArrayList<NonPlayerCharacter>();
+        this.characters= new ArrayList<Character>();
     }
 
     /**
@@ -120,9 +121,21 @@ public class Cell {
 		return this.items;
 	}
 
-	public List<NonPlayerCharacter> getCharactersInCell(){
+	public List<Character> getCharactersInCell(){
 		return this.characters;
 	}
+
+
+    public List <NonPlayerCharacter> getNonPlayerCharactersInCell(){
+        List <NonPlayerCharacter> nonPlayerCharacters = new ArrayList <NonPlayerCharacter>();
+        for (Character character : this.characters){
+            if (character instanceof NonPlayerCharacter){
+                NonPlayerCharacter bonCharacter = (NonPlayerCharacter) character
+                nonPlayerCharacters.add(bonCharacter)
+            }
+        }
+        return nonPlayerCharacters;
+    }
 
 	public void addItem(Item item){
 		this.items.add(item);
@@ -135,11 +148,11 @@ public class Cell {
 			throw new ItemNotInCellException();
 	}
 
-	public void addCharacter(NonPlayerCharacter character){
+	public void addCharacter(Character character){
 		this.characters.add(character);
 	}
 
-	public void removeCharacter(NonPlayerCharacter character) throws CharacterNotInCellException {
+	public void removeCharacter(Character character) throws CharacterNotInCellException {
 		if (this.characters.contains(character))
 			this.characters.remove(character);
 		else

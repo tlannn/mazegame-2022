@@ -11,13 +11,13 @@ import game.item.*;
 
 public class Game{
 
-  private Maze maze;
-  private Character character;
+    private Maze maze;
+    private Player player;
 
-  public Game(Maze maze, Character character){
+    public Game(Maze maze, Player player){
 
-    this.maze = maze;
-    this.character = character;
+      this.maze = maze;
+      this.player = player;
 
   }
 
@@ -41,19 +41,19 @@ public class Game{
           text= scan.nextLine();
 
           if(text.equals("z")){
-            bonAvancement=this.move(Orientation.NORTH);
+            bonAvancement=this.move(Orientation.NORTH, this.player);
             bonAvancement=true;
           }
           else if(text.equals("d")){
-            bonAvancement=this.move(Orientation.EAST);
+            bonAvancement=this.move(Orientation.EAST, this.player);
             bonAvancement=true;
           }
           else if(text.equals("q")){
-            bonAvancement=this.move(Orientation.WEST);
+            bonAvancement=this.move(Orientation.WEST, this.player);
             bonAvancement=true;
           }
           else if(text.equals("s")){
-            bonAvancement=this.move(Orientation.SOUTH);
+            bonAvancement=this.move(Orientation.SOUTH, this.player);
             bonAvancement=true;
           }
           else if (text.equals("a")){
@@ -62,8 +62,8 @@ public class Game{
           if(bonAvancement==false){
             System.out.println("Ce déplacement n'est pas possible, taper 'a' pour quitter");
           }
-        }
       }
+
 
 
 
@@ -187,38 +187,37 @@ public class Game{
       return res;
     }
 
-
-    public void moveOrientation(Orientation orientation){
-      int x = this.character.getCurrentCell().getX();
-      int y = this.character.getCurrentCell().getY();
-      // On supprime le character de la liste des perso présentent dans la cellule courrante
-      try{
-        this.character.getCurrentCell().removeCharacter(this.character);
-      }
-      catch(Exception e){
-        System.out.println("Pas possible");
-      }
-      if (orientation == Orientation.EAST){
-        this.character.setCurrentCell(this.maze.getCell(x+1, y));
-      }
-      else if (orientation == Orientation.WEST){
-        this.character.setCurrentCell(this.maze.getCell(x-1, y));
-      }
-      else if (orientation == Orientation.NORTH){
-        this.character.setCurrentCell(this.maze.getCell(x, y-1));
-      }
-      else if (orientation == Orientation.SOUTH){
-        this.character.setCurrentCell(this.maze.getCell(x, y+1));
-      }
-      // On ajoute le charcter dans la liste des pesro dans la nouvelle cellule
-      this.character.getCurrentCell().addCharacter(this.character);
+    public void moveOrientation(Orientation orientation, Character character){
+        int x = character.getCurrentCell().getX();
+        int y = character.getCurrentCell().getY();
+        // On supprime le character de la liste des perso présentent dans la cellule courrante
+        try{
+            character.getCurrentCell().removeCharacter(character);
+        }
+        catch(Exception e){
+            System.out.println("Pas possible");
+        }
+        if (orientation == Orientation.EAST){
+            character.setCurrentCell(this.maze.getCell(x+1, y));
+        }
+        else if (orientation == Orientation.WEST){
+            character.setCurrentCell(this.maze.getCell(x-1, y));
+        }
+        else if (orientation == Orientation.NORTH){
+            character.setCurrentCell(this.maze.getCell(x, y-1));
+        }
+        else if (orientation == Orientation.SOUTH){
+            character.setCurrentCell(this.maze.getCell(x, y+1));
+        }
+        // On ajoute le charcter dans la liste des pesro dans la nouvelle cellule
+        character.getCurrentCell().addCharacter(character);
     }
 
-    public boolean move(Orientation orientation){
-      if (this.character.isMovable() && this.character.getCurrentCell().possibleOrientations().contains(orientation) ){
-        this.moveOrientation(orientation);
-        return true;
-      }
-      else{return false;}
+    public boolean move(Orientation orientation, Character character){
+        if (character.isMovable() && character.getCurrentCell().possibleOrientations().contains(orientation) ){
+            this.moveOrientation(orientation, character);
+            return true;
+        }
+        else{return false;}
     }
   }

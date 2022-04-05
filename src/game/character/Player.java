@@ -5,7 +5,9 @@ import java.util.*;
 import game.enigma.*;
 import game.item.*;
 import game.maze.*;
+import game.character.Character;
 import game.character.*;
+
 
 public class Player extends Character {
 
@@ -51,7 +53,7 @@ public class Player extends Character {
     public boolean look(){
         int i=0;
         List<Item> items = this.currentCell.getItemsInCell();
-        List<NonPlayerCharacter> characters = this.currentCell.getCharactersInCell();
+        List<Character> characters = this.currentCell.getCharactersInCell();
         if (items.isEmpty() && characters.isEmpty()){
             System.out.println("Il n'y a rien sur cette case");
             return false;
