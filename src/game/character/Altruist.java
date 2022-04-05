@@ -6,10 +6,15 @@ import game.maze.*;
 public class Altruist extends NonPlayerCharacter {
 	private Hint hint;
 
-	public Altruist(Hint hint, Cell startingCell) {
+	public Altruist(Cell startingCell) {
 		super("Altruiste", startingCell);
 
-		this.hint = hint;
+		this.hint = null;
+	}
+
+	public void setHint(Hint hint) {
+		if (this.hint == null)
+			this.hint = hint;
 	}
 
 	public void talk() {

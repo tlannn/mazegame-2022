@@ -6,10 +6,15 @@ import game.maze.*;
 public class Fool extends NonPlayerCharacter {
 	private FakeHint fakeHint;
 
-	public Fool(FakeHint fakeHint, Cell startingCell) {
+	public Fool(Cell startingCell) {
 		super("Fou", startingCell);
 
-		this.fakeHint = fakeHint;
+		this.fakeHint = null;
+	}
+
+	public void setFakeHint(FakeHint fakeHint) {
+		if (this.fakeHint == null)
+			this.fakeHint = fakeHint;
 	}
 
 	public void talk() {
