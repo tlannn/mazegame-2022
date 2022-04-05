@@ -91,20 +91,23 @@ public class Game{
           if (text.equals("r")){//regarde les déplacements possibles
               List <Orientation> orientationPossible = player.getCurrentCell().possibleOrientations();
               System.out.println("Vous pouvez aller au:");
-              switch (orientation){
-                  case Orientation.NORTH:
-                  System.out.println("nord");
-                  break;
-                  case Orientation.SOUTH:
-                  System.out.println("sud");
-                  break;
-                  case Orientation.EAST:
-                  System.out.println("est");
-                  break;
-                  case Orientation.WEST:
-                  System.out.println("ouest");
-                  break;
+              for(Orientation orientation : orientationPossible){
+                switch (orientation){
+                    case NORTH:
+                    orientation.toString();
+                    break;
+                    case SOUTH:
+                    orientation.toString();
+                    break;
+                    case EAST:
+                    orientation.toString();
+                    break;
+                    case WEST:
+                    orientation.toString();
+                    break;
+                }
               }
+              
           }
 
           if (text.equals("u")){
