@@ -2,11 +2,7 @@ package game;
 
 import game.character.Character;
 import game.enigma.Enigma;
-import game.hint.Hint;
-import game.item.Item;
-import game.item.Jewel;
-import game.item.JewelRarity;
-import game.item.Parchment;
+import game.item.*;
 import game.enigma.*;
 
 //import game.enigma.Hint;
@@ -58,6 +54,7 @@ public class GameGenerator {
 
 		return new Quest(winningCell, conditions);
 	}
+import game.hint.Hint;
 
 	private List<Hint> createHints (int nbrItemHint, int nbFools){
 		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
@@ -71,15 +68,15 @@ public class GameGenerator {
 			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(i));
 			this.hints.add(questConditionHint);
 		}
-		Hint winningCellCoordinatesHintA = WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
+		Hint winningCellCoordinatesHintA = new WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
 		this.hints.add(winningCellCoordinatesHintA);
-		Hint winningCellCoordinatesHintO = WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
+		Hint winningCellCoordinatesHintO = new WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
 		this.hints.add(winningCellCoordinatesHintO);
-		Hint winningCellOrientationHint = WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
+		Hint winningCellOrientationHint = new WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
 		this.hints.add(winningCellOrientationHint);
 		for (int i = 0; i < nbFools; i++){
-			int x = Random.randInt(0, maze.getLength);
-			int y = Random.randInt(0, maze.getHeight);
+			int x = Random.randInt(0, maze.getLength());
+			int y = Random.randInt(0, maze.getHeight());
 			Hint fakeHint = new FakeHint("Pour gagner il faut aller à la case (" + x + "," + y + ")");
 			this.hints.add(fakeHint);
 		}
@@ -113,8 +110,6 @@ public class GameGenerator {
 
 		return conditions;
 	}
-
-
 
 	private List<Item> createItems(int nbJewels) {
 		List<Item> items = new ArrayList<>();
