@@ -8,7 +8,12 @@ public class Parchment extends Item {
 
     private Hint hint;
 
-    public Parchment(Cell currentCell, Hint hint){
+    public Parchment(Hint hint) {
+        super(null);
+        this.hint = hint;
+    }
+
+    public Parchment(Hint hint, Cell currentCell) {
         super(currentCell);
         this.hint = hint;
     }

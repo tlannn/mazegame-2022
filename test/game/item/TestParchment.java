@@ -13,7 +13,7 @@ public class TestParchment{
         Cell cellParchment = new Cell(1,2);
         Cell winningCell = new Cell (20,17);
         Hint hint = new WinningCellCoordinatesHint(winningCell, true, false);
-        Parchment parchment = new Parchment(cellParchment,hint);
+        Parchment parchment = new Parchment(hint, cellParchment);
         Player gaby = new Player("gaby", cellParchment);
 
         gaby.addItem(parchment);
@@ -30,7 +30,7 @@ public class TestParchment{
       Cell cellParchment = new Cell(3,2);
       Cell winningCell = new Cell (20,17);
       Hint hint = new WinningCellCoordinatesHint(winningCell, true, false);
-      Parchment parchment = new Parchment(cellParchment,hint);
+      Parchment parchment = new Parchment(hint, cellParchment);
       Player gaby = new Player("gaby", cellParchment);
 
       gaby.addItem(parchment);
@@ -46,8 +46,8 @@ public class TestParchment{
       Cell winningCell = new Cell (20,17);
       Hint hint = new WinningCellCoordinatesHint(winningCell, true, false);
       Hint bigHint = new WinningCellCoordinatesHint(winningCell, true, true);
-      Parchment parchment1 = new Parchment(cellParchment,hint);
-      Parchment parchment2 = new Parchment(cellParchment,bigHint);
+      Parchment parchment1 = new Parchment(hint, cellParchment);
+      Parchment parchment2 = new Parchment(bigHint, cellParchment);
 
       Player gaby = new Player("gaby", cellParchment);
       gaby.addItem(parchment1);

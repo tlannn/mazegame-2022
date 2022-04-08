@@ -7,8 +7,13 @@ public class Jewel extends Item {
 
     private JewelRarity rarity;
 
-    public Jewel(Cell cell, JewelRarity rarity){
-        super(cell);
+    public Jewel(JewelRarity rarity){
+        super(null);
+        this.rarity = rarity;
+    }
+
+    public Jewel(JewelRarity rarity, Cell currentCell){
+        super(currentCell);
         this.rarity = rarity;
     }
 

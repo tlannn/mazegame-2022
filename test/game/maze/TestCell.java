@@ -179,8 +179,8 @@ public class TestCell {
 	@Test
 	public void testItemIsCorrectlyAdded() {
 		Cell cell = new Cell(3, 5);
-		Item greenJewel = new Jewel(cell, JewelRarity.GREEN);
-		Item blueJewel = new Jewel(cell, JewelRarity.BLUE);
+		Item greenJewel = new Jewel(JewelRarity.GREEN, cell);
+		Item blueJewel = new Jewel(JewelRarity.BLUE, cell);
 
 		cell.addItem(greenJewel);
 		assertTrue(cell.getItemsInCell().contains(greenJewel));
@@ -194,8 +194,8 @@ public class TestCell {
 	@Test
 	public void testItemIsCorrectlyRemoved() {
 		Cell cell = new Cell(3, 5);
-		Item greenJewel = new Jewel(cell, JewelRarity.GREEN);
-		Item blueJewel = new Jewel(cell, JewelRarity.BLUE);
+		Item greenJewel = new Jewel(JewelRarity.GREEN, cell);
+		Item blueJewel = new Jewel(JewelRarity.BLUE, cell);
 
 		try {
 			cell.addItem(greenJewel);
@@ -220,7 +220,7 @@ public class TestCell {
 	@Test(expected = game.maze.ItemNotInCellException.class)
 	public void testRemoveItemNotInCellThrowsException() throws ItemNotInCellException {
 		Cell cell = new Cell(3, 5);
-		Item jewel = new Jewel(cell, JewelRarity.GREEN);
+		Item jewel = new Jewel(JewelRarity.GREEN, cell);
 
 		cell.removeItem(jewel);
 	}
@@ -228,7 +228,7 @@ public class TestCell {
 	@Test
 	public void testCharacterIsCorrectlyAdded() {
 		Cell cell = new Cell(3, 5);
-		Hint hint = new ItemPositionHint(new Jewel(cell, JewelRarity.GREEN));
+		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
 		FakeHint fakeHint = new FakeHint("Je suis le meilleur");
 		Character altruist = new Altruist(hint, cell);
 		Character fool = new Fool(fakeHint, cell);
@@ -248,7 +248,7 @@ public class TestCell {
 	@Test
 	public void testCharacterIsCorrectlyRemoved() {
 		Cell cell = new Cell(3, 5);
-		Hint hint = new ItemPositionHint(new Jewel(cell, JewelRarity.GREEN));
+		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
 		FakeHint fakeHint = new FakeHint("Je suis le meilleur");
 		Character altruist = new Altruist(hint, cell);
 		Character fool = new Fool(fakeHint, cell);
@@ -276,7 +276,7 @@ public class TestCell {
 	@Test(expected = game.maze.CharacterNotInCellException.class)
 	public void testRemoveCharacterNotInCellThrowsException() throws CharacterNotInCellException {
 		Cell cell = new Cell(3, 5);
-		Hint hint = new ItemPositionHint(new Jewel(cell, JewelRarity.GREEN));
+		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
 		Character altruist = new Altruist(hint, cell);
 
 		cell.removeCharacter(altruist);

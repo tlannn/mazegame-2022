@@ -9,7 +9,7 @@ public class TestItem{
     @Test
     public void testCurrentCellIsCorrectlyUpdated(){
         Cell cell1 = new Cell(1,2);
-        Item greenJewel = new Jewel(cell1, JewelRarity.GREEN);
+        Item greenJewel = new Jewel(JewelRarity.GREEN, cell1);
         assertEquals(greenJewel.getCurrentCell(), cell1);
 
         Cell cell2 = new Cell(2,2);

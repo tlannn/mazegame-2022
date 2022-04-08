@@ -10,9 +10,9 @@ public class TestJewel{
     @Test
     public void testAddCorrectAmountOfGoldWhenUsingJewel(){
         Cell cellJewel = new Cell(1,2);
-        Item greenJewel = new Jewel(cellJewel, JewelRarity.GREEN);
-        Item blueJewel = new Jewel(cellJewel, JewelRarity.BLUE);
-        Item purpleJewel = new Jewel(cellJewel, JewelRarity.PURPLE);
+        Item greenJewel = new Jewel(JewelRarity.GREEN, cellJewel);
+        Item blueJewel = new Jewel(JewelRarity.BLUE, cellJewel);
+        Item purpleJewel = new Jewel(JewelRarity.PURPLE, cellJewel);
         Player armin = new Player("Armin", cellJewel);
 
         armin.addItem(greenJewel);
@@ -34,7 +34,7 @@ public class TestJewel{
     @Test
     public void testUseJewelRemovesFromPlayerInventory(){
       Cell cellJewel = new Cell(1,2);
-      Item purpleJewel = new Jewel(cellJewel, JewelRarity.PURPLE);
+      Item purpleJewel = new Jewel(JewelRarity.PURPLE, cellJewel);
       Player armin = new Player("Armin", cellJewel);
 
       armin.addItem(purpleJewel);
@@ -47,8 +47,8 @@ public class TestJewel{
     @Test
     public void testUseJewelNotInPlayerInventoryDoesNotRemoveIt(){
       Cell cellJewel = new Cell(1,2);
-      Item purpleJewel = new Jewel(cellJewel, JewelRarity.PURPLE);
-      Item blueJewel = new Jewel(cellJewel, JewelRarity.BLUE);
+      Item purpleJewel = new Jewel(JewelRarity.PURPLE, cellJewel);
+      Item blueJewel = new Jewel(JewelRarity.BLUE, cellJewel);
       Player armin = new Player("Armin", cellJewel);
 
       armin.addItem(purpleJewel);

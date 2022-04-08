@@ -65,7 +65,7 @@ public class TestPlayer{
         Cell winningcell = new Cell(3,3);
         Player player = new Player("Rayan", cell);
         Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
-        Item parchment = new Parchment(cell, distanceHint);
+        Item parchment = new Parchment(distanceHint, cell);
         assertEquals(0, player.getInventoryItems().size());
         player.addItem(parchment);
         assertEquals(1, player.getInventoryItems().size());
@@ -77,7 +77,7 @@ public class TestPlayer{
         Cell winningcell = new Cell(3,3);
         Player player = new Player("Rayan", cell);
         Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
-        Item parchment = new Parchment(cell, distanceHint);
+        Item parchment = new Parchment(distanceHint, cell);
         player.removeItem(parchment);
     }
 
@@ -87,7 +87,7 @@ public class TestPlayer{
         Cell winningcell = new Cell(3,3);
         Player player = new Player("Rayan", cell);
         Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
-        Item parchment = new Parchment(cell, distanceHint);
+        Item parchment = new Parchment(distanceHint, cell);
         player.addItem(parchment);
         assertEquals(1, player.getInventoryItems().size());
         player.removeItem(parchment);
