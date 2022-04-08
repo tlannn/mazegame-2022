@@ -5,6 +5,8 @@ import game.maze.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import game.hint.*;
 
 public class Sphinx extends NonPlayerCharacter {
 
@@ -34,9 +36,24 @@ public class Sphinx extends NonPlayerCharacter {
 
 	public void talk() {
 		if (!this.hasGivenHint) {
-			// TODO
-		}
-
+			int i = 0;
+			while(i<enigmas.size() && !enigmas.get(i).getIsResolved()){
+					enigmas.get(i).toString();
+					Scanner scan= new Scanner(System.in);
+					String text= scan.nextLine();
+					try{
+						enigmas.get(i).resolve(text);
+                        if(enigmas.get(i).getIsResolved()){
+							this.hint.toString();
+							this.hasGivenHint = true;
+						}
+                    }
+                    catch(Exception AnswerNoContainsQCM) {
+                        System.out.println("Cette réponse ne fait pas partit de celles proposées");
+                    }
+					scan.close();
+				}					
+			}
 		else {
 			System.out.println("Je vous ai déjà donné mon indice.");
 			System.out.println(this.hint);
