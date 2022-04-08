@@ -1,7 +1,12 @@
 package game;
 
 import game.character.Character;
-import game.enigma.Hint;
+import game.enigma.Enigma;
+import game.hint.Hint;
+import game.item.Item;
+import game.item.Jewel;
+import game.item.JewelRarity;
+import game.item.Parchment;
 import game.quest.*;
 import game.maze.*;
 import game.character.*;
@@ -19,6 +24,7 @@ public class GameGenerator {
 	private Player player;
 	private List<Character> characters;
 	private List<Hint> hints;
+	private List<Item> items;
 
 	public GameGenerator() {
 		// 1. Créer le labyrinthe
@@ -28,7 +34,7 @@ public class GameGenerator {
 		this.characters = this.createCharacters(1, 1, 1, 1);
 
 		// 3. Créer les items
-		//this.items = this.createItems()
+		this.items = this.createItems(5);
 
 		// 4. Créer la quête
 
@@ -76,11 +82,29 @@ public class GameGenerator {
 		return new ArrayList<>();
 	}
 
-	private <T> void createCharacterType(List<T> characters, int number) {
+	private List<Item> createItems(int nbJewels) {
+		List<Item> items = new ArrayList<>();
+
+		for (int i = 0; i < nbJewels; ++i) {
+			Cell jewelPosition = this.maze.getRandomCell();
+
+			JewelRarity[] rarities = JewelRarity.values();
+			JewelRarity rarity = rarities[Random.randInt(0, rarities.length)];
+			items.add(new Jewel(rarity, jewelPosition));
+		}
+
+		for (int i = 0; i < this.hints.size(); ++i) {
+			items.add(new Parchment(this.hints.get(i)));
+		}
+
+		return items;
+	}
+
+	/*private <T> void createCharacterType(List<T> characters, int number) {
 		for (int i = 0; i < number; ++i) {
 			characters.add(new T(this.maze.getRandomCell()));
 		}
-	}
+	}*/
 
 	private List<Character> createCharacters(int nbTrader, int nbSphinx, int nbFool, int nbAltruist) {
 		List<Character> characters = new ArrayList<>();
