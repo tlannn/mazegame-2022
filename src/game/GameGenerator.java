@@ -16,6 +16,8 @@ import game.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import game.hint.Hint;
+
 
 // quand on ajoute le player il ne faut pas oublier que la case sur laquelle on l'ajoute le player doit avoir player dans ses characters
 
@@ -54,7 +56,6 @@ public class GameGenerator {
 
 		return new Quest(winningCell, conditions);
 	}
-import game.hint.Hint;
 
 	private List<Hint> createHints (int nbrItemHint, int nbFools){
 		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
