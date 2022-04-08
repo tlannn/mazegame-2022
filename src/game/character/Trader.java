@@ -2,7 +2,6 @@ package game.character;
 
 import game.item.Parchment;
 import game.maze.Cell;
-import game.util.InputReader;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
 package game.maze;
 
-import game.util.InputReader;
+//import game.util.InputReader;
 import game.util.Random;
 
-import java.io.IOException;
+//import java.io.IOException;
 
 /**
  * Abstract class Maze that represents a random maze in the game

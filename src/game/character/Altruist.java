@@ -17,7 +17,7 @@ public class Altruist extends NonPlayerCharacter {
 			this.hint = hint;
 	}
 
-	public void talk() {
+	public void talk(Player player) {
 		System.out.println("Vous êtes sur une quête ? Laissez-moi vous donner un indice :");
 		System.out.println(this.hint);
 	}

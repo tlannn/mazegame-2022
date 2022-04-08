@@ -7,13 +7,13 @@ import game.maze.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import game.hint.*;
+//import game.hint.*;
 
 public class Sphinx extends NonPlayerCharacter {
 
 	private Hint hint;
 	private List<Enigma> enigmas;
-	private int indexCurrentEnigma;
+	//private int indexCurrentEnigma;
 	private boolean hasGivenHint;
 
 	public Sphinx(Cell startingCell) {
@@ -21,7 +21,7 @@ public class Sphinx extends NonPlayerCharacter {
 
 		this.hint = null;
 		this.enigmas = new ArrayList<>();
-		this.indexCurrentEnigma = 0;
+		//this.indexCurrentEnigma = 0;
 		this.hasGivenHint = false;
 		this.movable = false;
 	}
@@ -35,7 +35,7 @@ public class Sphinx extends NonPlayerCharacter {
 		this.enigmas.add(enigma);
 	}
 
-	public void talk() {
+	public void talk(Player player) {
 		if (!this.hasGivenHint) {
 			int i = 0;
 			while(i<enigmas.size() && !enigmas.get(i).getIsResolved()){

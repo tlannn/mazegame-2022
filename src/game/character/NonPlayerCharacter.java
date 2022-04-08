@@ -15,5 +15,5 @@ public abstract class NonPlayerCharacter extends Character {
 		super(name, startingCell);
 	}
 
-	public abstract void talk();
+	public abstract void talk(Player player);
 }
