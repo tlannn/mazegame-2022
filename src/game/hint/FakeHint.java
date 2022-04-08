@@ -1,4 +1,4 @@
-package game.enigma;
+package game.hint;
 
 public class FakeHint {
 	private final String statement;

@@ -1,4 +1,4 @@
-package game.enigma;
+package game.hint;
 
 import game.maze.Cell;
 
