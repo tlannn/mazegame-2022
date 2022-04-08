@@ -19,7 +19,11 @@ public abstract class Enigma {
     public String getQuestion(){
         return this.question;
     }
-    
+
+    public String toString(){
+        return this.question;
+    }
+
 
     
 }
