@@ -1,22 +1,20 @@
 package game;
 
 import game.character.Character;
-<<<<<<< HEAD
 import game.enigma.Enigma;
 import game.hint.Hint;
 import game.item.Item;
 import game.item.Jewel;
 import game.item.JewelRarity;
 import game.item.Parchment;
-=======
-import game.enigma.Answer;
-import game.enigma.Enigma;
-import game.enigma.Hint;
-import game.enigma.QCM;
->>>>>>> 9535bc0 (creatEnigmas in GameGenerator.java)
+import game.enigma.*;
+
+//import game.enigma.Hint;
+
 import game.quest.*;
 import game.maze.*;
 import game.character.*;
+import game.hint.*;
 import game.util.Random;
 
 import java.util.ArrayList;
@@ -32,18 +30,18 @@ public class GameGenerator {
 	private Player player;
 	private List<Character> characters;
 	private List<Hint> hints;
-<<<<<<< HEAD
 	private List<Item> items;
-=======
 	private List<Enigma> enigmes;
->>>>>>> 9535bc0 (creatEnigmas in GameGenerator.java)
 
 	public GameGenerator() {
 		// 1. Créer le labyrinthe
 		this.maze = new KruskalMaze(5, 5);
 
 		// 2. Créer les personnages
-		this.characters = this.createCharacters(1, 1, 1, 1);
+		int nbFools = 1;
+		this.characters = this.createCharacters(1, 1, nbFools, 1);
+
+		this.creatHints(2, nbFools);
 
 		// 3. Créer les items
 		this.items = this.createItems(5);
@@ -59,6 +57,32 @@ public class GameGenerator {
 		List<QuestCondition> conditions = this.createQuestConditions();
 
 		return new Quest(winningCell, conditions);
+	}
+
+	private List<Hint> createHint (int nbrItemHint, int nbFools){
+		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
+		this.hints.add(distanceFromWinningCellHint);
+		for (int i = 0; i < nbrItemHint; i++){
+			int indice = Random.randInt(0, items.size()-1);
+			Hint itemPositionHint = new ItemPositionHint(items.get(indice));
+			this.hints.add(itemPositionHint);
+		}
+		for (int i = 0; i < this.quest.getWinningConditions().size(); i++){
+			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(i));
+			this.hints.add(questConditionHint);
+		}
+		Hint winningCellCoordinatesHintA = WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
+		this.hints.add(winningCellCoordinatesHintA);
+		Hint winningCellCoordinatesHintO = WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
+		this.hints.add(winningCellCoordinatesHintO);
+		Hint winningCellOrientationHint = WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
+		this.hints.add(winningCellOrientationHint);
+		for (int i = 0; i < nbFools; i++){
+			int x = Random.randInt(0, maze.getLength);
+			int y = Random.randInt(0, maze.getHeight);
+			Hint fakeHint = new FakeHint("Pour gagner il faut aller à la case (" + x + "," + y + ")");
+			this.hints.add(fakeHint);
+		}
 	}
 
 	private List<QuestCondition> createQuestConditions() {
@@ -89,10 +113,7 @@ public class GameGenerator {
 		return conditions;
 	}
 
-	private List<Hint> createHints() {
-		// TODO
-		return new ArrayList<>();
-	}
+
 
 	private List<Item> createItems(int nbJewels) {
 		List<Item> items = new ArrayList<>();
@@ -155,7 +176,6 @@ public class GameGenerator {
 		for (int i = 0; i < nbAltruist; ++i) {
 			characters.add(new Altruist(this.maze.getRandomCell()));
 		}
-
 		return characters;
 	}
 }

@@ -26,4 +26,12 @@ public class Quest {
 
 		return isFinished;
 	}
+
+	public Cell getWinningCell(){
+		return this.winningCell;
+	}
+
+	public List<QuestCondition> getWinningConditions(){
+		return this.winningConditions;
+	}
 }
