@@ -179,6 +179,8 @@ Damien et Rayan : TestPlayer + TestCharacter mise en place des methodes toString
 Emma: dans game creation de l'IHM (playTurn)
 
 ## Semaine 10
+Tout le monde: Réu général pour faire le point.
+Emma: création du HintGenerator.
 
 ## Semaine 11
 
