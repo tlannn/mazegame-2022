@@ -41,7 +41,7 @@ public class GameGenerator {
 		int nbFools = 1;
 		this.characters = this.createCharacters(1, 1, nbFools, 1);
 
-		this.creatHints(2, nbFools);
+		this.createHints(2, nbFools);
 
 		// 3. Créer les items
 		this.items = this.createItems(5);
@@ -59,7 +59,7 @@ public class GameGenerator {
 		return new Quest(winningCell, conditions);
 	}
 
-	private List<Hint> createHint (int nbrItemHint, int nbFools){
+	private List<Hint> createHints (int nbrItemHint, int nbFools){
 		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
 		this.hints.add(distanceFromWinningCellHint);
 		for (int i = 0; i < nbrItemHint; i++){
@@ -83,6 +83,7 @@ public class GameGenerator {
 			Hint fakeHint = new FakeHint("Pour gagner il faut aller à la case (" + x + "," + y + ")");
 			this.hints.add(fakeHint);
 		}
+		return this.hints;
 	}
 
 	private List<QuestCondition> createQuestConditions() {
