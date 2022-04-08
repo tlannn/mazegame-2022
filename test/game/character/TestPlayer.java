@@ -15,7 +15,7 @@ public class TestPlayer{
         Player player = new Player("Rayan", cell);
         assertEquals("Rayan", player.toString());
         assertEquals(0, player.getGold());
-        assertEquals(0, player.getInventoryItems().size());
+        assertEquals(0, player.getInventory().getItems().size());
     }
 
     @Test
@@ -65,9 +65,9 @@ public class TestPlayer{
         Player player = new Player("Rayan", cell);
         Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
         Parchment parchment = new Parchment(distanceHint, cell);
-        assertEquals(0, player.getInventoryItems().size());
-        player.addItem(parchment);
-        assertEquals(1, player.getInventoryItems().size());
+        assertEquals(0, player.getInventory().getItems().size());
+        player.getInventory().addItem(parchment);
+        assertEquals(1, player.getInventory().getItems().size());
     }
 
     @Test(expected=UnknownItemException.class)
@@ -77,7 +77,7 @@ public class TestPlayer{
         Player player = new Player("Rayan", cell);
         Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
         Item parchment = new Parchment(distanceHint, cell);
-        player.removeItem(parchment);
+        player.getInventory().removeItem(parchment);
     }
 
     @Test
@@ -87,10 +87,10 @@ public class TestPlayer{
         Player player = new Player("Rayan", cell);
         Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
         Item parchment = new Parchment(distanceHint, cell);
-        player.addItem(parchment);
-        assertEquals(1, player.getInventoryItems().size());
-        player.removeItem(parchment);
-        assertEquals(0, player.getInventoryItems().size());
+        player.getInventory().addItem(parchment);
+        assertEquals(1, player.getInventory().getItems().size());
+        player.getInventory().removeItem(parchment);
+        assertEquals(0, player.getInventory().getItems().size());
     }
 
     public static junit.framework.Test suite() {

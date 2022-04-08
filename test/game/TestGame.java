@@ -4,6 +4,9 @@ import game.maze.*;
 import game.character.*;
 import game.*;
 
+import org.junit.*;
+import static org.junit.Assert.*;
+
 public class TestGame {
     
     @Test
@@ -15,9 +18,9 @@ public class TestGame {
         Player player = new Player("Damien", startcell);
         Game game = new Game(maze, player);        
         assertTrue(player.getCurrentCell() == startcell);
-        game.move(Orientation.NORTH);
+        game.move(Orientation.NORTH, player);
         assertFalse(player.getCurrentCell() == startcell);
-        assertEquals(player.getCurrecntCell(), objectifCell); 
+        assertEquals(player.getCurrentCell(), objectifCell);
     }
 
     public static junit.framework.Test suite() {

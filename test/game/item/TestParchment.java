@@ -16,8 +16,8 @@ public class TestParchment{
         Parchment parchment = new Parchment(hint, cellParchment);
         Player gaby = new Player("gaby", cellParchment);
 
-        gaby.addItem(parchment);
-        assertEquals(parchment, gaby.getInventoryItems().get(0)); // On regarde l'adresse comme ça on est vraiment certain que c'est le même objet
+        gaby.getInventory().addItem(parchment);
+        assertEquals(parchment, gaby.getInventory().getItems().get(0)); // On regarde l'adresse comme ça on est vraiment certain que c'est le même objet
         assertEquals(0, gaby.getHints().size());
 
         parchment.use(gaby);
@@ -33,11 +33,11 @@ public class TestParchment{
       Parchment parchment = new Parchment(hint, cellParchment);
       Player gaby = new Player("gaby", cellParchment);
 
-      gaby.addItem(parchment);
-      assertEquals(parchment, gaby.getInventoryItems().get(0));
+      gaby.getInventory().addItem(parchment);
+      assertEquals(parchment, gaby.getInventory().getItems().get(0));
 
       parchment.use(gaby);
-      assertEquals(0, gaby.getInventoryItems().size());
+      assertEquals(0, gaby.getInventory().getItems().size());
     }
 
     @Test
@@ -50,14 +50,14 @@ public class TestParchment{
       Parchment parchment2 = new Parchment(bigHint, cellParchment);
 
       Player gaby = new Player("gaby", cellParchment);
-      gaby.addItem(parchment1);
+      gaby.getInventory().addItem(parchment1);
 
-      assertEquals(1, gaby.getInventoryItems().size());
-      assertEquals(parchment1, gaby.getInventoryItems().get(0));
+      assertEquals(1, gaby.getInventory().getItems().size());
+      assertEquals(parchment1, gaby.getInventory().getItems().get(0));
 
       parchment2.use(gaby); // Il ne peut pas l'utiliser comme il n'est pas dans l'inventaire
-      assertEquals(1, gaby.getInventoryItems().size());
-      assertEquals(parchment1, gaby.getInventoryItems().get(0));
+      assertEquals(1, gaby.getInventory().getItems().size());
+      assertEquals(parchment1, gaby.getInventory().getItems().get(0));
     }
 
     public static junit.framework.Test suite() {

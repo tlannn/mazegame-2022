@@ -15,9 +15,9 @@ public class TestJewel{
         Item purpleJewel = new Jewel(JewelRarity.PURPLE, cellJewel);
         Player armin = new Player("Armin", cellJewel);
 
-        armin.addItem(greenJewel);
-        armin.addItem(blueJewel);
-        armin.addItem(purpleJewel);
+        armin.getInventory().addItem(greenJewel);
+        armin.getInventory().addItem(blueJewel);
+        armin.getInventory().addItem(purpleJewel);
 
         assertEquals(0, armin.getGold());
 
@@ -37,11 +37,11 @@ public class TestJewel{
       Item purpleJewel = new Jewel(JewelRarity.PURPLE, cellJewel);
       Player armin = new Player("Armin", cellJewel);
 
-      armin.addItem(purpleJewel);
-      assertEquals(purpleJewel, armin.getInventoryItems().get(0));
+      armin.getInventory().addItem(purpleJewel);
+      assertEquals(purpleJewel, armin.getInventory().getItems().get(0));
 
       purpleJewel.use(armin);
-      assertEquals(0, armin.getInventoryItems().size());
+      assertEquals(0, armin.getInventory().getItems().size());
     }
 
     @Test
@@ -51,13 +51,13 @@ public class TestJewel{
       Item blueJewel = new Jewel(JewelRarity.BLUE, cellJewel);
       Player armin = new Player("Armin", cellJewel);
 
-      armin.addItem(purpleJewel);
-      assertEquals(1, armin.getInventoryItems().size());
-      assertEquals(purpleJewel, armin.getInventoryItems().get(0));
+      armin.getInventory().addItem(purpleJewel);
+      assertEquals(1, armin.getInventory().getItems().size());
+      assertEquals(purpleJewel, armin.getInventory().getItems().get(0));
 
       blueJewel.use(armin); // Il ne peut pas l'utiliser comme il n'est pas dans l'inventaire
-      assertEquals(1, armin.getInventoryItems().size());
-      assertEquals(purpleJewel, armin.getInventoryItems().get(0));
+      assertEquals(1, armin.getInventory().getItems().size());
+      assertEquals(purpleJewel, armin.getInventory().getItems().get(0));
     }
 
     public static junit.framework.Test suite() {
