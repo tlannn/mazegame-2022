@@ -28,9 +28,16 @@ public class QCM extends Enigma {
         
     }
 
-
-
-
+    public String toString(){
+        String res = "";
+        int i = 0;
+        for(String reponse : this.reponses.keySet()){
+            res = res + i + " - " + reponse;
+            i += 1;
+        }
+        return res;
+        
+    }
 
 
 
