@@ -23,7 +23,7 @@ public class QCM extends Enigma {
             }
         }
         else{
-            throw new AnswerNoContainsQCM();
+            throw new AnswerNoContainsQCM("Cette réponse ne fait pas partit de celles proposées");
         }
         
     }

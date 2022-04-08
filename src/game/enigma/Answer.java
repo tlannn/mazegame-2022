@@ -9,5 +9,14 @@ public class Answer extends Enigma{
         this.answer = answer;
     }
 
+    public String getAnswer(){
+        return this.answer;
+    }
+
+    public void resolve(String reponsesDonnee){
+        if (this.answer.equals(reponsesDonnee)){
+            this.isResolved = true;
+        }
+    }
 
 }
