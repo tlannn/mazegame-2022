@@ -1,6 +1,7 @@
 package game.character;
 
 import game.enigma.*;
+import game.hint.*;
 import game.maze.*;
 
 import java.util.ArrayList;

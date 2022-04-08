@@ -3,9 +3,9 @@ package game.maze;
 import game.character.Altruist;
 import game.character.Character;
 import game.character.Fool;
-import game.enigma.FakeHint;
-import game.enigma.Hint;
-import game.enigma.ItemPositionHint;
+import game.hint.FakeHint;
+import game.hint.Hint;
+import game.hint.ItemPositionHint;
 import game.item.Item;
 import game.item.Jewel;
 import game.item.JewelRarity;
@@ -230,8 +230,12 @@ public class TestCell {
 		Cell cell = new Cell(3, 5);
 		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
 		FakeHint fakeHint = new FakeHint("Je suis le meilleur");
-		Character altruist = new Altruist(hint, cell);
-		Character fool = new Fool(fakeHint, cell);
+
+		Altruist altruist = new Altruist(cell);
+		altruist.setHint(hint);
+
+		Fool fool = new Fool(cell);
+		fool.setFakeHint(fakeHint);
 
 		assertFalse(cell.getCharactersInCell().contains(altruist));
 		assertFalse(cell.getCharactersInCell().contains(fool));
@@ -250,8 +254,11 @@ public class TestCell {
 		Cell cell = new Cell(3, 5);
 		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
 		FakeHint fakeHint = new FakeHint("Je suis le meilleur");
-		Character altruist = new Altruist(hint, cell);
-		Character fool = new Fool(fakeHint, cell);
+
+		Altruist altruist = new Altruist(cell);
+		altruist.setHint(hint);
+		Fool fool = new Fool(cell);
+		fool.setFakeHint(fakeHint);
 
 		try {
 			cell.addCharacter(altruist);
@@ -277,7 +284,8 @@ public class TestCell {
 	public void testRemoveCharacterNotInCellThrowsException() throws CharacterNotInCellException {
 		Cell cell = new Cell(3, 5);
 		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
-		Character altruist = new Altruist(hint, cell);
+		Altruist altruist = new Altruist(cell);
+		altruist.setHint(hint);
 
 		cell.removeCharacter(altruist);
 	}

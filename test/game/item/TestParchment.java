@@ -2,10 +2,10 @@ package game.item;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import game.maze.*;
-import game.item.*;
+
 import game.character.*;
-import game.enigma.*;
+import game.hint.*;
+import game.maze.*;
 
 public class TestParchment{
     @Test

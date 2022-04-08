@@ -2,11 +2,9 @@ package game.character;
 
 import java.util.*;
 
-import game.enigma.*;
+import game.hint.*;
 import game.item.*;
 import game.maze.*;
-import game.character.Character;
-import game.character.*;
 
 
 public class Player extends Character {

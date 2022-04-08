@@ -1,6 +1,6 @@
 package game.item;
 
-import game.enigma.*;
+import game.hint.*;
 import game.maze.Cell;
 import game.character.*;
 

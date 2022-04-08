@@ -3,10 +3,9 @@ package game.character;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import game.character.*;
+import game.hint.*;
 import game.item.*;
 import game.maze.*;
-import game.enigma.*;
 
 public class TestPlayer{
 
@@ -65,7 +64,7 @@ public class TestPlayer{
         Cell winningcell = new Cell(3,3);
         Player player = new Player("Rayan", cell);
         Hint distanceHint = new DistanceFromWinningCellHint(winningcell, player);
-        Item parchment = new Parchment(distanceHint, cell);
+        Parchment parchment = new Parchment(distanceHint, cell);
         assertEquals(0, player.getInventoryItems().size());
         player.addItem(parchment);
         assertEquals(1, player.getInventoryItems().size());

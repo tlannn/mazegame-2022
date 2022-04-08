@@ -1,6 +1,6 @@
 package game.character;
 
-import game.enigma.Hint;
+import game.hint.Hint;
 import game.maze.*;
 
 public class Altruist extends NonPlayerCharacter {

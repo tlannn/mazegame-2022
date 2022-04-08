@@ -1,6 +1,6 @@
 package game.character;
 
-import game.enigma.FakeHint;
+import game.hint.FakeHint;
 import game.maze.*;
 
 public class Fool extends NonPlayerCharacter {
