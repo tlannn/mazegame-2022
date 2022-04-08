@@ -1,18 +1,26 @@
 package game;
 
 import game.character.Character;
+<<<<<<< HEAD
 import game.enigma.Enigma;
 import game.hint.Hint;
 import game.item.Item;
 import game.item.Jewel;
 import game.item.JewelRarity;
 import game.item.Parchment;
+=======
+import game.enigma.Answer;
+import game.enigma.Enigma;
+import game.enigma.Hint;
+import game.enigma.QCM;
+>>>>>>> 9535bc0 (creatEnigmas in GameGenerator.java)
 import game.quest.*;
 import game.maze.*;
 import game.character.*;
 import game.util.Random;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 // quand on ajoute le player il ne faut pas oublier que la case sur laquelle on l'ajoute le player doit avoir player dans ses characters
@@ -24,7 +32,11 @@ public class GameGenerator {
 	private Player player;
 	private List<Character> characters;
 	private List<Hint> hints;
+<<<<<<< HEAD
 	private List<Item> items;
+=======
+	private List<Enigma> enigmes;
+>>>>>>> 9535bc0 (creatEnigmas in GameGenerator.java)
 
 	public GameGenerator() {
 		// 1. Créer le labyrinthe
@@ -100,7 +112,23 @@ public class GameGenerator {
 		return items;
 	}
 
-	/*private <T> void createCharacterType(List<T> characters, int number) {
+	private List<Enigma> creatEnigmas(){
+		HashMap<String, Boolean> reponses = new HashMap<>();
+		reponses.put("A16", false);
+		reponses.put("B589", false);
+		reponses.put("A10", true);
+		reponses.put("A00", false);
+		Enigma enigme1 = new Answer("Quelle est le nom de famille de Timo ?", "Léon");
+		Enigma enigme2 = new Answer("Quelle est la couleur du cheval blanc d'Henry IV ?", "Blanc");
+		Enigma enigme3 = new QCM("Quelle est la salle de travail du M5 ? ", reponses);
+		enigmes.add(enigme1);
+		enigmes.add(enigme2);
+		enigmes.add(enigme3);
+
+	}
+
+	/*
+	private <T> void createCharacterType(List<T> characters, int number) {
 		for (int i = 0; i < number; ++i) {
 			characters.add(new T(this.maze.getRandomCell()));
 		}
