@@ -34,33 +34,36 @@ On a une enum:
 On a un main qui affiche les 2 labyrinthes.
 
 ## Exécution
-Pour générer la javadoc:
-```console
-$ javadoc -sourcepath src -d docs -subpackages game # Crée la documentation dans le dossier 'docs'
-```
-
 Pour compiler les fichiers sources:
 ```console
-$ javac -sourcepath src -d classes src/game/*.java
+$ make
+$ make tests # Compile les classes de test
 ```
 
 Pour exécuter le main:
 ``` console
-# Compiler les classes au préalable
-$ java -classpath classes game.Main
+$ make run # Les fichiers sources sont compilés en même temps si nécessaire
 ```
 
-Pour lancer les tests:
+Pour lancer un test:
 ```console
-$ javac -sourcepath src -classpath test4poo.jar test/game/maze/*.java # Compilation des classes de test
-$ java -jar test4poo.jar -classpath test game.maze.TestMaze # Lancement des tests de la classe MAze
+$ make test class=game.maze.TestMaze # Lance les tests de la classe TestMaze
 ```
 
-Pour créer un jar:
+Pour créer une archive:
 ```console
-# Compiler les classes au préalable
-$ jar cvfe  game.jar game.Main -C classes game # Création de l'archive
-$ java -jar game.jar # Lancement du programme
+$ make jar # Création de l'archive
+$ make play # Lancement du programme
+```
+
+Pour générer la javadoc:
+```console
+$ make docs # Crée la documentation dans le dossier 'docs'
+```
+
+Pour supprimer tous les fichiers générés par make:
+```console
+$ make clean
 ```
 
 
