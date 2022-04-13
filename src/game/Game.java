@@ -122,7 +122,7 @@ public class Game{
                     try{
                         if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<characters.size()){
                             bonNum=true;
-                            characters.get(Integer.parseInt(text2)).talk();
+                            characters.get(Integer.parseInt(text2)).talk(this.player);
                         }
                     }
                     catch(Exception NumberFormatException){

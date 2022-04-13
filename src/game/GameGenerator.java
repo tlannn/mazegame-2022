@@ -143,6 +143,7 @@ public class GameGenerator {
 		enigmes.add(enigme2);
 		enigmes.add(enigme3);
 
+		return new ArrayList<Enigma>();
 	}
 
 	/*
