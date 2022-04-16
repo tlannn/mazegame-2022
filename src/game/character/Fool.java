@@ -8,11 +8,11 @@ public class Fool extends NonPlayerCharacter {
 
 	public Fool(Cell startingCell) {
 		super("Fou", startingCell);
-
+		startingCell.addCharacter(this);
 		this.fakeHint = null;
 	}
 
-	public void setFakeHint(FakeHint fakeHint) {
+	public void setHint(FakeHint fakeHint) {
 		if (this.fakeHint == null)
 			this.fakeHint = fakeHint;
 	}

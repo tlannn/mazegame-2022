@@ -8,7 +8,7 @@ public class Altruist extends NonPlayerCharacter {
 
 	public Altruist(Cell startingCell) {
 		super("Altruiste", startingCell);
-
+		startingCell.addCharacter(this);
 		this.hint = null;
 	}
 

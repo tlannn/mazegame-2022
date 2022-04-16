@@ -17,13 +17,13 @@ public class Trader extends NonPlayerCharacter {
 	 */
 	public Trader(Cell startingCell) {
 		super("Marchand", startingCell);
-
+		startingCell.addCharacter(this);
 		this.parchments = new ArrayList<>();
 		this.parchmentCost = 5;
 	}
 
 	public void talk(Player player) {
-		System.out.println("En échange de la modique somme de " + this.parchmentCost + "galons d'or, souhaitez-vous acquérir ce parchemin ?");
+		System.out.println("En échange de la modique somme de " + this.parchmentCost + " galons d'or, souhaitez-vous acquérir ce parchemin ?");
 		Scanner scan= new Scanner(System.in);
 		String text= scan.nextLine();
 		if(text.equals("o") ){

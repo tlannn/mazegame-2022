@@ -80,7 +80,7 @@ public class Game{
                             player.useItem(item);
                         }
                     }
-                    catch(Exception NumberFormatException) {
+                    catch( NumberFormatException e) {
                         System.out.println("Ce numero n'est pas valide, si vous ne voulez pas utiliser d'objet appyer sur q");
                     }
                 }
@@ -118,14 +118,18 @@ public class Game{
                     String text2= scan.nextLine();
                     if(text2.equals("q")){
                         bonNum=true;
+                        scan.close();
                     }
                     try{
+                      System.out.println("je suis ligne 124");
                         if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<characters.size()){
                             bonNum=true;
                             characters.get(Integer.parseInt(text2)).talk(this.player);
+                            System.out.println("j'ai fini de parler au personnage");
                         }
                     }
                     catch(Exception NumberFormatException){
+                      System.out.println(NumberFormatException.getMessage());
                         System.out.println("Ce numero n'est pas valide, si vous ne voulez pas parler avec un personnage appuyer sur q");
                     }
                 }

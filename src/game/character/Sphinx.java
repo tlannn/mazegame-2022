@@ -18,7 +18,8 @@ public class Sphinx extends NonPlayerCharacter {
 
 	public Sphinx(Cell startingCell) {
 		super("Sphinx", startingCell);
-
+		startingCell.addCharacter(this);
+		
 		this.hint = null;
 		this.enigmas = new ArrayList<>();
 		//this.indexCurrentEnigma = 0;
@@ -53,7 +54,7 @@ public class Sphinx extends NonPlayerCharacter {
                         System.out.println("Cette réponse ne fait pas partit de celles proposées");
                     }
 					scan.close();
-				}					
+				}
 			}
 		else {
 			System.out.println("Je vous ai déjà donné mon indice.");

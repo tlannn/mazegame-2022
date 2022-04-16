@@ -1,3 +1,5 @@
+// changer partout ou c'est mis MODIF
+// on ne rencontre jamais de personnages
 package game;
 
 import game.character.Character;
@@ -33,20 +35,97 @@ public class GameGenerator {
 
 	public GameGenerator() {
 		// 1. Créer le labyrinthe
-		this.maze = new KruskalMaze(5, 5);
+		this.maze = new KruskalMaze(2, 2);
 
-		// 2. Créer les personnages
+		// 2. Créer le joueur
+
+		//faire ça aléatoirement MODIF
+		Player player = new Player("Emma",this.maze.getCell(0,0));
+		this.player = player;
+		this.maze.getCell(0,0).addCharacter(player);
+
+
+
+
+		// 4. Créer la quête
+		this.quest = createQuest();
+
+		// 5. Assigner les items
+
+		// 6 Créer les indices
 		int nbFools = 1;
-		this.characters = this.createCharacters(1, 1, nbFools, 1);
-
 		this.createHints(2, nbFools);
 
 		// 3. Créer les items
 		this.items = this.createItems(5);
 
-		// 4. Créer la quête
 
-		// 5. Assigner les items
+		// Créer les characters
+		this.characters = this.createCharacters(5, 5, nbFools, 5);
+
+		// assigner des hints/parchment/enigme au characters
+		this.assignItemToCharacter();
+		// 7 On crée le jeu
+		Game game = new Game (this.maze, this.player);
+		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);
+
+
+	}
+
+	private void assignItemToCharacter(){
+		int i = 0;
+		int j = 0;
+		int p = 0;
+		int e = 0;
+		while(i< this.characters.size()){
+			if ( ! (characters.get(i) instanceof Trader) ){
+				// Sphinx characterTemp = (Sphinx) characters.get(i);
+				// this.characters.remove(i);
+				// this.characters.add(i, characterTemp);
+				if(j < this.hints.size()){
+					// characterTemp.setHint(hints.get(j));
+
+					this.characters.get(i).setHint(hints.get(j));
+					j++;
+				}
+				else{
+					System.out.println("erreur il n'y a plus d'indice à donner");
+				}
+			}
+
+			if ( characters.get(i) instanceof Trader ){
+					while(p < this.items.size() && !(items.get(p) instanceof Parchment) ){
+						p++;
+					}
+					if (p < this.items.size()){
+						this.characters.get(i).addParchment(items.get(p));
+						p++;
+					}
+					else{
+						System.out.println("erreur il n'y a plus de parchemin à donner");
+					}
+			}
+			if ( characters.get(i) instanceof Sphinx ){
+				if(e < this.enigmes.size()){
+					this.characters.get(i).addEnigma(this.enigmes.get(e));
+					e++;
+				}
+				else{
+					System.out.println("erreur il n'y a plus d'énigme à donner");
+				}
+			}
+			//altruiste
+			//fool
+
+			// trader --> parchemin
+
+			//sphinx indice et enigme
+
+			i++;
+		}
+
 
 	}
 
@@ -58,23 +137,25 @@ public class GameGenerator {
 	}
 
 	private List<Hint> createHints (int nbrItemHint, int nbFools){
-		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
-		this.hints.add(distanceFromWinningCellHint);
-		for (int i = 0; i < nbrItemHint; i++){
-			int indice = Random.randInt(0, items.size()-1);
-			Hint itemPositionHint = new ItemPositionHint(items.get(indice));
-			this.hints.add(itemPositionHint);
-		}
-		for (int i = 0; i < this.quest.getWinningConditions().size(); i++){
-			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(i));
-			this.hints.add(questConditionHint);
-		}
 		Hint winningCellCoordinatesHintA = new WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
 		this.hints.add(winningCellCoordinatesHintA);
 		Hint winningCellCoordinatesHintO = new WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
 		this.hints.add(winningCellCoordinatesHintO);
 		Hint winningCellOrientationHint = new WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
 		this.hints.add(winningCellOrientationHint);
+		this.hints = new ArrayList<>();
+		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
+		this.hints.add(distanceFromWinningCellHint);
+		// les items sont créés après les hints donc on peut pas les utiliser lors de la construction MODIF
+		// for (int i = 0; i < nbrItemHint; i++){
+		// 	int indice = Random.randInt(0, items.size()-1);
+		// 	Hint itemPositionHint = new ItemPositionHint(items.get(indice));
+		// 	this.hints.add(itemPositionHint);
+		// }
+		for (int i = 0; i < this.quest.getWinningConditions().size(); i++){
+			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(i));
+			this.hints.add(questConditionHint);
+		}
 		for (int i = 0; i < nbFools; i++){
 			int x = Random.randInt(0, maze.getLength());
 			int y = Random.randInt(0, maze.getHeight());
@@ -115,17 +196,16 @@ public class GameGenerator {
 	private List<Item> createItems(int nbJewels) {
 		List<Item> items = new ArrayList<>();
 
-		for (int i = 0; i < nbJewels; ++i) {
-			Cell jewelPosition = this.maze.getRandomCell();
-
-			JewelRarity[] rarities = JewelRarity.values();
-			JewelRarity rarity = rarities[Random.randInt(0, rarities.length)];
-			items.add(new Jewel(rarity, jewelPosition));
-		}
-
 		for (int i = 0; i < this.hints.size(); ++i) {
 			items.add(new Parchment(this.hints.get(i)));
 		}
+		for (int i = 0; i < nbJewels; ++i) {
+			Cell jewelPosition = this.maze.getRandomCell();
+			JewelRarity[] rarities = JewelRarity.values();
+			JewelRarity rarity = rarities[Random.randInt(0, rarities.length-1)];// (les bornes sont inclues)
+			items.add(new Jewel(rarity, jewelPosition));
+		}
+
 
 		return items;
 	}

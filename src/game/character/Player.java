@@ -57,12 +57,12 @@ public class Player extends Character {
             return false;
         }
         else{
-            System.out.print("Sur cette case se trouve :");
+            System.out.print("Sur cette case se trouve : \n");
             for (i=0; i<items.size(); i++){
                 System.out.println(i+"-"+items.get(i));
             }
             for(int j=i; j< characters.size(); j++){
-                System.out.println(i+"-"+characters.get(j));
+                System.out.println(j+"-"+characters.get(j));
             }
             return true;
         }
