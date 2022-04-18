@@ -25,18 +25,18 @@ public class QCM extends Enigma {
         else{
             throw new AnswerNoContainsQCM("Cette réponse ne fait pas partit de celles proposées");
         }
-        
+
     }
 
     public String toString(){
-        String res = "";
+        String res = this.question + "\ntaper l'indice correspondant à la bonne réponse \n";
         int i = 0;
         for(String reponse : this.reponses.keySet()){
-            res = res + i + " - " + reponse;
+            res = res + i + " - " + reponse +" ";
             i += 1;
         }
         return res;
-        
+
     }
 
 

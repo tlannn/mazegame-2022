@@ -28,8 +28,14 @@ public class GameGenerator {
 	private Maze maze;
 	private Quest quest;
 	private Player player;
-	private List<Character> characters;
+	// private List<Character> characters;
+	private List<Altruist> altruists ;
+	private List<Fool> fools;
+	private List<Sphinx> sphinxs;
+	private List<Trader> traders;
+
 	private List<Hint> hints;
+	private List<FakeHint> fakeHints;
 	private List<Item> items;
 	private List<Enigma> enigmes;
 
@@ -47,21 +53,37 @@ public class GameGenerator {
 
 
 
-		// 4. Créer la quête
-		this.quest = createQuest();
 
 		// 5. Assigner les items
 
-		// 6 Créer les indices
-		int nbFools = 1;
-		this.createHints(2, nbFools);
 
-		// 3. Créer les items
-		this.items = this.createItems(5);
 
 
 		// Créer les characters
-		this.characters = this.createCharacters(5, 5, nbFools, 5);
+		// on ne peut créer que 3 indice min et 4 indices max pour l'instant
+		// on a que 3 enigme de faites
+		// donc 3 <= nbSphinx + nbAltruist <= 4
+		// nbSphinx <= 3
+		int nbTrader = 5;
+		int nbSphinx = 3;
+		int nbFools = 5;
+		int nbAltruist = 1;
+
+
+		this.createCharacters(nbTrader, nbSphinx, nbFools, nbAltruist);
+
+		// 4. Créer la quête (a besoin des characters)
+		this.quest = createQuest();
+
+		// 6 Créer les indices (a besoin de la quete)
+		this.createHints( nbSphinx + nbAltruist , nbFools);
+
+
+		// 3. Créer les items (a besoin de hint)
+		this.items = this.createItems(5);
+
+		// créer les enigmes
+		this.createEnigmas();
 
 		// assigner des hints/parchment/enigme au characters
 		this.assignItemToCharacter();
@@ -70,64 +92,91 @@ public class GameGenerator {
 		game.playTurn(player, this.maze);
 		game.playTurn(player, this.maze);
 		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);
+
 
 
 	}
 
 	private void assignItemToCharacter(){
-		int i = 0;
-		int j = 0;
-		int p = 0;
+		int h = 0;
+		int a = 0;
+		int f = 0;
+		int fh = 0;
+		int s = 0;
 		int e = 0;
-		while(i< this.characters.size()){
-			if ( ! (characters.get(i) instanceof Trader) ){
-				// Sphinx characterTemp = (Sphinx) characters.get(i);
-				// this.characters.remove(i);
-				// this.characters.add(i, characterTemp);
-				if(j < this.hints.size()){
-					// characterTemp.setHint(hints.get(j));
 
-					this.characters.get(i).setHint(hints.get(j));
-					j++;
-				}
-				else{
-					System.out.println("erreur il n'y a plus d'indice à donner");
-				}
-			}
-
-			if ( characters.get(i) instanceof Trader ){
-					while(p < this.items.size() && !(items.get(p) instanceof Parchment) ){
-						p++;
-					}
-					if (p < this.items.size()){
-						this.characters.get(i).addParchment(items.get(p));
-						p++;
-					}
-					else{
-						System.out.println("erreur il n'y a plus de parchemin à donner");
-					}
-			}
-			if ( characters.get(i) instanceof Sphinx ){
-				if(e < this.enigmes.size()){
-					this.characters.get(i).addEnigma(this.enigmes.get(e));
-					e++;
-				}
-				else{
-					System.out.println("erreur il n'y a plus d'énigme à donner");
-				}
-			}
-			//altruiste
-			//fool
-
-			// trader --> parchemin
-
-			//sphinx indice et enigme
-
-			i++;
+		while ( a < this.altruists.size()-1){
+			this.altruists.get(a).setHint(this.hints.get(h));
+			a++;
+			h++;
 		}
-
-
+		while ( s < this.sphinxs.size()-1 ){
+			this.sphinxs.get(s).setHint(this.hints.get(h));
+			this.sphinxs.get(s).addEnigma(this.enigmes.get(e));
+			e++;
+			s++;
+			h++;
+		}
+		while( f < this.fools.size()-1){
+			this.fools.get(f).setHint(this.fakeHints.get(fh));
+			fh++;
+			f++;
+		}
 	}
+
+
+
+
+		// while(i< this.characters.size()){
+		// 	if ( ! (characters.get(i) instanceof Trader) ){
+		// 		// Sphinx characterTemp = (Sphinx) characters.get(i);
+		// 		// this.characters.remove(i);
+		// 		// this.characters.add(i, characterTemp);
+		// 		if(j < this.hints.size()){
+		// 			// characterTemp.setHint(hints.get(j));
+		//
+		// 			this.characters.get(i).setHint(hints.get(j));
+		// 			j++;
+		// 		}
+		// 		else{
+		// 			System.out.println("erreur il n'y a plus d'indice à donner");
+		// 		}
+		// 	}
+		//
+		// 	if ( characters.get(i) instanceof Trader ){
+		// 			while(p < this.items.size() && !(items.get(p) instanceof Parchment) ){
+		// 				p++;
+		// 			}
+		// 			if (p < this.items.size()){
+		// 				this.characters.get(i).addParchment(items.get(p));
+		// 				p++;
+		// 			}
+		// 			else{
+		// 				System.out.println("erreur il n'y a plus de parchemin à donner");
+		// 			}
+		// 	}
+		// 	if ( characters.get(i) instanceof Sphinx ){
+		// 		if(e < this.enigmes.size()){
+		// 			this.characters.get(i).addEnigma(this.enigmes.get(e));
+		// 			e++;
+		// 		}
+		// 		else{
+		// 			System.out.println("erreur il n'y a plus d'énigme à donner");
+		// 		}
+		// 	}
+		// 	//altruiste
+		// 	//fool
+		//
+		// 	// trader --> parchemin
+		//
+		// 	//sphinx indice et enigme
+		//
+		// 	i++;
+		// }
+
+
 
 	private Quest createQuest() {
 		Cell winningCell = this.maze.getRandomCell();
@@ -136,31 +185,40 @@ public class GameGenerator {
 		return new Quest(winningCell, conditions);
 	}
 
-	private List<Hint> createHints (int nbrItemHint, int nbFools){
+//crée les hints et les fakeHints
+//nbrItemTotaleParam doit est au moins égale à 4
+private List<Hint> createHints (int nbrItemTotaleParam, int nbFools){
+	// private List<Hint> createHints (int nbrItemTotaleParam, int nbrItemHint, int nbFools){
+		this.hints = new ArrayList<>();
+		this.fakeHints = new ArrayList<>();
+		int nbrItemTotale = 0;
 		Hint winningCellCoordinatesHintA = new WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
 		this.hints.add(winningCellCoordinatesHintA);
 		Hint winningCellCoordinatesHintO = new WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
 		this.hints.add(winningCellCoordinatesHintO);
 		Hint winningCellOrientationHint = new WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
 		this.hints.add(winningCellOrientationHint);
-		this.hints = new ArrayList<>();
 		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
 		this.hints.add(distanceFromWinningCellHint);
+		nbrItemTotale +=4;
 		// les items sont créés après les hints donc on peut pas les utiliser lors de la construction MODIF
 		// for (int i = 0; i < nbrItemHint; i++){
 		// 	int indice = Random.randInt(0, items.size()-1);
 		// 	Hint itemPositionHint = new ItemPositionHint(items.get(indice));
 		// 	this.hints.add(itemPositionHint);
 		// }
-		for (int i = 0; i < this.quest.getWinningConditions().size(); i++){
-			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(i));
+		int j = 0;
+		while ( (nbrItemTotale < nbrItemTotaleParam) && (j < this.quest.getWinningConditions().size()-1) ){
+			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(j));
 			this.hints.add(questConditionHint);
+			j++;
+			nbrItemTotale +=1;
 		}
 		for (int i = 0; i < nbFools; i++){
 			int x = Random.randInt(0, maze.getLength());
 			int y = Random.randInt(0, maze.getHeight());
-			Hint fakeHint = new FakeHint("Pour gagner il faut aller à la case (" + x + "," + y + ")");
-			this.hints.add(fakeHint);
+			FakeHint fakeHint = new FakeHint("Pour gagner il faut aller à la case (" + x + "," + y + ")");
+			this.fakeHints.add(fakeHint);
 		}
 		return this.hints;
 	}
@@ -183,10 +241,11 @@ public class GameGenerator {
 					int goldRequired = Random.randInt(5, 20);
 					conditions.add(new EarnGoldCondition(this.player, goldRequired));
 					break;
-				case "MeetSpecificCharacterCondition":
-					int randomCharacterIndex = Random.randInt(0, this.characters.size()-1);
-					conditions.add(new MeetSpecificCharacterCondition(this.characters.get(randomCharacterIndex)));
-					break;
+					// A MODIF car this.characters n'existe plus
+				// case "MeetSpecificCharacterCondition":
+				// 	int randomCharacterIndex = Random.randInt(0, this.characters.size()-1);
+				// 	conditions.add(new MeetSpecificCharacterCondition(this.characters.get(randomCharacterIndex)));
+				// 	break;
 			}
 		}
 
@@ -205,25 +264,27 @@ public class GameGenerator {
 			JewelRarity rarity = rarities[Random.randInt(0, rarities.length-1)];// (les bornes sont inclues)
 			items.add(new Jewel(rarity, jewelPosition));
 		}
-
-
 		return items;
 	}
 
-	private List<Enigma> creatEnigmas(){
+	private List<Enigma> createEnigmas(){
+		this.enigmes = new ArrayList <Enigma>();
 		HashMap<String, Boolean> reponses = new HashMap<>();
+		Enigma enigme1 = new Answer("Quelle est le nom de famille de Timo ?", "Léon");
+		Enigma enigme2 = new Answer("Quelle est la couleur du cheval blanc d'Henry IV ?", "Blanc");
 		reponses.put("A16", false);
 		reponses.put("B589", false);
 		reponses.put("A10", true);
 		reponses.put("A00", false);
-		Enigma enigme1 = new Answer("Quelle est le nom de famille de Timo ?", "Léon");
-		Enigma enigme2 = new Answer("Quelle est la couleur du cheval blanc d'Henry IV ?", "Blanc");
 		Enigma enigme3 = new QCM("Quelle est la salle de travail du M5 ? ", reponses);
-		enigmes.add(enigme1);
-		enigmes.add(enigme2);
-		enigmes.add(enigme3);
+		this.enigmes.add(enigme1);
+		this.enigmes.add(enigme2);
+		this.enigmes.add(enigme3);
+		// this.enigmes.add(enigme3);
+		// this.enigmes.add(enigme3);
 
-		return new ArrayList<Enigma>();
+
+		return this.enigmes;
 	}
 
 	/*
@@ -233,27 +294,39 @@ public class GameGenerator {
 		}
 	}*/
 
-	private List<Character> createCharacters(int nbTrader, int nbSphinx, int nbFool, int nbAltruist) {
-		List<Character> characters = new ArrayList<>();
+		private List<Character> getCharacters(){
+			List<Character> characters = new ArrayList<Character>();
+			characters.addAll(this.traders);
+			characters.addAll(this.sphinxs);
+			characters.addAll(this.fools);
+			characters.addAll(this.altruists);
+			return characters;
+		}
+
+	void createCharacters(int nbTrader, int nbSphinx, int nbFool, int nbAltruist) {
+	this.traders = new ArrayList<>();
+	this.sphinxs = new ArrayList<>();
+	this.fools = new ArrayList<>();
+	this.altruists = new ArrayList<>();
+
 		// Create all traders
 		for (int i = 0; i < nbTrader; ++i) {
-			characters.add(new Trader(this.maze.getRandomCell()));
+			this.traders.add(new Trader(this.maze.getRandomCell()));
 		}
 
 		// Create all sphinx
 		for (int i = 0; i < nbSphinx; ++i) {
-			characters.add(new Sphinx(this.maze.getRandomCell()));
+			this.sphinxs.add(new Sphinx(this.maze.getRandomCell()));
 		}
 
 		// Create all fools
 		for (int i = 0; i < nbFool; ++i) {
-			characters.add(new Fool(this.maze.getRandomCell()));
+			this.fools.add(new Fool(this.maze.getRandomCell()));
 		}
 
 		// Create all altruists
 		for (int i = 0; i < nbAltruist; ++i) {
-			characters.add(new Altruist(this.maze.getRandomCell()));
+			this.altruists.add(new Altruist(this.maze.getRandomCell()));
 		}
-		return characters;
 	}
 }

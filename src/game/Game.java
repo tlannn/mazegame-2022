@@ -121,11 +121,9 @@ public class Game{
                         scan.close();
                     }
                     try{
-                      System.out.println("je suis ligne 124");
                         if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<characters.size()){
                             bonNum=true;
                             characters.get(Integer.parseInt(text2)).talk(this.player);
-                            System.out.println("j'ai fini de parler au personnage");
                         }
                     }
                     catch(Exception NumberFormatException){

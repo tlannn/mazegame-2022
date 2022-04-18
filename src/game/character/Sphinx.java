@@ -1,3 +1,4 @@
+// MODIF il faut fermer le scan
 package game.character;
 
 import game.enigma.*;
@@ -19,7 +20,7 @@ public class Sphinx extends NonPlayerCharacter {
 	public Sphinx(Cell startingCell) {
 		super("Sphinx", startingCell);
 		startingCell.addCharacter(this);
-		
+
 		this.hint = null;
 		this.enigmas = new ArrayList<>();
 		//this.indexCurrentEnigma = 0;
@@ -37,23 +38,37 @@ public class Sphinx extends NonPlayerCharacter {
 	}
 
 	public void talk(Player player) {
+		System.out.println("Bonjour, je m'appelle Léo le sphinx");
 		if (!this.hasGivenHint) {
 			int i = 0;
-			while(i<enigmas.size() && !enigmas.get(i).getIsResolved()){
-					enigmas.get(i).toString();
+			System.out.println("je ne t'ai pas encore donné d'indice...");
+			System.out.println("La taille des enigmes est de : " + this.enigmas.size());
+
+			System.out.println(i < this.enigmas.size());
+			System.out.println(! this.enigmas.get(i).getIsResolved());
+
+			if(i < this.enigmas.size() && ! this.enigmas.get(i).getIsResolved()){
+				System.out.println("Voici mon enigme :");
+					System.out.println(this.enigmas.get(i).toString());
 					Scanner scan= new Scanner(System.in);
-					String text= scan.nextLine();
+					String text = scan.nextLine();
 					try{
-						enigmas.get(i).resolve(text);
-                        if(enigmas.get(i).getIsResolved()){
-							this.hint.toString();
+						System.out.println("je regarde si ta réponse est bonne...");
+						this.enigmas.get(i).resolve(text);
+            if(this.enigmas.get(i).getIsResolved()){
+							System.out.println("Bien joué, c'est la bonne réponse ! En récompense je te donne cet indice :");
+							System.out.println(this.hint.toString());
 							this.hasGivenHint = true;
 						}
-                    }
-                    catch(Exception AnswerNoContainsQCM) {
-                        System.out.println("Cette réponse ne fait pas partit de celles proposées");
-                    }
-					scan.close();
+						else{
+							System.out.println("Désolé c'est la mauvaise réponse");
+						}
+          }
+          catch(Exception AnswerNoContainsQCM) {
+              System.out.println("Cette réponse ne fait pas partit de celles proposées");
+          }
+					// quand je ferme le scan ça fait un bug
+					// scan.close();
 				}
 			}
 		else {

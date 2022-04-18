@@ -14,6 +14,7 @@ public class Answer extends Enigma{
     }
 
     public void resolve(String reponsesDonnee){
+      System.out.println("la réponse est elle bonne ?");
         if (this.answer.equals(reponsesDonnee)){
             this.isResolved = true;
         }
