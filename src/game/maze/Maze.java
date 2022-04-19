@@ -167,47 +167,4 @@ public abstract class Maze {
 	public int getHeight() {
 		return this.height;
 	}
-
-	/**
-	 * Display the maze. Symbol + represents a corner, symbols - and | stands as a wall
-	 */
-	public String toString() {
-		String res = "";
-
-		// Draw the northernmost walls
-		for (int j = 0; j < this.length; j++) {
-			res += "+---";
-		}
-
-		res += "+\n"; // End line of horizontal walls
-
-		// Draw for each line
-		for (int i = 0; i < this.height; i++) {
-			res += "|"; // Start the line of vertical walls
-
-			// Draw the line of vertical walls
-			for (int k = 0; k < this.length; k++) {
-				if (this.isExternalWall(getCell(k, i), Orientation.EAST) || this.getCell(k, i).hasEastWall()) {
-					res += "   |";
-				} else {
-					res += "    ";
-				}
-			}
-
-			res += "\n"; // Go to next line
-
-			// Draw the line of horizontal walls
-			for (int j = 0; j < this.length; j++) {
-				if (this.isExternalWall(getCell(j, i), Orientation.SOUTH) || this.getCell(j, i).hasSouthWall()) {
-					res += "+---";
-				} else {
-					res += "+   ";
-				}
-			}
-
-			res += "+\n"; // End the line horizontal wall
-		}
-
-		return res;
-	}
 }

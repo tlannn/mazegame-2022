@@ -23,7 +23,7 @@ import game.hint.Hint;
 
 // quand on ajoute le player il ne faut pas oublier que la case sur laquelle on l'ajoute le player doit avoir player dans ses characters
 
-public class GameGenerator {
+public class LevelGenerator {
 
 	private Maze maze;
 	private Quest quest;
@@ -39,8 +39,8 @@ public class GameGenerator {
 	private List<Item> items;
 	private List<Enigma> enigmes;
 
-	public GameGenerator() {
-		// 1. Créer le labyrinthe
+	public LevelGenerator() {
+		/*// 1. Créer le labyrinthe
 		this.maze = new KruskalMaze(2, 2);
 
 		// 2. Créer le joueur
@@ -49,13 +49,6 @@ public class GameGenerator {
 		Player player = new Player("Emma",this.maze.getCell(0,0));
 		this.player = player;
 		this.maze.getCell(0,0).addCharacter(player);
-
-
-
-
-
-		// 5. Assigner les items
-
 
 
 
@@ -93,10 +86,23 @@ public class GameGenerator {
 		game.playTurn(player, this.maze);
 		game.playTurn(player, this.maze);
 		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);*/
+	}
 
+	public Level generateLevel(Player player){
+		Maze maze = new KruskalMaze(6, 4);
+		Quest quest = new Quest(maze.getRandomCell(), new ArrayList<>());
+		List<NonPlayerCharacter> NPCs = new ArrayList<>();
+		List<Item> items = new ArrayList<>();
 
+		Altruist altruist = new Altruist(maze.getCell(0, 0));
+		altruist.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), true, true));
+		NPCs.add(altruist);
 
+		Jewel jewel = new Jewel(JewelRarity.BLUE, maze.getCell(0, 0));
+		items.add(jewel);
+
+		return new Level(player, maze, quest, NPCs, items);
 	}
 
 	private void assignItemToCharacter(){
@@ -185,9 +191,9 @@ public class GameGenerator {
 		return new Quest(winningCell, conditions);
 	}
 
-//crée les hints et les fakeHints
-//nbrItemTotaleParam doit est au moins égale à 4
-private List<Hint> createHints (int nbrItemTotaleParam, int nbFools){
+	//crée les hints et les fakeHints
+	//nbrItemTotaleParam doit est au moins égale à 4
+	private List<Hint> createHints (int nbrItemTotaleParam, int nbFools){
 	// private List<Hint> createHints (int nbrItemTotaleParam, int nbrItemHint, int nbFools){
 		this.hints = new ArrayList<>();
 		this.fakeHints = new ArrayList<>();

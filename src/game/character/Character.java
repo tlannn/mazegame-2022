@@ -1,8 +1,11 @@
 package game.character;
 
+import game.Level;
 import game.maze.*;
 import game.observer.Observable;
 import game.observer.Observer;
+import game.system.input.InputSystem;
+import game.system.output.GraphicsSystem;
 import game.util.*;
 
 import java.util.ArrayList;
@@ -15,13 +18,14 @@ public abstract class Character implements Observable {
     protected boolean movable;
     protected List<Observer> observers;
 
-
     public Character(String name, Cell startingCell) {
         this.name = name;
         this.currentCell = startingCell;
         this.movable = true;
         this.observers = new ArrayList<>();
     }
+
+    public abstract void update(Level level, InputSystem inputSystem, GraphicsSystem graphicsSystem);
 
     public void addObserver(Observer observer) {
         this.observers.add(observer);
