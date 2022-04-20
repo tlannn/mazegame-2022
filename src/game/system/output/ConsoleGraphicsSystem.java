@@ -1,5 +1,8 @@
 package game.system.output;
+import java.util.*;
 
+import game.character.NonPlayerCharacter;
+import game.item.Item;
 import game.Level;
 import game.character.Inventory;
 import game.character.Player;
@@ -30,22 +33,38 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 
 		this.displayText("Vous êtes situé sur la case " + player.getCurrentCell());
 
-		if (player.getCurrentCell().getNonPlayerCharactersInCell().size() > 0) {
-			this.displayText("Sur cette case se trouve " + player.getCurrentCell().getNonPlayerCharactersInCell().size() + " personnages");
+		int i=0;
+		List<Item> items = player.getCurrentCell().getItemsInCell();
+		List<NonPlayerCharacter> characters = player.getCurrentCell().getNonPlayerCharactersInCell();
+		if (items.isEmpty() && characters.isEmpty()){
+				this.displayText("Il n'y a rien sur cette case");
 		}
-		else {
-			this.displayText("Personne ne se trouve sur cette case");
+		else{
+				this.displayText("Sur cette case se trouve :");
+				for (i=0; i<items.size(); i++){
+						this.displayText("- "+items.get(i));
+				}
+				for(int j=i; j< characters.size(); j++){
+						this.displayText("- "+characters.get(j));
+				}
 		}
 
-		if (player.getCurrentCell().getItemsInCell().size() > 0) {
-			this.displayText("Sur cette case se trouve " + player.getCurrentCell().getItemsInCell().size() + " objets");
-		}
-		else {
-			this.displayText("Il n'y a pas d'objets sur cette case");
-		}
-
-		this.displayText("\nDirections possibles : " + player.getCurrentCell().possibleOrientations().toString());
-		this.displayText(""); // Print an empty line
+		// if (player.getCurrentCell().getNonPlayerCharactersInCell().size() > 0) {
+		// 	this.displayText("Sur cette case se trouve " + player.getCurrentCell().getNonPlayerCharactersInCell().size() + " personnages");
+		// }
+		// else {
+		// 	this.displayText("Personne ne se trouve sur cette case");
+		// }
+		//
+		// if (player.getCurrentCell().getItemsInCell().size() > 0) {
+		// 	this.displayText("Sur cette case se trouve " + player.getCurrentCell().getItemsInCell().size() + " objets");
+		// }
+		// else {
+		// 	this.displayText("Il n'y a pas d'objets sur cette case");
+		// }
+		//
+		// this.displayText("\nDirections possibles : " + player.getCurrentCell().possibleOrientations().toString());
+		// this.displayText(""); // Print an empty line
 	}
 
 	@Override

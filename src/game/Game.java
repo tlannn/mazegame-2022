@@ -71,7 +71,6 @@ public class Game{
                 boolean bonAvancement=false;
                 while(! bonAvancement){
                     System.out.println(this.regarderAutour());
-                    //System.out.println("appuyer sur z pour avancer vers le nord, sur d pour aller vers l'est, sur q pour aller vers l'ouest sur s pour aller vers le sud");
                     text= scan.nextLine();
 
                     if(text.equals("z")){
