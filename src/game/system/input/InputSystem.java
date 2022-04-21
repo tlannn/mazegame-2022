@@ -21,4 +21,10 @@ public interface InputSystem {
 	 * @return
 	 */
 	public char getLetter();
+
+	/**
+	 * Ask the player to enter a letter, and convert it to an integer
+	 * @return 0 if A is entered, 1 if B is entered, etc
+	 */
+	public int getIntegerFromLetter();
 }

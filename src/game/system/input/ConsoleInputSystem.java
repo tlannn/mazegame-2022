@@ -43,4 +43,11 @@ public class ConsoleInputSystem implements InputSystem {
 	public char getLetter() {
 		return this.scanner.nextLine().charAt(0);
 	}
+
+	@Override
+	public int getIntegerFromLetter() {
+		char letter = this.getLetter();
+
+		return (int) letter - 'A';
+	}
 }
