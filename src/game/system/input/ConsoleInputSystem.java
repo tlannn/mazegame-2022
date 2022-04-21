@@ -1,5 +1,6 @@
 package game.system.input;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -25,12 +26,13 @@ public class ConsoleInputSystem implements InputSystem {
 	public int getInteger() {
 		int integer = -1;
 		boolean success = false;
+
 		while (!success) {
 			try {
-				integer = this.scanner.nextInt();
+				integer = Integer.parseInt(this.scanner.nextLine());
 				success = true;
 			} catch (NumberFormatException e) {
-
+				System.out.println("Vous devez entrer un nombre.");
 			}
 		}
 
