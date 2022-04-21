@@ -24,6 +24,20 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 	}
 
 	@Override
+	public <T> void displayList(List<T> list, boolean withLetterIndex) {
+		char letter = 'A';
+
+		for (T element : list) {
+			if (withLetterIndex)
+				displayText(letter + " - " + element.toString());
+			else
+				displayText("- " + element.toString());
+
+			++letter;
+		}
+	}
+
+	@Override
 	public void displayGameTitle(String title) {}
 
 	@Override

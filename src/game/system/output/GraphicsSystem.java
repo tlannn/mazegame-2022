@@ -3,6 +3,8 @@ package game.system.output;
 import game.Level;
 import game.character.Player;
 
+import java.util.List;
+
 /**
  * Interface for displaying output on the screen
  */
@@ -18,6 +20,13 @@ public interface GraphicsSystem {
 	 * @param error the error message
 	 */
 	public void displayError(String error);
+
+	/**
+	 * Display a list of elements
+	 * @param list the list to display
+	 * @param withLetterIndex a boolean indicating if a letter-based index must be displayed before each element
+	 */
+	public <T> void displayList(List<T> list, boolean withLetterIndex);
 
 	/**
 	 * Display the game title
