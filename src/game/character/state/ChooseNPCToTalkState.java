@@ -16,12 +16,19 @@ public class ChooseNPCToTalkState implements BaseState {
     @Override
     public boolean enter(Player player, GraphicsSystem graphics) {
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
-        graphics.displayText("A qui voulez-vous parler ?\n");
-        for (int i = 0; i < NPCs.size(); ++i) {
-            graphics.displayText(i + " - " + NPCs.get(i).toString());
+
+        if (!NPCs.isEmpty()) {
+            graphics.displayText("Sur cette case se trouve :");
+            graphics.displayList(NPCs, true);
+            graphics.displayText("A qui voulez-vous parler ?");
+
+            return true;
         }
 
-        return true;
+        else {
+            graphics.displayText("Il n'y a personne à qui parler ici.");
+            return false;
+        }
     }
 
     @Override
