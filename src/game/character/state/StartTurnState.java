@@ -19,7 +19,7 @@ public class StartTurnState implements BaseState {
 
     @Override
     public Action handleInput(Player player, InputSystem input) {
-        switch (Character.toUpperCase(input.getLetter())) {
+        switch (input.getLetter()) {
             case 'H':
                 return new ChangeStateAction(new AskHelpState());
             case 'Z':
