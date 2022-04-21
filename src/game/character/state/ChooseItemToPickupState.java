@@ -16,7 +16,18 @@ import java.util.List;
 public class ChooseItemToPickupState implements BaseState {
     @Override
     public boolean enter(Player player, GraphicsSystem graphics) {
-        return true;
+        List<Item> itemsInCell = player.getCurrentCell().getItemsInCell();
+
+        if (!itemsInCell.isEmpty()) {
+            graphics.displayText("Quel objet souhaitez-vous ramasser ?");
+            graphics.displayList(itemsInCell, true);
+            return true;
+        }
+
+        else {
+            graphics.displayText("Il n'y a rien à ramasser.");
+            return false;
+        }
     }
 
     @Override
