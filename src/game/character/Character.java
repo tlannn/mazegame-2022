@@ -23,6 +23,10 @@ public abstract class Character implements Observable {
         this.currentCell = startingCell;
         this.movable = true;
         this.observers = new ArrayList<>();
+
+        // Inform the cell that it contains the character
+        if (currentCell != null)
+            this.currentCell.addCharacter(this);
     }
 
     public abstract void update(Level level, InputSystem inputSystem, GraphicsSystem graphicsSystem);

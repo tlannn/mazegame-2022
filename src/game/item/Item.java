@@ -15,6 +15,10 @@ public abstract class Item implements Observable {
 
     public Item(Cell cell){
         this.currentCell = cell;
+
+        // Inform the cell that it contains the item
+        if (currentCell != null)
+            this.currentCell.addItem(this);
     }
 
     public Cell getCurrentCell(){

@@ -44,7 +44,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 				for (i=0; i<items.size(); i++){
 						this.displayText("- "+items.get(i));
 				}
-				for(int j=i; j< characters.size(); j++){
+				for(int j=0; j< characters.size(); j++){
 						this.displayText("- "+characters.get(j));
 				}
 		}
