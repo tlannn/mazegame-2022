@@ -14,13 +14,14 @@ import java.util.List;
  */
 public class ChooseNPCToTalkState implements BaseState {
     @Override
-    public void enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player, GraphicsSystem graphics) {
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
         graphics.displayText("A qui voulez-vous parler ?\n");
-
         for (int i = 0; i < NPCs.size(); ++i) {
             graphics.displayText(i + " - " + NPCs.get(i).toString());
         }
+
+        return true;
     }
 
     @Override

@@ -13,8 +13,9 @@ import game.maze.Orientation;
  */
 public class StartTurnState implements BaseState {
     @Override
-    public void enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player, GraphicsSystem graphics) {
         graphics.displayText("Que voulez-vous faire ? (appuyez sur H pour obtenir de l'aide)");
+        return true;
     }
 
     @Override

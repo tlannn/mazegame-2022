@@ -11,8 +11,9 @@ import game.system.output.GraphicsSystem;
  */
 public class AskHelpState implements BaseState {
     @Override
-    public void enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player, GraphicsSystem graphics) {
         graphics.displayHelp();
+        return true;
     }
 
     @Override

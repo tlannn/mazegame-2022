@@ -11,8 +11,9 @@ import game.system.output.GraphicsSystem;
  */
 public class LookingInventoryState implements BaseState {
     @Override
-    public void enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player, GraphicsSystem graphics) {
         graphics.displayInventory(player);
+        return true;
     }
 
     @Override

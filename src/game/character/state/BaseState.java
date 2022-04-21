@@ -10,8 +10,9 @@ public interface BaseState {
      * Graphically inform the player about the state he is currently in
      * @param player the player
      * @param graphics the graphics system
+     * @return true if the player can enter this state, false if we must go back to the previous state
      */
-    public void enter(Player player, GraphicsSystem graphics);
+    public boolean enter(Player player, GraphicsSystem graphics);
 
     /**
      * Handle the input of the player according to his current state
