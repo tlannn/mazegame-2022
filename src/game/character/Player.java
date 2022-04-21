@@ -18,7 +18,7 @@ public class Player extends Character {
     private int gold;
     private Inventory inventory;
     private List<Hint> hintsSeen;
-    private BaseState state;
+    private Stack<BaseState> state;
 
     public Player(String name) {
         this(name, null);
@@ -29,27 +29,36 @@ public class Player extends Character {
         this.gold = 0;
         this.inventory = new Inventory();
         this.hintsSeen = new ArrayList<Hint>();
-        this.state = new StartTurnState();
+        this.state = new Stack<>();
+        this.state.push(new StartTurnState());
     }
 
     public void update(Level level, InputSystem inputSystem, GraphicsSystem graphicsSystem) {
         graphicsSystem.displayGameStatus(level, this);
-        boolean hasMadeAction = false;
+        boolean hasMadeAction = false; // Will be true if the player has done the unique action he can do during his turn
 
         while (!hasMadeAction) {
-            this.state.enter(this, graphicsSystem);
-            Action action = this.state.handleInput(this, inputSystem);
+            BaseState currentState = this.state.peek(); // Look the current state of the player in the stack
 
-            if (action != null)
-                hasMadeAction = action.execute(level, this);
+            // Enter the state and print on the screen some info about the player state
+            if (currentState.enter(this, graphicsSystem)) {
+                Action action = currentState.handleInput(this, inputSystem); // Gather input from the player
+
+                if (action != null)
+                    hasMadeAction = action.execute(level, this); // Can be false if the action doesn't correspond to a complete action (like moving)
+                else
+                    graphicsSystem.displayText("Je n'ai pas compris votre intention.");
+
+                graphicsSystem.displayText(""); // Print an empty line
+            }
+
+            // If the player can't be in the state he is currently, go back to his previous state
             else
-                graphicsSystem.displayText("Je n'ai pas compris votre intention.");
-
-            graphicsSystem.displayText(""); // Print an empty line
+                this.state.pop();
         }
 
         // Return to StartTurnState for the next turn
-        this.state = new StartTurnState();
+        this.state.push(new StartTurnState());
     }
 
     public int getGold(){
@@ -72,7 +81,7 @@ public class Player extends Character {
     }
 
     public void setState(BaseState state) {
-        this.state = state;
+        this.state.push(state);
     }
 
     public void useItem(Item item){
