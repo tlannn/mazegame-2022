@@ -12,8 +12,18 @@ import game.system.output.GraphicsSystem;
 public class LookingInventoryState implements BaseState {
     @Override
     public boolean enter(Player player, GraphicsSystem graphics) {
-        graphics.displayInventory(player);
-        return true;
+        if (!player.getInventory().getItems().isEmpty()) {
+            graphics.displayText("Vous avez dans votre inventaire :");
+            graphics.displayList(player.getInventory().getItems(), true);
+            graphics.displayText("\nSouhaitez-vous utiliser un objet ? (O/N)");
+            return true;
+        }
+
+        else {
+            graphics.displayText("Vous n'avez rien dans votre inventaire");
+            return false;
+        }
+
     }
 
     @Override
