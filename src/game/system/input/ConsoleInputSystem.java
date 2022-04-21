@@ -41,7 +41,24 @@ public class ConsoleInputSystem implements InputSystem {
 
 	@Override
 	public char getLetter() {
-		return this.scanner.nextLine().charAt(0);
+		String input = "";
+		boolean success = false;
+
+		while (!success) {
+			input = this.scanner.nextLine();
+
+			if (input.length() == 1) {
+				char character = input.charAt(0);
+
+				if (character >= 'A' && character <= 'Z' || character >= 'a' && character <= 'z')
+					success = true;
+			}
+
+			if (!success)
+				System.out.println("Vous devez entrer une lettre.");
+		}
+
+		return Character.toUpperCase(input.charAt(0)); // Return the letter upper-cased
 	}
 
 	@Override
