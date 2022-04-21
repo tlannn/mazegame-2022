@@ -32,6 +32,13 @@ public class ChooseItemToPickupState implements BaseState {
 
     @Override
     public Action handleInput(Player player, InputSystem inputSystem) {
-        return null;
+        List<Item> itemsInCell = player.getCurrentCell().getItemsInCell();
+
+        if (!itemsInCell.isEmpty()) {
+            int choice = inputSystem.getIntegerFromLetter();
+            return new PickUpItemAction(itemsInCell.get(choice));
+        }
+
+        return new ChangeStateAction(new StartTurnState());
     }
 }
