@@ -152,7 +152,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		this.displayText("D - Aller vers l'ouest");
 		this.displayText("P - Parler à un personnage");
 		this.displayText("R - Ramasser un objet");
-		this.displayText("U - Utiliser un objet");
+		this.displayText("I - Ouvrir l'inventaire");
 		this.displayText(""); // Print an empty line
 	}
 }

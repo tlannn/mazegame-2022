@@ -35,7 +35,7 @@ public class StartTurnState implements BaseState {
                 return new ChangeStateAction(new ChooseNPCToTalkState());
             case 'R':
                 return new ChangeStateAction(new ChooseItemToPickupState());
-            case 'U':
+            case 'I':
                 return new ChangeStateAction(new LookingInventoryState());
             default:
                 return null;
