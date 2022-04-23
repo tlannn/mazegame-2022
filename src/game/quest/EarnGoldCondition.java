@@ -2,9 +2,9 @@ package game.quest;
 
 import game.character.Player;
 import game.observer.Observable;
-import game.util.Event;
+import game.observer.ObservableEvent;
 
-import static game.util.Event.EVENT_PICK_UP_GOLD;
+import static game.observer.ObservableEvent.EVENT_PICK_UP_GOLD;
 
 public class EarnGoldCondition extends QuestCondition {
 	private Player player;
@@ -19,7 +19,7 @@ public class EarnGoldCondition extends QuestCondition {
 		return this.player.getGold() >= this.goldRequired;
 	}
 
-	public void onNotify(Observable observable, Event event) {
+	public void onNotify(Observable observable, ObservableEvent event) {
 		if (event == EVENT_PICK_UP_GOLD)
 			this.completed = ((Player)observable).getGold() >= this.goldRequired;
 	}

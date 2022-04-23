@@ -2,9 +2,9 @@ package game.quest;
 
 import game.character.Character;
 import game.observer.Observable;
-import game.util.Event;
+import game.observer.ObservableEvent;
 
-import static game.util.Event.EVENT_MEET_CHARACTER;
+import static game.observer.ObservableEvent.EVENT_MEET_CHARACTER;
 
 public class MeetSpecificCharacterCondition extends QuestCondition {
 	private final Character characterToMeet;
@@ -13,7 +13,7 @@ public class MeetSpecificCharacterCondition extends QuestCondition {
 		this.characterToMeet = characterToMeet;
 	}
 
-	public void onNotify(Observable observable, Event event) {
+	public void onNotify(Observable observable, ObservableEvent event) {
 		if(event == EVENT_MEET_CHARACTER) {
 			if (observable.equals(this.characterToMeet))
 				this.completed = true;

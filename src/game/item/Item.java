@@ -3,7 +3,7 @@ package game.item;
 import game.maze.*;
 import game.character.*;
 import game.observer.Observable;
-import game.util.Event;
+import game.observer.ObservableEvent;
 import game.observer.Observer;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public abstract class Item implements Observable {
         this.observers.remove(observer);
     }
 
-    public void notify(Observable observable, Event event) {
+    public void notify(Observable observable, ObservableEvent event) {
         for (Observer observer : this.observers) {
             observer.onNotify(observable, event);
         }
