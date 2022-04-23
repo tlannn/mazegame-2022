@@ -35,7 +35,11 @@ public class ChooseItemToPickupState implements BaseState {
         List<Item> itemsInCell = player.getCurrentCell().getItemsInCell();
 
         if (!itemsInCell.isEmpty()) {
-            int choice = inputSystem.getIntegerFromLetter();
+            int choice = -1;
+
+            while (choice < 0 || choice >= itemsInCell.size())
+                choice = inputSystem.getIntegerFromLetter();
+
             return new PickUpItemAction(itemsInCell.get(choice));
         }
 
