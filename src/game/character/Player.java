@@ -10,7 +10,7 @@ import game.item.*;
 import game.maze.*;
 import game.character.state.BaseState;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 
 public class Player extends Character {

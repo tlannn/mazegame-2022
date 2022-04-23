@@ -6,14 +6,14 @@ import game.character.action.ChangeStateAction;
 import game.character.action.PickUpItemAction;
 import game.item.Item;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 import java.util.List;
 
 /**
  * Represents the state where the player must choose the item he wants to pick up
  */
-public class ChooseItemToPickupState implements BaseState {
+public class ChooseItemToPickUpState implements BaseState {
     @Override
     public boolean enter(Player player, GraphicsSystem graphics) {
         List<Item> itemsInCell = player.getCurrentCell().getItemsInCell();

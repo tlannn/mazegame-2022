@@ -3,9 +3,8 @@ package game.character.state;
 import game.character.Player;
 import game.character.action.Action;
 import game.character.action.ChangeStateAction;
-import game.character.action.UseItemAction;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 /**
  * Represents the state where the player is looking in his inventory

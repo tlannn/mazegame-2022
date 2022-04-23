@@ -3,7 +3,7 @@ package game.character.dialog;
 import game.character.Player;
 import game.character.Trader;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 public class TradeDialog extends InteractiveDialog {
     private Trader trader;

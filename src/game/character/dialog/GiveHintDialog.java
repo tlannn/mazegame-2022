@@ -1,7 +1,7 @@
 package game.character.dialog;
 
 import game.character.Player;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 import game.hint.Hint;
 
 public class GiveHintDialog extends Dialog {

@@ -4,7 +4,7 @@ import game.Level;
 import game.character.dialog.Dialog;
 import game.maze.*;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 import game.util.Random;
 
 import java.util.List;

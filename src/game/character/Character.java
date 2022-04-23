@@ -5,7 +5,7 @@ import game.maze.*;
 import game.observer.Observable;
 import game.observer.Observer;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 import game.util.*;
 
 import java.util.ArrayList;

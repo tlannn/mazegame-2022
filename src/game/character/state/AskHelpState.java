@@ -4,7 +4,7 @@ import game.character.Player;
 import game.character.action.Action;
 import game.character.action.ChangeStateAction;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 /**
  * Represents the state where the player is asking for help (regarding the possible actions he can do)

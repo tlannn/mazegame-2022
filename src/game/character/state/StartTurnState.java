@@ -5,7 +5,7 @@ import game.character.action.Action;
 import game.character.action.ChangeStateAction;
 import game.character.action.MoveAction;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 import game.maze.Orientation;
 
 /**
@@ -34,7 +34,7 @@ public class StartTurnState implements BaseState {
             case 'P':
                 return new ChangeStateAction(new ChooseNPCToTalkState());
             case 'R':
-                return new ChangeStateAction(new ChooseItemToPickupState());
+                return new ChangeStateAction(new ChooseItemToPickUpState());
             case 'I':
                 return new ChangeStateAction(new LookingInventoryState());
             default:

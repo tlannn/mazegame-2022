@@ -1,4 +1,4 @@
-package game.system.output;
+package game.system.graphics;
 
 import game.Level;
 import game.character.Player;

@@ -1,4 +1,4 @@
-package game.system.output;
+package game.system.graphics;
 import java.util.*;
 
 import game.character.NonPlayerCharacter;

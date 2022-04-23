@@ -5,7 +5,7 @@ import game.character.Player;
 import game.character.action.Action;
 import game.character.action.TalkAction;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 import java.util.List;
 

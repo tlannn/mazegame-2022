@@ -7,8 +7,8 @@ import game.maze.*;
 import game.character.*;
 import game.character.Character;
 import game.item.*;
-import game.system.output.ConsoleGraphicsSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.ConsoleGraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
 
 public class Game{

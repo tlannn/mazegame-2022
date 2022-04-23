@@ -3,11 +3,10 @@ package game.character.state;
 import game.character.Player;
 import game.character.action.Action;
 import game.character.action.ChangeStateAction;
-import game.character.action.PickUpItemAction;
 import game.character.action.UseItemAction;
 import game.item.Item;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 import java.util.List;
 

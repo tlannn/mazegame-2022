@@ -3,7 +3,7 @@ package game.character.state;
 import game.character.Player;
 import game.character.action.Action;
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 public interface BaseState {
     /**

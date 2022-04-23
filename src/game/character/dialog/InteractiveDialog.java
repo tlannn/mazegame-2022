@@ -1,7 +1,7 @@
 package game.character.dialog;
 
 import game.system.input.InputSystem;
-import game.system.output.GraphicsSystem;
+import game.system.graphics.GraphicsSystem;
 
 public abstract class InteractiveDialog extends Dialog {
     protected InputSystem input;
