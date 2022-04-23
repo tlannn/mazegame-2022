@@ -23,4 +23,9 @@ public class PickUpItemAction implements Action {
         level.pickUpItem(player, item);
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Vous ramassez " + this.item;
+    }
 }

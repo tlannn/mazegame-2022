@@ -23,4 +23,9 @@ public class TalkAction implements Action {
         this.npc.talk(player);
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Vous parlez à " + this.npc;
+    }
 }

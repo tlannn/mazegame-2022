@@ -24,4 +24,9 @@ public class UseItemAction implements Action {
         item.use(player);
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Vous utilisez " + this.item;
+    }
 }

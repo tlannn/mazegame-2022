@@ -23,4 +23,9 @@ public class ChangeStateAction implements Action {
         player.setState(this.nextState);
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "";
+    }
 }

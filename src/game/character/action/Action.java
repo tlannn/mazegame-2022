@@ -11,4 +11,6 @@ public interface Action {
      * @return true if this Action count as an action done, false if this Action is not significant
      */
     public boolean execute(Level level, Player player);
+
+    public String toString();
 }

@@ -23,4 +23,25 @@ public class MoveAction implements Action {
         level.move(player, this.orientation);
         return true;
     }
+
+    @Override
+    public String toString() {
+        String string = "Vous vous déplacez ";
+        switch (this.orientation) {
+            case NORTH:
+                string += "en haut";
+                break;
+            case SOUTH:
+                string += "en bas";
+                break;
+            case WEST:
+                string += "à gauche";
+                break;
+            case EAST:
+                string += "à droite";
+                break;
+        }
+
+        return string;
+    }
 }

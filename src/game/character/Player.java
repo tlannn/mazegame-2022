@@ -44,8 +44,10 @@ public class Player extends Character {
             if (currentState.enter(this, graphicsSystem)) {
                 Action action = currentState.handleInput(this, inputSystem); // Gather input from the player
 
-                if (action != null)
+                if (action != null) {
                     hasMadeAction = action.execute(level, this); // Can be false if the action doesn't correspond to a complete action (like moving)
+                    graphicsSystem.displayText(action.toString()); // Print a feedback describing the action that has been done
+                }
                 else
                     graphicsSystem.displayText("Je n'ai pas compris votre intention.");
 
