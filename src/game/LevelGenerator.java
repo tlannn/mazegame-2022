@@ -109,9 +109,9 @@ public class LevelGenerator {
 		NPCs.add(sphinx);
 
 
-		// Trader trader = new Trader(maze.getCell(0, 1));
-		// trader.addParchment(new Parchment(new WinningCellOrientationHint(quest.getWinningCell(), player)));
-		// NPCs.add(trader);
+		Trader trader = new Trader(maze.getCell(0, 0));
+		trader.addParchment(new Parchment(new WinningCellOrientationHint(quest.getWinningCell(), player)));
+		NPCs.add(trader);
 
 
 		Jewel jewel = new Jewel(JewelRarity.BLUE, maze.getCell(0, 0));

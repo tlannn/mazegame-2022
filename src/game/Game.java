@@ -138,35 +138,35 @@ public class Game{
                     }
                 }
             }
-            if (text.equals("p")){
-                List <NonPlayerCharacter> characters = player.getCurrentCell().getNonPlayerCharactersInCell();
-                boolean bonNum=false;
-                while(!bonNum){
-                    System.out.println("A qui voulez vous parler ? (taper son indice)");
-                    for (int i=0; i<characters.size();i++){
-                        System.out.print(i+"-"+characters.get(i)+" ");
-                    }
-                    String text2= scan.nextLine();
-                    if(text2.equals("q")){
-                        bonNum=true;
-                        scan.close();
-                    }
-                    System.out.println("text2: " + text2);
-                    try{
-                        int i = Integer.parseInt(text2);
-                        if (i>=0 && i<characters.size()){
-                            bonNum=true;
-                            System.out.println("before talk");
-                            characters.get(i).talk(this.player);
-                            System.out.println("end of talk");
-                        }
-                    }
-                    catch(Exception NumberFormatException){
-                      System.out.println(NumberFormatException.getMessage());
-                        System.out.println("Ce numero n'est pas valide, si vous ne voulez pas parler avec un personnage appuyer sur q");
-                    }
-                }
-            }
+            // if (text.equals("p")){
+            //     List <NonPlayerCharacter> characters = player.getCurrentCell().getNonPlayerCharactersInCell();
+            //     boolean bonNum=false;
+            //     while(!bonNum){
+            //         System.out.println("A qui voulez vous parler ? (taper son indice)");
+            //         for (int i=0; i<characters.size();i++){
+            //             System.out.print(i+"-"+characters.get(i)+" ");
+            //         }
+            //         String text2= scan.nextLine();
+            //         if(text2.equals("q")){
+            //             bonNum=true;
+            //             scan.close();
+            //         }
+            //         System.out.println("text2: " + text2);
+            //         try{
+            //             int i = Integer.parseInt(text2);
+            //             if (i>=0 && i<characters.size()){
+            //                 bonNum=true;
+            //                 System.out.println("before talk");
+            //                 characters.get(i).talk(this.player);
+            //                 System.out.println("end of talk");
+            //             }
+            //         }
+            //         catch(Exception NumberFormatException){
+            //           System.out.println(NumberFormatException.getMessage());
+            //             System.out.println("Ce numero n'est pas valide, si vous ne voulez pas parler avec un personnage appuyer sur q");
+            //         }
+            //     }
+            // }
     }
 
     public String regarderAutour(){

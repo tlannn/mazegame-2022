@@ -29,6 +29,7 @@ public class TalkAction implements Action {
 
     @Override
     public String toString() {
-        return "Vous parlez à " + this.npc;
+      return "Merci de ta visite.";
+        // return "Vous parlez à " + this.npc;
     }
 }
