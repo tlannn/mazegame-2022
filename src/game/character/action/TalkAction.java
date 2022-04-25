@@ -4,6 +4,9 @@ import game.Level;
 import game.character.NonPlayerCharacter;
 import game.character.Player;
 
+import game.system.graphics.GraphicsSystem;
+import game.system.input.InputSystem;
+
 /**
  * Represents the action of talking to a NonPlayerCharacter
  */
@@ -19,8 +22,8 @@ public class TalkAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player) {
-        this.npc.talk(player);
+    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
+        this.npc.talk(graphicsSystem, inputSystem, player);
         return true;
     }
 

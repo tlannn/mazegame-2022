@@ -34,9 +34,9 @@ public class ChooseNPCToTalkState implements BaseState {
     @Override
     public Action handleInput(Player player, InputSystem input) {
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
-        int choice = input.getInteger();
+        int choice = input.getIntegerFromLetter();
 
-        if (choice > 0 && choice < NPCs.size()) {
+        if (choice >= 0 && choice < NPCs.size()) {
             return new TalkAction(NPCs.get(choice));
         }
 

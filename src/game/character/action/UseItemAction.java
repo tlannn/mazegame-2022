@@ -4,6 +4,9 @@ import game.Level;
 import game.character.Player;
 import game.item.Item;
 
+import game.system.graphics.GraphicsSystem;
+import game.system.input.InputSystem;
+
 /**
  * Represents the action of using an item
  */
@@ -19,8 +22,8 @@ public class UseItemAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player) {
-        //((Player) character).useItem(item);
+    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
+            //((Player) character).useItem(item);
         item.use(player);
         return true;
     }

@@ -4,6 +4,9 @@ import game.Level;
 import game.character.Player;
 import game.maze.Orientation;
 
+import game.system.graphics.GraphicsSystem;
+import game.system.input.InputSystem;
+
 /**
  * Represents the action of moving a player in the level
  */
@@ -19,8 +22,8 @@ public class MoveAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player) {
-        level.move(player, this.orientation);
+    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
+            level.move(player, this.orientation);
         return true;
     }
 

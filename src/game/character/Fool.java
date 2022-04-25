@@ -3,12 +3,14 @@ package game.character;
 import game.hint.FakeHint;
 import game.maze.*;
 
+import game.system.graphics.GraphicsSystem;
+import game.system.input.InputSystem;
+
 public class Fool extends NonPlayerCharacter {
 	private FakeHint fakeHint;
 
 	public Fool(Cell startingCell) {
 		super("Fou", startingCell);
-		startingCell.addCharacter(this);
 		this.fakeHint = null;
 	}
 
@@ -17,7 +19,7 @@ public class Fool extends NonPlayerCharacter {
 			this.fakeHint = fakeHint;
 	}
 
-	public void talk(Player player) {
+	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
 		System.out.println("Vous êtes sur une quête ? Laissez-moi vous donner un indice :");
 		System.out.println(this.fakeHint);
 	}

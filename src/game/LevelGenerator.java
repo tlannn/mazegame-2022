@@ -99,6 +99,21 @@ public class LevelGenerator {
 		altruist.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), true, true));
 		NPCs.add(altruist);
 
+		// Fool fool = new Fool(maze.getCell(0, 0));
+		// fool.setHint(new FakeHint("Pour gagner il faut aller à la case (5 , 7)"));
+		// NPCs.add(fool);
+
+		Sphinx sphinx = new Sphinx(maze.getCell(0, 0));
+		sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
+		sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
+		NPCs.add(sphinx);
+
+
+		// Trader trader = new Trader(maze.getCell(0, 1));
+		// trader.addParchment(new Parchment(new WinningCellOrientationHint(quest.getWinningCell(), player)));
+		// NPCs.add(trader);
+
+
 		Jewel jewel = new Jewel(JewelRarity.BLUE, maze.getCell(0, 0));
 		items.add(jewel);
 

@@ -5,10 +5,10 @@ import game.character.Trader;
 import game.system.input.InputSystem;
 import game.system.graphics.GraphicsSystem;
 
-public class TradeDialog extends InteractiveDialog {
+public class TraderDialog extends InteractiveDialog {
     private Trader trader;
 
-    public TradeDialog(GraphicsSystem graphicsSystem, InputSystem inputSystem, Trader trader) {
+    public TraderDialog(GraphicsSystem graphicsSystem, InputSystem inputSystem, Trader trader) {
         super(graphicsSystem, inputSystem);
         this.trader = trader;
     }

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import game.system.graphics.GraphicsSystem;
+import game.system.input.InputSystem;
+
 
 public class Trader extends NonPlayerCharacter {
 	private int parchmentCost;
@@ -17,12 +20,16 @@ public class Trader extends NonPlayerCharacter {
 	 */
 	public Trader(Cell startingCell) {
 		super("Marchand", startingCell);
-		startingCell.addCharacter(this);
 		this.parchments = new ArrayList<>();
 		this.parchmentCost = 5;
 	}
 
-	public void talk(Player player) {
+	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
+
+		// TraderDialog traderDialogue = new TraderDialog(graphicsSystem, inputSystem, this);
+		// traderDialogue.start(player);
+
+
 		System.out.println("En échange de la modique somme de " + this.parchmentCost + " galons d'or, souhaitez-vous acquérir ce parchemin ?");
 		Scanner scan= new Scanner(System.in);
 		String text= scan.nextLine();

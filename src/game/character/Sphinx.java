@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 //import game.hint.*;
 
+import game.system.graphics.GraphicsSystem;
+import game.system.input.InputSystem;
+
 public class Sphinx extends NonPlayerCharacter {
 
 	private Hint hint;
@@ -19,7 +22,6 @@ public class Sphinx extends NonPlayerCharacter {
 
 	public Sphinx(Cell startingCell) {
 		super("Sphinx", startingCell);
-		startingCell.addCharacter(this);
 
 		this.hint = null;
 		this.enigmas = new ArrayList<>();
@@ -37,15 +39,11 @@ public class Sphinx extends NonPlayerCharacter {
 		this.enigmas.add(enigma);
 	}
 
-	public void talk(Player player) {
+	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
 		System.out.println("Bonjour, je m'appelle Léo le sphinx");
 		if (!this.hasGivenHint) {
 			int i = 0;
 			System.out.println("je ne t'ai pas encore donné d'indice...");
-			System.out.println("La taille des enigmes est de : " + this.enigmas.size());
-
-			System.out.println(i < this.enigmas.size());
-			System.out.println(! this.enigmas.get(i).getIsResolved());
 
 			if(i < this.enigmas.size() && ! this.enigmas.get(i).getIsResolved()){
 				System.out.println("Voici mon enigme :");
@@ -53,7 +51,6 @@ public class Sphinx extends NonPlayerCharacter {
 					Scanner scan= new Scanner(System.in);
 					String text = scan.nextLine();
 					try{
-						System.out.println("je regarde si ta réponse est bonne...");
 						this.enigmas.get(i).resolve(text);
             if(this.enigmas.get(i).getIsResolved()){
 							System.out.println("Bien joué, c'est la bonne réponse ! En récompense je te donne cet indice :");

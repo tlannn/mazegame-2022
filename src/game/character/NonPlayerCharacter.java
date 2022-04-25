@@ -24,7 +24,7 @@ public abstract class NonPlayerCharacter extends Character {
 		super(name, startingCell);
 	}
 
-	public abstract void talk(Player player);
+	public abstract void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player);
 
 	public void talkTo(Player player) {
 		dialog.start(player);
