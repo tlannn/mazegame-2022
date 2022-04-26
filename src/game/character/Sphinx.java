@@ -40,6 +40,7 @@ public class Sphinx extends NonPlayerCharacter {
 	}
 
 	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
+		super.talk(graphicsSystem,inputSystem,player);
 		System.out.println("Bonjour, je m'appelle Léo le sphinx");
 		if (!this.hasGivenHint) {
 			int i = 0;

@@ -20,6 +20,7 @@ public class Fool extends NonPlayerCharacter {
 	}
 
 	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
+		super.talk(graphicsSystem,inputSystem,player);
 		System.out.println("Vous êtes sur une quête ? Laissez-moi vous donner un indice :");
 		System.out.println(this.fakeHint);
 	}

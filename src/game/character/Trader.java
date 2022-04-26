@@ -27,7 +27,7 @@ public class Trader extends NonPlayerCharacter {
 	}
 
 	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
-
+		super.talk(graphicsSystem,inputSystem,player);
 		TraderDialog traderDialogue = new TraderDialog(graphicsSystem, inputSystem, this);
 		traderDialogue.start(player);
 

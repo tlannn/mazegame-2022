@@ -90,18 +90,24 @@ public class LevelGenerator {
 
 	public Level generateLevel(Player player){
 		Maze maze = new KruskalMaze(6, 4);
+		List<NonPlayerCharacter> NPCs = new ArrayList<>();
 
-		List<QuestCondition> winningConditions = new ArrayList<>();		
+		List<QuestCondition> winningConditions = new ArrayList<>();
 		Altruist altruist = new Altruist(maze.getCell(0, 0));
 
-		MeetSpecificCharacterCondition c= new MeetSpecificCharacterCondition(altruist);
+		Sphinx sphinx = new Sphinx(maze.getCell(0, 0));
+		NPCs.add(sphinx);
+
+		MeetSpecificCharacterCondition c= new MeetSpecificCharacterCondition(sphinx);
 		winningConditions.add(c);
-		EarnGoldCondition e = new EarnGoldCondition(player, 10);
-		winningConditions.add(e);
+		// EarnGoldCondition e = new EarnGoldCondition(player, 10);
+		// winningConditions.add(e);
 
 		Quest quest = new Quest(maze.getRandomCell(), winningConditions);
-		List<NonPlayerCharacter> NPCs = new ArrayList<>();
 		List<Item> items = new ArrayList<>();
+
+		sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
+		sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
 
 		altruist.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), true, true));
 		NPCs.add(altruist);
