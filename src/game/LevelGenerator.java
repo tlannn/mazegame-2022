@@ -116,7 +116,7 @@ public class LevelGenerator {
 		int nbAltruist = 0;
 
 		//on créer le labyrinthe et le joueur
-		this.maze = new KruskalMaze(2, 2);
+		this.maze = new KruskalMaze(5, 4);
 		this.player = player;
 
 		//on créer les personnages
