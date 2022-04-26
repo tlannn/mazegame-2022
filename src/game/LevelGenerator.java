@@ -108,10 +108,12 @@ public class LevelGenerator {
 		// on a que 3 enigme de faites
 		// donc 3 <= nbSphinx + nbAltruist + trader <= 4
 		// nbSphinx <= 3
-		int nbTrader = 3;
-		int nbSphinx = 1;
-		int nbFools = 5;
-		int nbAltruist = 1;
+
+		//test on a que 3 indices mais on a l'indice de gold 
+		int nbTrader = 0;
+		int nbSphinx = 3;
+		int nbFools = 0;
+		int nbAltruist = 0;
 
 		//on créer le labyrinthe et le joueur
 		this.maze = new KruskalMaze(2, 2);
@@ -177,15 +179,15 @@ public class LevelGenerator {
 	// 	// fool.setHint(new FakeHint("Pour gagner il faut aller à la case (5 , 7)"));
 	// 	// NPCs.add(fool);
 	//
-	// 	sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
-	// 	List<String> reponses = new ArrayList<>();
-	// 	reponses.add("A16");
-	// 	reponses.add("B589");
-	// 	reponses.add("A10");
-	// 	reponses.add("A00");
-	// 	sphinx.addEnigma(new QCM("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2)));
-	// 	//sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
-	// 	NPCs.add(sphinx);
+		// sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
+		// List<String> reponses = new ArrayList<>();
+		// reponses.add("A16");
+		// reponses.add("B589");
+		// reponses.add("A10");
+		// reponses.add("A00");
+		// sphinx.addEnigma(new QCM("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2)));
+		// //sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
+		// NPCs.add(sphinx);
 	//
 	//
 	// 	Trader trader = new Trader(maze.getCell(0, 0));
@@ -214,6 +216,9 @@ public class LevelGenerator {
 		}
 		while ( s < this.sphinxs.size() ){
 			this.sphinxs.get(s).setHint(this.hints.get(h));
+			if (this.enigmes.get(e) == null){
+				System.out.println("----------------------ERROR: on a pas créer assez d'enigme pour les mettres dans les sphinxs.-----------------------------");
+			}
 			this.sphinxs.get(s).addEnigma(this.enigmes.get(e));
 			e++;
 			s++;
@@ -296,11 +301,11 @@ public class LevelGenerator {
 		this.hints.add(winningCellCoordinatesHintA);
 		Hint winningCellCoordinatesHintO = new WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
 		this.hints.add(winningCellCoordinatesHintO);
-		Hint winningCellOrientationHint = new WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
-		this.hints.add(winningCellOrientationHint);
-		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
-		this.hints.add(distanceFromWinningCellHint);
-		nbrItemTotale +=4;
+		// Hint winningCellOrientationHint = new WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
+		// this.hints.add(winningCellOrientationHint);
+		// Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
+		// this.hints.add(distanceFromWinningCellHint);
+		nbrItemTotale +=2;
 		// les items sont créés après les hints donc on peut pas les utiliser lors de la construction MODIF
 		// for (int i = 0; i < nbrItemHint; i++){
 		// 	int indice = Random.randInt(0, items.size()-1);
@@ -325,7 +330,8 @@ public class LevelGenerator {
 	}
 
 	private List<QuestCondition> createQuestConditions() {
-		int nbConditions = Random.randInt(0, 2); // The number of conditions to fulfill we want for the quest
+		int nbConditions = 1;
+		// int nbConditions = Random.randInt(0, 2); // The number of conditions to fulfill we want for the quest
 		List<QuestCondition> conditions = new ArrayList<>();
 
 		// Create a list of the possible conditions to add to the quest
@@ -334,7 +340,8 @@ public class LevelGenerator {
 		availableConditions.add(MeetSpecificCharacterCondition.class.getSimpleName());
 
 		for (int i = 0; i < nbConditions; ++i) {
-			int randomConditionIndex = Random.randInt(0, availableConditions.size()-1);
+			int randomConditionIndex = 0;
+			// int randomConditionIndex = Random.randInt(0, availableConditions.size()-1);
 			String className = availableConditions.get(randomConditionIndex);
 
 			switch (className) {
@@ -370,19 +377,18 @@ public class LevelGenerator {
 
 	private List<Enigma> createEnigmas(){
 		this.enigmes = new ArrayList <Enigma>();
-		HashMap<String, Boolean> reponses = new HashMap<>();
+		List<String> reponses = new ArrayList<>();
 		Enigma enigme1 = new Answer("Quelle est le nom de famille de Timo ?", "Léon");
 		Enigma enigme2 = new Answer("Quelle est la couleur du cheval blanc d'Henry IV ?", "Blanc");
-		reponses.put("A16", false);
-		reponses.put("B589", false);
-		reponses.put("A10", true);
-		reponses.put("A00", false);
-		//Enigma enigme3 = new QCM("Quelle est la salle de travail du M5 ? ", reponses);
+		reponses.add("A16");
+		reponses.add("B589");
+		reponses.add("A10");
+		reponses.add("A00");
+		Enigma enigme3 = new QCM("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2));
+
 		this.enigmes.add(enigme1);
 		this.enigmes.add(enigme2);
-		//this.enigmes.add(enigme3);
-		// this.enigmes.add(enigme3);
-		// this.enigmes.add(enigme3);
+		this.enigmes.add(enigme3);
 
 
 		return this.enigmes;
