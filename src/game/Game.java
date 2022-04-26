@@ -49,7 +49,21 @@ public class Game{
 
         this.graphicsSystem.displayGameStatus(level, player);
 
-        this.graphicsSystem.displayText("Vous avez gagné !");
+        // this.graphicsSystem.displayText("Vous avez gagné !");
+        this.graphicsSystem.displayText("");
+        this.graphicsSystem.displayText("");
+        this.graphicsSystem.displayText("               /$$          ");
+        this.graphicsSystem.displayText("              |__/          ");
+        this.graphicsSystem.displayText("/$$  /$$  /$$ /$$ /$$$$$$$  ");
+        this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$__  $$");
+        this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  \\ $$");
+        this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  | $$");
+        this.graphicsSystem.displayText("|  $$$$$/$$$$/| $$| $$  | $$");
+        this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/");
+        this.graphicsSystem.displayText("");
+        this.graphicsSystem.displayText("");
+        this.graphicsSystem.displayText("");
+        this.graphicsSystem.displayText("");
     }
 
     public void playTurn(Player player, Maze maze){
