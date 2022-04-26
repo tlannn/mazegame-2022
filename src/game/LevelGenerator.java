@@ -3,7 +3,6 @@
 package game;
 
 import game.character.Character;
-import game.enigma.Enigma;
 import game.item.*;
 import game.enigma.*;
 
@@ -113,7 +112,13 @@ public class LevelGenerator {
 
 		Sphinx sphinx = new Sphinx(maze.getCell(0, 0));
 		sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
-		sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
+		List<String> reponses = new ArrayList<>();
+		reponses.add("A16");
+		reponses.add("B589");
+		reponses.add("A10");
+		reponses.add("A00");
+		sphinx.addEnigma(new QCM("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2)));
+		//sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
 		NPCs.add(sphinx);
 
 
@@ -305,10 +310,10 @@ public class LevelGenerator {
 		reponses.put("B589", false);
 		reponses.put("A10", true);
 		reponses.put("A00", false);
-		Enigma enigme3 = new QCM("Quelle est la salle de travail du M5 ? ", reponses);
+		//Enigma enigme3 = new QCM("Quelle est la salle de travail du M5 ? ", reponses);
 		this.enigmes.add(enigme1);
 		this.enigmes.add(enigme2);
-		this.enigmes.add(enigme3);
+		//this.enigmes.add(enigme3);
 		// this.enigmes.add(enigme3);
 		// this.enigmes.add(enigme3);
 
