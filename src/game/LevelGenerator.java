@@ -104,8 +104,12 @@ public class LevelGenerator {
 
 
 		//on décide du nombre de personnages.
-		int nbTrader = 5;
-		int nbSphinx = 2;
+		// on ne peut créer que 3 indice min et 4 indices max pour l'instant
+		// on a que 3 enigme de faites
+		// donc 3 <= nbSphinx + nbAltruist + trader <= 4
+		// nbSphinx <= 3
+		int nbTrader = 3;
+		int nbSphinx = 1;
 		int nbFools = 5;
 		int nbAltruist = 1;
 
@@ -120,7 +124,7 @@ public class LevelGenerator {
 		this.quest = createQuest();
 
 		// Créer les indices (a besoin de la quete)
-		this.createHints( nbSphinx + nbAltruist , nbFools);
+		this.createHints( nbSphinx + nbAltruist + nbTrader, nbFools);
 
 		//  Créer les items (a besoin de hint)
 		this.items = this.createItems(5);
@@ -137,6 +141,9 @@ public class LevelGenerator {
 		NPCs.addAll(this.sphinxs);
 		NPCs.addAll(this.traders);
 
+		if (nbSphinx + nbAltruist + nbTrader > this.hints.size()){
+			System.out.println("--------------------------------------ERROR : Il n'y a pas assez d'indice !!!!!!!!!!! --------------------------------------");
+		}
 
 		return new Level(player, this.maze, this.quest, NPCs, this.items);
 
@@ -301,7 +308,8 @@ public class LevelGenerator {
 		// 	this.hints.add(itemPositionHint);
 		// }
 		int j = 0;
-		while ( (nbrItemTotale < nbrItemTotaleParam) && (j < this.quest.getWinningConditions().size()-1) ){
+		while ( (nbrItemTotale < nbrItemTotaleParam) && (j < this.quest.getWinningConditions().size()) ){
+			System.out.println("je suis dans LevelGenerator et je créer un indice questConditionHint");
 			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(j));
 			this.hints.add(questConditionHint);
 			j++;
