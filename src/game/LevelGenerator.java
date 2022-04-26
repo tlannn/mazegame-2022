@@ -100,8 +100,8 @@ public class LevelGenerator {
 
 		MeetSpecificCharacterCondition c= new MeetSpecificCharacterCondition(sphinx);
 		winningConditions.add(c);
-		// EarnGoldCondition e = new EarnGoldCondition(player, 10);
-		// winningConditions.add(e);
+		EarnGoldCondition e = new EarnGoldCondition(player, 10);
+		winningConditions.add(e);
 
 		Quest quest = new Quest(maze.getRandomCell(), winningConditions);
 		List<Item> items = new ArrayList<>();
@@ -134,6 +134,9 @@ public class LevelGenerator {
 
 		Jewel jewel = new Jewel(JewelRarity.BLUE, maze.getCell(0, 0));
 		items.add(jewel);
+
+		Jewel jewel2 = new Jewel(JewelRarity.GREEN, maze.getCell(0, 0));
+		items.add(jewel2);
 
 		return new Level(player, maze, quest, NPCs, items);
 	}
