@@ -11,6 +11,8 @@ import game.maze.*;
 import game.character.state.BaseState;
 import game.system.input.InputSystem;
 import game.system.graphics.GraphicsSystem;
+import game.observer.ObservableEvent;
+
 
 
 public class Player extends Character {
@@ -69,6 +71,8 @@ public class Player extends Character {
 
     public void addGold(int amount){
         this.gold += amount;
+        this.notify(this,ObservableEvent.EVENT_PICK_UP_GOLD);
+        
     }
 
     public void removeGold(int amount) throws NotEnoughGoldException {
@@ -76,6 +80,8 @@ public class Player extends Character {
             throw new NotEnoughGoldException("Vous n'avez pas assez de gold.");
 
         this.gold -= amount;
+        this.notify(this,ObservableEvent.EVENT_SPEND_GOLD);
+
     }
 
     public void addHint(Hint h){
