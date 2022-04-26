@@ -4,6 +4,7 @@ import game.character.NonPlayerCharacter;
 import game.character.Player;
 import game.character.action.Action;
 import game.character.action.TalkAction;
+import game.character.action.ChangeStateAction;
 import game.system.input.InputSystem;
 import game.system.graphics.GraphicsSystem;
 
@@ -33,6 +34,10 @@ public class ChooseNPCToTalkState implements BaseState {
 
     @Override
     public Action handleInput(Player player, InputSystem input) {
+        if (input.getLetter() == 'Q'){
+            return new ChangeStateAction(new StartTurnState());
+        }
+
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
         int choice = input.getIntegerFromLetter();
 
