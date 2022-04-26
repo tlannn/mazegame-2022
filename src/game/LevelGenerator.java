@@ -116,6 +116,7 @@ public class LevelGenerator {
 		// fool.setHint(new FakeHint("Pour gagner il faut aller à la case (5 , 7)"));
 		// NPCs.add(fool);
 
+		sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
 		List<String> reponses = new ArrayList<>();
 		reponses.add("A16");
 		reponses.add("B589");
