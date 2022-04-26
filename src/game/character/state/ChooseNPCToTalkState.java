@@ -34,12 +34,13 @@ public class ChooseNPCToTalkState implements BaseState {
 
     @Override
     public Action handleInput(Player player, InputSystem input) {
-        if (input.getLetter() == 'Q'){
-            return new ChangeStateAction(new StartTurnState());
-        }
 
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
         int choice = input.getIntegerFromLetter();
+
+        if ((char) choice == 'Q'){
+            return new ChangeStateAction(new StartTurnState());
+        }
 
         if (choice >= 0 && choice < NPCs.size()) {
             return new TalkAction(NPCs.get(choice));

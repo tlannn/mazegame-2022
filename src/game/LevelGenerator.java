@@ -107,7 +107,7 @@ public class LevelGenerator {
 		List<Item> items = new ArrayList<>();
 
 		sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
-		sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
+		//sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
 
 		altruist.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), true, true));
 		NPCs.add(altruist);
