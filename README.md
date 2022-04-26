@@ -183,14 +183,24 @@ Damien : class jewel et Parchment
 ## Semaine 8
 Emma : test de tous les items (TestParchment et TestJewel)
 Damien et Rayan : TestPlayer + TestCharacter mise en place des methodes toString() et indices de conditions de victoire.
+Theo : petites modifications (ajouts de getters/setters, modifications de signatures) et travail sur les tests
 
 ## Semaine 9
 Emma: dans game creation de l'IHM (playTurn)
+Theo : recherches pour sur une manière de suivre l'évolution des objectifs de quête à partir d'évènements dans la partie
 
 ## Semaine 10
 Tout le monde: Réu général pour faire le point.
 Emma: création du HintGenerator.
+Theo : implémentation d'un Observer pattern pour les conditions de quêtes et ajout d'un inventaire au player
 
 ## Semaine 11
+Theo : correction d'erreurs, avancée sur la génération du jeu (GameGenerator) et travail de groupe pour refaire le point
 
-## Semaine 12
+## Semaine 12 (vacances)
+Theo : ajout d'un Makefile et réflexion sur la réorganisation du code pour l'extensibilité du jeu
+
+## Semaine 13 (vacances)
+Theo : modification de l'architecture du projet, avec notamment l'implémentation des patterns Command, State et Update + réalisation de l'interaction avec les items
+
+## Semaine 14
