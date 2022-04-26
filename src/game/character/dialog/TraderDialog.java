@@ -4,6 +4,7 @@ import game.character.Player;
 import game.character.Trader;
 import game.system.input.InputSystem;
 import game.system.graphics.GraphicsSystem;
+import game.character.NotEnoughGoldException;
 
 public class TraderDialog extends InteractiveDialog {
     private Trader trader;
@@ -14,14 +15,31 @@ public class TraderDialog extends InteractiveDialog {
     }
 
     public void start(Player player) {
-        this.graphics.displayText("En échange de la modique somme de " +trader.getParchmentCost() + " galons d'or, souhaitez-vous acquérir ce parchemin ? [o/n]");
-        char rep = this.input.getLetter();
+        if(! this.trader.getParchments().isEmpty()){
 
-        this.graphics.displayText("vous avez dit " + rep);
+            this.graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or, souhaitez-vous acquérir ce parchemin ? [o/n]");
+            char rep = this.input.getLetter();
 
-// on ne rentre pas dans le if
-        if (Character.toString(rep).equals("O")){
-          this.graphics.displayText("vous avez dit OUI. Vive les mariés");
+            if (Character.toString(rep).equals("O")){
+                    try{
+                        player.removeGold(this.trader.getParchmentCost());
+                        player.getInventory().addItem(this.trader.getParchments().get(0));
+                        this.trader.removeParchment(this.trader.getParchments().get(0));
+                        this.trader.increaseParchmentCost();
+                        this.graphics.displayText("vous avez acheté le parchemin.");
+                    }
+                    catch(NotEnoughGoldException e){
+                        this.graphics.displayText(e.getMessage());
+                        this.graphics.displayText("Ce sera pour une prochaine fois.");
+                    }
+            }
+            else{
+                this.graphics.displayText("Tant pis ce sera peut etre pour une prochaine fois.");
+            }
+        }
+
+        else{
+            this.graphics.displayText("Tu as déjà acheté tous mes indices.");
         }
 
         // System.out.println("En échange de la modique somme de " + this.parchmentCost + " galons d'or, souhaitez-vous acquérir ce parchemin ?");

@@ -47,16 +47,19 @@ public class Trader extends NonPlayerCharacter {
 		this.parchments.add(parchment);
 	}
 
-	private void removeParchment(Parchment parchment){
+	public void removeParchment(Parchment parchment){
 		this.parchments.remove(parchment);
-
 	}
 
-	private void increaseParchmentCost() {
+	public void increaseParchmentCost() {
 		this.parchmentCost = this.parchmentCost * 2;
 	}
 
 	public int getParchmentCost(){
 		return this.parchmentCost;
+	}
+
+	public List<Parchment> getParchments(){
+		return this.parchments;
 	}
 }

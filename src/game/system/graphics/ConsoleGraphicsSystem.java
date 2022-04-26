@@ -44,6 +44,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 	public void displayGameStatus(Level level, Player player) {
 		this.displayLevel(level);
 		this.displayText(""); // Print an empty line
+		this.displayOr(player);
 
 		this.displayText("Vous êtes situé sur la case " + player.getCurrentCell());
 
@@ -141,6 +142,10 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		}
 
 		this.displayText(string);
+	}
+
+	public void displayOr(Player player){
+		this.displayText("vous avez "+ player.getGold()+ " or.");
 	}
 
 	@Override

@@ -18,16 +18,17 @@ public class Parchment extends Item {
         this.hint = hint;
     }
 
+//on affiche le parchemin mais on ne le supprime pas de l'inventaire. Ce n'est pas un usage unique.
     public void use(Player player){
         System.out.println("Vous découvrez un indice :");
         System.out.println(this.hint);
         player.addHint(this.hint);
-        try{
-            player.getInventory().removeItem(this);
-        }
-        catch(UnknownItemException e){
-            System.out.println(e.getMessage());
-        }
+        // try{
+        //     player.getInventory().removeItem(this);
+        // }
+        // catch(UnknownItemException e){
+        //     System.out.println(e.getMessage());
+        // }
     }
 
     public String toString() {
