@@ -21,6 +21,10 @@ public class WinningCellOrientationHint extends DynamicHint {
         int winningY = this.winningCell.getY();
         String res = "";
 
+        if(playerX == winningX && playerY == winningY){
+            return "Vous êtes sur la case gagnante";
+        }
+
         if(playerY > winningY){
             res = res + "Nord";
         }
