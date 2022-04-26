@@ -33,11 +33,13 @@ public class Level {
         this.NPCs = NPCs;
         this.items = items;
 
-        for (NonPlayerCharacter npc : this.NPCs) {
-            for (QuestCondition condition : this.quest.getWinningConditions())
+        for (QuestCondition condition : this.quest.getWinningConditions()){
+            player.addObserver(condition);
+            for (NonPlayerCharacter npc : this.NPCs) {
                 npc.addObserver(condition);
+            }
         }
-
+        
         this.player.setCurrentCell(this.maze.getCell(0, 0));
 
         this.cellsVisited = new ArrayList<>();
