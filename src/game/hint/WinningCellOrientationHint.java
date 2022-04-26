@@ -42,16 +42,10 @@ public class WinningCellOrientationHint extends DynamicHint {
             }
             res = res + "Est";
         }
-
+        
+        if (res.equals("Est") || res.equals("Ouest")){
+            return "La case gagante se situe à l'" + res;
+        }
         return "La case gagante se situe au " + res;
-
-
-
-
-
-
-
-
-
     }
 }
