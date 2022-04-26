@@ -47,6 +47,8 @@ public class Game{
             nextCharacter.update(this.level, this.inputSystem, this.graphicsSystem);
         }
 
+        this.graphicsSystem.displayGameStatus(level, player);
+
         this.graphicsSystem.displayText("Vous avez gagné !");
     }
 

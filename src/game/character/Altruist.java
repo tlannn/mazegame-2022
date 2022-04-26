@@ -2,7 +2,7 @@ package game.character;
 
 import game.hint.Hint;
 import game.maze.*;
-
+import game.observer.ObservableEvent;
 import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
 
@@ -20,6 +20,7 @@ public class Altruist extends NonPlayerCharacter {
 	}
 
 	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
+		super.talk(graphicsSystem,inputSystem,player);
 		System.out.println("Vous êtes sur une quête ? Laissez-moi vous donner un indice :");
 		System.out.println(this.hint);
 	}

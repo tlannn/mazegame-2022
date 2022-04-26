@@ -9,6 +9,9 @@ import game.util.Random;
 
 import java.util.List;
 
+import game.observer.ObservableEvent;
+
+
 /**
  * Class NonPlayerCharacter that represents any character the player doesn't control,
  * but can interact with
@@ -24,7 +27,9 @@ public abstract class NonPlayerCharacter extends Character {
 		super(name, startingCell);
 	}
 
-	public abstract void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player);
+	public  void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player){
+		this.notify(this,ObservableEvent.EVENT_MEET_CHARACTER);
+	};
 
 	public void talkTo(Player player) {
 		dialog.start(player);

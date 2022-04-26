@@ -9,6 +9,7 @@ import game.maze.Cell;
 import game.maze.Maze;
 import game.maze.Orientation;
 import game.quest.Quest;
+import game.quest.QuestCondition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,11 @@ public class Level {
         this.quest = quest;
         this.NPCs = NPCs;
         this.items = items;
+
+        for (NonPlayerCharacter npc : this.NPCs) {
+            for (QuestCondition condition : this.quest.getWinningConditions())
+                npc.addObserver(condition);
+        }
 
         this.player.setCurrentCell(this.maze.getCell(0, 0));
 

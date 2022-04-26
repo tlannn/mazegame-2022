@@ -91,11 +91,19 @@ public class LevelGenerator {
 
 	public Level generateLevel(Player player){
 		Maze maze = new KruskalMaze(6, 4);
-		Quest quest = new Quest(maze.getRandomCell(), new ArrayList<>());
+
+		List<QuestCondition> winningConditions = new ArrayList<>();		
+		Altruist altruist = new Altruist(maze.getCell(0, 0));
+
+		MeetSpecificCharacterCondition c= new MeetSpecificCharacterCondition(altruist);
+		winningConditions.add(c);
+		EarnGoldCondition e = new EarnGoldCondition(player, 10);
+		winningConditions.add(e);
+
+		Quest quest = new Quest(maze.getRandomCell(), winningConditions);
 		List<NonPlayerCharacter> NPCs = new ArrayList<>();
 		List<Item> items = new ArrayList<>();
 
-		Altruist altruist = new Altruist(maze.getCell(0, 0));
 		altruist.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), true, true));
 		NPCs.add(altruist);
 
