@@ -128,7 +128,13 @@ Les objectifs sont atteints : les personnages et les items ont été créés (ho
 
 ### Atteinte des objectifs
 
+Le projet est terminé dans son ensemble. Il est possible d'interragir avec les items et les personnages, de se déplacer ainsi que de gagner la partie avec en plus des conditions supplémentaires pour la quête.
+
+Il reste quelques bugs à corriger, et également des tests à rédiger pour les classes créées dernièrement. Il faut également revoir les anciens tests, car de gros changements sont survenus sur l'architecture de l'application qui peuvent rendre ces tests obsolètes (au niveau des appels de méthodes ou des paramètres donnés).
+
 ### Difficultés restant à résoudre
+
+Il n'y a pas de difficultés significatives, si ce n'est que les changements dans l'architecture perturbent quelques-uns d'entre nous. Ces changements ont pour objectif de faciliter l'extension du jeu ainsi que sa maintenance, mais ils rendent la structure du code moins "évidente" au premier abord en raison de l'utilisation de design patterns.
 
 ## Livrable 4
 
