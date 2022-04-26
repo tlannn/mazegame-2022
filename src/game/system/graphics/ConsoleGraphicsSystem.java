@@ -101,7 +101,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 
 				// Determine the marker to show in the cell
 				if (level.getPlayer().getCurrentCell() == currentCell)
-					cellMarker = "P";
+					cellMarker = "☻";
 				else
 					//cellMarker = currentCell.isVisited() ? " " : "*";
 					cellMarker = level.isCellVisited(currentCell) ? " " : "*";
