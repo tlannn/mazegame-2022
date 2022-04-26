@@ -2,23 +2,67 @@ package game.character;
 
 import java.util.*;
 
-import game.enigma.*;
+import game.Level;
+import game.character.state.StartTurnState;
+import game.character.action.Action;
+import game.hint.*;
 import game.item.*;
 import game.maze.*;
+import game.character.state.BaseState;
+import game.system.input.InputSystem;
+import game.system.graphics.GraphicsSystem;
+import game.observer.ObservableEvent;
+
+
 
 public class Player extends Character {
 
     private int gold;
-    private List<Item> inventory;
-    private List<Character> charactersMet;
+    private Inventory inventory;
     private List<Hint> hintsSeen;
+    private Stack<BaseState> state;
 
-    public Player(String name, Cell startingCell){
+    public Player(String name) {
+        this(name, null);
+    }
+
+    public Player(String name, Cell startingCell) {
         super(name, startingCell);
         this.gold = 0;
-        this.inventory = new ArrayList<Item>();
-        this.charactersMet = new ArrayList<Character>();
+        this.inventory = new Inventory();
         this.hintsSeen = new ArrayList<Hint>();
+        this.state = new Stack<>();
+        this.state.push(new StartTurnState());
+    }
+
+    public void update(Level level, InputSystem inputSystem, GraphicsSystem graphicsSystem) {
+        graphicsSystem.displayGameStatus(level, this);
+        boolean hasMadeAction = false; // Will be true if the player has done the unique action he can do during his turn
+
+        while (!hasMadeAction) {
+            BaseState currentState = this.state.peek(); // Look the current state of the player in the stack
+
+            // Enter the state and print on the screen some info about the player state
+            if (currentState.enter(this, graphicsSystem)) {
+                Action action = currentState.handleInput(this, inputSystem); // Gather input from the player
+
+                if (action != null) {
+                    hasMadeAction = action.execute(level, this, inputSystem, graphicsSystem); // Can be false if the action doesn't correspond to a complete action (like moving)
+                    graphicsSystem.displayText(action.toString()); // Print a feedback describing the action that has been done
+                }
+                else
+                    graphicsSystem.displayText("Je n'ai pas compris votre intention.");
+
+                graphicsSystem.displayText(""); // Print an empty line
+            }
+
+            // If the player can't be in the state he is currently, go back to his previous state
+            else
+                this.state.pop();
+        }
+
+        // Return to StartTurnState for the next turn
+        this.state.push(new StartTurnState());
     }
 
     public int getGold(){
@@ -27,62 +71,54 @@ public class Player extends Character {
 
     public void addGold(int amount){
         this.gold += amount;
+        this.notify(this,ObservableEvent.EVENT_PICK_UP_GOLD);
+        
     }
 
     public void removeGold(int amount) throws NotEnoughGoldException {
         if (amount >= this.gold)
-            throw new NotEnoughGoldException("Vous n'avez pas assez de gold");
+            throw new NotEnoughGoldException("Vous n'avez pas assez de gold.");
 
         this.gold -= amount;
-    }
+        this.notify(this,ObservableEvent.EVENT_SPEND_GOLD);
 
-    public void addItem(Item i){
-        this.inventory.add(i);
     }
 
     public void addHint(Hint h){
         this.hintsSeen.add(h);
     }
 
-    public void addCharacterMet(Character c){
-        this.charactersMet.add(c);
+    public void setState(BaseState state) {
+        this.state.push(state);
     }
 
-    public int getNumbersCharactersMet(){
-        return this.charactersMet.size();
+    public void useItem(Item item){
+        item.use(this);
     }
 
-    public void removeItem(Item i) throws UnknownItemException {
-        if (!this.inventory.contains(i))
-           throw new UnknownItemException("Item inconnu");
-        this.inventory.remove(i);
-    }
-
-    public void useItem(Item i){
-        i.use(this);
-    }
-
-    public List<Item> getInventoryItems() {
+    public Inventory getInventory() {
         return this.inventory;
     }
 
-    public void look(){
+    //return true if there is an item or a character on the cell. else false.
+    public boolean look(){
+        int i=0;
         List<Item> items = this.currentCell.getItemsInCell();
-        if (items.isEmpty()){
-            System.out.println("Il n'y a rien sur cette case.");
+        List<NonPlayerCharacter> characters = this.currentCell.getNonPlayerCharactersInCell();
+        if (items.isEmpty() && characters.isEmpty()){
+            System.out.println("Il n'y a rien sur cette case");
+            return false;
         }
-
         else{
-            System.out.print("Sur cette case se trouve :");
-            for(Item item : items) {
-                System.out.println("- " + item);
+            System.out.print("Sur cette case se trouve : \n");
+            for (i=0; i<items.size(); i++){
+                System.out.println(i+"-"+items.get(i));
             }
+            for(int j=i; j< characters.size(); j++){
+                System.out.println(j+"-"+characters.get(j));
+            }
+            return true;
         }
-
-    }
-
-    public List<Character> getCharactersMet(){
-        return this.charactersMet;
     }
 
     public List<Hint> getHints(){

@@ -1,5 +1,10 @@
 package game.maze;
 
+//import game.util.InputReader;
+import game.util.Random;
+
+//import java.io.IOException;
+
 /**
  * Abstract class Maze that represents a random maze in the game
  */
@@ -39,6 +44,18 @@ public abstract class Maze {
 	 */
 	public Cell getCell(int x, int y) {
 		return this.cells[x][y];
+	}
+
+	/**
+	 * Return a random cell in the maze
+	 *
+	 * @return a random cell
+	 */
+	public Cell getRandomCell() {
+		int randomX = Random.randInt(0, this.length-1);
+		int randomY = Random.randInt(0, this.height-1);
+
+		return this.getCell(randomX, randomY);
 	}
 
 	/**
@@ -149,48 +166,5 @@ public abstract class Maze {
 	 */
 	public int getHeight() {
 		return this.height;
-	}
-
-	/**
-	 * Display the maze. Symbol + represents a corner, symbols - and | stands as a wall
-	 */
-	public String toString() {
-		String res = "";
-
-		// Draw the northernmost walls
-		for (int j = 0; j < this.length; j++) {
-			res += "+---";
-		}
-
-		res += "+\n"; // End line of horizontal walls
-
-		// Draw for each line
-		for (int i = 0; i < this.height; i++) {
-			res += "|"; // Start the line of vertical walls
-
-			// Draw the line of vertical walls
-			for (int k = 0; k < this.length; k++) {
-				if (this.isExternalWall(getCell(k, i), Orientation.EAST) || this.getCell(k, i).hasEastWall()) {
-					res += "   |";
-				} else {
-					res += "    ";
-				}
-			}
-
-			res += "\n"; // Go to next line
-
-			// Draw the line of horizontal walls
-			for (int j = 0; j < this.length; j++) {
-				if (this.isExternalWall(getCell(j, i), Orientation.SOUTH) || this.getCell(j, i).hasSouthWall()) {
-					res += "+---";
-				} else {
-					res += "+   ";
-				}
-			}
-
-			res += "+\n"; // End the line horizontal wall
-		}
-
-		return res;
 	}
 }

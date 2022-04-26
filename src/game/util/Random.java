@@ -4,7 +4,7 @@ import java.lang.Math;
 
 public class Random {
 	/**
-	* Generate a random integer N such as min <= N <= max
+	* Generate a random integer N between min and max (both included)
 	* @param min the minimum value that can be returned
 	* @param max the maximum value that can be returned
 	* @return a random integer matching the boundaries

@@ -1,4 +1,4 @@
-package game.enigma;
+package game.hint;
 import java.lang.Math;
 import game.maze.Cell;
 import game.character.*;

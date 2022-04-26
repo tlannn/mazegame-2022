@@ -4,6 +4,8 @@ import java.util.*;
 
 import game.item.Item;
 import game.character.Character;
+import game.character.NonPlayerCharacter;
+
 
 /**
  * Represents a cell in the maze with 4 walls in each direction. The walls are closed when the cell is created.
@@ -122,6 +124,18 @@ public class Cell {
 	public List<Character> getCharactersInCell(){
 		return this.characters;
 	}
+
+
+    public List <NonPlayerCharacter> getNonPlayerCharactersInCell(){
+        List <NonPlayerCharacter> nonPlayerCharacters = new ArrayList <NonPlayerCharacter>();
+        for (Character character : this.characters){
+            if (character instanceof NonPlayerCharacter){
+                NonPlayerCharacter bonCharacter = (NonPlayerCharacter) character;
+                nonPlayerCharacters.add(bonCharacter);
+            }
+        }
+        return nonPlayerCharacters;
+    }
 
 	public void addItem(Item item){
 		this.items.add(item);

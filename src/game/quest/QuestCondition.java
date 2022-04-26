@@ -1,7 +1,15 @@
 package game.quest;
 
-public abstract class QuestCondition {
-	public QuestCondition() {}
+import game.observer.Observer;
 
-	public abstract boolean isCompleted();
+public abstract class QuestCondition implements Observer {
+	protected boolean completed;
+	public QuestCondition() {
+		this.completed = false;
+	}
+
+	//public abstract boolean isCompleted();
+	public boolean isCompleted() {
+		return this.completed;
+	}
 }

@@ -1,13 +1,12 @@
 package game;
 
-import game.maze.*;
+import game.character.Player;
 
 public class Main {
 	public static void main(String[] args) {
-		Maze kruskalMaze = new KruskalMaze(7, 4);
-		System.out.println(kruskalMaze);
+		Player player = new Player("Emma");
 
-		Maze depthFirstSearchMaze = new DepthFirstSearchMaze(7, 4);
-		System.out.println(depthFirstSearchMaze);
+		Game game = new Game(player);
+		game.play(); // Start the game
 	}
 }

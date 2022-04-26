@@ -1,4 +1,4 @@
-package game.enigma;
+package game.hint;
 
 import game.quest.*;
 
@@ -13,5 +13,5 @@ public class QuestConditionHint extends FixedHint {
 
 
 
-    
+
 }

@@ -1,6 +1,6 @@
-package game.enigma;
+package game.hint;
 
-public class FakeHint {
+public class FakeHint extends Hint {
 	private final String statement;
 
 	public FakeHint(String statement) {

@@ -1,4 +1,4 @@
-package game.enigma;
+package game.hint;
 
 import game.maze.*;
 import game.character.*;
@@ -20,7 +20,11 @@ public class WinningCellOrientationHint extends DynamicHint {
         int winningX = this.winningCell.getX();
         int winningY = this.winningCell.getY();
         String res = "";
-        
+
+        if(playerX == winningX && playerY == winningY){
+            return "Vous êtes sur la case gagnante";
+        }
+
         if(playerY > winningY){
             res = res + "Nord";
         }
@@ -42,16 +46,10 @@ public class WinningCellOrientationHint extends DynamicHint {
             }
             res = res + "Est";
         }
-
+        
+        if (res.equals("Est") || res.equals("Ouest")){
+            return "La case gagante se situe à l'" + res;
+        }
         return "La case gagante se situe au " + res;
-
-
-
-
-
-
-
-
-    
     }
 }

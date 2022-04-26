@@ -7,8 +7,13 @@ public class Jewel extends Item {
 
     private JewelRarity rarity;
 
-    public Jewel(Cell cell, JewelRarity rarity){
-        super(cell);
+    public Jewel(JewelRarity rarity){
+        super(null);
+        this.rarity = rarity;
+    }
+
+    public Jewel(JewelRarity rarity, Cell currentCell){
+        super(currentCell);
         this.rarity = rarity;
     }
 
@@ -16,7 +21,7 @@ public class Jewel extends Item {
         System.out.println("Vous utilisez un joyau de valeur : " + this.rarity.getGoldValue() + " golds");
         player.addGold(this.rarity.getGoldValue());
         try{
-            player.removeItem(this);
+            player.getInventory().removeItem(this);
         }
         catch(UnknownItemException e){
             System.out.println(e.getMessage());
@@ -24,6 +29,14 @@ public class Jewel extends Item {
     }
 
     public String toString() {
-        return "un joyau";
+        if(this.rarity.getGoldValue()==5){
+            return "un joyau vert";
+        }
+        else if(this.rarity.getGoldValue()==10){
+            return "un joyau bleu";
+        }    
+        else{
+            return "un joyau violet";
+        }
     }
 }

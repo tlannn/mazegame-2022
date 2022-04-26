@@ -14,7 +14,7 @@ public class Quest {
 		this.winningConditions = winningConditions;
 	}
 
-	public boolean isFinished() {
+	public boolean isFinished(Cell playerCell) {
 		ListIterator<QuestCondition> it = this.winningConditions.listIterator();
 		boolean isFinished = true;
 
@@ -24,6 +24,14 @@ public class Quest {
 				isFinished = false;
 		}
 
-		return isFinished;
+		return isFinished && this.winningCell.equals(playerCell);
+	}
+
+	public Cell getWinningCell(){
+		return this.winningCell;
+	}
+
+	public List<QuestCondition> getWinningConditions(){
+		return this.winningConditions;
 	}
 }
