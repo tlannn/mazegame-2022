@@ -19,9 +19,11 @@ public class ChooseNPCToTalkState implements BaseState {
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
 
         if (!NPCs.isEmpty()) {
-            graphics.displayText("Sur cette case se trouve :");
-            graphics.displayList(NPCs, true);
-            graphics.displayText("A qui voulez-vous parler ?");
+            if (NPCs.size() > 1) { // Single NPCs will automatically be talked to
+                graphics.displayText("Sur cette case se trouve :");
+                graphics.displayList(NPCs, true);
+                graphics.displayText("A qui voulez-vous parler ?");
+            }
 
             return true;
         }
@@ -34,16 +36,22 @@ public class ChooseNPCToTalkState implements BaseState {
 
     @Override
     public Action handleInput(Player player, InputSystem input) {
-
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
-        int choice = input.getIntegerFromLetter();
 
-        if ((char) choice == 'Q'){
-            return new ChangeStateAction(new StartTurnState());
+        if (NPCs.size() > 1) { // Single NPCs will automatically be talked to
+            int choice = input.getIntegerFromLetter();
+
+            if ((char) choice == 'Q') {
+                return new ChangeStateAction(new StartTurnState());
+            }
+
+            if (choice >= 0 && choice < NPCs.size()) {
+                return new TalkAction(NPCs.get(choice));
+            }
         }
 
-        if (choice >= 0 && choice < NPCs.size()) {
-            return new TalkAction(NPCs.get(choice));
+        else {
+            return new TalkAction(NPCs.get(0));
         }
 
         return null;

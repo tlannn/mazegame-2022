@@ -19,8 +19,10 @@ public class ChooseItemToPickUpState implements BaseState {
         List<Item> itemsInCell = player.getCurrentCell().getItemsInCell();
 
         if (!itemsInCell.isEmpty()) {
-            graphics.displayText("Quel objet souhaitez-vous ramasser ?");
-            graphics.displayList(itemsInCell, true);
+            if (itemsInCell.size() > 1) { // Single items will automatically be picked up
+                graphics.displayText("Quel objet souhaitez-vous ramasser ?");
+                graphics.displayList(itemsInCell, true);
+            }
             return true;
         }
 
@@ -35,12 +37,17 @@ public class ChooseItemToPickUpState implements BaseState {
         List<Item> itemsInCell = player.getCurrentCell().getItemsInCell();
 
         if (!itemsInCell.isEmpty()) {
-            int choice = -1;
+            if (itemsInCell.size() > 1) { // Single items will automatically be picked up
+                int choice = -1;
 
-            while (choice < 0 || choice >= itemsInCell.size())
-                choice = inputSystem.getIntegerFromLetter();
+                while (choice < 0 || choice >= itemsInCell.size())
+                    choice = inputSystem.getIntegerFromLetter();
 
-            return new PickUpItemAction(itemsInCell.get(choice));
+                return new PickUpItemAction(itemsInCell.get(choice));
+            }
+
+            else
+                return new PickUpItemAction(itemsInCell.get(0));
         }
 
         return new ChangeStateAction(new StartTurnState());
