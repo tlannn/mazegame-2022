@@ -17,7 +17,7 @@ public class TraderDialog extends InteractiveDialog {
     public void start(Player player) {
         if(! this.trader.getParchments().isEmpty()){
 
-            this.graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or, souhaitez-vous acquérir ce parchemin ? [o/n]");
+            this.graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or, souhaitez-vous acquérir ce parchemin ? [O/N]");
             char rep = this.input.getLetter();
 
             if (Character.toString(rep).equals("O")){
@@ -26,15 +26,15 @@ public class TraderDialog extends InteractiveDialog {
                         player.getInventory().addItem(this.trader.getParchments().get(0));
                         this.trader.removeParchment(this.trader.getParchments().get(0));
                         this.trader.increaseParchmentCost();
-                        this.graphics.displayText("vous avez acheté le parchemin.");
+                        this.graphics.displayText("Vous avez acheté un parchemin.");
                     }
                     catch(NotEnoughGoldException e){
                         this.graphics.displayText(e.getMessage());
-                        this.graphics.displayText("Ce sera pour une prochaine fois.");
+                        this.graphics.displayText("Vous n'avez pas assez de galons d'or. Revenez plus tard.");
                     }
             }
             else{
-                this.graphics.displayText("Tant pis ce sera peut etre pour une prochaine fois.");
+                this.graphics.displayText("Tant pis, ce sera peut-être pour une prochaine fois.");
             }
         }
 

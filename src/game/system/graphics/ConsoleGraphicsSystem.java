@@ -145,8 +145,11 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		this.displayText(string);
 	}
 
-	public void displayOr(Player player){
-		this.displayText("vous avez "+ player.getGold()+ " or.");
+	public void displayOr(Player player) {
+		if (player.getGold() == 0)
+			this.displayText("Vous n'avez pas d'or.");
+		else
+			this.displayText("Vous avez " + player.getGold() + " galons d'or.");
 	}
 
 	@Override
