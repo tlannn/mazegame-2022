@@ -17,7 +17,7 @@ public class TraderDialog extends InteractiveDialog {
     public void start(Player player) {
         if(! this.trader.getParchments().isEmpty()){
 
-            this.graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or, souhaitez-vous acquérir ce parchemin ? [O/N]");
+            this.graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or, souhaitez-vous acquérir un parchemin ? [O/N]");
             char rep = this.input.getLetter();
 
             if (Character.toString(rep).equals("O")){
