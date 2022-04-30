@@ -22,8 +22,12 @@ public class MoveAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
-            level.move(player, this.orientation);
+    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem) {
+        if (!level.move(player, this.orientation)) { // Cannot move in this direction
+            graphicsSystem.displayError("Vous ne pouvez pas vous déplacer dans cette direction.");
+            return false;
+        }
+
         return true;
     }
 
