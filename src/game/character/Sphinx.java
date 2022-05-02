@@ -1,6 +1,7 @@
 // MODIF il faut fermer le scan
 package game.character;
 
+import game.character.dialog.EnigmaDialog;
 import game.enigma.*;
 import game.hint.*;
 import game.maze.*;
@@ -28,6 +29,8 @@ public class Sphinx extends NonPlayerCharacter {
 		//this.indexCurrentEnigma = 0;
 		this.hasGivenHint = false;
 		this.movable = false;
+
+		//this.dialog = new EnigmaDialog();
 	}
 
 	public void setHint(Hint hint) {
@@ -39,8 +42,11 @@ public class Sphinx extends NonPlayerCharacter {
 		this.enigmas.add(enigma);
 	}
 
-	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
-		super.talk(graphicsSystem,inputSystem,player);
+	public void talk(Player player) {
+		super.talk(player);
+
+		//this.dialog.start(player);
+
 		System.out.println("Bonjour, je m'appelle Léo le Sphinx.");
 		if (!this.hasGivenHint) {
 			int i = 0;
@@ -48,27 +54,27 @@ public class Sphinx extends NonPlayerCharacter {
 
 			if(i < this.enigmas.size() && ! this.enigmas.get(i).getIsResolved()){
 				System.out.println("Résout mon énigme, et mon indice sera tiens :");
-					System.out.println(this.enigmas.get(i).toString());
-					Scanner scan= new Scanner(System.in);
-					String text = scan.nextLine();
-					try{
-						this.enigmas.get(i).resolve(text);
-            if(this.enigmas.get(i).getIsResolved()){
-							System.out.println("Bien joué, c'est la bonne réponse ! En récompense, je te donne cet indice :");
-							System.out.println(this.hint.toString());
-							this.hasGivenHint = true;
-						}
-						else{
-							System.out.println("Navré aventurier, mais c'est la mauvaise réponse. Reviens me voir si tu veux retenter ta chance.");
-						}
-          }
-          catch(Exception AnswerNoContainsQCM) {
-              System.out.println("Cette réponse ne fait pas partie de celles proposées.");
-          }
-					// quand je ferme le scan ça fait un bug
-					// scan.close();
+				System.out.println(this.enigmas.get(i).toString());
+				Scanner scan= new Scanner(System.in);
+				String text = scan.nextLine();
+				try{
+					this.enigmas.get(i).resolve(text);
+					if(this.enigmas.get(i).getIsResolved()){
+						System.out.println("Bien joué, c'est la bonne réponse ! En récompense, je te donne cet indice :");
+						System.out.println(this.hint.toString());
+						this.hasGivenHint = true;
+					}
+					else{
+						System.out.println("Navré aventurier, mais c'est la mauvaise réponse. Reviens me voir si tu veux retenter ta chance.");
+					}
 				}
+				catch(Exception AnswerNoContainsQCM) {
+					System.out.println("Cette réponse ne fait pas partie de celles proposées.");
+				}
+				// quand je ferme le scan ça fait un bug
+				// scan.close();
 			}
+		}
 		else {
 			System.out.println("Je vous ai déjà donné mon indice.");
 			System.out.println(this.hint);

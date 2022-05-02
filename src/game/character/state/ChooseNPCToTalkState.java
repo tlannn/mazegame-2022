@@ -1,5 +1,6 @@
 package game.character.state;
 
+import game.Game;
 import game.character.NonPlayerCharacter;
 import game.character.Player;
 import game.character.action.Action;
@@ -15,7 +16,8 @@ import java.util.List;
  */
 public class ChooseNPCToTalkState implements BaseState {
     @Override
-    public boolean enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player) {
+        GraphicsSystem graphics = Game.getGraphicsSystem();
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
 
         if (!NPCs.isEmpty()) {
@@ -35,11 +37,11 @@ public class ChooseNPCToTalkState implements BaseState {
     }
 
     @Override
-    public Action handleInput(Player player, InputSystem input) {
+    public Action handleInput(Player player) {
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
 
         if (NPCs.size() > 1) { // Single NPCs will automatically be talked to
-            int choice = input.getIntegerFromLetter();
+            int choice = Game.getInputSystem().getIntegerFromLetter();
 
             if ((char) choice == 'Q') {
                 return new ChangeStateAction(new StartTurnState());

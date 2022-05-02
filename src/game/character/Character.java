@@ -29,7 +29,7 @@ public abstract class Character implements Observable {
             this.currentCell.addCharacter(this);
     }
 
-    public abstract void update(Level level, InputSystem inputSystem, GraphicsSystem graphicsSystem);
+    public abstract void update(Level level);
 
     public void addObserver(Observer observer) {
         this.observers.add(observer);

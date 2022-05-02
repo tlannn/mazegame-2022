@@ -1,24 +1,29 @@
 package game.character.dialog;
 
+import game.Game;
 import game.character.Player;
 import game.character.Trader;
+import game.system.SpeechPauseSystem;
 import game.system.input.InputSystem;
 import game.system.graphics.GraphicsSystem;
 import game.character.NotEnoughGoldException;
 
-public class TraderDialog extends InteractiveDialog {
+public class TraderDialog extends Dialog {
     private Trader trader;
 
-    public TraderDialog(GraphicsSystem graphicsSystem, InputSystem inputSystem, Trader trader) {
-        super(graphicsSystem, inputSystem);
+    public TraderDialog(Trader trader) {
+        super();
         this.trader = trader;
     }
 
     public void start(Player player) {
+        InputSystem input = Game.getInputSystem();
+        GraphicsSystem graphics = Game.getGraphicsSystem();
+
         if(! this.trader.getParchments().isEmpty()){
 
-            this.graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or, souhaitez-vous acquérir un parchemin ? [O/N]");
-            char rep = this.input.getLetter();
+            graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " souhaitez-vous acquérir un parchemin ? [O/N]");
+            char rep = input.getLetter();
 
             if (Character.toString(rep).equals("O")){
                     try{
@@ -26,20 +31,20 @@ public class TraderDialog extends InteractiveDialog {
                         player.getInventory().addItem(this.trader.getParchments().get(0));
                         this.trader.removeParchment(this.trader.getParchments().get(0));
                         this.trader.increaseParchmentCost();
-                        this.graphics.displayText("Vous avez acheté un parchemin.");
+                        graphics.displayText("Vous avez acheté un parchemin." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                     }
                     catch(NotEnoughGoldException e){
-                        this.graphics.displayText(e.getMessage());
-                        this.graphics.displayText("Vous n'avez pas assez de galons d'or. Revenez plus tard.");
+//                        this.graphics.displayText(e.getMessage());
+                        graphics.displayText("Vous n'avez pas assez de galons d'or." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " Revenez plus tard." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                     }
             }
             else{
-                this.graphics.displayText("Tant pis, ce sera peut-être pour une prochaine fois.");
+                graphics.displayText("Tant pis, ce sera peut-être pour une prochaine fois." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
             }
         }
 
         else{
-            this.graphics.displayText("Tu as déjà acheté tous mes indices.");
+            graphics.displayText("Tu as déjà acheté tous mes parchemins." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
         }
 
         // System.out.println("En échange de la modique somme de " + this.parchmentCost + " galons d'or, souhaitez-vous acquérir ce parchemin ?");

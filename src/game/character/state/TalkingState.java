@@ -10,12 +10,12 @@ import game.system.graphics.GraphicsSystem;
  */
 public class TalkingState implements BaseState {
     @Override
-    public boolean enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player) {
         return true;
     }
 
     @Override
-    public Action handleInput(Player player, InputSystem input) {
+    public Action handleInput(Player player) {
         return null;
     }
 }

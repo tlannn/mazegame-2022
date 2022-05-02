@@ -2,29 +2,35 @@ package game;
 
 import java.util.*;
 
-import game.system.input.ConsoleInputSystem;
 import game.maze.*;
 import game.character.*;
 import game.character.Character;
 import game.item.*;
-import game.system.graphics.ConsoleGraphicsSystem;
 import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
 
 public class Game{
     private Player player;
     private Level level;
-    private InputSystem inputSystem;
-    private GraphicsSystem graphicsSystem;
+    private static InputSystem inputSystem;
+    private static GraphicsSystem graphicsSystem;
 
-    public Game(Player player){
+    public Game(Player player, GameGraphicsMode mode){
         this.player = player;
-        this.inputSystem = new ConsoleInputSystem();
-        this.graphicsSystem = new ConsoleGraphicsSystem();
+        graphicsSystem = mode.getGraphicsSystem();
+        inputSystem = mode.getInputSystem();
 
         // Create the level
         LevelGenerator generator = new LevelGenerator();
         this.level = generator.generateLevel(this.player);
+    }
+
+    public static InputSystem getInputSystem() {
+        return inputSystem;
+    }
+
+    public static GraphicsSystem getGraphicsSystem() {
+        return graphicsSystem;
     }
 
     public void play() {
@@ -44,7 +50,7 @@ public class Game{
 
             // Play the turn of the next character
             Character nextCharacter = iterator.next();
-            nextCharacter.update(this.level, this.inputSystem, this.graphicsSystem);
+            nextCharacter.update(this.level);
         }
 
         this.graphicsSystem.displayGameStatus(level, player);

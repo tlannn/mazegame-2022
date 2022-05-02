@@ -2,6 +2,7 @@ package game.character;
 
 import java.util.*;
 
+import game.Game;
 import game.Level;
 import game.character.state.StartTurnState;
 import game.character.action.Action;
@@ -35,25 +36,26 @@ public class Player extends Character {
         this.state.push(new StartTurnState());
     }
 
-    public void update(Level level, InputSystem inputSystem, GraphicsSystem graphicsSystem) {
-        graphicsSystem.displayGameStatus(level, this);
+    @Override
+    public void update(Level level) {
+        Game.getGraphicsSystem().displayGameStatus(level, this);
         boolean hasMadeAction = false; // Will be true if the player has done the unique action he can do during his turn
 
         while (!hasMadeAction) {
             BaseState currentState = this.state.peek(); // Look the current state of the player in the stack
 
             // Enter the state and print on the screen some info about the player state
-            if (currentState.enter(this, graphicsSystem)) {
-                Action action = currentState.handleInput(this, inputSystem); // Gather input from the player
+            if (currentState.enter(this)) {
+                Action action = currentState.handleInput(this); // Gather input from the player
 
                 if (action != null) {
-                    hasMadeAction = action.execute(level, this, inputSystem, graphicsSystem); // Can be false if the action doesn't correspond to a complete action (like moving)
+                    hasMadeAction = action.execute(level, this); // Can be false if the action doesn't correspond to a complete action (like moving)
                     //graphicsSystem.displayText(action.toString()); // Print a feedback describing the action that has been done
                 }
                 else
-                    graphicsSystem.displayText("Je n'ai pas compris votre intention.");
+                    Game.getGraphicsSystem().displayText("Je n'ai pas compris votre intention.");
 
-                graphicsSystem.displayText(""); // Print an empty line
+                Game.getGraphicsSystem().displayText(""); // Print an empty line
             }
 
             // If the player can't be in the state he is currently, go back to his previous state

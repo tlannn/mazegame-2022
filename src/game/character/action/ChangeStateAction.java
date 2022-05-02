@@ -22,7 +22,7 @@ public class ChangeStateAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
+    public boolean execute(Level level, Player player){
         player.setState(this.nextState);
         return false;
     }

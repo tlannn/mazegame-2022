@@ -1,5 +1,6 @@
 package game.character.state;
 
+import game.Game;
 import game.character.Player;
 import game.character.action.Action;
 import game.character.action.ChangeStateAction;
@@ -15,7 +16,8 @@ import java.util.List;
  */
 public class ChooseItemToPickUpState implements BaseState {
     @Override
-    public boolean enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player) {
+        GraphicsSystem graphics = Game.getGraphicsSystem();
         List<Item> itemsInCell = player.getCurrentCell().getItemsInCell();
 
         if (!itemsInCell.isEmpty()) {
@@ -33,7 +35,7 @@ public class ChooseItemToPickUpState implements BaseState {
     }
 
     @Override
-    public Action handleInput(Player player, InputSystem inputSystem) {
+    public Action handleInput(Player player) {
         List<Item> itemsInCell = player.getCurrentCell().getItemsInCell();
 
         if (!itemsInCell.isEmpty()) {
@@ -41,7 +43,7 @@ public class ChooseItemToPickUpState implements BaseState {
                 int choice = -1;
 
                 while (choice < 0 || choice >= itemsInCell.size())
-                    choice = inputSystem.getIntegerFromLetter();
+                    choice = Game.getInputSystem().getIntegerFromLetter();
 
                 return new PickUpItemAction(itemsInCell.get(choice));
             }

@@ -27,16 +27,16 @@ public abstract class NonPlayerCharacter extends Character {
 		super(name, startingCell);
 	}
 
-	public  void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player){
+	public void talk(Player player){
 		this.notify(this,ObservableEvent.EVENT_MEET_CHARACTER);
-	};
+	}
 
 	public void talkTo(Player player) {
 		dialog.start(player);
 	}
 
 	@Override
-	public void update(Level level, InputSystem inputSystem, GraphicsSystem graphicsSystem) {
+	public void update(Level level) {
 		// Make the NPC move if it is allowed to
 		if (this.movable) {
 			List<Character> charactersInCell = this.currentCell.getCharactersInCell();

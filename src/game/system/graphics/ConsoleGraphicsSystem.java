@@ -8,14 +8,20 @@ import game.character.Inventory;
 import game.character.Player;
 import game.maze.Cell;
 import game.maze.Orientation;
+import game.system.SpeechPauseSystem;
 
 /**
  * Provide a graphics system for a console application
  */
 public class ConsoleGraphicsSystem implements GraphicsSystem {
 	@Override
+	public void displayText(String text, boolean instantly) {
+		SpeechPauseSystem.say(text, instantly);
+	}
+
+	@Override
 	public void displayText(String text) {
-		System.out.println(text);
+		displayText(text, false);
 	}
 
 	@Override
@@ -46,21 +52,21 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		this.displayText(""); // Print an empty line
 		this.displayOr(player);
 
-		this.displayText("Vous êtes situé sur la case " + player.getCurrentCell());
+		this.displayText("Vous êtes situé sur la case " + player.getCurrentCell(), true);
 
 		int i=0;
 		List<Item> items = player.getCurrentCell().getItemsInCell();
 		List<NonPlayerCharacter> characters = player.getCurrentCell().getNonPlayerCharactersInCell();
 		if (items.isEmpty() && characters.isEmpty()){
-				this.displayText("Il n'y a rien sur cette case");
+				this.displayText("Il n'y a rien sur cette case", true);
 		}
 		else{
-				this.displayText("Sur cette case se trouve :");
+				this.displayText("Sur cette case se trouve :", true);
 				for (i=0; i<items.size(); i++){
-						this.displayText("- "+items.get(i));
+						this.displayText("- "+items.get(i), true);
 				}
 				for(int j=0; j< characters.size(); j++){
-						this.displayText("- "+characters.get(j));
+						this.displayText("- "+characters.get(j), true);
 				}
 		}
 
@@ -130,7 +136,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 			string.append("+\n"); // End the line horizontal wall
 		}
 
-		this.displayText(string.toString());
+		this.displayText(string.toString(), true);
 	}
 
 	@Override
@@ -147,21 +153,24 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 
 	public void displayOr(Player player) {
 		if (player.getGold() == 0)
-			this.displayText("Vous n'avez pas d'or.");
+			this.displayText("Vous n'avez pas d'or.", true);
 		else
-			this.displayText("Vous avez " + player.getGold() + " galons d'or.");
+			this.displayText("Vous avez " + player.getGold() + " galons d'or.", true);
 	}
 
 	@Override
 	public void displayHelp() {
-		this.displayText("Un petit peu d'aide ?");
-		this.displayText("Z - Aller vers le nord");
-		this.displayText("S - Aller vers le sud");
-		this.displayText("Q - Aller vers l'est");
-		this.displayText("D - Aller vers l'ouest");
-		this.displayText("P - Parler à un personnage");
-		this.displayText("R - Ramasser un objet");
-		this.displayText("I - Ouvrir l'inventaire");
-		this.displayText(""); // Print an empty line
+		StringBuilder help = new StringBuilder();
+		help.append("Un petit peu d'aide ?\n")
+		.append("Z - Aller vers le nord\n")
+		.append("S - Aller vers le sud\n")
+		.append("Q - Aller vers l'est\n")
+		.append("D - Aller vers l'ouest\n")
+		.append("P - Parler à un personnage\n")
+		.append("R - Ramasser un objet\n")
+		.append("I - Ouvrir l'inventaire\n")
+		.append("\n"); // Print an empty line
+
+		this.displayText(help.toString(), true);
 	}
 }

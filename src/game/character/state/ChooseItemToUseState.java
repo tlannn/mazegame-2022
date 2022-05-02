@@ -1,5 +1,6 @@
 package game.character.state;
 
+import game.Game;
 import game.character.Player;
 import game.character.action.Action;
 import game.character.action.ChangeStateAction;
@@ -12,7 +13,8 @@ import java.util.List;
 
 public class ChooseItemToUseState implements BaseState {
     @Override
-    public boolean enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player) {
+        GraphicsSystem graphics = Game.getGraphicsSystem();
         List<Item> itemsInInventory = player.getInventory().getItems();
 
         if (!itemsInInventory.isEmpty()) {
@@ -30,7 +32,7 @@ public class ChooseItemToUseState implements BaseState {
     }
 
     @Override
-    public Action handleInput(Player player, InputSystem input) {
+    public Action handleInput(Player player) {
         List<Item> itemsInInventory = player.getInventory().getItems();
 
         if (!itemsInInventory.isEmpty()) {
@@ -38,7 +40,7 @@ public class ChooseItemToUseState implements BaseState {
                 int choice = -1;
 
                 while (choice < 0 || choice >= itemsInInventory.size())
-                    choice = input.getIntegerFromLetter();
+                    choice = Game.getInputSystem().getIntegerFromLetter();
 
                 return new UseItemAction(itemsInInventory.get(choice));
             }

@@ -10,10 +10,17 @@ import java.util.List;
  */
 public interface GraphicsSystem {
 	/**
-	 * Display a message
+	 * Display a message, with support for delays by default
 	 * @param message the message to display
 	 */
 	public void displayText(String message);
+
+	/**
+	 * Display a message
+	 * @param message the message to display
+	 * @param instantly display the message instantly if true
+	 */
+	public void displayText(String message, boolean instantly);
 
 	/**
 	 * Display an error

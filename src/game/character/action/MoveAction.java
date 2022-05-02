@@ -1,5 +1,6 @@
 package game.character.action;
 
+import game.Game;
 import game.Level;
 import game.character.Player;
 import game.maze.Orientation;
@@ -22,9 +23,9 @@ public class MoveAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem) {
+    public boolean execute(Level level, Player player) {
         if (!level.move(player, this.orientation)) { // Cannot move in this direction
-            graphicsSystem.displayError("Vous ne pouvez pas vous déplacer dans cette direction.");
+            Game.getGraphicsSystem().displayError("Vous ne pouvez pas vous déplacer dans cette direction.");
             return false;
         }
 

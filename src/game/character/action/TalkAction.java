@@ -22,8 +22,8 @@ public class TalkAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
-        this.npc.talk(graphicsSystem, inputSystem, player);
+    public boolean execute(Level level, Player player){
+        this.npc.talk(player);
         return true;
     }
 

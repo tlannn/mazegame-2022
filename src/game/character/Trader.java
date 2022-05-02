@@ -26,9 +26,9 @@ public class Trader extends NonPlayerCharacter {
 		this.parchmentCost = 5;
 	}
 
-	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
-		super.talk(graphicsSystem,inputSystem,player);
-		TraderDialog traderDialogue = new TraderDialog(graphicsSystem, inputSystem, this);
+	public void talk(Player player) {
+		super.talk(player);
+		TraderDialog traderDialogue = new TraderDialog(this);
 		traderDialogue.start(player);
 
 

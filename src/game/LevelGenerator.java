@@ -90,7 +90,7 @@ public class LevelGenerator {
 
 
 
-	public Level generateLevel(Player player){
+	/*public Level generateLevel(Player player){
 		//on remet toutes les listes à 0 pour si on a déjà créer un level au par avant
 		// this.altruists = new ArrayList<Altruist>();
 		// this.fools = new ArrayList <Fool>();
@@ -149,57 +149,61 @@ public class LevelGenerator {
 
 		return new Level(player, this.maze, this.quest, NPCs, this.items);
 
-	}
+	}*/
 
-	// public Level generateLevel(Player player){
-	// 	Maze maze = new KruskalMaze(6, 4);
-	// 	List<NonPlayerCharacter> NPCs = new ArrayList<>();
-	//
-	// 	List<QuestCondition> winningConditions = new ArrayList<>();
-	// 	Altruist altruist = new Altruist(maze.getCell(0, 0));
-	//
-	// 	Sphinx sphinx = new Sphinx(maze.getCell(0, 0));
-	// 	NPCs.add(sphinx);
-	//
-	// 	MeetSpecificCharacterCondition c= new MeetSpecificCharacterCondition(sphinx);
-	// 	winningConditions.add(c);
-	// 	// EarnGoldCondition e = new EarnGoldCondition(player, 10);
-	// 	// winningConditions.add(e);
-	//
-	// 	Quest quest = new Quest(maze.getRandomCell(), winningConditions);
-	// 	List<Item> items = new ArrayList<>();
-	//
-	// 	sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
-	// 	//sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
-	//
-	// 	altruist.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), true, true));
-	// 	NPCs.add(altruist);
-	//
-	// 	// Fool fool = new Fool(maze.getCell(0, 0));
-	// 	// fool.setHint(new FakeHint("Pour gagner il faut aller à la case (5 , 7)"));
-	// 	// NPCs.add(fool);
-	//
-		// sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
-		// List<String> reponses = new ArrayList<>();
-		// reponses.add("A16");
-		// reponses.add("B589");
-		// reponses.add("A10");
-		// reponses.add("A00");
-		// sphinx.addEnigma(new QCM("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2)));
-		// //sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
-		// NPCs.add(sphinx);
-	//
-	//
-	// 	Trader trader = new Trader(maze.getCell(0, 0));
-	// 	trader.addParchment(new Parchment(new WinningCellOrientationHint(quest.getWinningCell(), player)));
-	// 	NPCs.add(trader);
-	//
-	//
-	// 	Jewel jewel = new Jewel(JewelRarity.BLUE, maze.getCell(0, 0));
-	// 	items.add(jewel);
-	//
-	// 	return new Level(player, maze, quest, NPCs, items);
-	// }
+	 public Level generateLevel(Player player){
+	 	Maze maze = new KruskalMaze(6, 4);
+	 	List<NonPlayerCharacter> NPCs = new ArrayList<>();
+
+	 	List<QuestCondition> winningConditions = new ArrayList<>();
+	 	Altruist altruist = new Altruist(maze.getRandomCell());
+
+//	 	Sphinx sphinx = new Sphinx(maze.getCell(0, 0));
+	 	Sphinx sphinx = new Sphinx(maze.getRandomCell());
+	 	NPCs.add(sphinx);
+
+//	 	MeetSpecificCharacterCondition c= new MeetSpecificCharacterCondition(sphinx);
+//	 	winningConditions.add(c);
+	 	 EarnGoldCondition e = new EarnGoldCondition(player, 10);
+	 	 winningConditions.add(e);
+
+	 	Quest quest = new Quest(maze.getRandomCell(), winningConditions);
+	 	List<Item> items = new ArrayList<>();
+
+	 	sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
+	 	sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
+
+	 	altruist.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), true, true));
+	 	NPCs.add(altruist);
+
+	 	 Fool fool = new Fool(maze.getRandomCell());
+	 	 fool.setHint(new FakeHint("Pour gagner il faut aller à la case (5,7)"));
+	 	 NPCs.add(fool);
+
+		 sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
+		 List<String> reponses = new ArrayList<>();
+		 reponses.add("A16");
+		 reponses.add("B589");
+		 reponses.add("A10");
+		 reponses.add("A00");
+		 sphinx.addEnigma(new QCM("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2)));
+		 //sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
+		 NPCs.add(sphinx);
+
+
+	 	Trader trader = new Trader(maze.getRandomCell());
+	 	trader.addParchment(new Parchment(new QuestConditionHint(e)));
+	 	NPCs.add(trader);
+
+
+	 	Jewel jewel = new Jewel(JewelRarity.BLUE, maze.getCell(0, 0));
+	 	items.add(jewel);
+
+		 Jewel jewel2 = new Jewel(JewelRarity.GREEN, maze.getRandomCell());
+		 items.add(jewel2);
+
+	 	return new Level(player, maze, quest, NPCs, items);
+	 }
 
 	private void assignItemToCharacter(){
 		int h = 0;
