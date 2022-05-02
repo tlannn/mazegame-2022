@@ -18,19 +18,25 @@ public class Sphinx extends NonPlayerCharacter {
 
 	private Hint hint;
 	private List<Enigma> enigmas;
-	//private int indexCurrentEnigma;
-	private boolean hasGivenHint;
+	private boolean hintGiven;
 
 	public Sphinx(Cell startingCell) {
 		super("Sphinx", startingCell);
 
 		this.hint = null;
 		this.enigmas = new ArrayList<>();
-		//this.indexCurrentEnigma = 0;
-		this.hasGivenHint = false;
+		this.hintGiven = false;
 		this.movable = false;
 
-		//this.dialog = new EnigmaDialog();
+		this.dialog = new EnigmaDialog(this);
+	}
+
+	public boolean hasGivenHint() {
+		return this.hintGiven;
+	}
+
+	public void markHintGiven() {
+		this.hintGiven = true;
 	}
 
 	public void setHint(Hint hint) {
@@ -38,46 +44,15 @@ public class Sphinx extends NonPlayerCharacter {
 			this.hint = hint;
 	}
 
+	public Hint getHint() {
+		return this.hint;
+	}
+
 	public void addEnigma(Enigma enigma) {
 		this.enigmas.add(enigma);
 	}
 
-	public void talk(Player player) {
-		super.talk(player);
-
-		//this.dialog.start(player);
-
-		System.out.println("Bonjour, je m'appelle Léo le Sphinx.");
-		if (!this.hasGivenHint) {
-			int i = 0;
-			System.out.println("Il semblerait que je ne t'ai pas encore donné d'indice...");
-
-			if(i < this.enigmas.size() && ! this.enigmas.get(i).getIsResolved()){
-				System.out.println("Résout mon énigme, et mon indice sera tiens :");
-				System.out.println(this.enigmas.get(i).toString());
-				Scanner scan= new Scanner(System.in);
-				String text = scan.nextLine();
-				try{
-					this.enigmas.get(i).resolve(text);
-					if(this.enigmas.get(i).getIsResolved()){
-						System.out.println("Bien joué, c'est la bonne réponse ! En récompense, je te donne cet indice :");
-						System.out.println(this.hint.toString());
-						this.hasGivenHint = true;
-					}
-					else{
-						System.out.println("Navré aventurier, mais c'est la mauvaise réponse. Reviens me voir si tu veux retenter ta chance.");
-					}
-				}
-				catch(Exception AnswerNoContainsQCM) {
-					System.out.println("Cette réponse ne fait pas partie de celles proposées.");
-				}
-				// quand je ferme le scan ça fait un bug
-				// scan.close();
-			}
-		}
-		else {
-			System.out.println("Je vous ai déjà donné mon indice.");
-			System.out.println(this.hint);
-		}
+	public List<Enigma> getEnigmas() {
+		return this.enigmas;
 	}
 }

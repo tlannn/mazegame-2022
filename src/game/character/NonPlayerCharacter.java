@@ -1,6 +1,7 @@
 package game.character;
 
 import game.Level;
+import game.character.dialog.DefaultDialog;
 import game.character.dialog.Dialog;
 import game.maze.*;
 import game.system.input.InputSystem;
@@ -25,14 +26,12 @@ public abstract class NonPlayerCharacter extends Character {
 	 */
 	public NonPlayerCharacter(String name, Cell startingCell) {
 		super(name, startingCell);
+		this.dialog = new DefaultDialog();
 	}
 
 	public void talk(Player player){
 		this.notify(this,ObservableEvent.EVENT_MEET_CHARACTER);
-	}
-
-	public void talkTo(Player player) {
-		dialog.start(player);
+		this.dialog.start(player);
 	}
 
 	@Override

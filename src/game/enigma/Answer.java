@@ -13,9 +13,8 @@ public class Answer extends Enigma{
         return this.answer;
     }
 
-    public void resolve(String reponsesDonnee){
-      System.out.println("la réponse est elle bonne ?");
-        if (this.answer.equals(reponsesDonnee)){
+    public void resolve(String answer){
+        if (this.answer.equals(answer)){
             this.isResolved = true;
         }
     }

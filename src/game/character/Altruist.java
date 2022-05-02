@@ -14,7 +14,6 @@ public class Altruist extends NonPlayerCharacter {
 	public Altruist(Cell startingCell) {
 		super("Altruiste", startingCell);
 		this.hint = null;
-		this.dialog = new GiveHintDialog(this.hint);
 	}
 
 	public void setHint(Hint hint) {
@@ -22,10 +21,5 @@ public class Altruist extends NonPlayerCharacter {
 			this.hint = hint;
 			this.dialog = new GiveHintDialog(this.hint);
 		}
-	}
-
-	public void talk(Player player) {
-		super.talk(player);
-		this.dialog.start(player);
 	}
 }

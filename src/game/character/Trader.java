@@ -24,23 +24,7 @@ public class Trader extends NonPlayerCharacter {
 		super("Marchand", startingCell);
 		this.parchments = new ArrayList<>();
 		this.parchmentCost = 5;
-	}
-
-	public void talk(Player player) {
-		super.talk(player);
-		TraderDialog traderDialogue = new TraderDialog(this);
-		traderDialogue.start(player);
-
-
-		// System.out.println("En échange de la modique somme de " + this.parchmentCost + " galons d'or, souhaitez-vous acquérir ce parchemin ?");
-		// Scanner scan= new Scanner(System.in);
-		// String text= scan.nextLine();
-		// if(text.equals("o") ){
-		// 	player.getInventory().addItem(parchments.get(0));
-		// 	this.removeParchment(parchments.get(0));
-		// 	this.increaseParchmentCost();
-		// }
-		// scan.close();
+		this.dialog = new TraderDialog(this);
 	}
 
 	public void addParchment(Parchment parchment) {

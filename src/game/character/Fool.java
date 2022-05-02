@@ -1,5 +1,7 @@
 package game.character;
 
+import game.character.dialog.DefaultDialog;
+import game.character.dialog.GiveHintDialog;
 import game.hint.FakeHint;
 import game.maze.*;
 
@@ -15,13 +17,9 @@ public class Fool extends NonPlayerCharacter {
 	}
 
 	public void setHint(FakeHint fakeHint) {
-		if (this.fakeHint == null)
+		if (this.fakeHint == null) {
 			this.fakeHint = fakeHint;
-	}
-
-	public void talk(Player player) {
-		super.talk(player);
-		System.out.println("Vous êtes sur une quête ? Laissez-moi vous donner un indice :");
-		System.out.println(this.fakeHint);
+			this.dialog = new GiveHintDialog(this.fakeHint);
+		}
 	}
 }
