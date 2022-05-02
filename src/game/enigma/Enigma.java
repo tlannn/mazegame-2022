@@ -3,17 +3,17 @@ package game.enigma;
 public abstract class Enigma {
 
     protected String question;
-    protected boolean isResolved;
+    protected boolean resolved;
 
     public Enigma(String question){
         this.question = question;
-        this.isResolved = false;
+        this.resolved = false;
     }
 
-    public abstract void resolve(String reponseDonne) throws Exception;
+    public abstract void resolve(String answer) throws Exception;
 
-    public boolean getIsResolved(){
-        return this.isResolved;
+    public boolean isResolved(){
+        return this.resolved;
     }
 
     public String getQuestion(){

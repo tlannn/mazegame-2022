@@ -2,12 +2,12 @@
 
 import java.util.*;
 
-public class QCM extends Enigma {
+public class QCMEnigma extends Enigma {
 
     private List<String> reponses;
     private String solution;
 
-    public QCM(String question, List<String> reponses, String solution){
+    public QCMEnigma(String question, List<String> reponses, String solution){
         super(question);
         this.reponses = reponses;
         this.solution = solution;
@@ -19,16 +19,16 @@ public class QCM extends Enigma {
     }
 
     
-    public void resolve(String reponseDonne) throws AnswerNoContainsQCM{
-        int reponse = Integer.parseInt(reponseDonne);
+    public void resolve(String answer) throws AnswerNotInQCMException {
+        int reponse = Integer.parseInt(answer);
         if (reponse < this.reponses.size()){
             if (this.solution.equals(this.reponses.get(reponse))){
-                this.isResolved = true;
+                this.resolved = true;
             }
             //if (this.reponses)
         }
         else{
-            throw new AnswerNoContainsQCM("Cette réponse ne fait pas partit de celles proposées");
+            throw new AnswerNotInQCMException("Cette réponse ne fait pas partit de celles proposées");
         }
         /*
         if (this.reponses.containsKey(reponseDonne)){

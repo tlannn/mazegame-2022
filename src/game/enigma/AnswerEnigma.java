@@ -1,10 +1,10 @@
 package game.enigma;
 
-public class Answer extends Enigma{
+public class AnswerEnigma extends Enigma{
 
     private String answer;
 
-    public Answer(String question, String answer){
+    public AnswerEnigma(String question, String answer){
         super(question);
         this.answer = answer;
     }
@@ -15,7 +15,7 @@ public class Answer extends Enigma{
 
     public void resolve(String answer){
         if (this.answer.equals(answer)){
-            this.isResolved = true;
+            this.resolved = true;
         }
     }
 
