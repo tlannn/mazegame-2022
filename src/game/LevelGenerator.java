@@ -88,7 +88,7 @@ public class LevelGenerator {
 		this.createEnigmas();
 
 		// assigner des hints/parchment/enigme au characters
-		this.assignItemToCharacter();
+		this.assignHintsToNPCs();
 
 		//on crée la liste de tous les indices
 		this.allHints.addAll(this.hints);
@@ -104,6 +104,12 @@ public class LevelGenerator {
 		NPCs.addAll(this.sphinxs);
 		NPCs.addAll(this.traders);
 
+		Level level = new Level(player, this.maze, this.quest, NPCs, this.items, this.allHints);
+
+		for (int i = 0; i < this.hints.size(); ++i) {
+			System.out.println(i + " - " + this.hints.get(i).toString());
+		}
+
 		if (nbSphinx + nbAltruist + nbTrader > this.hints.size()){
 			System.out.println("-------------------------------------- ERROR : Il n'y a pas assez d'indice !!!!!!!!!!! --------------------------------------");
 		}
@@ -113,7 +119,7 @@ public class LevelGenerator {
 		System.out.println("Nb fakehints : " + this.fakeHints.size());
 		System.out.println("Nb items : " + this.items.size());
 
-		return new Level(player, this.maze, this.quest, NPCs, this.items, this.allHints);
+		return level;
 
 	}
 
@@ -171,43 +177,39 @@ public class LevelGenerator {
 	 	return new Level(player, maze, quest, NPCs, items);
 	}*/
 
-	private void assignItemToCharacter(){
-		int h = 0; // Hint index
-		int a = 0; // Altruist index
-		int f = 0; // Fool index
-		int fh = 0; // FakeHint index
-		int s = 0; // Sphinx index
-		int t = 0; // Trader index
-		int e = 0; // Enigma index
+	private void assignHintsToNPCs() {
+		int hintIndex = 0;
+		int fakeHintIndex = 0;
+		int traderIndex = 0;
+		int enigmaIndex = 0;
 
-		while ( a < this.altruists.size()){
-			this.altruists.get(a).setHint(this.hints.get(h));
-			a++;
-			h++;
+		for (Altruist altruist : this.altruists) {
+			altruist.setHint(this.hints.get(hintIndex));
+			hintIndex++;
 		}
-		while ( s < this.sphinxs.size() ){
-			this.sphinxs.get(s).setHint(this.hints.get(h));
-			if (this.enigmes.get(e) == null){
+
+		for (Sphinx sphinx : this.sphinxs) {
+			sphinx.setHint(this.hints.get(hintIndex));
+			if (this.enigmes.get(enigmaIndex) == null){
 				System.out.println("----------------------ERROR: on a pas créer assez d'enigme pour les mettres dans les sphinxs.-----------------------------");
 			}
-			this.sphinxs.get(s).addEnigma(this.enigmes.get(e));
-			e++;
-			s++;
-			h++;
-		}
-		while( f < this.fools.size()){
-			this.fools.get(f).setHint(this.fakeHints.get(fh));
-			fh++;
-			f++;
+			sphinx.addEnigma(this.enigmes.get(enigmaIndex));
+			enigmaIndex++;
+			hintIndex++;
 		}
 
-		for (Item item : this.items) {
-			if(item.getClass().getSimpleName().equals("Parchment")){
-				this.traders.get(t).addParchment((Parchment)item);
-				t=(t+1)%this.traders.size();
-			}
+		for (Fool fool : this.fools) {
+			fool.setHint(this.fakeHints.get(fakeHintIndex));
+			fakeHintIndex++;
 		}
 
+		while (hintIndex < this.hints.size()) {
+			Parchment parchment = new Parchment(this.hints.get(hintIndex));
+			this.traders.get(traderIndex).addParchment(parchment);
+
+			traderIndex = (traderIndex+1) % this.traders.size();
+			++hintIndex;
+		}
 	}
 
 
@@ -222,41 +224,40 @@ public class LevelGenerator {
 	//crée les hints et les fakeHints
 	//nbrItemTotaleParam doit est au moins égale à 4
 	private List<Hint> createHints (int nbrItemTotaleParam, int nbFools){
-	// private List<Hint> createHints (int nbrItemTotaleParam, int nbrItemHint, int nbFools){
 		this.hints = new ArrayList<>();
 		this.fakeHints = new ArrayList<>();
 
-		int nbrItemTotale = 0;
-		Hint winningCellCoordinatesHintA = new WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
-		this.hints.add(winningCellCoordinatesHintA);
-		// Hint winningCellCoordinatesHintO = new WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
-		// this.hints.add(winningCellCoordinatesHintO);
+		int hintsCreated = 0;
 
+		// Choose between giving winning cell orientation or coordinates
+		switch (Random.randInt(0, 1)) {
+			case 0: // Hint for winning cell orientation and distance from player
+				this.hints.add(new WinningCellOrientationHint(this.quest.getWinningCell(), this.player));
+				this.hints.add(new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player));
+				++hintsCreated;
+				break;
+			case 1: // Hint for winning cell coordinates
+				this.hints.add(new WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false));
+				this.hints.add(new WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true));
+				hintsCreated += 2;
+		}
 
+		for (QuestCondition condition : this.quest.getWinningConditions()) {
+			this.hints.add(new QuestConditionHint(condition));
+			++hintsCreated;
+		}
 
-
-		// Hint winningCellOrientationHint = new WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
-		// this.hints.add(winningCellOrientationHint);
-		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
-		this.hints.add(distanceFromWinningCellHint);
-		nbrItemTotale +=2;
 		// les items sont créés après les hints donc on peut pas les utiliser lors de la construction MODIF
 		// for (int i = 0; i < nbrItemHint; i++){
 		// 	int indice = Random.randInt(0, items.size()-1);
 		// 	Hint itemPositionHint = new ItemPositionHint(items.get(indice));
 		// 	this.hints.add(itemPositionHint);
 		// }
-		int j = 0;
-		while ( (nbrItemTotale < nbrItemTotaleParam) && (j < this.quest.getWinningConditions().size()) ){
-			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(j));
-			this.hints.add(questConditionHint);
-			j++;
-			nbrItemTotale +=1;
-		}
 		for (int i = 0; i < this.fools.size(); i++){
 			FakeHint fakeHint = new FakeWinningCellCoordinatesHint(this.maze.getLength(), this.maze.getHeight(), this.quest.getWinningCell());
 			this.fakeHints.add(fakeHint);
 		}
+
 		return this.hints;
 	}
 
@@ -327,18 +328,13 @@ public class LevelGenerator {
 	private List<Item> createItems(int nbJewels) {
 		List<Item> items = new ArrayList<>();
 
-		for (int i = 0; i < this.hints.size(); ++i) {
-			items.add(new Parchment(this.hints.get(i)));
-		}
-
-
+		// Create all jewels
 		for (int i = 0; i < nbJewels; ++i) {
 			Cell jewelPosition = this.maze.getRandomCell();
 			JewelRarity[] rarities = JewelRarity.values();
 			JewelRarity rarity = rarities[Random.randInt(0, rarities.length-1)];// (les bornes sont inclues)
 			items.add(new Jewel(rarity, jewelPosition));
 		}
-
 
 		return items;
 	}
