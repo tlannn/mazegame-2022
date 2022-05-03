@@ -39,7 +39,62 @@ public class LevelGenerator {
 	private List<Item> items;
 	private List<Enigma> enigmes;
 
+<<<<<<< HEAD
 	
+=======
+	public LevelGenerator() {
+		/*// 1. Créer le labyrinthe
+		this.maze = new KruskalMaze(2, 2);
+
+		// 2. Créer le joueur
+
+		//faire ça aléatoirement MODIF
+		Player player = new Player("Emma",this.maze.getCell(0,0));
+		this.player = player;
+		this.maze.getCell(0,0).addCharacter(player);
+
+
+
+		// Créer les characters
+		// on ne peut créer que 3 indice min et 4 indices max pour l'instant
+		// on a que 3 enigme de faites
+		// donc 3 <= nbSphinx + nbAltruist <= 4
+		// nbSphinx <= 3
+		int nbTrader = 5;
+		int nbSphinx = 3;
+		int nbFools = 5;
+		int nbAltruist = 1;
+
+
+		this.createCharacters(nbTrader, nbSphinx, nbFools, nbAltruist);
+
+		// 4. Créer la quête (a besoin des characters)
+		this.quest = createQuest();
+
+		// 6 Créer les indices (a besoin de la quete)
+		this.createHints( nbSphinx + nbAltruist , nbFools);
+
+
+		// 3. Créer les items (a besoin de hint)
+		this.items = this.createItems(5);
+
+		// créer les enigmes
+		this.createEnigmas();
+
+		// assigner des hints/parchment/enigme au characters
+		this.assignItemToCharacter();
+		// 7 On crée le jeu
+		Game game = new Game (this.maze, this.player);
+		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);
+		game.playTurn(player, this.maze);*/
+	}
+
+
+
+>>>>>>> c7791ff (merge)
 	public Level generateLevel(Player player){
 		//on remet toutes les listes à 0 pour si on a déjà créer un level au par avant
 		// this.altruists = new ArrayList<Altruist>();
@@ -59,7 +114,7 @@ public class LevelGenerator {
 		// donc 3 <= nbSphinx + nbAltruist + trader <= 4
 		// nbSphinx <= 3
 
-		//test on a que 3 indices mais on a l'indice de gold 
+		//test on a que 3 indices mais on a l'indice de gold
 		int nbTrader = 0;
 		int nbSphinx = 3;
 		int nbFools = 0;
@@ -98,7 +153,7 @@ public class LevelGenerator {
 		NPCs.addAll(this.traders);
 
 		if (nbSphinx + nbAltruist + nbTrader > this.hints.size()){
-			System.out.println("--------------------------------------ERROR : Il n'y a pas assez d'indice !!!!!!!!!!! --------------------------------------");
+			System.out.println("-------------------------------------- ERROR : Il n'y a pas assez d'indice !!!!!!!!!!! --------------------------------------");
 		}
 
 		System.out.println("Nb NPC : " + NPCs.size());
@@ -109,6 +164,10 @@ public class LevelGenerator {
 		return new Level(player, this.maze, this.quest, NPCs, this.items);
 
 	}
+<<<<<<< HEAD
+=======
+	/*
+>>>>>>> c7791ff (merge)
 
 	 /* public Level generateLevel(Player player){
 
@@ -126,8 +185,8 @@ public class LevelGenerator {
 
 //	 	MeetSpecificCharacterCondition c= new MeetSpecificCharacterCondition(sphinx);
 //	 	winningConditions.add(c);
-	 	 EarnGoldCondition e = new EarnGoldCondition(player, 10);
-	 	 winningConditions.add(e);
+	 	EarnGoldCondition e = new EarnGoldCondition(player, 10);
+	 	winningConditions.add(e);
 
 	 	Quest quest = new Quest(maze.getRandomCell(), winningConditions);
 	 	List<Item> items = new ArrayList<>();
@@ -161,11 +220,15 @@ public class LevelGenerator {
 	 	Jewel jewel = new Jewel(JewelRarity.BLUE, maze.getCell(0, 0));
 	 	items.add(jewel);
 
-		 Jewel jewel2 = new Jewel(JewelRarity.GREEN, maze.getRandomCell());
-		 items.add(jewel2);
+		Jewel jewel2 = new Jewel(JewelRarity.GREEN, maze.getRandomCell());
+		items.add(jewel2);
 
 	 	return new Level(player, maze, quest, NPCs, items);
+<<<<<<< HEAD
 	 }*/
+=======
+	}*/
+>>>>>>> c7791ff (merge)
 
 	private void assignItemToCharacter(){
 		int h = 0; // Hint index
@@ -225,12 +288,16 @@ public class LevelGenerator {
 		int nbrItemTotale = 0;
 		Hint winningCellCoordinatesHintA = new WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
 		this.hints.add(winningCellCoordinatesHintA);
-		Hint winningCellCoordinatesHintO = new WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
-		this.hints.add(winningCellCoordinatesHintO);
+		// Hint winningCellCoordinatesHintO = new WinningCellCoordinatesHint(this.quest.getWinningCell(), false, true);
+		// this.hints.add(winningCellCoordinatesHintO);
+
+
+
+		
 		// Hint winningCellOrientationHint = new WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
 		// this.hints.add(winningCellOrientationHint);
-		// Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
-		// this.hints.add(distanceFromWinningCellHint);
+		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
+		this.hints.add(distanceFromWinningCellHint);
 		nbrItemTotale +=2;
 		// les items sont créés après les hints donc on peut pas les utiliser lors de la construction MODIF
 		// for (int i = 0; i < nbrItemHint; i++){
