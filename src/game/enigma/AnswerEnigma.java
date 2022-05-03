@@ -14,6 +14,8 @@ public class AnswerEnigma extends Enigma{
     }
 
     public void resolve(String answer){
+        this.answer = this.answer.toLowerCase();
+        answer = answer.toLowerCase();
         if (this.answer.equals(answer)){
             this.resolved = true;
         }
