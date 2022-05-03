@@ -20,7 +20,6 @@ public class Player extends Character {
 
     private int gold;
     private Inventory inventory;
-    private List<Hint> hintsSeen;
     private Stack<BaseState> state;
 
     public Player(String name) {
@@ -74,7 +73,7 @@ public class Player extends Character {
     public void addGold(int amount){
         this.gold += amount;
         this.notify(this,ObservableEvent.EVENT_PICK_UP_GOLD);
-        
+
     }
 
     public void removeGold(int amount) throws NotEnoughGoldException {
@@ -84,10 +83,6 @@ public class Player extends Character {
         this.gold -= amount;
         this.notify(this,ObservableEvent.EVENT_SPEND_GOLD);
 
-    }
-
-    public void addHint(Hint h){
-        this.hintsSeen.add(h);
     }
 
     public void setState(BaseState state) {
@@ -121,9 +116,5 @@ public class Player extends Character {
             }
             return true;
         }
-    }
-
-    public List<Hint> getHints(){
-        return this.hintsSeen;
     }
 }

@@ -21,17 +21,19 @@ public class Level {
     private Player player;
     private List<NonPlayerCharacter> NPCs;
     private List<Item> items;
+    private List<Hint> hintsSeen;
 
     private Map<Hint, Boolean> hints;
 
     private List<Cell> cellsVisited;
-    
+
     public Level(Player player, Maze maze, Quest quest, List<NonPlayerCharacter> NPCs, List<Item> items) {
         this.player = player;
         this.maze = maze;
         this.quest = quest;
         this.NPCs = NPCs;
         this.items = items;
+        this.hintsSeen = new ArrayList<Hint>();
 
         for (QuestCondition condition : this.quest.getWinningConditions()){
             player.addObserver(condition);
@@ -39,11 +41,20 @@ public class Level {
                 npc.addObserver(condition);
             }
         }
-        
+
         this.player.setCurrentCell(this.maze.getCell(0, 0));
 
         this.cellsVisited = new ArrayList<>();
         this.cellsVisited.add(this.player.getCurrentCell());
+    }
+
+
+    public void addHint(Hint h){
+        this.hintsSeen.add(h);
+    }
+
+    public List<Hint> getHints(){
+        return this.hintsSeen;
     }
 
     public boolean move(Character character, Orientation orientation) {
