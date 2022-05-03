@@ -92,7 +92,7 @@ public class LevelGenerator {
 
 
 
-	/*public Level generateLevel(Player player){
+	public Level generateLevel(Player player){
 		//on remet toutes les listes à 0 pour si on a déjà créer un level au par avant
 		// this.altruists = new ArrayList<Altruist>();
 		// this.fools = new ArrayList <Fool>();
@@ -118,11 +118,11 @@ public class LevelGenerator {
 		int nbAltruist = 0;
 
 		//on créer le labyrinthe et le joueur
-		this.maze = new KruskalMaze(2, 2);
+		this.maze = new KruskalMaze(4, 4);
 		this.player = player;
 
 		//on créer les personnages
-		this.createCharacters(nbTrader, nbSphinx, nbFools, nbAltruist);
+		this.createCharacters();
 
 		//on crée la quete (a besoin des perso)
 		this.quest = createQuest();
@@ -151,11 +151,9 @@ public class LevelGenerator {
 
 		return new Level(player, this.maze, this.quest, NPCs, this.items);
 
-	}*/
+	}
 
-	 public Level generateLevel(Player player){
-
-
+	 /*public Level generateLevel(Player player){
 	 	Maze maze = new KruskalMaze(6, 4);
 	 	List<NonPlayerCharacter> NPCs = new ArrayList<>();
 
@@ -207,7 +205,7 @@ public class LevelGenerator {
 		 items.add(jewel2);
 
 	 	return new Level(player, maze, quest, NPCs, items);
-	 }
+	 }*/
 
 	private void assignItemToCharacter(){
 		int h = 0; // Hint index
@@ -342,9 +340,11 @@ public class LevelGenerator {
 		return this.hints;
 	}
 
+
 	private List<QuestCondition> createQuestConditions() {
-		int nbConditions = 1;
-		// int nbConditions = Random.randInt(0, 2); // The number of conditions to fulfill we want for the quest
+		// Create a number of quest conditions equal to half the number of NPCs
+		int nbConditions = this.getNonPlayerCharacters().size() / 2;
+		if (nbConditions == 0) nbConditions = 1;
 		List<QuestCondition> conditions = new ArrayList<>();
 
 		// Create a list of the possible conditions to add to the quest
@@ -353,20 +353,21 @@ public class LevelGenerator {
 		availableConditions.add(MeetSpecificCharacterCondition.class.getSimpleName());
 
 		for (int i = 0; i < nbConditions; ++i) {
-			int randomConditionIndex = 0;
-			// int randomConditionIndex = Random.randInt(0, availableConditions.size()-1);
+			int randomConditionIndex = Random.randInt(0, availableConditions.size()-1);
 			String className = availableConditions.get(randomConditionIndex);
 
 			switch (className) {
 				case "EarnGoldCondition":
+					availableConditions.remove(className); // Remove this condition so that there cannot be multiple EarnGoldCondition
 					int goldRequired = Random.randInt(5, 20);
 					conditions.add(new EarnGoldCondition(this.player, goldRequired));
 					break;
-					// A MODIF car this.characters n'existe plus
-				// case "MeetSpecificCharacterCondition":
-				// 	int randomCharacterIndex = Random.randInt(0, this.characters.size()-1);
-				// 	conditions.add(new MeetSpecificCharacterCondition(this.characters.get(randomCharacterIndex)));
-				// 	break;
+				case "MeetSpecificCharacterCondition":
+					List<NonPlayerCharacter> NPCs = this.getNonPlayerCharacters();
+
+					int randomCharacterIndex = Random.randInt(0, NPCs.size()-1);
+					conditions.add(new MeetSpecificCharacterCondition(NPCs.get(randomCharacterIndex)));
+					break;
 			}
 		}
 
@@ -439,20 +440,36 @@ public class LevelGenerator {
 		}
 	}*/
 
-		private List<Character> getCharacters(){
-			List<Character> characters = new ArrayList<Character>();
-			characters.addAll(this.traders);
-			characters.addAll(this.sphinxs);
-			characters.addAll(this.fools);
-			characters.addAll(this.altruists);
-			return characters;
+	private List<NonPlayerCharacter> getNonPlayerCharacters(){
+		List<NonPlayerCharacter> NPCs = new ArrayList<>();
+		NPCs.addAll(this.traders);
+		NPCs.addAll(this.sphinxs);
+		NPCs.addAll(this.fools);
+		NPCs.addAll(this.altruists);
+		return NPCs;
+	}
+
+	private void createCharacters() {
+		int nbDifferentNPCs = 4; // Trader, sphinx, fool, altruist = 4 different NPCs
+		int nbNPCPerType = (int)Math.sqrt(this.maze.getHeight() * this.maze.getLength()) / nbDifferentNPCs;
+
+		if (nbNPCPerType == 0) {
+			this.createCharacters(1, 1, 0, 0);
 		}
 
-	void createCharacters(int nbTrader, int nbSphinx, int nbFool, int nbAltruist) {
-	this.traders = new ArrayList<>();
-	this.sphinxs = new ArrayList<>();
-	this.fools = new ArrayList<>();
-	this.altruists = new ArrayList<>();
+		else {
+			this.createCharacters(nbNPCPerType, nbNPCPerType, nbNPCPerType, nbNPCPerType);
+		}
+	}
+
+	private void createCharacters(int nbTrader, int nbSphinx, int nbFool, int nbAltruist) {
+		this.traders = new ArrayList<>();
+		this.sphinxs = new ArrayList<>();
+		this.fools = new ArrayList<>();
+		this.altruists = new ArrayList<>();
+		List<Cell> cellsUsed = new ArrayList<>();
+
+		System.out.println("test");
 
 		// Create all traders
 		for (int i = 0; i < nbTrader; ++i) {
@@ -463,17 +480,28 @@ public class LevelGenerator {
 
 		// Create all sphinx
 		for (int i = 0; i < nbSphinx; ++i) {
-			this.sphinxs.add(new Sphinx(this.maze.getRandomCell()));
+			this.sphinxs.add(new Sphinx(this.randomCellNotAlreadyUsed(cellsUsed)));
 		}
 
 		// Create all fools
 		for (int i = 0; i < nbFool; ++i) {
-			this.fools.add(new Fool(this.maze.getRandomCell()));
+			this.fools.add(new Fool(this.randomCellNotAlreadyUsed(cellsUsed)));
 		}
 
 		// Create all altruists
 		for (int i = 0; i < nbAltruist; ++i) {
-			this.altruists.add(new Altruist(this.maze.getRandomCell()));
+			this.altruists.add(new Altruist(this.randomCellNotAlreadyUsed(cellsUsed)));
 		}
+	}
+
+	private Cell randomCellNotAlreadyUsed(List<Cell> cellsUsed) {
+		Cell cellChosen;
+
+		do {
+			cellChosen = this.maze.getRandomCell();
+		} while (cellsUsed.contains(cellChosen));
+
+		cellsUsed.add(cellChosen);
+		return cellChosen;
 	}
 }
