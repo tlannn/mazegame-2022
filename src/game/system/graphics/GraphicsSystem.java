@@ -36,6 +36,12 @@ public interface GraphicsSystem {
 	public <T> void displayList(List<T> list, boolean withLetterIndex);
 
 	/**
+	 * Display the hint already discover
+	 * @param player the player of the game
+	 */
+	public void displayHint(Level level);
+
+	/**
 	 * Display the game title
 	 * @param title the title of the game
 	 */

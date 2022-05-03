@@ -6,6 +6,9 @@ import game.system.SpeechPauseSystem;
 import game.system.graphics.GraphicsSystem;
 import game.hint.Hint;
 
+import static game.observer.ObservableEvent.EVENT_HINT_DISCOVERED;
+
+
 public class GiveHintDialog extends Dialog {
     private Hint hint;
 
@@ -19,5 +22,7 @@ public class GiveHintDialog extends Dialog {
         GraphicsSystem graphics = Game.getGraphicsSystem();
         graphics.displayText("Psst..." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " vous cherchez un indice ?" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " En voici un :" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
         graphics.displayText(hint.toString() + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
+        hint.notify(hint, EVENT_HINT_DISCOVERED);
+
     }
 }

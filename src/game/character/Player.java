@@ -30,7 +30,6 @@ public class Player extends Character {
         super(name, startingCell);
         this.gold = 0;
         this.inventory = new Inventory();
-        this.hintsSeen = new ArrayList<Hint>();
         this.state = new Stack<>();
         this.state.push(new StartTurnState());
     }

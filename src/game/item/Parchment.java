@@ -3,6 +3,8 @@ package game.item;
 import game.hint.*;
 import game.maze.Cell;
 import game.character.*;
+import static game.observer.ObservableEvent.EVENT_HINT_DISCOVERED;
+
 
 public class Parchment extends Item {
 
@@ -22,7 +24,8 @@ public class Parchment extends Item {
     public void use(Player player){
         System.out.println("Vous découvrez un indice :");
         System.out.println(this.hint);
-        player.addHint(this.hint);
+        hint.notify(hint, EVENT_HINT_DISCOVERED);
+
         // try{
         //     player.getInventory().removeItem(this);
         // }

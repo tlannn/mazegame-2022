@@ -7,6 +7,7 @@ import game.observer.ObservableEvent;
 import game.observer.Observer;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public abstract class Item implements Observable {
 

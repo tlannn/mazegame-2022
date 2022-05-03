@@ -39,62 +39,7 @@ public class LevelGenerator {
 	private List<Item> items;
 	private List<Enigma> enigmes;
 
-<<<<<<< HEAD
-	
-=======
-	public LevelGenerator() {
-		/*// 1. Créer le labyrinthe
-		this.maze = new KruskalMaze(2, 2);
 
-		// 2. Créer le joueur
-
-		//faire ça aléatoirement MODIF
-		Player player = new Player("Emma",this.maze.getCell(0,0));
-		this.player = player;
-		this.maze.getCell(0,0).addCharacter(player);
-
-
-
-		// Créer les characters
-		// on ne peut créer que 3 indice min et 4 indices max pour l'instant
-		// on a que 3 enigme de faites
-		// donc 3 <= nbSphinx + nbAltruist <= 4
-		// nbSphinx <= 3
-		int nbTrader = 5;
-		int nbSphinx = 3;
-		int nbFools = 5;
-		int nbAltruist = 1;
-
-
-		this.createCharacters(nbTrader, nbSphinx, nbFools, nbAltruist);
-
-		// 4. Créer la quête (a besoin des characters)
-		this.quest = createQuest();
-
-		// 6 Créer les indices (a besoin de la quete)
-		this.createHints( nbSphinx + nbAltruist , nbFools);
-
-
-		// 3. Créer les items (a besoin de hint)
-		this.items = this.createItems(5);
-
-		// créer les enigmes
-		this.createEnigmas();
-
-		// assigner des hints/parchment/enigme au characters
-		this.assignItemToCharacter();
-		// 7 On crée le jeu
-		Game game = new Game (this.maze, this.player);
-		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);*/
-	}
-
-
-
->>>>>>> c7791ff (merge)
 	public Level generateLevel(Player player){
 		//on remet toutes les listes à 0 pour si on a déjà créer un level au par avant
 		// this.altruists = new ArrayList<Altruist>();
@@ -164,13 +109,6 @@ public class LevelGenerator {
 		return new Level(player, this.maze, this.quest, NPCs, this.items);
 
 	}
-<<<<<<< HEAD
-=======
-	/*
->>>>>>> c7791ff (merge)
-
-	 /* public Level generateLevel(Player player){
-
 
 	 /*public Level generateLevel(Player player){
 	 	Maze maze = new KruskalMaze(6, 4);
@@ -224,11 +162,7 @@ public class LevelGenerator {
 		items.add(jewel2);
 
 	 	return new Level(player, maze, quest, NPCs, items);
-<<<<<<< HEAD
-	 }*/
-=======
 	}*/
->>>>>>> c7791ff (merge)
 
 	private void assignItemToCharacter(){
 		int h = 0; // Hint index
@@ -264,7 +198,7 @@ public class LevelGenerator {
 			if(item.getClass().getSimpleName().equals("Parchment")){
 				this.traders.get(t).addParchment((Parchment)item);
 				t=(t+1)%this.traders.size();
-			}	
+			}
 		}
 
 	}
@@ -284,7 +218,7 @@ public class LevelGenerator {
 	// private List<Hint> createHints (int nbrItemTotaleParam, int nbrItemHint, int nbFools){
 		this.hints = new ArrayList<>();
 		this.fakeHints = new ArrayList<>();
-		
+
 		int nbrItemTotale = 0;
 		Hint winningCellCoordinatesHintA = new WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
 		this.hints.add(winningCellCoordinatesHintA);
@@ -293,7 +227,7 @@ public class LevelGenerator {
 
 
 
-		
+
 		// Hint winningCellOrientationHint = new WinningCellOrientationHint(this.quest.getWinningCell(), this.player);
 		// this.hints.add(winningCellOrientationHint);
 		Hint distanceFromWinningCellHint = new DistanceFromWinningCellHint(this.quest.getWinningCell(), this.player);
@@ -360,7 +294,7 @@ public class LevelGenerator {
 		for (Item item : this.items) {
 			if(item.getClass().getSimpleName() == "Jewel"){
 				valeurtotale += ((Jewel)item).getRarity().getGoldValue();
-			}	
+			}
 		}
 
 		int goldminimal = 0;
@@ -381,7 +315,7 @@ public class LevelGenerator {
 			JewelRarity rarity = rarities[Random.randInt(0, rarities.length-1)];// (les bornes sont inclues)
 			items.add(new Jewel(rarity, jewelPosition));
 			valeurtotale += rarity.getGoldValue();
-		}	
+		}
 
 	}
 	private List<Item> createItems(int nbJewels) {

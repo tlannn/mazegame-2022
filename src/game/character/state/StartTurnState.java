@@ -8,6 +8,7 @@ import game.character.action.MoveAction;
 import game.system.input.InputSystem;
 import game.system.graphics.GraphicsSystem;
 import game.maze.Orientation;
+import game.character.action.LookDiscoveredHintAction;
 
 /**
  * Represents the state where the player is beginning his turn ; he's asked to choose an action to do
@@ -38,6 +39,11 @@ public class StartTurnState implements BaseState {
                 return new ChangeStateAction(new ChooseItemToPickUpState());
             case 'I':
                 return new ChangeStateAction(new LookingInventoryState());
+            case 'V':
+                return new LookDiscoveredHintAction();
+            //comme ca dans le execute on a acces au Player
+            // on peut supprimer le AskSeenHintState.
+                // return new ChangeStateAction(new AskSeenHintState());
             default:
                 return null;
         }

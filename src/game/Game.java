@@ -17,7 +17,7 @@ public class Game{
 
     public Game(Player player, GameGraphicsMode mode){
         this.player = player;
-        graphicsSystem = mode.getGraphicsSystem();
+        graphicsSystem = mode.getGraphicsSystem(); // ConsoleGraphicsSystem
         inputSystem = mode.getInputSystem();
 
         // Create the level

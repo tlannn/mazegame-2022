@@ -10,12 +10,19 @@ import game.maze.Maze;
 import game.maze.Orientation;
 import game.quest.Quest;
 import game.quest.QuestCondition;
+import game.observer.Observer;
+import game.observer.Observable;
+import game.observer.ObservableEvent;
+import static game.observer.ObservableEvent.EVENT_HINT_DISCOVERED;
+
+
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Level {
+public class Level implements Observer{
     private Quest quest;
     private Maze maze;
     private Player player;
@@ -27,7 +34,7 @@ public class Level {
 
     private List<Cell> cellsVisited;
 
-    public Level(Player player, Maze maze, Quest quest, List<NonPlayerCharacter> NPCs, List<Item> items) {
+    public Level(Player player, Maze maze, Quest quest, List<NonPlayerCharacter> NPCs, List<Item> items, List<Hint> hints) {
         this.player = player;
         this.maze = maze;
         this.quest = quest;
@@ -35,6 +42,7 @@ public class Level {
         this.items = items;
         this.hintsSeen = new ArrayList<Hint>();
 
+        // on initialise les observers
         for (QuestCondition condition : this.quest.getWinningConditions()){
             player.addObserver(condition);
             for (NonPlayerCharacter npc : this.NPCs) {
@@ -42,10 +50,26 @@ public class Level {
             }
         }
 
+        for (Hint hint : hints){
+            hint.addObserver(this);
+        }
+
         this.player.setCurrentCell(this.maze.getCell(0, 0));
 
         this.cellsVisited = new ArrayList<>();
         this.cellsVisited.add(this.player.getCurrentCell());
+    }
+
+    /**
+     * When we discovered a hint we add this hint to attribut of level "hintsSeen"
+     * @param observable the hint we want add
+     * @param event the event received (in this case is always EVENT_HINT_DISCOVERED)
+     */
+    public void onNotify(Observable observable, ObservableEvent event) {
+        if(event == EVENT_HINT_DISCOVERED) {
+            if (! (this.hintsSeen.contains(observable)) )
+            this.addHint((Hint)observable);
+        }
     }
 
 

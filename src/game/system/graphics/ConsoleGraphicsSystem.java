@@ -44,6 +44,14 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		}
 	}
 
+
+	public void displayHint(Level level){
+		displayText("Voici les indices que vous avez découvert, ils vous permetront de remplir la quête et gagner le jeu.");
+		displayList(level.getHints(), false);
+	}
+
+
+
 	@Override
 	public void displayGameTitle() {
 
@@ -79,23 +87,6 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 						this.displayText("- "+characters.get(j), true);
 				}
 		}
-
-		// if (player.getCurrentCell().getNonPlayerCharactersInCell().size() > 0) {
-		// 	this.displayText("Sur cette case se trouve " + player.getCurrentCell().getNonPlayerCharactersInCell().size() + " personnages");
-		// }
-		// else {
-		// 	this.displayText("Personne ne se trouve sur cette case");
-		// }
-		//
-		// if (player.getCurrentCell().getItemsInCell().size() > 0) {
-		// 	this.displayText("Sur cette case se trouve " + player.getCurrentCell().getItemsInCell().size() + " objets");
-		// }
-		// else {
-		// 	this.displayText("Il n'y a pas d'objets sur cette case");
-		// }
-		//
-		// this.displayText("\nDirections possibles : " + player.getCurrentCell().possibleOrientations().toString());
-		// this.displayText(""); // Print an empty line
 	}
 
 	@Override
