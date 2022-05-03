@@ -40,57 +40,6 @@ public class LevelGenerator {
 	private List<Item> items;
 	private List<Enigma> enigmes;
 
-	public LevelGenerator() {
-		/*// 1. Créer le labyrinthe
-		this.maze = new KruskalMaze(2, 2);
-
-		// 2. Créer le joueur
-
-		//faire ça aléatoirement MODIF
-		Player player = new Player("Emma",this.maze.getCell(0,0));
-		this.player = player;
-		this.maze.getCell(0,0).addCharacter(player);
-
-
-
-		// Créer les characters
-		// on ne peut créer que 3 indice min et 4 indices max pour l'instant
-		// on a que 3 enigme de faites
-		// donc 3 <= nbSphinx + nbAltruist <= 4
-		// nbSphinx <= 3
-		int nbTrader = 5;
-		int nbSphinx = 3;
-		int nbFools = 5;
-		int nbAltruist = 1;
-
-
-		this.createCharacters(nbTrader, nbSphinx, nbFools, nbAltruist);
-
-		// 4. Créer la quête (a besoin des characters)
-		this.quest = createQuest();
-
-		// 6 Créer les indices (a besoin de la quete)
-		this.createHints( nbSphinx + nbAltruist , nbFools);
-
-
-		// 3. Créer les items (a besoin de hint)
-		this.items = this.createItems(5);
-
-		// créer les enigmes
-		this.createEnigmas();
-
-		// assigner des hints/parchment/enigme au characters
-		this.assignItemToCharacter();
-		// 7 On crée le jeu
-		Game game = new Game (this.maze, this.player);
-		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);
-		game.playTurn(player, this.maze);*/
-	}
-
-
 
 	public Level generateLevel(Player player){
 		//on remet toutes les listes à 0 pour si on a déjà créer un level au par avant
@@ -207,15 +156,16 @@ public class LevelGenerator {
 	 	return new Level(player, maze, quest, NPCs, items);
 	 }*/
 
+
 	private void assignItemToCharacter(){
 		int h = 0; // Hint index
 		int a = 0; // Altruist index
 		int f = 0; // Fool index
 		int fh = 0; // FakeHint index
 		int s = 0; // Sphinx index
+		int t = 0; // Trader index
 		int e = 0; // Enigma index
-		int p = 0;
-		int t = 0;
+		int p = 0; // Parchment index
 
 		while ( a < this.altruists.size()){
 			this.altruists.get(a).setHint(this.hints.get(h));
@@ -237,61 +187,7 @@ public class LevelGenerator {
 			fh++;
 			f++;
 		}
-
-
-
 	}
-
-
-
-
-		// while(i< this.characters.size()){
-		// 	if ( ! (characters.get(i) instanceof Trader) ){
-		// 		// Sphinx characterTemp = (Sphinx) characters.get(i);
-		// 		// this.characters.remove(i);
-		// 		// this.characters.add(i, characterTemp);
-		// 		if(j < this.hints.size()){
-		// 			// characterTemp.setHint(hints.get(j));
-		//
-		// 			this.characters.get(i).setHint(hints.get(j));
-		// 			j++;
-		// 		}
-		// 		else{
-		// 			System.out.println("erreur il n'y a plus d'indice à donner");
-		// 		}
-		// 	}
-		//
-		// 	if ( characters.get(i) instanceof Trader ){
-		// 			while(p < this.items.size() && !(items.get(p) instanceof Parchment) ){
-		// 				p++;
-		// 			}
-		// 			if (p < this.items.size()){
-		// 				this.characters.get(i).addParchment(items.get(p));
-		// 				p++;
-		// 			}
-		// 			else{
-		// 				System.out.println("erreur il n'y a plus de parchemin à donner");
-		// 			}
-		// 	}
-		// 	if ( characters.get(i) instanceof Sphinx ){
-		// 		if(e < this.enigmes.size()){
-		// 			this.characters.get(i).addEnigma(this.enigmes.get(e));
-		// 			e++;
-		// 		}
-		// 		else{
-		// 			System.out.println("erreur il n'y a plus d'énigme à donner");
-		// 		}
-		// 	}
-		// 	//altruiste
-		// 	//fool
-		//
-		// 	// trader --> parchemin
-		//
-		// 	//sphinx indice et enigme
-		//
-		// 	i++;
-		// }
-
 
 
 	private Quest createQuest() {
@@ -300,6 +196,7 @@ public class LevelGenerator {
 
 		return new Quest(winningCell, conditions);
 	}
+
 
 	//crée les hints et les fakeHints
 	//nbrItemTotaleParam doit est au moins égale à 4
