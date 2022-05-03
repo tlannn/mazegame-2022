@@ -76,7 +76,8 @@ public class LevelGenerator {
 		this.quest = createQuest();
 
 		// Créer les indices (a besoin de la quete)
-		this.createHints( nbSphinx + nbAltruist + nbTrader, nbFools);
+		// this.createHints( nbSphinx + nbAltruist + nbTrader, nbFools);
+		this.createHints(this.sphinxs.size() + this.altruists.size() + this.traders.size(), nbFools);
 
 		//  Créer les items (a besoin de hint)
 		this.items = this.createItems(5);
@@ -99,6 +100,11 @@ public class LevelGenerator {
 		if (nbSphinx + nbAltruist + nbTrader > this.hints.size()){
 			System.out.println("--------------------------------------ERROR : Il n'y a pas assez d'indice !!!!!!!!!!! --------------------------------------");
 		}
+
+		System.out.println("Nb NPC : " + NPCs.size());
+		System.out.println("Nb hints : " + this.hints.size());
+		System.out.println("Nb fakehints : " + this.fakeHints.size());
+		System.out.println("Nb items : " + this.items.size());
 
 		return new Level(player, this.maze, this.quest, NPCs, this.items);
 
@@ -185,8 +191,7 @@ public class LevelGenerator {
 			s++;
 			h++;
 		}
-		while( f < this.fools.size()-1){
-			System.out.println("Assign fake hint");
+		while( f < this.fools.size()){
 			this.fools.get(f).setHint(this.fakeHints.get(fh));
 			fh++;
 			f++;
@@ -216,6 +221,7 @@ public class LevelGenerator {
 	// private List<Hint> createHints (int nbrItemTotaleParam, int nbrItemHint, int nbFools){
 		this.hints = new ArrayList<>();
 		this.fakeHints = new ArrayList<>();
+		
 		int nbrItemTotale = 0;
 		Hint winningCellCoordinatesHintA = new WinningCellCoordinatesHint(this.quest.getWinningCell(), true, false);
 		this.hints.add(winningCellCoordinatesHintA);
