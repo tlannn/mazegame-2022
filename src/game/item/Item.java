@@ -15,6 +15,7 @@ public abstract class Item implements Observable {
 
     public Item(Cell cell){
         this.currentCell = cell;
+        this.observers = new ArrayList<Observer>();
 
         // Inform the cell that it contains the item
         if (currentCell != null)
