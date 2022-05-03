@@ -25,6 +25,16 @@ public class Game{
         this.level = generator.generateLevel(this.player);
     }
 
+    public void initGame(){
+
+        this.graphicsSystem.displayGameTitle();
+        this.graphicsSystem.displayText("Quel est to n prénom aventurier ?");
+        String test = inputSystem.getMessage();
+        
+        
+
+    }
+
     public static InputSystem getInputSystem() {
         return inputSystem;
     }
@@ -63,7 +73,7 @@ public class Game{
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  \\ $$");
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  | $$");
         this.graphicsSystem.displayText("|  $$$$$/$$$$/| $$| $$  | $$");
-        this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/\n\n\n\n");
+        this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/\n\n\n\n");   
     }
 
     public void playTurn(Player player, Maze maze){

@@ -39,7 +39,7 @@ public interface GraphicsSystem {
 	 * Display the game title
 	 * @param title the title of the game
 	 */
-	public void displayGameTitle(String title);
+	public void displayGameTitle();
 
 	/**
 	 * Display the current status of the game

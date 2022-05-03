@@ -45,7 +45,16 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 	}
 
 	@Override
-	public void displayGameTitle(String title) {}
+	public void displayGameTitle() {
+
+		displayText("████████╗██╗  ██╗███████╗    ██████╗ ██╗      ██████╗ ███╗   ██╗██████╗     ███╗   ███╗ █████╗ ███████╗███████╗");
+		displayText("╚══██╔══╝██║  ██║██╔════╝    ██╔══██╗██║     ██╔═══██╗████╗  ██║██╔══██╗    ████╗ ████║██╔══██╗╚══███╔╝██╔════╝");
+		displayText("   ██║   ███████║█████╗      ██████╔╝██║     ██║   ██║██╔██╗ ██║██║  ██║    ██╔████╔██║███████║  ███╔╝ █████╗");
+		displayText("   ██║   ██╔══██║██╔══╝      ██╔══██╗██║     ██║   ██║██║╚██╗██║██║  ██║    ██║╚██╔╝██║██╔══██║ ███╔╝  ██╔══╝");  
+		displayText("   ██║   ██║  ██║███████╗    ██████╔╝███████╗╚██████╔╝██║ ╚████║██████╔╝    ██║ ╚═╝ ██║██║  ██║███████╗███████╗");
+		displayText("   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝");                                                                                             
+
+	}
 
 	@Override
 	public void displayGameStatus(Level level, Player player) {

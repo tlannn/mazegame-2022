@@ -152,6 +152,8 @@ public class LevelGenerator {
 	}*/
 
 	 public Level generateLevel(Player player){
+
+
 	 	Maze maze = new KruskalMaze(6, 4);
 	 	List<NonPlayerCharacter> NPCs = new ArrayList<>();
 
