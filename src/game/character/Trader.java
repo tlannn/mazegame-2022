@@ -16,15 +16,17 @@ import game.character.dialog.TraderDialog;
 public class Trader extends NonPlayerCharacter {
 	private int parchmentCost;
 	private List<Parchment> parchments;
+	private int priceMultiplicator;
 
 	/**
 	 * Class constructor
 	 */
-	public Trader(Cell startingCell) {
+	public Trader(Cell startingCell,int basePrice, int priceMultiplicator) {
 		super("Marchand", startingCell);
 		this.parchments = new ArrayList<>();
-		this.parchmentCost = 5;
+		this.parchmentCost = basePrice;
 		this.dialog = new TraderDialog(this);
+		this.priceMultiplicator = priceMultiplicator;
 	}
 
 	public void addParchment(Parchment parchment) {
@@ -35,10 +37,13 @@ public class Trader extends NonPlayerCharacter {
 		this.parchments.remove(parchment);
 	}
 
-	public void increaseParchmentCost() {
-		this.parchmentCost = this.parchmentCost * 2;
+	public void increaseParchmentCost(int priceMultiplicator) {
+		this.parchmentCost = this.parchmentCost * priceMultiplicator;
 	}
 
+	public int getpriceMultiplicator(){
+		return this.priceMultiplicator;
+	}
 	public int getParchmentCost(){
 		return this.parchmentCost;
 	}

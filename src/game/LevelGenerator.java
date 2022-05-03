@@ -191,7 +191,7 @@ public class LevelGenerator {
 		 NPCs.add(sphinx);
 
 
-	 	Trader trader = new Trader(maze.getRandomCell());
+	 	Trader trader = new Trader(maze.getRandomCell(),5,3);
 	 	trader.addParchment(new Parchment(new QuestConditionHint(e)));
 	 	NPCs.add(trader);
 
@@ -422,7 +422,9 @@ public class LevelGenerator {
 
 		// Create all traders
 		for (int i = 0; i < nbTrader; ++i) {
-			this.traders.add(new Trader(this.maze.getRandomCell()));
+			int basePrice = Random.randInt(0, 5);
+			int priceMultiplicator = Random.randInt(1, 3);
+			this.traders.add(new Trader(this.maze.getRandomCell(),basePrice,priceMultiplicator));
 		}
 
 		// Create all sphinx
