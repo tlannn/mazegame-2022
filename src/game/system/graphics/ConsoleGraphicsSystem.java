@@ -46,8 +46,13 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 
 
 	public void displayHint(Level level){
-		displayText("Voici les indices que vous avez découvert, ils vous permetront de remplir la quête et gagner le jeu.");
-		displayList(level.getHints(), false);
+		if(level.getHints().size()==0){
+			displayText("Désolée mais tu n'as pas encore trouvé d'indice.");
+		}
+		else{
+			displayText("Voici les indices que vous avez découvert, ils vous permetront de remplir la quête et gagner le jeu.");
+			displayList(level.getHints(), false);
+		}
 	}
 
 
@@ -173,6 +178,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		.append("P - Parler à un personnage\n")
 		.append("R - Ramasser un objet\n")
 		.append("I - Ouvrir l'inventaire\n")
+		.append("V - Voir les indices obtenus\n")
 		.append("\n"); // Print an empty line
 
 		this.displayText(help.toString(), true);
