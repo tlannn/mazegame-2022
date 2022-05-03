@@ -26,13 +26,13 @@ public class EnigmaDialog extends Dialog {
         if (!this.sphinx.hasGivenHint()) {
 
 
-        System.out.println("\n\n       .~~~.");
-        System.out.println("      /|6 6|\\");
-        System.out.println("     /O\\_^_/O\\");
-        System.out.println("     \\/`===`\\/");
-        System.out.println("     ,| |^| |.");
-        System.out.println("____(n(n)_(n)n)____");
-        System.out.println("%%%%%%%%%%%%%%%%%%%\n\n");
+        graphics.displayText("\n\n       .~~~.");
+        graphics.displayText("      /|6 6|\\");
+        graphics.displayText("     /O\\_^_/O\\");
+        graphics.displayText("     \\/`===`\\/");
+        graphics.displayText("     ,| |^| |.");
+        graphics.displayText("____(n(n)_(n)n)____");
+        graphics.displayText("%%%%%%%%%%%%%%%%%%%\n\n");
 
             graphics.displayText("Bonjour," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " je m'appelle Léo le Sphinx." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
             graphics.displayText("Il semblerait que je ne vous ai pas encore donné d'indice" + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);

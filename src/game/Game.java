@@ -56,20 +56,14 @@ public class Game{
         this.graphicsSystem.displayGameStatus(level, player);
 
         // this.graphicsSystem.displayText("Vous avez gagné !");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("               /$$          ");
-        this.graphicsSystem.displayText("              |__/          ");
-        this.graphicsSystem.displayText("/$$  /$$  /$$ /$$ /$$$$$$$  ");
+        this.graphicsSystem.displayText("\n\n               /$$");
+        this.graphicsSystem.displayText("              |__/");
+        this.graphicsSystem.displayText("/$$  /$$  /$$ /$$ /$$$$$$$");
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$__  $$");
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  \\ $$");
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  | $$");
         this.graphicsSystem.displayText("|  $$$$$/$$$$/| $$| $$  | $$");
-        this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("");
+        this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/\n\n\n\n");
     }
 
     public void playTurn(Player player, Maze maze){
