@@ -113,7 +113,7 @@ public class LevelGenerator {
 		System.out.println("Nb fakehints : " + this.fakeHints.size());
 		System.out.println("Nb items : " + this.items.size());
 
-		return new Level(player, this.maze, this.quest, NPCs, this.items);
+		return new Level(player, this.maze, this.quest, NPCs, this.items, this.allHints);
 
 	}
 
@@ -400,7 +400,7 @@ public class LevelGenerator {
 
 		// Create all traders
 		for (int i = 0; i < nbTrader; ++i) {
-			int basePrice = Random.randInt(0, 5);
+			int basePrice = Random.randInt(1, 5);
 			int priceMultiplicator = Random.randInt(1, 3);
 			this.traders.add(new Trader(this.maze.getRandomCell(),basePrice,priceMultiplicator));
 		}
