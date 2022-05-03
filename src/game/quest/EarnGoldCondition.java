@@ -24,6 +24,10 @@ public class EarnGoldCondition extends QuestCondition {
 			this.completed = ((Player)observable).getGold() >= this.goldRequired;
 	}
 
+	public int getGoldRequired(){
+		return this.goldRequired;
+	}
+	
 	public String toString(){
 		return "Tu dois récupérer " + this.goldRequired + " gold pour valider la quête.";
 	}

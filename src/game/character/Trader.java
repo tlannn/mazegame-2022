@@ -44,11 +44,20 @@ public class Trader extends NonPlayerCharacter {
 	public int getpriceMultiplicator(){
 		return this.priceMultiplicator;
 	}
+
 	public int getParchmentCost(){
 		return this.parchmentCost;
 	}
 
 	public List<Parchment> getParchments(){
 		return this.parchments;
+	}
+
+	public int getTotalGoldRequired(){
+		int totalGoldRequired = 0;
+		for(int i = 0; i<this.parchments.size();i++){
+			totalGoldRequired += this.parchmentCost*(Math.pow(priceMultiplicator, i));
+		}
+		return totalGoldRequired;
 	}
 }

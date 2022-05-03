@@ -17,6 +17,8 @@ import game.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
+
 import game.hint.Hint;
 
 
@@ -208,12 +210,14 @@ public class LevelGenerator {
 	 }
 
 	private void assignItemToCharacter(){
-		int h = 0;
-		int a = 0;
-		int f = 0;
-		int fh = 0;
-		int s = 0;
-		int e = 0;
+		int h = 0; // Hint index
+		int a = 0; // Altruist index
+		int f = 0; // Fool index
+		int fh = 0; // FakeHint index
+		int s = 0; // Sphinx index
+		int e = 0; // Enigma index
+		int p = 0;
+		int t = 0;
 
 		while ( a < this.altruists.size()){
 			this.altruists.get(a).setHint(this.hints.get(h));
@@ -235,6 +239,9 @@ public class LevelGenerator {
 			fh++;
 			f++;
 		}
+
+
+
 	}
 
 
@@ -372,12 +379,37 @@ public class LevelGenerator {
 		for (int i = 0; i < this.hints.size(); ++i) {
 			items.add(new Parchment(this.hints.get(i)));
 		}
+
+		int valeurtotale = 0 ;
+
 		for (int i = 0; i < nbJewels; ++i) {
 			Cell jewelPosition = this.maze.getRandomCell();
 			JewelRarity[] rarities = JewelRarity.values();
 			JewelRarity rarity = rarities[Random.randInt(0, rarities.length-1)];// (les bornes sont inclues)
 			items.add(new Jewel(rarity, jewelPosition));
+			valeurtotale += rarity.getGoldValue();
 		}
+
+		int goldminimal = 0;
+
+		for(QuestCondition condition : this.quest.getWinningConditions() ){
+			if (condition.getClass().getSimpleName() == "EarnGoldCondition"){
+				goldminimal = ((EarnGoldCondition)condition).getGoldRequired();
+			}
+		}
+
+		for(Trader trader : this.traders){
+			goldminimal += trader.getTotalGoldRequired();
+		}
+
+		while (valeurtotale < goldminimal){
+			Cell jewelPosition = this.maze.getRandomCell();
+			JewelRarity[] rarities = JewelRarity.values();
+			JewelRarity rarity = rarities[Random.randInt(0, rarities.length-1)];// (les bornes sont inclues)
+			items.add(new Jewel(rarity, jewelPosition));
+			valeurtotale += rarity.getGoldValue();
+		}	
+
 		return items;
 	}
 
