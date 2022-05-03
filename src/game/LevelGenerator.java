@@ -2,7 +2,8 @@
 // on ne rencontre jamais de personnages
 package game;
 
-import game.character.Character;
+import game.hint.fake.FakeHint;
+import game.hint.fake.FakeWinningCellCoordinatesHint;
 import game.item.*;
 import game.enigma.*;
 
@@ -15,9 +16,7 @@ import game.hint.*;
 import game.util.Random;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
 
 import game.hint.Hint;
 
@@ -187,6 +186,7 @@ public class LevelGenerator {
 			h++;
 		}
 		while( f < this.fools.size()-1){
+			System.out.println("Assign fake hint");
 			this.fools.get(f).setHint(this.fakeHints.get(fh));
 			fh++;
 			f++;
@@ -240,10 +240,8 @@ public class LevelGenerator {
 			j++;
 			nbrItemTotale +=1;
 		}
-		for (int i = 0; i < nbFools; i++){
-			int x = Random.randInt(0, maze.getLength());
-			int y = Random.randInt(0, maze.getHeight());
-			FakeHint fakeHint = new FakeHint("Pour gagner il faut aller à la case (" + x + "," + y + ")");
+		for (int i = 0; i < this.fools.size(); i++){
+			FakeHint fakeHint = new FakeWinningCellCoordinatesHint(this.maze.getLength(), this.maze.getHeight(), this.quest.getWinningCell());
 			this.fakeHints.add(fakeHint);
 		}
 		return this.hints;
@@ -386,8 +384,6 @@ public class LevelGenerator {
 		this.fools = new ArrayList<>();
 		this.altruists = new ArrayList<>();
 		List<Cell> cellsUsed = new ArrayList<>();
-
-		System.out.println("test");
 
 		// Create all traders
 		for (int i = 0; i < nbTrader; ++i) {
