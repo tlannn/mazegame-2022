@@ -40,7 +40,7 @@ public class LevelGenerator {
 	private List<Item> items;
 	private List<Enigma> enigmes;
 
-
+	
 	public Level generateLevel(Player player){
 		//on remet toutes les listes à 0 pour si on a déjà créer un level au par avant
 		// this.altruists = new ArrayList<Altruist>();
@@ -88,6 +88,9 @@ public class LevelGenerator {
 		// assigner des hints/parchment/enigme au characters
 		this.assignItemToCharacter();
 
+		this.checkGoldInGame();
+
+
 		List <NonPlayerCharacter> NPCs = new ArrayList <NonPlayerCharacter>();
 		NPCs.addAll(this.altruists);
 		NPCs.addAll(this.fools);
@@ -101,6 +104,9 @@ public class LevelGenerator {
 		return new Level(player, this.maze, this.quest, NPCs, this.items);
 
 	}
+
+	 /* public Level generateLevel(Player player){
+
 
 	 /*public Level generateLevel(Player player){
 	 	Maze maze = new KruskalMaze(6, 4);
@@ -156,7 +162,6 @@ public class LevelGenerator {
 	 	return new Level(player, maze, quest, NPCs, items);
 	 }*/
 
-
 	private void assignItemToCharacter(){
 		int h = 0; // Hint index
 		int a = 0; // Altruist index
@@ -165,7 +170,6 @@ public class LevelGenerator {
 		int s = 0; // Sphinx index
 		int t = 0; // Trader index
 		int e = 0; // Enigma index
-		int p = 0; // Parchment index
 
 		while ( a < this.altruists.size()){
 			this.altruists.get(a).setHint(this.hints.get(h));
@@ -187,6 +191,14 @@ public class LevelGenerator {
 			fh++;
 			f++;
 		}
+
+		for (Item item : this.items) {
+			if(item.getClass().getSimpleName() == "Parchment"){
+				this.traders.get(t).addParchment((Parchment)item);
+				t=(t+1)%this.traders.size();
+			}	
+		}
+
 	}
 
 
@@ -271,21 +283,13 @@ public class LevelGenerator {
 		return conditions;
 	}
 
-	private List<Item> createItems(int nbJewels) {
-		List<Item> items = new ArrayList<>();
-
-		for (int i = 0; i < this.hints.size(); ++i) {
-			items.add(new Parchment(this.hints.get(i)));
-		}
-
+	private void checkGoldInGame(){
 		int valeurtotale = 0 ;
 
-		for (int i = 0; i < nbJewels; ++i) {
-			Cell jewelPosition = this.maze.getRandomCell();
-			JewelRarity[] rarities = JewelRarity.values();
-			JewelRarity rarity = rarities[Random.randInt(0, rarities.length-1)];// (les bornes sont inclues)
-			items.add(new Jewel(rarity, jewelPosition));
-			valeurtotale += rarity.getGoldValue();
+		for (Item item : this.items) {
+			if(item.getClass().getSimpleName() == "Jewel"){
+				valeurtotale += ((Jewel)item).getRarity().getGoldValue();
+			}	
 		}
 
 		int goldminimal = 0;
@@ -307,6 +311,23 @@ public class LevelGenerator {
 			items.add(new Jewel(rarity, jewelPosition));
 			valeurtotale += rarity.getGoldValue();
 		}	
+
+	}
+	private List<Item> createItems(int nbJewels) {
+		List<Item> items = new ArrayList<>();
+
+		for (int i = 0; i < this.hints.size(); ++i) {
+			items.add(new Parchment(this.hints.get(i)));
+		}
+
+
+		for (int i = 0; i < nbJewels; ++i) {
+			Cell jewelPosition = this.maze.getRandomCell();
+			JewelRarity[] rarities = JewelRarity.values();
+			JewelRarity rarity = rarities[Random.randInt(0, rarities.length-1)];// (les bornes sont inclues)
+			items.add(new Jewel(rarity, jewelPosition));
+		}
+
 
 		return items;
 	}

@@ -28,6 +28,10 @@ public class Jewel extends Item {
         }
     }
 
+    public JewelRarity getRarity(){
+        return this.rarity;
+    }
+
     public String toString() {
         if(this.rarity.getGoldValue()==5){
             return "un joyau vert";
