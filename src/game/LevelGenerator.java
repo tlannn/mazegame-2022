@@ -35,6 +35,7 @@ public class LevelGenerator {
 	private List<Trader> traders;
 
 	private List<Hint> hints;
+	private List <Hint> allHints;
 	private List<FakeHint> fakeHints;
 	private List<Item> items;
 	private List<Enigma> enigmes;
@@ -48,6 +49,7 @@ public class LevelGenerator {
 		// this.traders = new ArrayList <Trader>();
 
 		this.hints = new ArrayList <Hint>();
+		this.allHints = new ArrayList <Hint>();
 		this.fakeHints = new ArrayList <FakeHint>();
 		this.items = new ArrayList <Item>();
 		this.enigmes = new ArrayList <Enigma>();
@@ -87,6 +89,11 @@ public class LevelGenerator {
 
 		// assigner des hints/parchment/enigme au characters
 		this.assignItemToCharacter();
+
+		//on crée la liste de tous les indices
+		this.allHints.addAll(this.hints);
+		this.allHints.addAll(this.fakeHints);
+
 
 		this.checkGoldInGame();
 
@@ -241,7 +248,6 @@ public class LevelGenerator {
 		// }
 		int j = 0;
 		while ( (nbrItemTotale < nbrItemTotaleParam) && (j < this.quest.getWinningConditions().size()) ){
-			System.out.println("je suis dans LevelGenerator et je créer un indice questConditionHint");
 			Hint questConditionHint = new QuestConditionHint(this.quest.getWinningConditions().get(j));
 			this.hints.add(questConditionHint);
 			j++;
