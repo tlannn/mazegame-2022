@@ -24,6 +24,12 @@ public class Parchment extends Item {
     public void use(Player player){
         System.out.println("Vous découvrez un indice :");
         System.out.println(this.hint);
+        try{
+            player.getInventory().removeItem(this);
+        }
+        catch(UnknownItemException e){
+            System.out.println("erreur tu ne peux pas enlever l'item "+this+" de ta liste.");
+        }
         hint.notify(hint, EVENT_HINT_DISCOVERED);
 
         // try{
