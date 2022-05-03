@@ -7,6 +7,8 @@ import game.enigma.Enigma;
 import game.system.SpeechPauseSystem;
 import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
+import static game.observer.ObservableEvent.EVENT_HINT_DISCOVERED;
+
 
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class EnigmaDialog extends Dialog {
                     if(enigmas.get(i).isResolved()){
                         graphics.displayText("Bien joué," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " c'est la bonne réponse !" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " En récompense," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " voici mon indice :" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                         graphics.displayText(this.sphinx.getHint().toString() + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
+                        this.sphinx.getHint().notify(this.sphinx.getHint(), EVENT_HINT_DISCOVERED);
                         this.sphinx.markHintGiven();
                     }
                     else{
