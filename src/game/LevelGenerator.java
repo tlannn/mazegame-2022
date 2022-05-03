@@ -171,7 +171,7 @@ public class LevelGenerator {
 	 	List<Item> items = new ArrayList<>();
 
 	 	sphinx.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), false, true));
-	 	sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
+	 	sphinx.addEnigma(new AnswerEnigma("Quelle est le nom de famille de Timo ?", "Léon"));
 
 	 	altruist.setHint(new WinningCellCoordinatesHint(quest.getWinningCell(), true, true));
 	 	NPCs.add(altruist);
@@ -186,7 +186,7 @@ public class LevelGenerator {
 		 reponses.add("B589");
 		 reponses.add("A10");
 		 reponses.add("A00");
-		 sphinx.addEnigma(new QCM("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2)));
+		 sphinx.addEnigma(new QCMEnigma("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2)));
 		 //sphinx.addEnigma(new Answer("Quelle est le nom de famille de Timo ?", "Léon"));
 		 NPCs.add(sphinx);
 
@@ -382,13 +382,13 @@ public class LevelGenerator {
 	private List<Enigma> createEnigmas(){
 		this.enigmes = new ArrayList <Enigma>();
 		List<String> reponses = new ArrayList<>();
-		Enigma enigme1 = new Answer("Quelle est le nom de famille de Timo ?", "Léon");
-		Enigma enigme2 = new Answer("Quelle est la couleur du cheval blanc d'Henry IV ?", "Blanc");
+		Enigma enigme1 = new AnswerEnigma("Quelle est le nom de famille de Timo ?", "Léon");
+		Enigma enigme2 = new AnswerEnigma("Quelle est la couleur du cheval blanc d'Henry IV ?", "Blanc");
 		reponses.add("A16");
 		reponses.add("B589");
 		reponses.add("A10");
 		reponses.add("A00");
-		Enigma enigme3 = new QCM("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2));
+		Enigma enigme3 = new QCMEnigma("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2));
 
 		this.enigmes.add(enigme1);
 		this.enigmes.add(enigme2);

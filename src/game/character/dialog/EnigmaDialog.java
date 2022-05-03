@@ -29,14 +29,14 @@ public class EnigmaDialog extends Dialog {
             List<Enigma> enigmas = this.sphinx.getEnigmas();
             int i = 0;
 
-            if (i < enigmas.size() && ! enigmas.get(i).getIsResolved()) {
+            if (i < enigmas.size() && ! enigmas.get(i).isResolved()) {
                 graphics.displayText("Résolvez mon énigme," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " et mon indice sera vôtre :" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                 graphics.displayText(enigmas.get(i).toString());
                 String answer = input.getMessage();
 
                 try{
                     enigmas.get(i).resolve(answer);
-                    if(enigmas.get(i).getIsResolved()){
+                    if(enigmas.get(i).isResolved()){
                         graphics.displayText("Bien joué," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " c'est la bonne réponse !" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " En récompense," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " voici mon indice :" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                         graphics.displayText(this.sphinx.getHint().toString() + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                         this.sphinx.markHintGiven();
