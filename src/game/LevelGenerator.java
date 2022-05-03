@@ -198,7 +198,7 @@ public class LevelGenerator {
 		}
 
 		for (Item item : this.items) {
-			if(item.getClass().getSimpleName() == "Parchment"){
+			if(item.getClass().getSimpleName().equals("Parchment")){
 				this.traders.get(t).addParchment((Parchment)item);
 				t=(t+1)%this.traders.size();
 			}	
