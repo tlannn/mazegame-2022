@@ -3,6 +3,7 @@ import java.util.*;
 
 import game.character.NonPlayerCharacter;
 import game.item.Item;
+import game.Game;
 import game.Level;
 import game.character.Inventory;
 import game.character.Player;
@@ -58,7 +59,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		List<Item> items = player.getCurrentCell().getItemsInCell();
 		List<NonPlayerCharacter> characters = player.getCurrentCell().getNonPlayerCharactersInCell();
 		if (items.isEmpty() && characters.isEmpty()){
-				this.displayText("Il n'y a rien sur cette case", true);
+				this.displayText("Il n'y a rien sur cette case\n", true);
 		}
 		else{
 				this.displayText("Sur cette case se trouve :", true);
@@ -92,6 +93,9 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 	public void displayLevel(Level level) {
 		// Symbol + represents a corner, symbols - and | stand as a wall
 		StringBuilder string = new StringBuilder();
+
+		System.out.println("\n\n\n\n\n\n\n\n\n--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------\n\n");
 
 		// Draw the northernmost walls
 		string.append("+---".repeat(level.getMaze().getLength())).append("+\n");
