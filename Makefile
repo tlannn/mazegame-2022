@@ -11,6 +11,8 @@ DOCS := docs
 TEST := test
 
 CP := json-simple-1.1.1.jar
+JUNIT := junit-1.8.2.jar
+JUNIT_FLAGS := --details=summary --disable-banner
 
 # Variables containing files
 SOURCES := $(shell find $(SRC) -name '*.java') # retrieve all .java files in src/
@@ -48,11 +50,16 @@ tests: $(CLASSES) $(TESTS:%.java=%.class)
 
 # Compile a single test file
 $(TESTS:%.java=%.class): $(TEST)/%.class: $(TEST)/%.java
-	$(JC) -sourcepath src -classpath test4poo.jar $<
+	$(JC) -sourcepath $(SRC) -classpath $(OUT):$(JUNIT) $<
 
 # Run the specified test with variable 'class' when calling rule (ex: make test class=game.TestGame)
+# -z is to check emptiness of the string
 test: $(CLASSES) $(TESTS:%.java=%.class)
-	$(JVM) -jar test4poo.jar -classpath classes:test $(class)
+	@if [ -z "$(class)" ]; then \
+		$(JVM) -jar $(JUNIT) -classpath $(OUT):$(TEST) --select-package game $(JUNIT_FLAGS); \
+	else \
+  		$(JVM) -jar $(JUNIT) -classpath $(OUT):$(TEST) --select-class $(class) $(JUNIT_FLAGS); \
+  	fi
 
 # Compile and run the program
 run: $(CLASSES)
