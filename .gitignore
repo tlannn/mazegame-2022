@@ -8,6 +8,8 @@ docs/
 # Package files
 *.jar
 !test4poo.jar
+!junit-1.8.2.jar
+!json-simple-1.1.1.jar
 
 # Others
 .DS_Store/
