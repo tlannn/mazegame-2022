@@ -3,7 +3,8 @@ package game.maze;
 import game.character.Altruist;
 import game.character.Character;
 import game.character.Fool;
-import game.hint.FakeHint;
+import game.hint.FixedHint;
+import game.hint.fake.FakeHint;
 import game.hint.Hint;
 import game.hint.ItemPositionHint;
 import game.item.Item;
@@ -47,117 +48,10 @@ public class TestCell {
 	public void testNoCharactersInCellWhenCreated() {
 		Cell cell = new Cell(3, 5);
 		assertEquals(0, cell.getCharactersInCell().size());
+		assertEquals(0, cell.getNonPlayerCharactersInCell().size());
 	}
 
-	/* Getters tests */
-
-	@Test
-	public void testGetX() {
-		Cell cell = new Cell(3, 5);
-		assertEquals(cell.getX(), 3);
-
-		cell = new Cell(8, 2);
-		assertEquals(cell.getX(), 8);
-	}
-
-	@Test
-	public void testGetY() {
-		Cell cell = new Cell(3, 5);
-		assertEquals(cell.getY(), 5);
-
-		cell = new Cell(8, 2);
-		assertEquals(cell.getY(), 2);
-	}
-
-	@Test
-	public void testHasNorthWall() {
-		Cell cell = new Cell(3, 5);
-		assertTrue(cell.hasNorthWall());
-
-		cell.setNorthWall(false);
-		assertFalse(cell.hasNorthWall());
-
-		cell.setNorthWall(true);
-		assertTrue(cell.hasNorthWall());
-	}
-
-	@Test
-	public void testHasSouthWall() {
-		Cell cell = new Cell(3, 5);
-		assertTrue(cell.hasSouthWall());
-
-		cell.setSouthWall(false);
-		assertFalse(cell.hasSouthWall());
-
-		cell.setSouthWall(true);
-		assertTrue(cell.hasSouthWall());
-	}
-
-	@Test
-	public void testHasEastWall() {
-		Cell cell = new Cell(3, 5);
-		assertTrue(cell.hasEastWall());
-
-		cell.setEastWall(false);
-		assertFalse(cell.hasEastWall());
-
-		cell.setEastWall(true);
-		assertTrue(cell.hasEastWall());
-	}
-
-	@Test
-	public void testHasWestWall() {
-		Cell cell = new Cell(3, 5);
-		assertTrue(cell.hasWestWall());
-
-		cell.setWestWall(false);
-		assertFalse(cell.hasWestWall());
-
-		cell.setWestWall(true);
-		assertTrue(cell.hasWestWall());
-	}
-
-	/* Setters tests */
-
-	@Test
-	public void testSetNorthWall() {
-		Cell cell = new Cell(3, 5);
-		cell.setNorthWall(false);
-		assertFalse(cell.hasNorthWall());
-
-		cell.setNorthWall(true);
-		assertTrue(cell.hasNorthWall());
-	}
-
-	@Test
-	public void testSetSouthWall() {
-		Cell cell = new Cell(3, 5);
-		cell.setSouthWall(false);
-		assertFalse(cell.hasSouthWall());
-
-		cell.setSouthWall(true);
-		assertTrue(cell.hasSouthWall());
-	}
-
-	@Test
-	public void testSetEastWall() {
-		Cell cell = new Cell(3, 5);
-		cell.setEastWall(false);
-		assertFalse(cell.hasEastWall());
-
-		cell.setEastWall(true);
-		assertTrue(cell.hasEastWall());
-	}
-
-	@Test
-	public void testSetWestWall() {
-		Cell cell = new Cell(3, 5);
-		cell.setWestWall(false);
-		assertFalse(cell.hasWestWall());
-
-		cell.setWestWall(true);
-		assertTrue(cell.hasWestWall());
-	}
+	/* Methods tests */
 
 	@Test
 	public void testPossibleOrientationsAreCorrects() {
@@ -179,8 +73,8 @@ public class TestCell {
 	@Test
 	public void testItemIsCorrectlyAdded() {
 		Cell cell = new Cell(3, 5);
-		Item greenJewel = new Jewel(JewelRarity.GREEN, cell);
-		Item blueJewel = new Jewel(JewelRarity.BLUE, cell);
+		Item greenJewel = new Jewel(JewelRarity.GREEN, null);
+		Item blueJewel = new Jewel(JewelRarity.BLUE, null);
 
 		cell.addItem(greenJewel);
 		assertTrue(cell.getItemsInCell().contains(greenJewel));
@@ -194,8 +88,8 @@ public class TestCell {
 	@Test
 	public void testItemIsCorrectlyRemoved() {
 		Cell cell = new Cell(3, 5);
-		Item greenJewel = new Jewel(JewelRarity.GREEN, cell);
-		Item blueJewel = new Jewel(JewelRarity.BLUE, cell);
+		Item greenJewel = new Jewel(JewelRarity.GREEN, null);
+		Item blueJewel = new Jewel(JewelRarity.BLUE, null);
 
 		try {
 			cell.addItem(greenJewel);
@@ -220,7 +114,7 @@ public class TestCell {
 	@Test(expected = game.maze.ItemNotInCellException.class)
 	public void testRemoveItemNotInCellThrowsException() throws ItemNotInCellException {
 		Cell cell = new Cell(3, 5);
-		Item jewel = new Jewel(JewelRarity.GREEN, cell);
+		Item jewel = new Jewel(JewelRarity.GREEN, null);
 
 		cell.removeItem(jewel);
 	}
@@ -228,14 +122,9 @@ public class TestCell {
 	@Test
 	public void testCharacterIsCorrectlyAdded() {
 		Cell cell = new Cell(3, 5);
-		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
-		FakeHint fakeHint = new FakeHint("Je suis le meilleur");
 
-		Altruist altruist = new Altruist(cell);
-		altruist.setHint(hint);
-
-		Fool fool = new Fool(cell);
-		fool.setFakeHint(fakeHint);
+		Altruist altruist = new Altruist(null);
+		Fool fool = new Fool(null);
 
 		assertFalse(cell.getCharactersInCell().contains(altruist));
 		assertFalse(cell.getCharactersInCell().contains(fool));
@@ -252,13 +141,9 @@ public class TestCell {
 	@Test
 	public void testCharacterIsCorrectlyRemoved() {
 		Cell cell = new Cell(3, 5);
-		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
-		FakeHint fakeHint = new FakeHint("Je suis le meilleur");
 
-		Altruist altruist = new Altruist(cell);
-		altruist.setHint(hint);
-		Fool fool = new Fool(cell);
-		fool.setFakeHint(fakeHint);
+		Altruist altruist = new Altruist(null);
+		Fool fool = new Fool(null);
 
 		try {
 			cell.addCharacter(altruist);
@@ -283,9 +168,7 @@ public class TestCell {
 	@Test(expected = game.maze.CharacterNotInCellException.class)
 	public void testRemoveCharacterNotInCellThrowsException() throws CharacterNotInCellException {
 		Cell cell = new Cell(3, 5);
-		Hint hint = new ItemPositionHint(new Jewel(JewelRarity.GREEN, cell));
-		Altruist altruist = new Altruist(cell);
-		altruist.setHint(hint);
+		Altruist altruist = new Altruist(null);
 
 		cell.removeCharacter(altruist);
 	}
@@ -298,10 +181,5 @@ public class TestCell {
 
 		cell2 = new Cell(3,5);
 		assertEquals(cell, cell2);
-
 	}
-
-	public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestCell.class);
-    }
 }
