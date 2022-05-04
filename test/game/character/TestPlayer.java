@@ -92,8 +92,4 @@ public class TestPlayer{
         player.getInventory().removeItem(parchment);
         assertEquals(0, player.getInventory().getItems().size());
     }
-
-    public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestPlayer.class);
-    }
 }

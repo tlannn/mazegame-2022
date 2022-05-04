@@ -27,8 +27,4 @@ public class TestKruskalMaze {
             assertTrue(maze.getCell(i, maze.getLength() - 1).hasSouthWall());
         }
     }
-
-    public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestKruskalMaze.class);
-    }
 }

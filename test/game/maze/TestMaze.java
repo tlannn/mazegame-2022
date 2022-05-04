@@ -123,8 +123,4 @@ public class TestMaze {
     public void testGetNbCell() {
         assertEquals(9, maze.getNbCell());
     }
-
-    public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestMaze.class);
-    }
 }

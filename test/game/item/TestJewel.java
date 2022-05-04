@@ -59,8 +59,4 @@ public class TestJewel{
       assertEquals(1, armin.getInventory().getItems().size());
       assertEquals(purpleJewel, armin.getInventory().getItems().get(0));
     }
-
-    public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestJewel.class);
-    }
 }

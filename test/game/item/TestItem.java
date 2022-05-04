@@ -16,8 +16,4 @@ public class TestItem{
         greenJewel.setCurrentCell(cell2);
         assertEquals(greenJewel.getCurrentCell(), cell2);
     }
-
-    public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestItem.class);
-    }
 }

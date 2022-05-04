@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class TestGame {
     
-    @Test
+    /*@Test
     public void testMoveOrientation() throws Exception{
         Maze maze = new DepthFirstSearchMaze(4, 5);
         Cell startcell = maze.getCell(2, 3);
@@ -21,10 +21,5 @@ public class TestGame {
         game.move(Orientation.NORTH, player);
         assertFalse(player.getCurrentCell() == startcell);
         assertEquals(player.getCurrentCell(), objectifCell);
-    }
-
-    public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestGame.class);
-    }
-
+    }*/
 }

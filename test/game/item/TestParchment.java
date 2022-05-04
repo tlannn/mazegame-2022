@@ -7,24 +7,7 @@ import game.character.*;
 import game.hint.*;
 import game.maze.*;
 
-public class TestParchment{
-    @Test
-    public void testAddCorrectHintToPlayerWhenUsingParchment(){
-        Cell cellParchment = new Cell(1,2);
-        Cell winningCell = new Cell (20,17);
-        Hint hint = new WinningCellCoordinatesHint(winningCell, true, false);
-        Parchment parchment = new Parchment(hint, cellParchment);
-        Player gaby = new Player("gaby", cellParchment);
-
-        gaby.getInventory().addItem(parchment);
-        assertEquals(parchment, gaby.getInventory().getItems().get(0)); // On regarde l'adresse comme ça on est vraiment certain que c'est le même objet
-        assertEquals(0, gaby.getHints().size());
-
-        parchment.use(gaby);
-        assertEquals(1, gaby.getHints().size());
-        assertEquals(hint, gaby.getHints().get(0));
-      }
-
+public class TestParchment {
     @Test
     public void testUseParchmentRemovesFromPlayerInventory(){
       Cell cellParchment = new Cell(3,2);
@@ -58,9 +41,5 @@ public class TestParchment{
       parchment2.use(gaby); // Il ne peut pas l'utiliser comme il n'est pas dans l'inventaire
       assertEquals(1, gaby.getInventory().getItems().size());
       assertEquals(parchment1, gaby.getInventory().getItems().get(0));
-    }
-
-    public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(TestParchment.class);
     }
 }
