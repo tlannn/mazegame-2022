@@ -17,16 +17,16 @@ import game.system.input.InputSystem;
 public class Sphinx extends NonPlayerCharacter {
 
 	private Hint hint;
-	private List<Enigma> enigmas;
 	private boolean hintGiven;
+	private EnigmaManager enigmaManager;
 
-	public Sphinx(Cell startingCell) {
+	public Sphinx(Cell startingCell, EnigmaManager manager) {
 		super("Sphinx", startingCell);
 
 		this.hint = null;
-		this.enigmas = new ArrayList<>();
 		this.hintGiven = false;
 		this.movable = false;
+		this.enigmaManager = manager;
 
 		this.dialog = new EnigmaDialog(this);
 	}
@@ -48,11 +48,7 @@ public class Sphinx extends NonPlayerCharacter {
 		return this.hint;
 	}
 
-	public void addEnigma(Enigma enigma) {
-		this.enigmas.add(enigma);
-	}
-
-	public List<Enigma> getEnigmas() {
-		return this.enigmas;
+	public Enigma getEnigma() {
+		return this.enigmaManager.getEnigma();
 	}
 }

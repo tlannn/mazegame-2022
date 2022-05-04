@@ -41,8 +41,8 @@ public class LevelGenerator {
 	private List <Hint> allHints;
 	private List<FakeHint> fakeHints;
 	private List<Item> items;
-	private List<Enigma> enigmes;
-
+//	private List<Enigma> enigmes;
+	private EnigmaManager enigmaManager;
 
 	public Level generateLevel(Player player){
 		//on remet toutes les listes à 0 pour si on a déjà créer un level au par avant
@@ -55,7 +55,7 @@ public class LevelGenerator {
 		this.allHints = new ArrayList <Hint>();
 		this.fakeHints = new ArrayList <FakeHint>();
 		this.items = new ArrayList <Item>();
-		this.enigmes = new ArrayList <Enigma>();
+		this.enigmaManager = new EnigmaManager();
 
 
 		//on décide du nombre de personnages.
@@ -74,6 +74,9 @@ public class LevelGenerator {
 		this.maze = new KruskalMaze(4, 4);
 		this.player = player;
 
+		// créer les enigmes
+		this.createEnigmas();
+
 		//on créer les personnages
 		this.createCharacters();
 
@@ -86,9 +89,6 @@ public class LevelGenerator {
 
 		//  Créer les items (a besoin de hint)
 		this.items = this.createItems(5);
-
-		// créer les enigmes
-		this.createEnigmas();
 
 		// assigner des hints/parchment/enigme au characters
 		this.assignHintsToNPCs();
@@ -193,11 +193,11 @@ public class LevelGenerator {
 
 		for (Sphinx sphinx : this.sphinxs) {
 			sphinx.setHint(this.hints.get(hintIndex));
-			if (this.enigmes.get(enigmaIndex) == null){
+			/*if (this.enigmes.get(enigmaIndex) == null){
 				System.out.println("----------------------ERROR: on a pas créer assez d'enigme pour les mettres dans les sphinxs.-----------------------------");
 			}
 			sphinx.addEnigma(this.enigmes.get(enigmaIndex));
-			enigmaIndex++;
+			enigmaIndex++;*/
 			hintIndex++;
 		}
 
@@ -345,7 +345,7 @@ public class LevelGenerator {
 	private void createEnigmas() {
 		try {
 			EnigmaParser parser = new EnigmaParser();
-			this.enigmes = parser.parse("data/enigmas.json");
+			this.enigmaManager = new EnigmaManager(parser.parse("data/enigmas.json"));
 		}
 
 		catch (IOException | ParseException e) {
@@ -398,7 +398,7 @@ public class LevelGenerator {
 
 		// Create all sphinx
 		for (int i = 0; i < nbSphinx; ++i) {
-			this.sphinxs.add(new Sphinx(this.randomCellNotAlreadyUsed(cellsUsed)));
+			this.sphinxs.add(new Sphinx(this.randomCellNotAlreadyUsed(cellsUsed), this.enigmaManager));
 		}
 
 		// Create all fools
