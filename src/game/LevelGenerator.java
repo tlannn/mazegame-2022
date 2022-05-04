@@ -392,7 +392,7 @@ public class LevelGenerator {
 		// Create all traders
 		for (int i = 0; i < nbTrader; ++i) {
 			int basePrice = Random.randInt(1, 5);
-			int priceMultiplicator = Random.randInt(1, 3);
+			int priceMultiplicator = Random.randInt(2, 3);
 			this.traders.add(new Trader(this.maze.getRandomCell(),basePrice,priceMultiplicator));
 		}
 
