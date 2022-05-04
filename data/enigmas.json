@@ -1,0 +1,25 @@
+{
+	"enigmas": {
+		"qcm": [
+			{
+				"question": "Quelle est la salle de travail du M5 ?",
+				"answers": [
+					{ "value": "A16", "isAnswer": "false" },
+					{ "value": "B589", "isAnswer": "false" },
+					{ "value": "A10", "isAnswer": "true" },
+					{ "value": "A00", "isAnswer": "false" }
+				]
+			}
+		],
+		"answer": [
+			{
+				"question": "Quel est le nom de famille de Timo ?",
+				"answer": "Léon"
+			},
+			{
+				"question": "Quelle était la couleur du cheval blanc d'Henry IV ?",
+				"answer": "Blanc"
+			}
+		]
+	}
+}

@@ -13,12 +13,15 @@ import game.quest.*;
 import game.maze.*;
 import game.character.*;
 import game.hint.*;
+import game.util.parser.EnigmaParser;
 import game.util.Random;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import game.hint.Hint;
+import org.json.simple.parser.ParseException;
 
 
 // quand on ajoute le player il ne faut pas oublier que la case sur laquelle on l'ajoute le player doit avoir player dans ses characters
@@ -339,23 +342,15 @@ public class LevelGenerator {
 		return items;
 	}
 
-	private List<Enigma> createEnigmas(){
-		this.enigmes = new ArrayList <Enigma>();
-		List<String> reponses = new ArrayList<>();
-		Enigma enigme1 = new AnswerEnigma("Quelle est le nom de famille de Timo ?", "Léon");
-		Enigma enigme2 = new AnswerEnigma("Quelle est la couleur du cheval blanc d'Henry IV ?", "Blanc");
-		reponses.add("A16");
-		reponses.add("B589");
-		reponses.add("A10");
-		reponses.add("A00");
-		Enigma enigme3 = new QCMEnigma("Quelle est la salle de travail du M5 ? ", reponses, reponses.get(2));
+	private void createEnigmas() {
+		try {
+			EnigmaParser parser = new EnigmaParser();
+			this.enigmes = parser.parse("data/enigmas.json");
+		}
 
-		this.enigmes.add(enigme1);
-		this.enigmes.add(enigme2);
-		this.enigmes.add(enigme3);
-
-
-		return this.enigmes;
+		catch (IOException | ParseException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/*

@@ -10,6 +10,8 @@ OUT := classes
 DOCS := docs
 TEST := test
 
+CP := json-simple-1.1.1.jar
+
 # Variables containing files
 SOURCES := $(shell find $(SRC) -name '*.java') # retrieve all .java files in src/
 TESTS := $(shell find $(TEST) -name '*.java') # same in test/
@@ -30,11 +32,11 @@ all: $(CLASSES)
 # Compile all classes ; each must match the $(OUT)/%.class pattern ; $(SRC)/%.java is the prerequisite
 # See 'static pattern rules'
 $(CLASSES): $(OUT)/%.class: $(SRC)/%.java
-	$(JC) -sourcepath $(SRC) -d $(OUT) $<
+	$(JC) -sourcepath $(SRC) -d $(OUT) -classpath $(CP) $<
 
 # Create .jar for the program
 jar: $(CLASSES)
-	$(JAR) cvfe $(JARFILE) $(MAIN) -C $(OUT) game
+	$(JAR) cvfe $(JARFILE) $(MAIN) -C $(OUT):$(CP) game
 
 # Generate documentation
 docs:
@@ -54,7 +56,7 @@ test: $(CLASSES) $(TESTS:%.java=%.class)
 
 # Compile and run the program
 run: $(CLASSES)
-	$(JVM) -classpath $(OUT) $(MAIN)
+	$(JVM) -classpath $(OUT):$(CP) $(MAIN)
 
 # Start the program from jar archive
 play: jar
