@@ -55,6 +55,7 @@ public class Level implements Observer{
         }
 
         this.player.setCurrentCell(this.maze.getCell(0, 0));
+        this.maze.getCell(0, 0).addCharacter(this.player);
 
         this.cellsVisited = new ArrayList<>();
         this.cellsVisited.add(this.player.getCurrentCell());
@@ -67,14 +68,10 @@ public class Level implements Observer{
      */
     public void onNotify(Observable observable, ObservableEvent event) {
         if(event == EVENT_HINT_DISCOVERED) {
-            if (! (this.hintsSeen.contains(observable)) )
-            this.addHint((Hint)observable);
+            Hint hint = (Hint) observable;
+            if (!this.hintsSeen.contains(hint))
+                this.hintsSeen.add(hint);
         }
-    }
-
-
-    public void addHint(Hint h){
-        this.hintsSeen.add(h);
     }
 
     public List<Hint> getHints(){
