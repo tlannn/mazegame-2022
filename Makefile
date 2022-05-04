@@ -8,10 +8,10 @@ JAR := jar
 SRC := src
 OUT := classes
 DOCS := docs
-TEST := test
+TEST := tests
 
-CP := json-simple-1.1.1.jar
-JUNIT := junit-1.8.2.jar
+CP := jar/json-simple-1.1.1.jar
+JUNIT := jar/junit-1.8.2.jar
 JUNIT_FLAGS := --details=summary --disable-banner
 
 # Variables containing files
@@ -21,7 +21,7 @@ CLASSES := $(SOURCES:$(SRC)/%.java=$(OUT)/%.class) # transform all source files 
 
 # Other variables
 MAIN := game.Main # Starting class of program
-JARFILE := mazegame.jar # Name of the jar archive
+JARFILE := jeu.jar # Name of the jar archive
 
 ##########
 
@@ -31,18 +31,22 @@ JARFILE := mazegame.jar # Name of the jar archive
 # Compile program
 all: $(CLASSES)
 
+cls : $(CLASSES) tests
+
 # Compile all classes ; each must match the $(OUT)/%.class pattern ; $(SRC)/%.java is the prerequisite
 # See 'static pattern rules'
 $(CLASSES): $(OUT)/%.class: $(SRC)/%.java
 	$(JC) -sourcepath $(SRC) -d $(OUT) -classpath $(CP) $<
 
 # Create .jar for the program
-jar: $(CLASSES)
-	$(JAR) cvfe $(JARFILE) $(MAIN) -C $(OUT):$(CP) game
+$(JARFILE): $(CLASSES)
+	@mkdir jar -p
+	cd classes && $(JAR) xvf ../jar/json-simple-1.1.1.jar
+	$(JAR) cvfe jar/$(JARFILE) $(MAIN) -C classes .
 
 # Generate documentation
-docs:
-	$(JDOC) -sourcepath $(SRC) -d $(DOCS) -subpackages game
+doc:
+	$(JDOC) -sourcepath $(SRC) -d $(DOCS) -classpath $(CP) -subpackages game
 
 # Compile all test files
 tests: $(CLASSES) $(TESTS:%.java=%.class)
@@ -66,12 +70,11 @@ run: $(CLASSES)
 	$(JVM) -classpath $(OUT):$(CP) $(MAIN)
 
 # Start the program from jar archive
-play: jar
-	$(JVM) -jar $(JARFILE)
+play: $(JARFILE)
+	$(JVM) -jar jar/$(JARFILE)
 
 # Remove all .class files and generated docs
 clean:
 	rm -rf $(DOCS)
 	rm -rf $(OUT)
-	rm -rf $(JARFILE)
 	find . -name *.class -type f -delete
