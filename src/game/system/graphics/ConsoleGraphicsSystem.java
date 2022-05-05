@@ -99,8 +99,8 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		// Symbol + represents a corner, symbols - and | stand as a wall
 		StringBuilder string = new StringBuilder();
 
-		System.out.println("\n\n\n\n\n\n\n\n\n--------------------------------------------------------");
-		System.out.println("--------------------------------------------------------\n\n");
+		System.out.println("\n--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------\n");
 
 		// Draw the northernmost walls
 		string.append("+---".repeat(level.getMaze().getLength())).append("+\n");

@@ -7,8 +7,7 @@ public class Main {
 		Player player = new Player("Emma");
 
 		Game game = new Game(player, GameGraphicsMode.CONSOLE);
-		game.initGame();
-
+		game.init();
 		game.play(); // Start the game
 	}
 }
