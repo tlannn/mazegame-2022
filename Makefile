@@ -54,15 +54,15 @@ tests: $(CLASSES) $(TESTS:%.java=%.class)
 
 # Compile a single test file
 $(TESTS:%.java=%.class): $(TEST)/%.class: $(TEST)/%.java
-	$(JC) -sourcepath $(SRC) -classpath $(OUT):$(JUNIT) $<
+	$(JC) -sourcepath $(SRC) -classpath $(OUT):$(CP):$(JUNIT) $<
 
 # Run the specified test with variable 'class' when calling rule (ex: make test class=game.TestGame)
 # -z is to check emptiness of the string
 test: $(CLASSES) $(TESTS:%.java=%.class)
 	@if [ -z "$(class)" ]; then \
-		$(JVM) -jar $(JUNIT) -classpath $(OUT):$(TEST) --select-package game $(JUNIT_FLAGS); \
+		$(JVM) -jar $(JUNIT) -classpath $(OUT):$(CP):$(TEST) --select-package game $(JUNIT_FLAGS); \
 	else \
-  		$(JVM) -jar $(JUNIT) -classpath $(OUT):$(TEST) --select-class $(class) $(JUNIT_FLAGS); \
+  		$(JVM) -jar $(JUNIT) -classpath $(OUT):$(CP):$(TEST) --select-class $(class) $(JUNIT_FLAGS); \
   	fi
 
 # Compile and run the program
