@@ -1,10 +1,12 @@
 package game.enigma;
 
+import game.Game;
+
 public class AnswerEnigma extends Enigma{
 
     private String answer;
 
-    public AnswerEnigma(String question, String answer){
+    public AnswerEnigma(String question, String answer) {
         super(question);
         this.answer = answer;
     }
@@ -13,12 +15,17 @@ public class AnswerEnigma extends Enigma{
         return this.answer;
     }
 
-    public void resolve(String answer){
-        this.answer = this.answer.toLowerCase();
-        answer = answer.toLowerCase();
-        if (this.answer.equals(answer)){
-            this.resolved = true;
-        }
-    }
+    public void resolve() {
+        String answer;
 
+        do {
+            answer = Game.getInputSystem().getMessage();
+
+            if (answer.isEmpty())
+                Game.getGraphicsSystem().displayError("Veuillez entrer une réponse.");
+        } while (answer.isEmpty());
+
+        if (this.answer.equalsIgnoreCase(answer))
+            this.resolved = true;
+    }
 }

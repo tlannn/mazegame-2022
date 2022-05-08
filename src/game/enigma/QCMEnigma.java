@@ -1,54 +1,48 @@
  package game.enigma;
 
+import game.Game;
+
 import java.util.*;
 
 public class QCMEnigma extends Enigma {
 
-    private List<String> reponses;
+    private List<String> answers;
     private String solution;
 
-    public QCMEnigma(String question, List<String> reponses, String solution){
+    public QCMEnigma(String question, List<String> answers, String solution){
         super(question);
-        this.reponses = reponses;
+        this.answers = answers;
         this.solution = solution;
     }
 
-
-    public List<String> getReponses(){
-        return this.reponses;
+    public List<String> getAnswers(){
+        return this.answers;
     }
 
-    
-    public void resolve(String answer) throws AnswerNotInQCMException {
-        int reponse = Integer.parseInt(answer);
-        if (reponse < this.reponses.size()){
-            if (this.solution.equals(this.reponses.get(reponse))){
-                this.resolved = true;
-            }
-            //if (this.reponses)
-        }
-        else{
-            throw new AnswerNotInQCMException("Cette réponse ne fait pas partit de celles proposées");
-        }
-        /*
-        if (this.reponses.containsKey(reponseDonne)){
-            if(this.reponses.get(reponseDonne) == true){
-                this.isResolved = true;
-            }
-        }
-        else{
-            throw new AnswerNoContainsQCM("Cette réponse ne fait pas partit de celles proposées");
-        }
-        */
+    public void resolve() {
+        int choice;
+        boolean validAnswer = false;
 
+        do {
+            choice = Game.getInputSystem().getInteger();
+
+            if (choice >= 0 && choice < this.answers.size()){
+                validAnswer = true;
+
+                if (this.solution.equals(this.answers.get(choice)))
+                    this.resolved = true;
+            }
+
+            else
+                Game.getGraphicsSystem().displayError("Cette réponse ne fait pas partie de celles proposées.");
+        } while (!validAnswer);
     }
-    
 
     public String toString(){
-        String res = this.question + "\ntaper l'indice correspondant à la bonne réponse \n";
+        String res = this.question + "\n";
         int i = 0;
-        for(String reponse : this.reponses){
-            res = res + i + " - " + reponse +" \n";
+        for(String answer : this.answers) {
+            res = res + i + " - " + answer +" \n";
             i += 1;
         }
         return res;

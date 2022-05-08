@@ -5,12 +5,12 @@ public abstract class Enigma {
     protected String question;
     protected boolean resolved;
 
-    public Enigma(String question){
+    public Enigma(String question) {
         this.question = question;
         this.resolved = false;
     }
 
-    public abstract void resolve(String answer) throws Exception;
+    public abstract void resolve();
 
     public boolean isResolved(){
         return this.resolved;
@@ -23,9 +23,4 @@ public abstract class Enigma {
     public String toString(){
         return this.question;
     }
-
-
-    
-
-    
 }

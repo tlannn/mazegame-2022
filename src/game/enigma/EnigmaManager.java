@@ -5,23 +5,22 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class EnigmaManager {
-    //private Map<Enigma, Boolean> enigmas;
     private List<Enigma> enigmas;
     private ListIterator<Enigma> it;
 
     public EnigmaManager() {
         this.enigmas = new ArrayList<>();
-        this.it = enigmas.listIterator();
+        this.it = this.enigmas.listIterator();
     }
 
     public EnigmaManager(List<Enigma> enigmas) {
         this();
         this.enigmas.addAll(enigmas);
-        this.it = enigmas.listIterator();
+        this.it = this.enigmas.listIterator();
     }
 
     public void addEnigma(Enigma enigma) {
-        this.it.set(enigma);
+        this.it.add(enigma);
         this.it.previous();
     }
 
