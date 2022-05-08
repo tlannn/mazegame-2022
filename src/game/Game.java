@@ -1,5 +1,6 @@
 package game;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import game.maze.*;
@@ -7,10 +8,13 @@ import game.character.*;
 import game.character.Character;
 import game.item.*;
 import game.system.SpeechPauseSystem;
+import game.system.graphics.ConsoleGraphicsSystem;
 import game.system.graphics.GraphicsSystem;
+import game.system.input.ConsoleInputSystem;
 import game.system.input.InputSystem;
 
 public class Game{
+
     private Player player;
     private Level level;
     private static InputSystem inputSystem;
@@ -18,8 +22,7 @@ public class Game{
 
     public Game(Player player, GameGraphicsMode mode){
         this.player = player;
-        graphicsSystem = mode.getGraphicsSystem(); // ConsoleGraphicsSystem
-        inputSystem = mode.getInputSystem();
+        Game.setGameGraphicsMode(mode);
 
         // Create the level
         LevelGenerator generator = new LevelGenerator();
@@ -32,12 +35,17 @@ public class Game{
         String test = inputSystem.getMessage();
     }
 
+    public static void setGameGraphicsMode(GameGraphicsMode mode) {
+        Game.graphicsSystem = mode.getGraphicsSystem();
+        Game.inputSystem = mode.getInputSystem();
+    }
+
     public static InputSystem getInputSystem() {
-        return inputSystem;
+        return Game.inputSystem;
     }
 
     public static GraphicsSystem getGraphicsSystem() {
-        return graphicsSystem;
+        return Game.graphicsSystem;
     }
 
     public void play() {
