@@ -13,6 +13,9 @@ public enum GameGraphicsMode {
     private final Class<? extends GraphicsSystem> graphicsSystem;
     private final Class<? extends InputSystem> inputSystem;
 
+    private GraphicsSystem currentGraphicsSystem;
+    private InputSystem currentInputSystem;
+
     private GameGraphicsMode(int mode) {
         switch (mode) {
             // Add other cases for future graphics modes
@@ -23,8 +26,13 @@ public enum GameGraphicsMode {
     }
 
     public GraphicsSystem getGraphicsSystem() {
+        return this.currentGraphicsSystem == null ? this.getNewGraphicsSystem() : this.currentGraphicsSystem;
+    }
+
+    public GraphicsSystem getNewGraphicsSystem() {
         try {
-            return this.graphicsSystem.getDeclaredConstructor().newInstance();
+            this.currentGraphicsSystem = this.graphicsSystem.getDeclaredConstructor().newInstance();
+            return this.currentGraphicsSystem;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -33,8 +41,13 @@ public enum GameGraphicsMode {
     }
 
     public InputSystem getInputSystem() {
+        return this.currentInputSystem == null ? this.getNewInputSystem() : this.currentInputSystem;
+    }
+
+    public InputSystem getNewInputSystem() {
         try {
-            return this.inputSystem.getDeclaredConstructor().newInstance();
+            this.currentInputSystem = this.inputSystem.getDeclaredConstructor().newInstance();
+            return this.currentInputSystem;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

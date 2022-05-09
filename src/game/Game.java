@@ -36,8 +36,8 @@ public class Game{
     }
 
     public static void setGameGraphicsMode(GameGraphicsMode mode) {
-        Game.graphicsSystem = mode.getGraphicsSystem();
-        Game.inputSystem = mode.getInputSystem();
+        Game.graphicsSystem = mode.getNewGraphicsSystem();
+        Game.inputSystem = mode.getNewInputSystem();
     }
 
     public static InputSystem getInputSystem() {
@@ -79,5 +79,13 @@ public class Game{
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  | $$");
         this.graphicsSystem.displayText("|  $$$$$/$$$$/| $$| $$  | $$");
         this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/\n\n\n\n");   
+    }
+
+    public Player getPlayer() {
+        return this.player;
+    }
+
+    public Level getLevel() {
+        return this.level;
     }
 }
