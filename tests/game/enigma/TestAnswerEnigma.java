@@ -5,6 +5,7 @@ import game.GameGraphicsMode;
 import game.character.Player;
 import game.system.input.ConsoleInputSystem;
 import org.junit.*;
+import utils.GameInputTester;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -13,21 +14,7 @@ import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
-public class TestAnswerEnigma {
-    private final InputStream systemIn = System.in;
-
-    @After
-    public void restoreSystemInput() {
-        System.setIn(systemIn);
-    }
-
-    private void provideInput(String input) {
-        ByteArrayInputStream testIn = new ByteArrayInputStream(input.getBytes());
-        System.setIn(testIn);
-
-        Game.setGameGraphicsMode(GameGraphicsMode.CONSOLE); // Recreate the static InputSystem in Game with the new System.in
-    }
-
+public class TestAnswerEnigma extends GameInputTester {
     @Test
     public void testEnigmaStillUnresolvedOnWrongAnswer() {
         this.provideInput("Wrong answer" + System.lineSeparator());
