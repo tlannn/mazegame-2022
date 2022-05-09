@@ -20,19 +20,19 @@ public class Game{
     private static InputSystem inputSystem;
     private static GraphicsSystem graphicsSystem;
 
-    public Game(Player player, GameGraphicsMode mode){
-        this.player = player;
+    public Game(GameGraphicsMode mode){
         Game.setGameGraphicsMode(mode);
+    }
+
+    public void init() {
+        graphicsSystem.displayGameTitle();
+        graphicsSystem.displayText("\nQuel est ton prénom," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " aventurier ?");
+        String playerName = inputSystem.getMessage();
+        this.player = new Player(playerName);
 
         // Create the level
         LevelGenerator generator = new LevelGenerator();
         this.level = generator.generateLevel(this.player);
-    }
-
-    public void init(){
-        graphicsSystem.displayGameTitle();
-        graphicsSystem.displayText("\nQuel est ton prénom," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " aventurier ?");
-        String test = inputSystem.getMessage();
     }
 
     public static void setGameGraphicsMode(GameGraphicsMode mode) {
