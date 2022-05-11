@@ -21,7 +21,7 @@ public class Sphinx extends NonPlayerCharacter {
 	private EnigmaManager enigmaManager;
 
 	public Sphinx(Cell startingCell, EnigmaManager manager) {
-		super("Sphinx", startingCell);
+		super("le sphinx", startingCell);
 
 		this.hint = null;
 		this.hintGiven = false;

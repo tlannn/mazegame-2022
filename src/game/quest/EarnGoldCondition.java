@@ -27,8 +27,8 @@ public class EarnGoldCondition extends QuestCondition {
 	public int getGoldRequired(){
 		return this.goldRequired;
 	}
-	
+
 	public String toString(){
-		return "Tu dois récupérer " + this.goldRequired + " gold pour valider la quête.";
+		return "Tu dois récupérer " + this.goldRequired + " golds pour valider la quête.";
 	}
 }

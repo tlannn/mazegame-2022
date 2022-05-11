@@ -22,7 +22,7 @@ public class Trader extends NonPlayerCharacter {
 	 * Class constructor
 	 */
 	public Trader(Cell startingCell,int basePrice, int priceMultiplicator) {
-		super("Marchand", startingCell);
+		super("le marchand", startingCell);
 		this.parchments = new ArrayList<>();
 		this.parchmentCost = basePrice;
 		this.dialog = new TraderDialog(this);

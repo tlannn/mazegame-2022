@@ -12,7 +12,7 @@ public class Altruist extends NonPlayerCharacter {
 	private Hint hint;
 
 	public Altruist(Cell startingCell) {
-		super("Altruiste", startingCell);
+		super("l'altruiste", startingCell);
 		this.hint = null;
 	}
 

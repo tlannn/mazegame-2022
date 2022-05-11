@@ -23,7 +23,7 @@ public class TestCharacter{
         Cell start = new Cell(0,0);
         Altruist pers = new Altruist(start);
         assertEquals(start, pers.getCurrentCell());
-        assertEquals("Altruiste", pers.getName());
+        assertEquals("l'altruiste", pers.getName());
         assertTrue(pers.isMovable());
     }
 
@@ -32,7 +32,7 @@ public class TestCharacter{
         Cell start = new Cell(0,0);
         Fool pers = new Fool(start);
         assertEquals(start, pers.getCurrentCell());
-        assertEquals("Fou", pers.getName());
+        assertEquals("le fou", pers.getName());
         assertTrue(pers.isMovable());
     }
 
@@ -52,10 +52,10 @@ public class TestCharacter{
 
         Item item = new Jewel(JewelRarity.BLUE);
         Item item2 = new Jewel(JewelRarity.GREEN);
-    
+
         ItemPositionHint hint = new ItemPositionHint(item);
         ItemPositionHint hint2 = new ItemPositionHint(item2);
-        
+
         pers.setHint(hint);
 
         assertEquals(hint, pers.getHint());
@@ -64,7 +64,7 @@ public class TestCharacter{
         assertFalse(hint2.equals(pers.getHint()));
 
         assertEquals(start, pers.getCurrentCell());
-        assertEquals("Sphinx", pers.getName());
+        assertEquals("le sphinx", pers.getName());
         assertFalse(pers.isMovable());
         assertFalse(pers.hasGivenHint());
 
@@ -78,7 +78,7 @@ public class TestCharacter{
         Cell start = new Cell(0,0);
         Trader pers = new Trader(start, 1, 2);
         assertEquals(start, pers.getCurrentCell());
-        assertEquals("Marchand", pers.getName());
+        assertEquals("le marchand", pers.getName());
         assertTrue(pers.isMovable());
 
         assertEquals(1, pers.getParchmentCost());

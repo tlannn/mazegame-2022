@@ -8,7 +8,7 @@ public class Fool extends NonPlayerCharacter {
 	private FakeHint fakeHint;
 
 	public Fool(Cell startingCell) {
-		super("Fou", startingCell);
+		super("le fou", startingCell);
 		this.fakeHint = null;
 	}
 

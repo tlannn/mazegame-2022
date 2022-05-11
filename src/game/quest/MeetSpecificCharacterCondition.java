@@ -21,6 +21,6 @@ public class MeetSpecificCharacterCondition extends QuestCondition {
 	}
 
 	public String toString() {
-		return "Tu dois absolument voir le " + this.characterToMeet + " pour valider ta quête.";
+		return "Tu dois absolument voir " + this.characterToMeet + " pour valider ta quête.";
 	}
 }
