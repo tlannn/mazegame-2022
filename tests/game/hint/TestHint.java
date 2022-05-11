@@ -22,6 +22,18 @@ public class TestHint{
         assertEquals(hint3.toString(),"Pour gagner il faut aller à la case (5,?)");
     }
 
+    @Test
+    public void TestDistanceFromWinningCell(){
+      Cell winningCell = new Cell(2,2);
+      Cell startingCell = new Cell(1,1);
+      Player player = new Player ("Théo", startingCell);
+      DistanceFromWinningCellHint hint = new DistanceFromWinningCellHint(winningCell, player);
+      assertEquals(hint.toString(),"La case gagnante se trouve à une distance de 2 cases.");
+      winningCell = new Cell(1,1);
+      hint = new DistanceFromWinningCellHint(winningCell, player);
+      assertEquals(hint.toString(),"La case gagnante se trouve à une distance de 0 cases.");
+    }
+
     /*
     *Test que l'indice WinningCellOrientation donne les bons coordonnés.
 
