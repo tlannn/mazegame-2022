@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 import game.hint.*;
 import game.maze.Cell;
 import game.character.Player;
+import game.item.Jewel;
+import game.item.JewelRarity;
+
+//Comment tester le Hint normal ?
 
 
 public class TestHint{
@@ -34,6 +38,17 @@ public class TestHint{
       assertEquals(hint.toString(),"La case gagnante se trouve à une distance de 0 cases.");
     }
 
+    @Test
+    public void TestItemPositionHint(){
+      Jewel jewel = new Jewel(JewelRarity.GREEN, new Cell (7,14));
+      ItemPositionHint hint = new ItemPositionHint(jewel);
+      assertEquals(hint.toString(),"Il y a un joyau vert à la case (7,14)");
+    }
+
+
+
+
+
     /*
     *Test que l'indice WinningCellOrientation donne les bons coordonnés.
 
@@ -50,7 +65,6 @@ public class TestHint{
         assertEquals(hint.toString(),"La case gagante se situe au Sud-Ouest");
         winningCell = new Cell(1,2);
         hint = new WinningCellOrientationHint(winningCell, player);
-        System.out.println(hint.toString());
         assertEquals(hint.toString(),"La case gagante se situe au Sud");
         winningCell = new Cell(1,0);
         hint = new WinningCellOrientationHint(winningCell, player);
