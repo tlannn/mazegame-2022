@@ -6,6 +6,12 @@ import game.maze.Cell;
 import game.character.Player;
 import game.item.Jewel;
 import game.item.JewelRarity;
+import game.quest.EarnGoldCondition;
+import game.quest.QuestCondition;
+import game.quest.MeetSpecificCharacterCondition;
+import game.character.Altruist;
+
+
 
 //Comment tester le Hint normal ?
 
@@ -45,7 +51,19 @@ public class TestHint{
       assertEquals(hint.toString(),"Il y a un joyau vert à la case (7,14)");
     }
 
+    @Test
+    public void TestQuestConditionHint(){
+      Cell startingCell = new Cell(5,1);
+      Player player = new Player ("Théo", startingCell);
+      QuestCondition condition = new EarnGoldCondition(player, 5);
+      QuestConditionHint hint = new QuestConditionHint(condition);
+      assertEquals(hint.toString(),"Tu dois récupérer 5 golds pour valider la quête.");
+      MeetSpecificCharacterCondition condition2 = new MeetSpecificCharacterCondition(new Altruist(new Cell(87,1)));
+      hint = new QuestConditionHint(condition2);
+      assertEquals(hint.toString(),"Tu dois absolument voir l'altruiste pour valider ta quête.");
 
+
+    }
 
 
 
