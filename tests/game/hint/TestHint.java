@@ -55,7 +55,7 @@ public class TestHint{
         winningCell = new Cell(2,1);
         hint = new WinningCellOrientationHint(winningCell, player);
         assertEquals(hint.toString(),"La case gagante se situe à l'Est");
-        winningCell = new Cell(2,2);
+        winningCell = new Cell(1,1);
         hint = new WinningCellOrientationHint(winningCell, player);
         assertEquals(hint.toString(),"Vous êtes sur la case gagnante");
     }
