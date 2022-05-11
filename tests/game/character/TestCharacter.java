@@ -73,5 +73,30 @@ public class TestCharacter{
         assertTrue(pers.hasGivenHint());
     }
 
+    @Test
+    public void TestTrader(){
+        Cell start = new Cell(0,0);
+        Trader pers = new Trader(start, 1, 2);
+        assertEquals(start, pers.getCurrentCell());
+        assertEquals("Marchand", pers.getName());
+        assertTrue(pers.isMovable());
+
+        assertEquals(1, pers.getParchmentCost());
+        pers.increaseParchmentCost(pers.getpriceMultiplicator());
+        assertEquals(2, pers.getParchmentCost());
+
+        Item item = new Jewel(JewelRarity.BLUE);
+        ItemPositionHint hint = new ItemPositionHint(item);
+        Parchment parchemin = new Parchment(hint);
+
+        assertEquals(0, pers.getParchments().size());
+        pers.addParchment(parchemin);
+        assertEquals(1, pers.getParchments().size());
+        pers.removeParchment(parchemin);
+        assertEquals(0, pers.getParchments().size());
+    }
+
+
+
 
 }
