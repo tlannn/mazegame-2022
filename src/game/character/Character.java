@@ -49,6 +49,10 @@ public abstract class Character implements Observable {
         return this.currentCell;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     public void setCurrentCell(Cell cell){
         this.currentCell = cell;
     }
