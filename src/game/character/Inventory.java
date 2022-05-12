@@ -29,13 +29,4 @@ public class Inventory {
     public List<Item> getItems() {
     	return this.items;
     }
-
-    public String toString() {
-    	String str = "Vous avez dans votre inventaire :\n";
-
-    	for (int i = 0; i < this.items.size(); ++i)
-    		str += i + " - " + this.getItem(i) + "\n";
-
-    	return str;
-    }
 }

@@ -43,16 +43,16 @@ public class ChooseNPCToTalkState implements BaseState {
         if (NPCs.size() > 1) { // Single NPCs will automatically be talked to
             int choice = Game.getInputSystem().getIntegerFromLetter();
 
-            if ((char) choice == 'Q') {
+            /*if ((char) choice == 'Q') {
                 return new ChangeStateAction(new StartTurnState());
-            }
+            }*/
 
             if (choice >= 0 && choice < NPCs.size()) {
                 return new TalkAction(NPCs.get(choice));
             }
         }
 
-        else {
+        else if (NPCs.size() == 1){
             return new TalkAction(NPCs.get(0));
         }
 
