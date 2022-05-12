@@ -27,6 +27,10 @@ public class TalkAction implements Action {
         return true;
     }
 
+    public NonPlayerCharacter getNPC() {
+        return npc;
+    }
+
     @Override
     public String toString() {
       return "Merci de ta visite.";
