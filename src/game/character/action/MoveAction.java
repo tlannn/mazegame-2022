@@ -37,16 +37,16 @@ public class MoveAction implements Action {
         String string = "Vous vous déplacez ";
         switch (this.orientation) {
             case NORTH:
-                string += "en haut";
+                string += "en haut.";
                 break;
             case SOUTH:
-                string += "en bas";
+                string += "en bas.";
                 break;
             case WEST:
-                string += "à gauche";
+                string += "à gauche.";
                 break;
             case EAST:
-                string += "à droite";
+                string += "à droite.";
                 break;
         }
 
