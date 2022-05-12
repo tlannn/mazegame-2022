@@ -1,4 +1,4 @@
-package game.character.action;
+  package game.character.action;
 
 import game.character.action.LookDiscoveredHintAction;
 import game.character.Player;
@@ -46,9 +46,7 @@ public class TestMoveAction{
 
     for (int i = 0; i<orientation.size(); i++){
       MoveAction action = new MoveAction(orientation.get(i));
-      System.out.println("les cells possibles sont" + cell.possibleOrientations());
       if(player.getCurrentCell().possibleOrientations().contains(orientation.get(i))){
-        System.out.println("je suis dans le if "+orientation.get(i));
         assertEquals(action.execute(level, player),true);
         String direction="";
         if (i == 0){
@@ -66,11 +64,7 @@ public class TestMoveAction{
         assertEquals(action.toString(),"Vous vous déplacez "+direction);
       }
       else{
-        System.out.println("je suis dans le else ");
-        System.out.println("l'action impossible est "+i);
         assertEquals(action.execute(level, player),false);
-        System.out.println("le test du else est passé");
-
       }
     }
   }
