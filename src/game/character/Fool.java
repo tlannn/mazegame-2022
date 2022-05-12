@@ -18,4 +18,8 @@ public class Fool extends NonPlayerCharacter {
 			this.dialog = new GiveHintDialog(this.fakeHint);
 		}
 	}
+
+	public FakeHint getFakeHint(){
+		return this.fakeHint;
+	}
 }
