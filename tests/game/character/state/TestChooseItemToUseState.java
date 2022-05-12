@@ -38,6 +38,7 @@ public class TestChooseItemToUseState extends GameInputTester {
     @Test
     public void testEnterReturnTrueWhenItemsInInventory() {
         this.player.getInventory().addItem(new Jewel(JewelRarity.BLUE));
+        this.player.getInventory().addItem(new Jewel(JewelRarity.BLUE));
 
         assertTrue(this.state.enter(this.player));
     }

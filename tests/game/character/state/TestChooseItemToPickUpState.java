@@ -40,6 +40,7 @@ public class TestChooseItemToPickUpState extends GameInputTester {
     @Test
     public void testEnterReturnTrueWhenItemsInCell() {
         this.cell.addItem(new Jewel(JewelRarity.BLUE));
+        this.cell.addItem(new Jewel(JewelRarity.BLUE));
 
         assertTrue(this.state.enter(this.player));
     }
