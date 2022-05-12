@@ -102,12 +102,17 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		System.out.println("\n--------------------------------------------------------");
 		System.out.println("--------------------------------------------------------\n");
 
+		string.append("   ");
+
+		for (int i = 0; i < level.getMaze().getLength(); ++i)
+			string.append("  ").append(i).append(" ");
+
 		// Draw the northernmost walls
-		string.append("+---".repeat(level.getMaze().getLength())).append("+\n");
+		string.append("\n   ").append("+---".repeat(level.getMaze().getLength())).append("+\n");
 
 		// Draw each line of cells
 		for (int i = 0; i < level.getMaze().getHeight(); i++) {
-			string.append("|"); // Start the line of vertical walls
+			string.append(" ").append(i).append(" ").append("|"); // Start the line of vertical walls
 
 			// Draw the line of vertical walls
 			for (int k = 0; k < level.getMaze().getLength(); k++) {
@@ -122,7 +127,10 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 					//cellMarker = currentCell.isVisited() ? " " : "*";
 					cellMarker = level.isCellVisited(currentCell) ? " " : "*";
 
-				if (level.getMaze().isExternalWall(currentCell, Orientation.EAST) || currentCell.hasEastWall()) {
+				if (level.getMaze().isExternalWall(currentCell, Orientation.EAST)) {
+					string.append(" ").append(cellMarker).append(" |");//.append(" " + i);
+				}
+				else if(currentCell.hasEastWall()) {
 					string.append(" ").append(cellMarker).append(" |");
 				} else {
 					string.append(" ").append(cellMarker).append("  ");
@@ -134,6 +142,9 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 			// Draw the line of horizontal walls
 			for (int j = 0; j < level.getMaze().getLength(); j++) {
 				Cell currentCell = level.getMaze().getCell(j, i);
+
+				if (j == 0)
+					string.append("   ");
 
 				if (level.getMaze().isExternalWall(currentCell, Orientation.SOUTH) || currentCell.hasSouthWall()) {
 					string.append("+---");
