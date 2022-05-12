@@ -70,6 +70,9 @@ public class Game{
 
         this.graphicsSystem.displayGameStatus(level, player);
 
+        this.graphicsSystem.displayText("Felcitation " + this.player + " ! Tu as Gagné !", true);
+        this.graphicsSystem.displayText("Tu as le droit de recommancer une partie" + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + ".");
+
         // this.graphicsSystem.displayText("Vous avez gagné !");
         this.graphicsSystem.displayText("\n\n               /$$");
         this.graphicsSystem.displayText("              |__/");
