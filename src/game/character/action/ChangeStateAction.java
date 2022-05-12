@@ -27,6 +27,10 @@ public class ChangeStateAction implements Action {
         return false;
     }
 
+    public BaseState getNextState() {
+        return nextState;
+    }
+
     @Override
     public String toString() {
         return "";

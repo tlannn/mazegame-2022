@@ -27,6 +27,10 @@ public class PickUpItemAction implements Action {
         return true;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
     @Override
     public String toString() {
         return "Vous ramassez " + this.item;
