@@ -1,11 +1,13 @@
 package game.character.dialog;
 
+import game.Level;
 import game.character.Altruist;
 import game.character.Character;
 import game.character.NonPlayerCharacter;
 import game.character.Player;
 import game.hint.Hint;
 import game.hint.ItemPositionHint;
+import game.hint.WinningCellCoordinatesHint;
 import game.item.Item;
 
 import game.maze.Cell;
