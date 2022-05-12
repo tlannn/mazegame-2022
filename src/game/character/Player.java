@@ -88,9 +88,9 @@ public class Player extends Character {
         this.state.push(state);
     }
 
-    // public BaseState getState(){
-    //   return this.state;
-    // }
+    public BaseState getState(){
+      return this.state.peek();
+    }
 
     public void useItem(Item item){
         item.use(this);
