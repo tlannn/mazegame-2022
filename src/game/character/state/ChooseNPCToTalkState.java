@@ -40,19 +40,19 @@ public class ChooseNPCToTalkState implements BaseState {
     public Action handleInput(Player player) {
         List<NonPlayerCharacter> NPCs = player.getCurrentCell().getNonPlayerCharactersInCell();
 
-        if (NPCs.size() > 1) { // Single NPCs will automatically be talked to
-            int choice = Game.getInputSystem().getIntegerFromLetter();
+        if (!NPCs.isEmpty()) {
+            if (NPCs.size() > 1) { // Single NPCs will automatically be talked to
+                int choice = Game.getInputSystem().getIntegerFromLetter();
 
-            /*if ((char) choice == 'Q') {
-                return new ChangeStateAction(new StartTurnState());
-            }*/
+                /*if ((char) choice == 'Q') {
+                    return new ChangeStateAction(new StartTurnState());
+                }*/
 
-            if (choice >= 0 && choice < NPCs.size()) {
-                return new TalkAction(NPCs.get(choice));
+                if (choice >= 0 && choice < NPCs.size()) {
+                    return new TalkAction(NPCs.get(choice));
+                }
             }
-        }
 
-        else if (NPCs.size() == 1){
             return new TalkAction(NPCs.get(0));
         }
 
