@@ -2,6 +2,7 @@ package game.item;
 
 import game.maze.*;
 import game.character.*;
+import game.observer.Entity;
 import game.observer.Observable;
 import game.observer.ObservableEvent;
 import game.observer.Observer;
@@ -9,14 +10,12 @@ import game.observer.Observer;
 import java.util.List;
 import java.util.ArrayList;
 
-public abstract class Item implements Observable {
+public abstract class Item extends Entity {
 
     protected Cell currentCell;
-    protected List<Observer> observers;
 
     public Item(Cell cell){
         this.currentCell = cell;
-        this.observers = new ArrayList<Observer>();
 
         // Inform the cell that it contains the item
         if (currentCell != null)
@@ -32,18 +31,4 @@ public abstract class Item implements Observable {
     }
 
     public abstract void use(Player player);
-
-    public void addObserver(Observer observer) {
-        this.observers.add(observer);
-    }
-
-    public void removeObserver(Observer observer) {
-        this.observers.remove(observer);
-    }
-
-    public void notify(Observable observable, ObservableEvent event) {
-        for (Observer observer : this.observers) {
-            observer.onNotify(observable, event);
-        }
-    }
 }

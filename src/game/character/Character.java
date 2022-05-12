@@ -2,6 +2,7 @@ package game.character;
 
 import game.Level;
 import game.maze.*;
+import game.observer.Entity;
 import game.observer.Observable;
 import game.observer.ObservableEvent;
 import game.observer.Observer;
@@ -11,18 +12,16 @@ import game.system.graphics.GraphicsSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Character implements Observable {
+public abstract class Character extends Entity {
 
     protected Cell currentCell;
     protected String name;
     protected boolean movable;
-    protected List<Observer> observers;
 
     public Character(String name, Cell startingCell) {
         this.name = name;
         this.currentCell = startingCell;
         this.movable = true;
-        this.observers = new ArrayList<>();
 
         // Inform the cell that it contains the character
         if (currentCell != null)
@@ -30,20 +29,6 @@ public abstract class Character implements Observable {
     }
 
     public abstract void update(Level level);
-
-    public void addObserver(Observer observer) {
-        this.observers.add(observer);
-    }
-
-    public void removeObserver(Observer observer) {
-        this.observers.remove(observer);
-    }
-
-    public void notify(Observable observable, ObservableEvent event) {
-        for (Observer observer : this.observers) {
-            observer.onNotify(observable, event);
-        }
-    }
 
     public Cell getCurrentCell(){
         return this.currentCell;
@@ -64,5 +49,4 @@ public abstract class Character implements Observable {
     public String toString(){
         return this.name;
     }
-
 }
