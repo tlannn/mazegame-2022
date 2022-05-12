@@ -1,5 +1,7 @@
 package game.character.state;
 
+import game.Game;
+import game.GameGraphicsMode;
 import game.character.Player;
 import game.character.action.Action;
 import game.character.action.ChangeStateAction;
@@ -16,74 +18,66 @@ import utils.GameInputTester;
 import static org.junit.Assert.*;
 
 public class TestChooseItemToPickUpState extends GameInputTester {
+    private Cell cell;
+    private Player player;
+    private ChooseItemToPickUpState state;
+
+    @Before
+    public void before() {
+        Maze maze = new KruskalMaze(1, 1);
+        this.cell = maze.getCell(0, 0);
+        this.player = new Player("Sig", this.cell);
+        this.state = new ChooseItemToPickUpState();
+
+        Game.setGameGraphicsMode(GameGraphicsMode.CONSOLE);
+    }
+
     @Test
     public void testEnterReturnFalseWhenNoItemInCell() {
-        Maze maze = new KruskalMaze(1, 1);
-        Cell cell = maze.getCell(0, 0);
-        Player player = new Player("Sig", cell);
-
-        ChooseItemToPickUpState state = new ChooseItemToPickUpState();
-        assertFalse(state.enter(player));
+        assertFalse(this.state.enter(this.player));
     }
 
     @Test
     public void testEnterReturnTrueWhenItemsInCell() {
-        Maze maze = new KruskalMaze(1, 1);
-        Cell cell = maze.getCell(0, 0);
-        Player player = new Player("Sig", cell);
-        cell.addItem(new Jewel(JewelRarity.BLUE));
+        this.cell.addItem(new Jewel(JewelRarity.BLUE));
 
-        ChooseItemToPickUpState state = new ChooseItemToPickUpState();
-        assertTrue(state.enter(player));
+        assertTrue(this.state.enter(this.player));
     }
 
     @Test
     public void testPickUpActionForRightItemChosen() {
-        Maze maze = new KruskalMaze(1, 1);
-        Cell cell = maze.getCell(0, 0);
-        Player player = new Player("Sig", cell);
-        cell.addItem(new Jewel(JewelRarity.GREEN)); // Index 0 : letter A to choose
-        cell.addItem(new Jewel(JewelRarity.BLUE)); // Index 1 : letter B to choose
+        this.cell.addItem(new Jewel(JewelRarity.GREEN)); // Index 0 : letter A to choose
+        this.cell.addItem(new Jewel(JewelRarity.BLUE)); // Index 1 : letter B to choose
 
         this.provideInput("A");
-        ChooseItemToPickUpState state = new ChooseItemToPickUpState();
-        Action action = state.handleInput(player);
+        Action action = this.state.handleInput(this.player);
         assertTrue(action instanceof PickUpItemAction);
 
         Item itemToPickUp = ((PickUpItemAction) action).getItem();
-        assertEquals(cell.getItemsInCell().get(0), itemToPickUp);
+        assertEquals(this.cell.getItemsInCell().get(0), itemToPickUp);
 
         this.provideInput("B");
-        action = state.handleInput(player);
+        action = this.state.handleInput(this.player);
         assertTrue(action instanceof PickUpItemAction);
 
         itemToPickUp = ((PickUpItemAction) action).getItem();
-        assertEquals(cell.getItemsInCell().get(1), itemToPickUp);
+        assertEquals(this.cell.getItemsInCell().get(1), itemToPickUp);
     }
 
     @Test
     public void testPickUpActionForSingleItemInCell() {
-        Maze maze = new KruskalMaze(1, 1);
-        Cell cell = maze.getCell(0, 0);
-        Player player = new Player("Sig", cell);
-        cell.addItem(new Jewel(JewelRarity.GREEN));
+        this.cell.addItem(new Jewel(JewelRarity.GREEN));
 
-        ChooseItemToPickUpState state = new ChooseItemToPickUpState();
-        Action action = state.handleInput(player);
+        Action action = this.state.handleInput(this.player);
         assertTrue(action instanceof PickUpItemAction);
 
         Item itemToPickUp = ((PickUpItemAction) action).getItem();
-        assertEquals(cell.getItemsInCell().get(0), itemToPickUp);
+        assertEquals(this.cell.getItemsInCell().get(0), itemToPickUp);
     }
 
     @Test
     public void testStartTurnStateWhenNoItemInCell() {
-        Maze maze = new KruskalMaze(1, 1);
-        Cell cell = maze.getCell(0, 0);
-        Player player = new Player("Sig", cell);
-
-        ChooseItemToPickUpState state = new ChooseItemToPickUpState();
-        Action action = state.handleInput(player);
+        Action action = this.state.handleInput(this.player);
 
         assertTrue(action instanceof ChangeStateAction);
         BaseState nextState = ((ChangeStateAction) action).getNextState();

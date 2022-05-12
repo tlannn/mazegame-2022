@@ -27,6 +27,10 @@ public class UseItemAction implements Action {
         return true;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
     @Override
     public String toString() {
         return "Vous utilisez " + this.item;
