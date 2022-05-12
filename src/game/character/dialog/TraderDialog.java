@@ -21,7 +21,7 @@ public class TraderDialog extends Dialog {
         GraphicsSystem graphics = Game.getGraphicsSystem();
 
         if(! this.trader.getParchments().isEmpty()){
-
+            graphics.displayText("Bonjour " + player + ", je suis un Bernard le marchand"+ SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + ".");
             graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " souhaitez-vous acquérir un parchemin ? [O/N]");
             char rep = input.getLetter();
 
@@ -44,7 +44,7 @@ public class TraderDialog extends Dialog {
         }
 
         else{
-            graphics.displayText("Tu as déjà acheté tous mes parchemins." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
+            graphics.displayText("Désolé " + player + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + ", tu as déjà acheté tous mes parchemins." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
         }
 
         // System.out.println("En échange de la modique somme de " + this.parchmentCost + " galons d'or, souhaitez-vous acquérir ce parchemin ?");
