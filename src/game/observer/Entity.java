@@ -3,9 +3,15 @@ package game.observer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An entity represents a physical body in the maze
+ */
 public abstract class Entity implements Observable {
     protected List<Observer> observers;
 
+    /**
+     * Class constructor
+     */
     public Entity() {
         this.observers = new ArrayList<>();
     }
