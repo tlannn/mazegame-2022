@@ -51,12 +51,22 @@ public class TestTrader extends Tester {
     }
 
     @Test
-    public void removeAndAddParchement(){
+    public void removeAndAddParchement() throws NoSuchElementException{
         assertEquals(0, this.marchand.getParchments().size());
-        this.marchand.addParchment(parchemin);
+        this.marchand.addParchment(this.parchemin);
         assertEquals(1, this.marchand.getParchments().size());
-        this.marchand.removeParchment(parchemin);
+        this.marchand.removeParchment(this.parchemin);
         assertEquals(0, this.marchand.getParchments().size());
     }
+
+    @Test(expected=NoSuchElementException.class)
+    public void removeParchementnoContainsinList() throws NoSuchElementException{
+        assertEquals(0, this.marchand.getParchments().size());
+        this.marchand.removeParchment(this.parchemin);
+    }
+
+
+
+
 
 }
