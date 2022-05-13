@@ -5,6 +5,7 @@ import game.maze.Cell;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import game.system.graphics.GraphicsSystem;
@@ -20,6 +21,9 @@ public class Trader extends NonPlayerCharacter {
 
 	/**
 	 * Class constructor
+	 * @param startingCell start cell of trader
+	 * @param basePrice base price of parchment
+	 * @param priceMultiplicator multiplicator for the second parchment and etc...
 	 */
 	public Trader(Cell startingCell,int basePrice, int priceMultiplicator) {
 		super("le marchand", startingCell);
@@ -29,11 +33,22 @@ public class Trader extends NonPlayerCharacter {
 		this.priceMultiplicator = priceMultiplicator;
 	}
 
+	/**
+	 * add the parchment in the attribute list "parchment"
+	 * @param parchment the new parchmùent to add
+	 */
 	public void addParchment(Parchment parchment) {
 		this.parchments.add(parchment);
 	}
 
-	public void removeParchment(Parchment parchment){
+	/**
+	 * remove the parchement
+	 * @param parchment
+	 */
+	public void removeParchment(Parchment parchment) throws NoSuchElementException{
+		if (!this.parchments.contains(parchment)){
+			throw new NoSuchElementException("Parchemin Inconnu");
+		}
 		this.parchments.remove(parchment);
 	}
 
