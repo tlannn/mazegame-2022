@@ -52,9 +52,7 @@ public class EnigmaDialog extends Dialog {
             if (enigma != null) {
                 graphics.displayText("Résous mon énigme" + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " et mon indice sera tiens :" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                 graphics.displayText(enigma.toString());
-//                String answer = input.getMessage();
-
-//                try {
+                
                     enigma.resolve();
                     if (enigma.isResolved()) {
                         graphics.displayText("Bien joué " + player + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + ", c'est la bonne réponse !" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " En récompense," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " voici mon indice :" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
@@ -64,9 +62,6 @@ public class EnigmaDialog extends Dialog {
                     } else {
                         graphics.displayText("Navré aventurier," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " mais c'est la mauvaise réponse." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " Reviens me voir si tu veux retenter ta chance." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                     }
-                /*} catch (Exception AnswerNoContainsQCM) {
-                    graphics.displayText("Cette réponse ne fait pas partie de celles proposées." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
-                }*/
             } else {
                 graphics.displayText("Navré, mais je n'ai plus aucune énigme en tête.");
             }

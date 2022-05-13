@@ -39,10 +39,5 @@ public class LookingInventoryState implements BaseState {
             default:
                 return null;
         }
-        /*if (input.getLetter() == 'A')
-            //player.useItem(player.getInventory().getItem(0));
-            return new UseItemAction(player.getInventory().getItem(0));
-
-        return null;*/
     }
 }

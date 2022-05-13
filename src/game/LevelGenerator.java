@@ -167,13 +167,6 @@ public class LevelGenerator {
 			++hintsCreated;
 		}
 
-		// les items sont créés après les hints donc on peut pas les utiliser lors de la construction MODIF
-		// for (int i = 0; i < nbrItemHint; i++){
-		// 	int indice = Random.randInt(0, items.size()-1);
-		// 	Hint itemPositionHint = new ItemPositionHint(items.get(indice));
-		// 	this.hints.add(itemPositionHint);
-		// }
-
 		// Create a fake hint for each fool
 		for (int i = 0; i < this.fools.size(); i++){
 			FakeHint fakeHint = new FakeWinningCellCoordinatesHint(this.maze.getLength(), this.maze.getHeight(), this.quest.getWinningCell());

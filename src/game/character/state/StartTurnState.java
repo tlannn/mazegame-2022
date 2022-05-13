@@ -41,9 +41,6 @@ public class StartTurnState implements BaseState {
                 return new ChangeStateAction(new LookingInventoryState());
             case 'V':
                 return new LookDiscoveredHintAction();
-            //comme ca dans le execute on a acces au Player
-            // on peut supprimer le AskSeenHintState.
-                // return new ChangeStateAction(new AskSeenHintState());
             default:
                 return null;
         }
