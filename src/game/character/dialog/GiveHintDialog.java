@@ -12,6 +12,10 @@ import static game.observer.ObservableEvent.EVENT_HINT_DISCOVERED;
 public class GiveHintDialog extends Dialog {
     private Hint hint;
 
+    /**
+     * Class constructor
+     * @param hint the new hint to give
+     */
     public GiveHintDialog(Hint hint) {
         super();
         this.hint = hint;

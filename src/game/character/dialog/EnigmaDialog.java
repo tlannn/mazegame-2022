@@ -15,6 +15,10 @@ import java.util.List;
 public class EnigmaDialog extends Dialog {
     private Sphinx sphinx;
 
+    /**
+     * Class constructor
+     * @param sphinx the sphinx that gives a riddle
+     */
     public EnigmaDialog(Sphinx sphinx) {
         super();
         this.sphinx = sphinx;

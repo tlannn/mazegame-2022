@@ -11,11 +11,19 @@ import game.character.NotEnoughGoldException;
 public class TraderDialog extends Dialog {
     private Trader trader;
 
+    /**
+     * Class constructor
+     * @param trader the trader of maze
+     */
     public TraderDialog(Trader trader) {
         super();
         this.trader = trader;
     }
 
+    /**
+     * start the converstaion between player and the trader
+     * @param player the player of maze
+     */
     public void start(Player player) {
         InputSystem input = Game.getInputSystem();
         GraphicsSystem graphics = Game.getGraphicsSystem();
