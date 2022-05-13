@@ -15,8 +15,9 @@ public class MeetSpecificCharacterCondition extends QuestCondition {
 
 	public void onNotify(Observable observable, ObservableEvent event) {
 		if(event == EVENT_MEET_CHARACTER) {
-			if (observable.equals(this.characterToMeet))
+			if(observable.getClass().isInstance(this.characterToMeet)){
 				this.completed = true;
+			}
 		}
 	}
 
