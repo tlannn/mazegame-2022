@@ -1,15 +1,21 @@
 package game.character.dialog;
 
+import game.Game;
+import game.GameGraphicsMode;
 import game.Level;
 import game.character.Sphinx;
 import game.character.Character;
 import game.character.NonPlayerCharacter;
 import game.character.Player;
+import game.enigma.AnswerEnigma;
+import game.enigma.Enigma;
+import game.enigma.EnigmaManager;
 import game.hint.Hint;
 import game.hint.ItemPositionHint;
 import game.hint.WinningCellCoordinatesHint;
 import game.item.Item;
 
+import game.item.Parchment;
 import game.maze.Cell;
 import game.maze.KruskalMaze;
 import game.maze.Maze;
@@ -30,7 +36,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 
-public class TestEnigmaDialog {
+public class TestEnigmaDialog extends Tester {
 
     private Level level;
     private Maze maze;
@@ -50,7 +56,6 @@ public class TestEnigmaDialog {
         ConsoleInputSystem system = new ConsoleInputSystem();
         this.maze = new KruskalMaze(3, 3);
         this.player = new Player("Damien");
-        this.dialog = new EnigmaDialog();
     
         this.enigmas = new ArrayList<>();
         this.enigme = new AnswerEnigma("Question1", "Answer1");
@@ -60,9 +65,10 @@ public class TestEnigmaDialog {
 
 
         this.sphinx = new Sphinx(maze.getCell(0, 0),this.enigmaManager);
+        this.dialog = new EnigmaDialog(this.sphinx);
 
         List<NonPlayerCharacter> NPCs = new ArrayList<>();
-        NPCs.add(this.Sphinx);
+        NPCs.add(this.sphinx);
         List<Item> items = new ArrayList<>();
 
         this.level = new Level(
@@ -90,8 +96,6 @@ public class TestEnigmaDialog {
         this.provideInput("WrongAnswer");
         this.dialog.start(player);
         assertFalse(this.level.getHints().contains(hint));
-        this.dialog.start(player);
-
     }
     
 }

@@ -1,5 +1,7 @@
 package game.character.dialog;
 
+import game.Game;
+import game.GameGraphicsMode;
 import game.Level;
 import game.character.Trader;
 import game.character.Character;
@@ -10,6 +12,7 @@ import game.hint.ItemPositionHint;
 import game.hint.WinningCellCoordinatesHint;
 import game.item.Item;
 
+import game.item.Parchment;
 import game.maze.Cell;
 import game.maze.KruskalMaze;
 import game.maze.Maze;
@@ -30,7 +33,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 
-public class TestDefaultDialog {
+public class TestTraderDialog extends Tester {
 
     private Level level;
     private Maze maze;
@@ -48,7 +51,7 @@ public class TestDefaultDialog {
         this.maze = new KruskalMaze(3, 3);
         this.player = new Player("Damien");
         this.trader = new Trader(maze.getCell(0, 0),1,2);
-        this.dialog = new TraderDialog();
+        this.dialog = new TraderDialog(this.trader);
     
         List<NonPlayerCharacter> NPCs = new ArrayList<>();
         NPCs.add(this.trader);
@@ -69,10 +72,10 @@ public class TestDefaultDialog {
         this.parchemin = new Parchment(this.hint);
         this.trader.addParchment(parchemin);
         this.player.addGold(1);
-        assertEquals(0,this.player.getInventory().size());
+        assertEquals(0,this.player.getInventory().getItems().size());
         this.provideInput("O");
         this.dialog.start(player);
-        assertEquals(1, this.player.getInventory().size());
+        assertEquals(1, this.player.getInventory().getItems().size());
     }
     
     @Test
@@ -82,7 +85,7 @@ public class TestDefaultDialog {
         this.trader.addParchment(parchemin);
         this.provideInput("O");
         this.dialog.start(player);
-        assertEquals(0,this.player.getInventory().size());
+        assertEquals(0,this.player.getInventory().getItems().size());
     }
 
     
