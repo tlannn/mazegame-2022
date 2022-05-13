@@ -21,9 +21,9 @@ public class Sphinx extends NonPlayerCharacter {
 	private EnigmaManager enigmaManager;
 
 	/**
-	 * class constructor
+	 * Class constructor
 	 * @param startingCell start cell of the sphinx
-	 * @param manager enigmas of the sphynx with EnigmaManager class
+	 * @param manager enigmas of the sphinx with EnigmaManager class
 	 */
 	public Sphinx(Cell startingCell, EnigmaManager manager) {
 		super("le sphinx", startingCell);
@@ -37,7 +37,7 @@ public class Sphinx extends NonPlayerCharacter {
 	}
 
 	/**
-	 * returns true if the sphinx gave its index. Otherwise false
+	 * Returns true if the sphinx gave its hint. Otherwise false
 	 * @return true if the sphinx gave a hint
 	 */
 	public boolean hasGivenHint() {
@@ -52,8 +52,8 @@ public class Sphinx extends NonPlayerCharacter {
 	}
 
 	/**
-	 * change hint if the attribute is null
-	 * @param hint the new hint
+	 * Set the hint to give of the altruist if he doesn't have any
+	 * @param hint the hint to give
 	 */
 	public void setHint(Hint hint) {
 		if (this.hint == null)
@@ -61,7 +61,7 @@ public class Sphinx extends NonPlayerCharacter {
 	}
 
 	/**
-	 * getter of attribute hint
+	 * Getter of attribute hint
 	 * @return the value of attribute
 	 */
 	public Hint getHint() {
@@ -69,8 +69,8 @@ public class Sphinx extends NonPlayerCharacter {
 	}
 
 	/**
-	 * getter of attribute enigmaManager
-	 * @return the enigmas in attribute
+	 * Getter for an enigma in enigmaManager
+	 * @return an enigma given by the enigma manager
 	 */
 	public Enigma getEnigma() {
 		return this.enigmaManager.getEnigma();

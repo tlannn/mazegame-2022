@@ -24,12 +24,18 @@ public abstract class NonPlayerCharacter extends Character {
 
 	/**
 	 * Class constructor
+	 * @param name the name of the NPC
+	 * @param startingCell the starting cell of the NPC
 	 */
 	public NonPlayerCharacter(String name, Cell startingCell) {
 		super(name, startingCell);
 		this.dialog = new DefaultDialog();
 	}
 
+	/**
+	 * Start the dialog of the NPC and notify that it has been met
+	 * @param player the player to interact with
+	 */
 	public void talk(Player player){
 		this.notify(this,ObservableEvent.EVENT_MEET_CHARACTER);
 		this.dialog.start(player);

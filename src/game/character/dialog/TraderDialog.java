@@ -38,7 +38,7 @@ public class TraderDialog extends Dialog {
                         player.removeGold(this.trader.getParchmentCost());
                         player.getInventory().addItem(this.trader.getParchments().get(0));
                         this.trader.removeParchment(this.trader.getParchments().get(0));
-                        this.trader.increaseParchmentCost(this.trader.getpriceMultiplicator());
+                        this.trader.increaseParchmentCost(this.trader.getPriceMultiplicator());
                         graphics.displayText("Tu as acheté un parchemin." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                     }
                     catch(NotEnoughGoldException e){

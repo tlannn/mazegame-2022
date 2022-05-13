@@ -4,28 +4,31 @@ import game.item.*;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Represents the inventory of a player, storing items that he has picked up
+ */
 public class Inventory {
 	protected List<Item> items;
 
     /**
-     * class consructor
+     * Class constructor
      */
 	public Inventory() {
 		this.items = new ArrayList<>();
 	}
 
     /**
-     * add the new item in the list
-     * @param item the new item to add
+     * Add an item in the inventory
+     * @param item the item to add
      */
 	public void addItem(Item item){
         this.items.add(item);
     }
 
     /**
-     * remove the item if this item is in list items
+     * Remove the item if this item is in the inventory
      * @param item the item to remove
-     * @throws UnknownItemException when the itrem is not in list 
+     * @throws UnknownItemException when the item is not in the inventory
      */
     public void removeItem(Item item) throws UnknownItemException {
         if (!this.items.contains(item))
@@ -35,7 +38,7 @@ public class Inventory {
     }
 
     /**
-     * getter for attribute item with an index
+     * Getter for attribute item with an index
      * @param index index of the item in list
      * @return the value of item
      */
@@ -44,8 +47,8 @@ public class Inventory {
     }
 
     /**
-     * getter for attribute items
-     * @return the list items
+     * Getter for attribute items
+     * @return all the items in the inventory
      */
     public List<Item> getItems() {
     	return this.items;

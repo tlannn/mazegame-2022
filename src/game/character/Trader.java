@@ -6,10 +6,7 @@ import game.maze.Cell;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
-import game.system.graphics.GraphicsSystem;
-import game.system.input.InputSystem;
 import game.character.dialog.TraderDialog;
 
 
@@ -34,43 +31,42 @@ public class Trader extends NonPlayerCharacter {
 	}
 
 	/**
-	 * add the parchment in the attribute list "parchment"
-	 * @param parchment the new parchmùent to add
+	 * Add a parchment to the list of parchments to sell
+	 * @param parchment the parchment to add
 	 */
 	public void addParchment(Parchment parchment) {
 		this.parchments.add(parchment);
 	}
 
 	/**
-	 * remove the parchment if it contains in attribute list "parchment"
-	 * @param parchment the parchement to remove
+	 * Remove a parchment from the list of parchments to sell
+	 * @param parchment the parchment to remove
 	 * @throws NoSuchElementException when the parchment is not in the list "parchment"
 	 */
 	public void removeParchment(Parchment parchment) throws NoSuchElementException{
 		if (!this.parchments.contains(parchment)){
-			throw new NoSuchElementException("Parchemin Inconnu");
+			throw new NoSuchElementException("Parchemin inconnu");
 		}
 		this.parchments.remove(parchment);
 	}
 
 	/**
-	 * change the parchmentCost with priceMultiplicator
-	 * @param priceMultiplicator multiplier 
+	 * Increase the cost of a parchment by the priceMultiplicator
 	 */
-	public void increaseParchmentCost(int priceMultiplicator) {
-		this.parchmentCost = this.parchmentCost * priceMultiplicator;
+	public void increaseParchmentCost() {
+		this.parchmentCost = this.parchmentCost * this.priceMultiplicator;
 	}
 
 	/**
-	 * getter for the attribute priceMultiplicator
+	 * Getter for the attribute priceMultiplicator
 	 * @return the value of attribute
 	 */
-	public int getpriceMultiplicator(){
+	public int getPriceMultiplicator(){
 		return this.priceMultiplicator;
 	}
 
 	/**
-	 * getter for the attribute parchmentCost
+	 * Getter for the attribute parchmentCost
 	 * @return the value of attribute
 	 */
 	public int getParchmentCost(){
@@ -78,7 +74,7 @@ public class Trader extends NonPlayerCharacter {
 	}
 
 	/**
-	 * getter for the attribute parchments
+	 * Getter for the attribute parchments
 	 * @return the value of attribute
 	 */
 	public List<Parchment> getParchments(){
@@ -86,7 +82,7 @@ public class Trader extends NonPlayerCharacter {
 	}
 
 	/**
-	 * get the total gold required for buy all parchment
+	 * Get the total gold required to buy all parchments
 	 * @return the value
 	 */
 	public int getTotalGoldRequired(){

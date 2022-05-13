@@ -12,6 +12,9 @@ import game.system.graphics.GraphicsSystem;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An entity representing a character
+ */
 public abstract class Character extends Entity {
 
     protected Cell currentCell;
@@ -19,9 +22,9 @@ public abstract class Character extends Entity {
     protected boolean movable;
 
     /**
-     * class constructor
-     * @param name
-     * @param startingCell
+     * Class constructor
+     * @param name the name of the character
+     * @param startingCell the starting cell of the character
      */
     public Character(String name, Cell startingCell) {
         this.name = name;
@@ -33,10 +36,14 @@ public abstract class Character extends Entity {
             this.currentCell.addCharacter(this);
     }
 
+    /**
+     * Update the character. During update, the character makes an action corresponding to a turn in the game
+     * @param level the current level in game
+     */
     public abstract void update(Level level);
 
     /**
-     * getter for attribute currentCell
+     * Getter for attribute currentCell
      * @return the value of attribute
      */
     public Cell getCurrentCell(){
@@ -44,7 +51,7 @@ public abstract class Character extends Entity {
     }
 
     /**
-     * getter for attribute name
+     * Getter for attribute name
      * @return the value of attribute
      */
     public String getName(){
@@ -52,16 +59,16 @@ public abstract class Character extends Entity {
     }
 
     /**
-     * change the value of attribute currentCell
-     * @param cell new cell
+     * Change the value of attribute currentCell
+     * @param cell the new cell where the character is
      */
     public void setCurrentCell(Cell cell){
         this.currentCell = cell;
     }
 
     /**
-     * return true if the charcter can move
-     * @return movables
+     * Return whether the character is able to move or not
+     * @return true if the character can move
      */
     public boolean isMovable(){
         return this.movable;

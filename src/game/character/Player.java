@@ -14,22 +14,27 @@ import game.system.input.InputSystem;
 import game.system.graphics.GraphicsSystem;
 import game.observer.ObservableEvent;
 
-
-
+/**
+ * Represent the character that the player controls
+ */
 public class Player extends Character {
 
     private int gold;
     private Inventory inventory;
     private Stack<BaseState> state;
 
+    /**
+     * Class constructor
+     * @param name the name of the player
+     */
     public Player(String name) {
         this(name, null);
     }
 
     /**
-     * class construstor
-     * @param name the name of player
-     * @param startingCell the start cell of player
+     * Class constructor
+     * @param name the name of the player
+     * @param startingCell the start cell of the player
      */
     public Player(String name, Cell startingCell) {
         super(name, startingCell);
@@ -71,7 +76,7 @@ public class Player extends Character {
     }
 
     /**
-     * getter for attribute gold
+     * Getter for attribute gold
      * @return the value of attribute
      */
     public int getGold(){
@@ -79,8 +84,8 @@ public class Player extends Character {
     }
 
     /**
-     * added the amount with the current gold
-     * @param amount the amount to add 
+     * Add an amount of gold to the current gold carried by the player
+     * @param amount the amount of gold to add
      */
     public void addGold(int amount){
         this.gold += amount;
@@ -89,9 +94,9 @@ public class Player extends Character {
     }
 
     /**
-     * subtracted the maount whith the current gold if this gold is more than this amount
+     * Subtract an amount of gold to the gold carried by the player
      * @param amount the amount to subtract
-     * @throws NotEnoughGoldException when the amount is more than this gold
+     * @throws NotEnoughGoldException when trying to subtract more gold than the player has
      */
     public void removeGold(int amount) throws NotEnoughGoldException {
         if (amount > this.gold)
@@ -103,7 +108,7 @@ public class Player extends Character {
     }
 
     /**
-     * add the new state in the attribute stack state
+     * Add a new state in the stack attribute state
      * @param state the state to add in stack
      */
     public void setState(BaseState state) {
@@ -111,7 +116,7 @@ public class Player extends Character {
     }
 
     /**
-     * getter for attribute state
+     * Getter for top of stack attribute state
      * @return the stack
      */
     public BaseState getState(){
@@ -119,7 +124,7 @@ public class Player extends Character {
     }
 
     /**
-     * getter for attribute inventory
+     * Getter for attribute inventory
      * @return the value of attribute
      */
     public Inventory getInventory() {

@@ -8,11 +8,14 @@ import game.system.graphics.ConsoleGraphicsSystem;
 import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
 
+/**
+ * A NonPlayerCharacter called altruist who gives a hint for free to the player
+ */
 public class Altruist extends NonPlayerCharacter {
 	private Hint hint;
 
 	/**
-	 * class constructor
+	 * Class constructor
 	 * @param startingCell the start cell for the altruist
 	 */
 	public Altruist(Cell startingCell) {
@@ -21,8 +24,8 @@ public class Altruist extends NonPlayerCharacter {
 	}
 	
 	/**
-	 * change the hint if the attribute is null
-	 * @param hint
+	 * Set the hint to give of the altruist if he doesn't have any
+	 * @param hint the hint to give
 	 */
 	public void setHint(Hint hint) {
 		if (this.hint == null) {

@@ -3,10 +3,6 @@ package game.character;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import game.character.*;
-import game.enigma.*;
-import game.hint.DynamicHint;
-import game.hint.FixedHint;
 import game.hint.ItemPositionHint;
 import game.item.Jewel;
 import game.item.JewelRarity;
@@ -46,7 +42,7 @@ public class TestTrader extends Tester {
     @Test
     public void priceChange(){
         assertEquals(1, this.marchand.getParchmentCost());
-        this.marchand.increaseParchmentCost(this.marchand.getpriceMultiplicator());
+        this.marchand.increaseParchmentCost();
         assertEquals(2, this.marchand.getParchmentCost());
     }
 
