@@ -24,4 +24,9 @@ public class AnswerEnigma extends Enigma{
         if (this.answer.equalsIgnoreCase(answer))
             this.resolved = true;
     }
+
+    @Override
+    public String toString() {
+        return this.question;
+    }
 }
