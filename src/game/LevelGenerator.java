@@ -32,6 +32,12 @@ public class LevelGenerator {
 	private List<Item> items;
 	private EnigmaManager enigmaManager;
 
+	/**
+	 * class constructor
+	 * @param player current player
+	 * @param algorithm current algorithm
+	 * @return this level generate 
+	 */
 	public Level generateLevel(Player player, MazeAlgorithm algorithm) {
 		this.hints = new ArrayList <Hint>();
 		this.fakeHints = new ArrayList <FakeHint>();
@@ -78,6 +84,9 @@ public class LevelGenerator {
 		return new Level(player, this.maze, this.quest, this.getNonPlayerCharacters(), this.items, allHints);
 	}
 
+	/**
+	 * init hints for all NPCs
+	 */
 	private void assignHintsToNPCs() {
 		int hintIndex = 0;
 		int fakeHintIndex = 0;
@@ -112,6 +121,9 @@ public class LevelGenerator {
 	}
 
 
+	/**
+	 * create one quest
+	 */
 	private void createQuest() {
 		Cell winningCell = this.maze.getCell(8, 3); // Required in project specifications
 		List<QuestCondition> conditions = this.createQuestConditions();
@@ -119,7 +131,9 @@ public class LevelGenerator {
 		this.quest = new Quest(winningCell, conditions);
 	}
 
-
+	/**
+	 * create one hint
+ 	*/
 	private void createHints (){
 		this.hints = new ArrayList<>();
 		this.fakeHints = new ArrayList<>();
@@ -167,7 +181,10 @@ public class LevelGenerator {
 		}
 	}
 
-
+	/**
+	 * cerate the list with all conditions
+	 * @return this list
+	 */
 	private List<QuestCondition> createQuestConditions() {
 		// Create a number of quest conditions equal to half the number of NPCs
 		int nbConditions = this.getNonPlayerCharacters().size() / 2;
@@ -202,6 +219,9 @@ public class LevelGenerator {
 		return conditions;
 	}
 
+	/**
+	 * check the gold for the consition
+	 */
 	private void checkGoldInGame(){
 		int valeurtotale = 0 ;
 
@@ -232,6 +252,10 @@ public class LevelGenerator {
 		}
 
 	}
+
+	/**
+	 * create a new item
+	 */
 	private void createItems() {
 		/*
 		 * Compute the number of items to create
@@ -249,6 +273,9 @@ public class LevelGenerator {
 		}
 	}
 
+	/**
+	 * create a new enigma
+	 */
 	private void createEnigmas() {
 		try {
 			EnigmaParser parser = new EnigmaParser();
@@ -260,6 +287,10 @@ public class LevelGenerator {
 		}
 	}
 
+	/**
+	 * getter all NPCs in game
+	 * @return this list
+	 */
 	private List<NonPlayerCharacter> getNonPlayerCharacters(){
 		List<NonPlayerCharacter> NPCs = new ArrayList<>();
 		NPCs.addAll(this.traders);
@@ -269,6 +300,9 @@ public class LevelGenerator {
 		return NPCs;
 	}
 
+	/**
+	 * create a new character
+	 */
 	private void createCharacters() {
 		int nbDifferentNPCs = 4; // Trader, sphinx, fool, altruist = 4 different NPCs
 		int nbNPCPerType = (int)(this.maze.getHeight() * this.maze.getLength() / 4 / nbDifferentNPCs);
@@ -282,6 +316,13 @@ public class LevelGenerator {
 		}
 	}
 
+	/**
+	 * create characters with a number of Trader, Sphinx, Fool and Altruist
+	 * @param nbTrader
+	 * @param nbSphinx
+	 * @param nbFool
+	 * @param nbAltruist
+	 */
 	private void createCharacters(int nbTrader, int nbSphinx, int nbFool, int nbAltruist) {
 		this.traders = new ArrayList<>();
 		this.sphinxes = new ArrayList<>();
@@ -312,6 +353,11 @@ public class LevelGenerator {
 		}
 	}
 
+	/**
+	 * return a new random cell not already used
+	 * @param cellsUsed the lits of cell not already used
+	 * @return this cell
+	 */
 	private Cell randomCellNotAlreadyUsed(List<Cell> cellsUsed) {
 		Cell cellChosen;
 

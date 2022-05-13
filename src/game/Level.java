@@ -93,10 +93,20 @@ public class Level implements Observer{
         }
     }
 
+    /**
+     * getter for the attribute hintSeen
+     * @return the value of attribute
+     */
     public List<Hint> getHints(){
         return this.hintsSeen;
     }
 
+    /**
+     * move this character toward this orientation
+     * @param character the current character
+     * @param orientation the orientation 
+     * @return true if the character has moved, else false 
+     */
     public boolean move(Character character, Orientation orientation) {
         if (character.isMovable() && character.getCurrentCell().possibleOrientations().contains(orientation) ) {
             int x = character.getCurrentCell().getX();
@@ -132,6 +142,11 @@ public class Level implements Observer{
         return false;
     }
 
+    /**
+     * remove the item and add in inventory of character
+     * @param character current character
+     * @param item this item
+     */
     public void pickUpItem(Character character, Item item) {
         try {
             item.getCurrentCell().removeItem(item);
@@ -151,22 +166,42 @@ public class Level implements Observer{
         return this.cellsVisited.contains(cell);
     }
 
+    /**
+     * getter for the attribute quest
+     * @return the value of attribute
+     */
     public Quest getQuest() {
         return this.quest;
     }
 
+    /**
+     * getter for the attribute maze
+     * @return the value of attribute
+     */
     public Maze getMaze() {
         return this.maze;
     }
 
+    /**
+     * getter for the attribute player
+     * @return the value of attribute
+     */
     public Player getPlayer() {
         return this.player;
     }
 
+    /**
+     * getter for the attribute NPCs
+     * @return the list of attribute
+     */
     public List<NonPlayerCharacter> getNPCs() {
         return this.NPCs;
     }
 
+    /**
+     * getter for the attribute items
+     * @return the list of attribute
+     */
     public List<Item> getItems() {
         return this.items;
     }

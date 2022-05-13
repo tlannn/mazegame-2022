@@ -16,6 +16,10 @@ public enum GameGraphicsMode {
     private GraphicsSystem currentGraphicsSystem;
     private InputSystem currentInputSystem;
 
+    /**
+     * class constructor
+     * @param mode the graphics mode of the game with index
+     */
     private GameGraphicsMode(int mode) {
         switch (mode) {
             // Add other cases for future graphics modes
@@ -25,10 +29,18 @@ public enum GameGraphicsMode {
         }
     }
 
+    /**
+     * return the new graphics systeme if this curent is null else current graphic systeme
+     * @return return graphics system
+     */
     public GraphicsSystem getGraphicsSystem() {
         return this.currentGraphicsSystem == null ? this.getNewGraphicsSystem() : this.currentGraphicsSystem;
     }
 
+    /**
+     * getter for the attributes currentGraphicsSystem
+     * @return the value of attribute
+     */
     public GraphicsSystem getNewGraphicsSystem() {
         try {
             this.currentGraphicsSystem = this.graphicsSystem.getDeclaredConstructor().newInstance();
@@ -40,6 +52,10 @@ public enum GameGraphicsMode {
         return null;
     }
 
+    /**
+     * getter for the attributes currentInputSystem
+     * @return the value of attribute 
+     */
     public InputSystem getInputSystem() {
         return this.currentInputSystem == null ? this.getNewInputSystem() : this.currentInputSystem;
     }
