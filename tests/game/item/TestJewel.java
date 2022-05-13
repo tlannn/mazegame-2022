@@ -5,8 +5,9 @@ import static org.junit.Assert.*;
 import game.maze.*;
 import game.item.*;
 import game.character.*;
+import utils.Tester;
 
-public class TestJewel{
+public class TestJewel extends Tester {
     @Test
     public void testAddCorrectAmountOfGoldWhenUsingJewel(){
         Cell cellJewel = new Cell(1,2);

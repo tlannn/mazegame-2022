@@ -14,6 +14,8 @@ import game.GameGraphicsMode;
 import game.Game;
 
 import org.junit.*;
+import utils.Tester;
+
 import static org.junit.Assert.*;
 
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 import java.util.*;
 
 
-public class TestLookDiscoveredHintAction{
+public class TestLookDiscoveredHintAction extends Tester {
 
   @Test
   public void TestExecute(){

@@ -10,8 +10,9 @@ import game.quest.EarnGoldCondition;
 import game.quest.QuestCondition;
 import game.quest.MeetSpecificCharacterCondition;
 import game.character.Altruist;
+import utils.Tester;
 
-public class TestWinningCellCoordinatesHint {
+public class TestWinningCellCoordinatesHint extends Tester {
   /*
   *Test que l'indice WinningCellCoordinates donne les bons coordonnés.
 

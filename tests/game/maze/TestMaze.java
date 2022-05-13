@@ -1,10 +1,11 @@
 package game.maze;
 
 import org.junit.*;
+import utils.Tester;
 
 import static org.junit.Assert.*;
 
-public class TestMaze {
+public class TestMaze extends Tester {
 
     private Maze maze;
 

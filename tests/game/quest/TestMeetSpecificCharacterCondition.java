@@ -7,10 +7,11 @@ import game.character.Fool;
 import game.character.Player;
 import game.maze.Cell;
 import org.junit.*;
+import utils.Tester;
 
 import static org.junit.Assert.*;
 
-public class TestMeetSpecificCharacterCondition {
+public class TestMeetSpecificCharacterCondition extends Tester {
     @Test
     public void testQuestCompletedWhenPlayerMeetRightCharacter() {
         Player player = new Player("Phil");

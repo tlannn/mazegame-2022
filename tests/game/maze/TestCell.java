@@ -15,8 +15,9 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 import game.maze.*;
+import utils.Tester;
 
-public class TestCell {
+public class TestCell extends Tester {
 	/* Constructor tests */
 	@Test
 	public void testPossessWallsWhenCreated() {

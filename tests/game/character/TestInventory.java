@@ -5,9 +5,10 @@ import static org.junit.Assert.*;
 import game.character.*;
 import game.maze.*;
 import game.item.*;
+import utils.Tester;
 
 
-public class TestInventory {
+public class TestInventory extends Tester {
 
     @Test
     public void removeItemWhenListcontainsThisItem() throws UnknownItemException{

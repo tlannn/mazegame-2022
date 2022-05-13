@@ -18,6 +18,7 @@ import game.observer.ObservableEvent;
 import game.quest.Quest;
 import game.quest.QuestCondition;
 import org.junit.*;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 
-public class TestGiveHintDialog {
+public class TestGiveHintDialog extends Tester {
 
     private Level level;
     private Maze maze;

@@ -3,12 +3,12 @@ package game.enigma;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import utils.GameInputTester;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestQCMEnigma extends GameInputTester {
+public class TestQCMEnigma extends Tester {
     private Enigma enigma;
 
     @Before

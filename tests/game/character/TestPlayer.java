@@ -6,8 +6,9 @@ import static org.junit.Assert.*;
 import game.hint.*;
 import game.item.*;
 import game.maze.*;
+import utils.Tester;
 
-public class TestPlayer{
+public class TestPlayer extends Tester {
 
     @Test
     public void testConstuctor(){

@@ -4,9 +4,11 @@ import game.character.Player;
 import game.character.action.Action;
 import game.character.action.ChangeStateAction;
 import org.junit.*;
+import utils.Tester;
+
 import static org.junit.Assert.*;
 
-public class TestAskHelpState {
+public class TestAskHelpState extends Tester {
     @Test
     public void testEnterReturnTrue() {
         Player player = new Player("Sig");

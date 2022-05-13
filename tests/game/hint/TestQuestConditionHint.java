@@ -10,8 +10,9 @@ import game.quest.EarnGoldCondition;
 import game.quest.QuestCondition;
 import game.quest.MeetSpecificCharacterCondition;
 import game.character.Altruist;
+import utils.Tester;
 
-public class TestQuestConditionHint{
+public class TestQuestConditionHint extends Tester {
   @Test
   public void TestQuestConditionHint(){
     Cell startingCell = new Cell(5,1);

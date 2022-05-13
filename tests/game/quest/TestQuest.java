@@ -8,13 +8,14 @@ import game.item.JewelRarity;
 import game.maze.Cell;
 import game.observer.ObservableEvent;
 import org.junit.*;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestQuest {
+public class TestQuest extends Tester {
     @Test
     public void testAssignmentInConstructor() {
         Cell winningCell = new Cell(0, 0);

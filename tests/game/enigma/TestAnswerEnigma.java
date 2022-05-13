@@ -1,20 +1,11 @@
 package game.enigma;
 
-import game.Game;
-import game.GameGraphicsMode;
-import game.character.Player;
-import game.system.input.ConsoleInputSystem;
 import org.junit.*;
-import utils.GameInputTester;
-
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.Scanner;
+import utils.Tester;
 
 import static org.junit.Assert.*;
 
-public class TestAnswerEnigma extends GameInputTester {
+public class TestAnswerEnigma extends Tester {
     @Test
     public void testEnigmaStillUnresolvedOnWrongAnswer() {
         this.provideInput("Wrong answer" + System.lineSeparator());

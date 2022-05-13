@@ -1,13 +1,14 @@
 package game.enigma;
 
 import org.junit.*;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestEnigmaManager {
+public class TestEnigmaManager extends Tester {
     private EnigmaManager emptyManager;
     private EnigmaManager filledManager;
     private Enigma enigma1;

@@ -2,14 +2,13 @@ package game.system;
 
 import org.junit.*;
 
-import game.Game;
 import game.system.input.ConsoleInputSystem;
 
 import static org.junit.Assert.*;
-import utils.GameInputTester;
+import utils.Tester;
 
 
-public class TestConsoleInputSystem extends GameInputTester{ 
+public class TestConsoleInputSystem extends Tester {
 
     @Test
     public void testGetInteger() {

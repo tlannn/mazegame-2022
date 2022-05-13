@@ -7,21 +7,16 @@ import game.character.Fool;
 import game.character.NonPlayerCharacter;
 import game.character.Player;
 import game.character.action.Action;
-import game.character.action.ChangeStateAction;
-import game.character.action.PickUpItemAction;
 import game.character.action.TalkAction;
-import game.item.Item;
-import game.item.Jewel;
-import game.item.JewelRarity;
 import game.maze.Cell;
 import game.maze.KruskalMaze;
 import game.maze.Maze;
 import org.junit.*;
-import utils.GameInputTester;
+import utils.Tester;
 
 import static org.junit.Assert.*;
 
-public class TestChooseNPCToTalkState extends GameInputTester {
+public class TestChooseNPCToTalkState extends Tester {
     private Cell cell;
     private Player player;
     private ChooseNPCToTalkState state;

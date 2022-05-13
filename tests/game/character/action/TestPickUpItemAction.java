@@ -15,6 +15,8 @@ import game.Game;
 import game.item.*;
 
 import org.junit.*;
+import utils.Tester;
+
 import static org.junit.Assert.*;
 
 import java.util.List;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 import java.util.*;
 
 
-public class TestPickUpItemAction{
+public class TestPickUpItemAction extends Tester {
   @Test
   public void TestExecute(){
     Player player = new Player ("Sasuke", new Cell(3,2));

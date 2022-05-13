@@ -4,10 +4,14 @@ import game.system.graphics.ConsoleGraphicsSystem;
 import game.system.graphics.GraphicsSystem;
 import game.system.input.ConsoleInputSystem;
 import game.system.input.InputSystem;
+
 import org.junit.*;
+import utils.Tester;
+
 import static org.junit.Assert.*;
 
-public class TestGameGraphicsMode {
+public class TestGameGraphicsMode extends Tester {
+
     @Test
     public void testEnumValueReturnsSameGraphicsAndInput() {
         GameGraphicsMode mode = GameGraphicsMode.CONSOLE;

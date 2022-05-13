@@ -1,7 +1,6 @@
 package game;
 
 import game.character.Altruist;
-import game.character.Character;
 import game.character.NonPlayerCharacter;
 import game.character.Player;
 import game.character.Sphinx;
@@ -18,13 +17,14 @@ import game.observer.ObservableEvent;
 import game.quest.Quest;
 import game.quest.QuestCondition;
 import org.junit.*;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestLevel {
+public class TestLevel extends Tester {
     private Level level;
     private Maze maze;
     private Player player;

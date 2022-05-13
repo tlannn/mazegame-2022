@@ -10,8 +10,9 @@ import game.quest.EarnGoldCondition;
 import game.quest.QuestCondition;
 import game.quest.MeetSpecificCharacterCondition;
 import game.character.Altruist;
+import utils.Tester;
 
-public class TestWinningCellOrientationHint{
+public class TestWinningCellOrientationHint extends Tester {
   /*
   *Test que l'indice WinningCellOrientation donne les bons coordonnés.
 

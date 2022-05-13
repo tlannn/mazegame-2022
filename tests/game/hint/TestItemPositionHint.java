@@ -10,8 +10,9 @@ import game.quest.EarnGoldCondition;
 import game.quest.QuestCondition;
 import game.quest.MeetSpecificCharacterCondition;
 import game.character.Altruist;
+import utils.Tester;
 
-public class TestItemPositionHint{
+public class TestItemPositionHint extends Tester {
   @Test
   public void TestItemPositionHint(){
     Jewel jewel = new Jewel(JewelRarity.GREEN, new Cell (7,14));

@@ -1,9 +1,11 @@
 package game.maze;
 
 import org.junit.*;
+import utils.Tester;
+
 import static org.junit.Assert.*;
 
-public class TestKruskalMaze {
+public class TestKruskalMaze extends Tester {
     @Test
     public void testPerfectKruskalMaze() {
         KruskalMaze maze = new KruskalMaze(3, 3);

@@ -1,9 +1,11 @@
 package game.maze;
 
 import org.junit.*;
+import utils.Tester;
+
 import static org.junit.Assert.*;
 
-public class TestDepthFirstSearchMaze {
+public class TestDepthFirstSearchMaze extends Tester {
     @Test
     public void testPerfectDepthFirstSearchMaze() {
         DepthFirstSearchMaze maze = new DepthFirstSearchMaze(3, 3);

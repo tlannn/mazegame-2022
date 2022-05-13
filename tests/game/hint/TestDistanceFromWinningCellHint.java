@@ -10,8 +10,9 @@ import game.quest.EarnGoldCondition;
 import game.quest.QuestCondition;
 import game.quest.MeetSpecificCharacterCondition;
 import game.character.Altruist;
+import utils.Tester;
 
-public class TestDistanceFromWinningCellHint{
+public class TestDistanceFromWinningCellHint extends Tester {
     @Test
     public void TestDistanceFromWinningCell(){
       Cell winningCell = new Cell(2,2);

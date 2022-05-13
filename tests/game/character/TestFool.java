@@ -5,9 +5,10 @@ import static org.junit.Assert.*;
 import game.character.*;
 import game.hint.fake.FakeHint;
 import game.maze.*;
+import utils.Tester;
 
 
-public class TestFool {
+public class TestFool extends Tester {
 
     private Fool fool;
     private Cell startCell;

@@ -12,11 +12,12 @@ import game.item.Jewel;
 import game.item.JewelRarity;
 import game.maze.*;
 import game.item.*;
+import utils.Tester;
 
 import java.util.*;
 
 
-public class TestSphinx{
+public class TestSphinx extends Tester {
 
     private List<Enigma> enigmas;
     private Enigma enigme;

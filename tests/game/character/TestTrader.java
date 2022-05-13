@@ -12,11 +12,12 @@ import game.item.Jewel;
 import game.item.JewelRarity;
 import game.maze.*;
 import game.item.*;
+import utils.Tester;
 
 import java.util.*;
 
 
-public class TestTrader{
+public class TestTrader extends Tester {
 
     private Trader marchand;
     private Cell startCell;

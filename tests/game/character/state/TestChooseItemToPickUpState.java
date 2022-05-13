@@ -13,11 +13,11 @@ import game.maze.Cell;
 import game.maze.KruskalMaze;
 import game.maze.Maze;
 import org.junit.*;
-import utils.GameInputTester;
+import utils.Tester;
 
 import static org.junit.Assert.*;
 
-public class TestChooseItemToPickUpState extends GameInputTester {
+public class TestChooseItemToPickUpState extends Tester {
     private Cell cell;
     private Player player;
     private ChooseItemToPickUpState state;

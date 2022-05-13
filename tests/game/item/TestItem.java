@@ -4,8 +4,9 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import game.maze.*;
 import game.item.*;
+import utils.Tester;
 
-public class TestItem{
+public class TestItem extends Tester {
     @Test
     public void testCurrentCellIsCorrectlyUpdated(){
         Cell cell1 = new Cell(1,2);

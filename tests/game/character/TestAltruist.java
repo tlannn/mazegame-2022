@@ -2,11 +2,12 @@ package game.character;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import game.character.*;
+
 import game.maze.*;
+import utils.Tester;
 
 
-public class TestAlstruist {
+public class TestAltruist extends Tester {
 
     @Test
     public void altruistIsGood(){

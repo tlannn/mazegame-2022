@@ -12,6 +12,8 @@ import game.quest.*;
 import game.Level;
 
 import org.junit.*;
+import utils.Tester;
+
 import static org.junit.Assert.*;
 
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.*;
 
 
-public class TestChangeStateAction{
+public class TestChangeStateAction extends Tester {
 
   @Test
   public void TestExecute(){

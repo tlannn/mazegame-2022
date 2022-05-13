@@ -6,8 +6,9 @@ import static org.junit.Assert.*;
 import game.character.*;
 import game.hint.*;
 import game.maze.*;
+import utils.Tester;
 
-public class TestParchment {
+public class TestParchment extends Tester {
     @Test
     public void testUseParchmentRemovesFromPlayerInventory(){
       Cell cellParchment = new Cell(3,2);

@@ -13,14 +13,14 @@ import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
 
 import org.junit.*;
-import utils.GameInputTester;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestGame extends GameInputTester {
+public class TestGame extends Tester {
 
     @Test
     public void testModeIsCorrectWhenCreated() {

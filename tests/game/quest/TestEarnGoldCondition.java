@@ -3,10 +3,11 @@ package game.quest;
 import game.character.NotEnoughGoldException;
 import game.character.Player;
 import org.junit.*;
+import utils.Tester;
 
 import static org.junit.Assert.*;
 
-public class TestEarnGoldCondition {
+public class TestEarnGoldCondition extends Tester {
     @Test
     public void testCorrectGoldRequiredWhenCreated() {
         Player player = new Player("Phil");
