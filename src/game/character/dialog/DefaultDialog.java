@@ -4,6 +4,9 @@ import game.Game;
 import game.character.Player;
 import game.system.SpeechPauseSystem;
 
+/**
+ * When a NonPlayerCharacter hasn't something to say, this is the dialog that he will say
+ */
 public class DefaultDialog extends Dialog {
     @Override
     public void start(Player player) {

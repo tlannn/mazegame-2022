@@ -30,11 +30,11 @@ public class TestUseItemAction extends Tester {
     Player player = new Player ("Sasuke", new Cell(3,2));
     Maze maze = new DepthFirstSearchMaze(10,10);
     Cell winningCell = new Cell (2,2);
-    List<QuestCondition> winningConditions = new ArrayList();
+    List<QuestCondition> winningConditions = new ArrayList<>();
     Quest quest = new Quest(winningCell, winningConditions);
-    List<NonPlayerCharacter> NPCs = new ArrayList();
-    List<Item> items = new ArrayList();
-    List<Hint> hints = new ArrayList();
+    List<NonPlayerCharacter> NPCs = new ArrayList<>();
+    List<Item> items = new ArrayList<>();
+    List<Hint> hints = new ArrayList<>();
     Item jewel = new Jewel(JewelRarity.PURPLE, player.getCurrentCell());
     items.add (jewel);
     player.getCurrentCell().addItem(jewel);
@@ -42,6 +42,6 @@ public class TestUseItemAction extends Tester {
 
     Game.setGameGraphicsMode(GameGraphicsMode.CONSOLE);
     UseItemAction action = new UseItemAction(jewel);
-    assertEquals(action.execute(level, player),true);
+    assertTrue(action.execute(level, player));
   }
 }

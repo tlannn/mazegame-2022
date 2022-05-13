@@ -8,13 +8,15 @@ import game.hint.Hint;
 
 import static game.observer.ObservableEvent.EVENT_HINT_DISCOVERED;
 
-
+/**
+ * A dialog where a NonPlayerCharacter gives a hint
+ */
 public class GiveHintDialog extends Dialog {
     private Hint hint;
 
     /**
      * Class constructor
-     * @param hint the new hint to give
+     * @param hint the hint to give
      */
     public GiveHintDialog(Hint hint) {
         super();

@@ -1,5 +1,6 @@
 package game.character;
 
+import game.Game;
 import game.Level;
 import game.character.dialog.DefaultDialog;
 import game.character.dialog.Dialog;
@@ -40,8 +41,8 @@ public abstract class NonPlayerCharacter extends Character {
 		if (this.movable) {
 			List<Character> charactersInCell = this.currentCell.getCharactersInCell();
 
-			// If the player isn't in the same cell, move the character
-			if (!charactersInCell.contains(level.getPlayer())) {
+			// If player is in cell, give a chance to the NPC to move
+			if (!charactersInCell.contains(level.getPlayer()) || Random.randInt(0, 1) == 0) {
 				// Choose a random direction
 				List<Orientation> possibleOrientations = this.currentCell.possibleOrientations();
 				int randomOrientation = Random.randInt(0, possibleOrientations.size() - 1);

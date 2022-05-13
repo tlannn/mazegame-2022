@@ -30,18 +30,18 @@ public class TestPickUpItemAction extends Tester {
     Player player = new Player ("Sasuke", new Cell(3,2));
     Maze maze = new DepthFirstSearchMaze(10,10);
     Cell winningCell = new Cell (2,2);
-    List<QuestCondition> winningConditions = new ArrayList();
+    List<QuestCondition> winningConditions = new ArrayList<>();
     Quest quest = new Quest(winningCell, winningConditions);
-    List<NonPlayerCharacter> NPCs = new ArrayList();
-    List<Item> items = new ArrayList();
-    List<Hint> hints = new ArrayList();
+    List<NonPlayerCharacter> NPCs = new ArrayList<>();
+    List<Item> items = new ArrayList<>();
+    List<Hint> hints = new ArrayList<>();
     Item jewel = new Jewel(JewelRarity.GREEN, player.getCurrentCell());
     items.add (jewel);
     player.getCurrentCell().addItem(jewel);
     Level level = new Level (player, maze, quest, NPCs, items,  hints);
 
     PickUpItemAction action = new PickUpItemAction(jewel);
-    assertEquals(action.execute(level, player),true);
+    assertTrue(action.execute(level, player));
     assertEquals(action.toString(),"Vous ramassez un joyau vert");
   }
 }

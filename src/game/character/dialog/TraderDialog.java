@@ -8,22 +8,22 @@ import game.system.input.InputSystem;
 import game.system.graphics.GraphicsSystem;
 import game.character.NotEnoughGoldException;
 
+/**
+ * A dialog where a trader tries to sell a parchment to a player
+ */
 public class TraderDialog extends Dialog {
     private Trader trader;
 
     /**
      * Class constructor
-     * @param trader the trader of maze
+     * @param trader the trader selling items
      */
     public TraderDialog(Trader trader) {
         super();
         this.trader = trader;
     }
 
-    /**
-     * start the converstaion between player and the trader
-     * @param player the player of maze
-     */
+    @Override
     public void start(Player player) {
         InputSystem input = Game.getInputSystem();
         GraphicsSystem graphics = Game.getGraphicsSystem();

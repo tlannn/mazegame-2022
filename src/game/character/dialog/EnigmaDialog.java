@@ -12,6 +12,9 @@ import static game.observer.ObservableEvent.EVENT_HINT_DISCOVERED;
 
 import java.util.List;
 
+/**
+ * A dialog where a sphinx gives a riddle and a player answer to it
+ */
 public class EnigmaDialog extends Dialog {
     private Sphinx sphinx;
 

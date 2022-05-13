@@ -6,8 +6,9 @@ import game.Level;
 import game.system.graphics.GraphicsSystem;
 import game.character.Player;
 
-
-
+/**
+ * Represents the action of looking what hints the player has discovered
+ */
 public class LookDiscoveredHintAction implements Action{
     /**
      * Execute the action
