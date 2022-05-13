@@ -79,6 +79,8 @@ public class TestEnigmaDialog extends Tester {
                 items,
                 new ArrayList<Hint>()
         );        
+        this.hint.addObserver(level);
+
     }
     @Test
     public void TestParchmentAddInInventory(){
