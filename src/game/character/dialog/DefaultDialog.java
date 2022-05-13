@@ -7,7 +7,7 @@ import game.system.SpeechPauseSystem;
 public class DefaultDialog extends Dialog {
     @Override
     public void start(Player player) {
-        String text = "Vous essayez d'engager la conversation mais vous n'obtenez aucune réponse"
+        String text = "Tu essayes d'engager la conversation mais tu n'obtiens aucune réponse"
                 + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "."
                 + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "."
                 + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "."

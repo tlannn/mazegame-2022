@@ -42,12 +42,12 @@ public class EnigmaDialog extends Dialog {
 
             // Display intro
             graphics.displayText("Bonjour " + player + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + ", je m'appelle Léo le Sphinx." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
-            graphics.displayText("Il semblerait que je ne vous ai pas encore donné d'indice" + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
+            graphics.displayText("Il semblerait que je ne t'ai pas encore donné d'indice" + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
             Enigma enigma = this.sphinx.getEnigma();
 
             // Check if sphinx can give an enigma
             if (enigma != null) {
-                graphics.displayText("Résolvez mon énigme" + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " et mon indice sera vôtre :" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
+                graphics.displayText("Résous mon énigme" + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " et mon indice sera tiens :" + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                 graphics.displayText(enigma.toString());
 //                String answer = input.getMessage();
 
@@ -71,7 +71,7 @@ public class EnigmaDialog extends Dialog {
         }
 
         else {
-            graphics.displayText("Désolé " + player + ", je vous ai déjà donné mon indice." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
+            graphics.displayText("Désolé " + player + ", je t'ai déjà donné mon indice." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
             graphics.displayText(this.sphinx.getHint().toString() + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
         }
     }

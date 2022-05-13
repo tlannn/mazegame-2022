@@ -18,7 +18,7 @@ public class Jewel extends Item {
     }
 
     public void use(Player player){
-        System.out.println("Vous utilisez un joyau de valeur : " + this.rarity.getGoldValue() + " galons d'or.");
+        System.out.println("Tu utilises un joyau de valeur : " + this.rarity.getGoldValue() + " galons d'or.");
         player.addGold(this.rarity.getGoldValue());
         try{
             player.getInventory().removeItem(this);
@@ -38,7 +38,7 @@ public class Jewel extends Item {
         }
         else if(this.rarity.getGoldValue()==10){
             return "un joyau bleu";
-        }    
+        }
         else{
             return "un joyau violet";
         }

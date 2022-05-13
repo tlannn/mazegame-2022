@@ -67,10 +67,23 @@ public class Level implements Observer{
      * @param event the event received (in this case is always EVENT_HINT_DISCOVERED)
      */
     public void onNotify(Observable observable, ObservableEvent event) {
+      boolean present = false;
         if(event == EVENT_HINT_DISCOVERED) {
             Hint hint = (Hint) observable;
-            if (!this.hintsSeen.contains(hint))
-                this.hintsSeen.add(hint);
+            for (Hint monHint : this.hintsSeen){
+              if (monHint.toString().equals(hint.toString())){
+                present = true;
+              }
+            }
+            if (!present){
+              this.hintsSeen.add(hint);
+            }
+
+
+
+            //
+            // if (!this.hintsSeen.contains(hint))
+            //     this.hintsSeen.add(hint);
         }
     }
 

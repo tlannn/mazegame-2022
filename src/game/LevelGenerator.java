@@ -43,7 +43,7 @@ public class LevelGenerator {
 		// Create the maze with the chosen generation algorithm
 		switch (algorithm) {
 			case DEPTH_FIRST_SEARCH:
-				this.maze = new DepthFirstSearchMaze(10, 10); // Length and height required in project specifications
+				this.maze = new DepthFirstSearchMaze(9,4); // Length and height required in project specifications
 				break;
 			case KRUSKAL_SEARCH:
 				this.maze = new KruskalMaze(10, 10); // Length and height required in project specifications

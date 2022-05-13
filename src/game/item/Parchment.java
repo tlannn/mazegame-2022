@@ -22,7 +22,7 @@ public class Parchment extends Item {
 
 //on affiche le parchemin mais on ne le supprime pas de l'inventaire. Ce n'est pas un usage unique.
     public void use(Player player){
-        System.out.println("Vous découvrez un indice :");
+        System.out.println("Tu découvres un indice :");
         System.out.println(this.hint);
         try{
             player.getInventory().removeItem(this);

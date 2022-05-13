@@ -18,7 +18,7 @@ public class AnswerEnigma extends Enigma{
             answer = Game.getInputSystem().getMessage();
 
             if (answer.isEmpty())
-                Game.getGraphicsSystem().displayError("Veuillez entrer une réponse.");
+                Game.getGraphicsSystem().displayError("Tu dois  rentrer une réponse.");
         } while (answer.isEmpty());
 
         if (this.answer.equalsIgnoreCase(answer))

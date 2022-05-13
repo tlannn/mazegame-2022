@@ -50,7 +50,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 			displayText("Désolée mais tu n'as pas encore trouvé d'indice.");
 		}
 		else{
-			displayText("Voici les indices que vous avez découvert, ils vous permetront de remplir la quête et gagner le jeu.");
+			displayText("Voici les indices que tu as découvert, ils te permetront de remplir la quête et gagner le jeu.");
 			displayList(level.getHints(), false);
 		}
 	}
@@ -75,7 +75,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		this.displayText(""); // Print an empty line
 		this.displayOr(player);
 
-		this.displayText("Vous êtes situé sur la case " + player.getCurrentCell(), true);
+		this.displayText("Tu es situé sur la case " + player.getCurrentCell(), true);
 
 		int i=0;
 		List<Item> items = player.getCurrentCell().getItemsInCell();
@@ -173,9 +173,9 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 
 	public void displayOr(Player player) {
 		if (player.getGold() == 0)
-			this.displayText("Vous n'avez pas d'or.", true);
+			this.displayText("Tu n'as pas d'or.", true);
 		else
-			this.displayText("Vous avez " + player.getGold() + " galons d'or.", true);
+			this.displayText("Tu as " + player.getGold() + " galons d'or.", true);
 	}
 
 	@Override

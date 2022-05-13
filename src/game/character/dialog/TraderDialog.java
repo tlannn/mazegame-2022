@@ -29,8 +29,8 @@ public class TraderDialog extends Dialog {
         GraphicsSystem graphics = Game.getGraphicsSystem();
 
         if(! this.trader.getParchments().isEmpty()){
-            graphics.displayText("Bonjour " + player + ", je suis un Bernard le marchand"+ SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + ".");
-            graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " souhaitez-vous acquérir un parchemin ? [O/N]");
+            graphics.displayText("Bonjour " + player + ", je suis Bernard le marchand"+ SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + ".");
+            graphics.displayText("En échange de la modique somme de " +this.trader.getParchmentCost() + " galons d'or," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " souhaites-tu acquérir un parchemin ? [O/N]");
             char rep = input.getLetter();
 
             if (Character.toString(rep).equals("O")){
@@ -39,11 +39,11 @@ public class TraderDialog extends Dialog {
                         player.getInventory().addItem(this.trader.getParchments().get(0));
                         this.trader.removeParchment(this.trader.getParchments().get(0));
                         this.trader.increaseParchmentCost(this.trader.getpriceMultiplicator());
-                        graphics.displayText("Vous avez acheté un parchemin." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
+                        graphics.displayText("Tu as acheté un parchemin." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                     }
                     catch(NotEnoughGoldException e){
 //                        this.graphics.displayText(e.getMessage());
-                        graphics.displayText("Vous n'avez pas assez de galons d'or." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " Revenez plus tard." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
+                        graphics.displayText("Tu n'as pas assez de galons d'or." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG + " Reviens plus tard." + SpeechPauseSystem.LONG_PAUSE_DELAY_TAG);
                     }
             }
             else{
