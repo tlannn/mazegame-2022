@@ -3,17 +3,31 @@ package game.hint;
 import game.maze.*;
 import game.character.*;
 
+
+/**
+*Represents a hint that says the orientation of the cell
+*/
 public class WinningCellOrientationHint extends DynamicHint {
 
     private Player player;
     private Cell winningCell;
 
+    /**
+    * Constructor
+    * @param winningCell the cell that you have to go to win.
+    * @param player the player that play at the game
+    */
     public WinningCellOrientationHint(Cell winningCell, Player player){
         super();
         this.player=player;
         this.winningCell = winningCell;
     }
 
+    /**
+    *
+    *display the orientation of the cell related to player
+    *
+    */
     public String toString(){
         int playerX = this.player.getCurrentCell().getX();
         int playerY = this.player.getCurrentCell().getY();

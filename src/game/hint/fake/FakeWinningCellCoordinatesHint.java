@@ -3,6 +3,9 @@ package game.hint.fake;
 import game.maze.Cell;
 import game.util.Random;
 
+/**
+* Represents a fake hint which tell where the winning cell is located
+*/
 public class FakeWinningCellCoordinatesHint extends FakeHint {
     public FakeWinningCellCoordinatesHint(int mazeLength, int mazeHeight, Cell winningCell) {
         super();
