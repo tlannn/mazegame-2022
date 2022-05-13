@@ -70,8 +70,8 @@ public class TestDefaultDialog {
         this.trader.addParchment(parchemin);
         this.player.addGold(1);
         assertEquals(0,this.player.getInventory().size());
-        this.dialog.start(player);
         this.provideInput("O");
+        this.dialog.start(player);
         assertEquals(1, this.player.getInventory().size());
     }
     
@@ -80,8 +80,8 @@ public class TestDefaultDialog {
         this.hint = new WinningCellCoordinatesHint(this.maze.getCell(2, 0), true, true);
         this.parchemin = new Parchment(this.hint);
         this.trader.addParchment(parchemin);
-        this.dialog.start(player);
         this.provideInput("O");
+        this.dialog.start(player);
     }
 
     
