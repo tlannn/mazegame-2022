@@ -87,6 +87,4 @@ public class TestTraderDialog extends Tester {
         this.dialog.start(player);
         assertEquals(0,this.player.getInventory().getItems().size());
     }
-
-    
 }

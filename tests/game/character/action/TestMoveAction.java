@@ -32,11 +32,11 @@ public class TestMoveAction extends Tester {
     Cell cell = maze.getCell(3,2);
     Player player = new Player ("Sasuke",  cell);
     Cell winningCell = maze.getCell (2,2);
-    List<QuestCondition> winningConditions = new ArrayList();
+    List<QuestCondition> winningConditions = new ArrayList<>();
     Quest quest = new Quest(winningCell, winningConditions);
-    List<NonPlayerCharacter> NPCs = new ArrayList();
-    List<Item> items = new ArrayList();
-    List<Hint> hints = new ArrayList();
+    List<NonPlayerCharacter> NPCs = new ArrayList<>();
+    List<Item> items = new ArrayList<>();
+    List<Hint> hints = new ArrayList<>();
     Level level = new Level (player, maze, quest, NPCs, items,  hints);//met le cell en (0,0)
     Game.setGameGraphicsMode(GameGraphicsMode.CONSOLE);
 
@@ -49,7 +49,7 @@ public class TestMoveAction extends Tester {
     for (int i = 0; i<orientation.size(); i++){
       MoveAction action = new MoveAction(orientation.get(i));
       if(player.getCurrentCell().possibleOrientations().contains(orientation.get(i))){
-        assertEquals(action.execute(level, player),true);
+        assertTrue(action.execute(level, player));
         String direction="";
         if (i == 0){
           direction = "en haut.";
@@ -66,7 +66,7 @@ public class TestMoveAction extends Tester {
         assertEquals(action.toString(),"Vous vous déplacez "+direction);
       }
       else{
-        assertEquals(action.execute(level, player),false);
+        assertFalse(action.execute(level, player));
       }
     }
   }
