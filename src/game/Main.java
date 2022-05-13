@@ -6,12 +6,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Check arguments
 		if (args.length == 0 || Integer.parseInt(args[0]) < 1) {
-			System.out.println("""
-					Paramètres attendus: <id algorithme>
-					
-					id algorithme:
-					- 1 -> Depth First Search algorithm
-					- 2 -> Kruskal Search algorithm""");
+			System.out.println("Paramètres attendus: <id algorithme>\n\nid algorithme:\n- 1 -> Depth First Search algorithm\n- 2 -> Kruskal Search algorithm");
 		}
 
 		else {
