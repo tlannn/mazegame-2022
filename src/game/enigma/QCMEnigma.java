@@ -15,10 +15,6 @@ public class QCMEnigma extends Enigma {
         this.solution = solution;
     }
 
-    public List<String> getAnswers(){
-        return this.answers;
-    }
-
     public void resolve() {
         int choice;
         boolean validAnswer = false;
@@ -48,7 +44,4 @@ public class QCMEnigma extends Enigma {
         return res;
 
     }
-
-
-
 }

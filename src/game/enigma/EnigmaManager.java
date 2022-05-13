@@ -26,17 +26,18 @@ public class EnigmaManager {
 
     public Enigma getEnigma() {
         int itemsLooked = 0;
+        Enigma enigmaUnresolved = null;
 
-        while (itemsLooked < this.enigmas.size()) { // Look through all enigmas
+        while (itemsLooked < this.enigmas.size() && enigmaUnresolved == null) { // Look through all enigmas
             if (!this.it.hasNext()) this.it = this.enigmas.listIterator(); // Reset the iterator to the beginning if end is reached
             Enigma enigma = this.it.next(); // Take next enigma
             ++itemsLooked;
 
             // When an unresolved enigma is reached, return it
-            if (!enigma.isResolved()) return enigma;
+            if (!enigma.isResolved()) enigmaUnresolved = enigma;
         }
 
         // Reached if all enigmas are resolved
-        return null;
+        return enigmaUnresolved;
     }
 }

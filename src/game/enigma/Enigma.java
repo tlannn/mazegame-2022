@@ -15,12 +15,4 @@ public abstract class Enigma {
     public boolean isResolved(){
         return this.resolved;
     }
-
-    public String getQuestion(){
-        return this.question;
-    }
-
-    public String toString(){
-        return this.question;
-    }
 }

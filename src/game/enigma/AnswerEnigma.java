@@ -11,10 +11,6 @@ public class AnswerEnigma extends Enigma{
         this.answer = answer;
     }
 
-    public String getAnswer(){
-        return this.answer;
-    }
-
     public void resolve() {
         String answer;
 
