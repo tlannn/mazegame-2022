@@ -1,13 +1,24 @@
 package game;
 
+import game.character.Altruist;
+import game.character.Player;
+import game.item.Jewel;
+import game.item.JewelRarity;
+import game.maze.KruskalMaze;
+import game.maze.Maze;
+import game.quest.EarnGoldCondition;
+import game.quest.Quest;
+import game.quest.QuestCondition;
 import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
 
 import org.junit.*;
 import utils.GameInputTester;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 
 public class TestGame extends GameInputTester {
 
@@ -57,5 +68,34 @@ public class TestGame extends GameInputTester {
         this.provideInput("Phil");
         game.init();
         assertNotNull(game.getLevel());
+    }
+
+    @Test
+    public void testPlay() {
+        // Simulate the game for the player
+        this.provideInput("R" + System.lineSeparator() + // Grab the item in the cell
+                "I" + System.lineSeparator() + // Open inventory
+                "O" + System.lineSeparator() // Accept to use the item in inventory
+        );
+
+        Player player = new Player("Phil");
+        Maze maze = new KruskalMaze(2, 2);
+        maze.getCell(0, 0).addItem(new Jewel(JewelRarity.GREEN)); // Add a jewel to fulfill the quest condition
+        maze.getCell(0, 0).addCharacter(new Altruist(maze.getCell(0, 0)));
+
+        List<QuestCondition> conditions = new ArrayList<>();
+        conditions.add(new EarnGoldCondition(player, 5));
+
+        Level level = new Level(
+                player,
+                maze,
+                new Quest(maze.getCell(0, 0), conditions),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>()
+        );
+
+        Game game = new Game(GameGraphicsMode.CONSOLE, player, level);
+        game.play();
     }
 }

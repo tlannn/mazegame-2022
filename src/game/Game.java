@@ -24,15 +24,25 @@ public class Game{
         Game.setGameGraphicsMode(mode);
     }
 
-    public void init() {
-        graphicsSystem.displayGameTitle();
-        graphicsSystem.displayText("\nQuel est ton prénom," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " aventurier ?");
-        String playerName = inputSystem.getMessage();
-        this.player = new Player(playerName);
+    public Game(GameGraphicsMode mode, Player player, Level level) {
+        Game.setGameGraphicsMode(mode);
+        this.player = player;
+        this.level = level;
+    }
 
-        // Create the level
-        LevelGenerator generator = new LevelGenerator();
-        this.level = generator.generateLevel(this.player);
+    public void init() {
+        if (this.player == null) {
+            graphicsSystem.displayGameTitle();
+            graphicsSystem.displayText("\nQuel est ton prénom," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " aventurier ?");
+            String playerName = inputSystem.getMessage();
+            this.player = new Player(playerName);
+        }
+
+        if (this.level == null) {
+            // Create the level
+            LevelGenerator generator = new LevelGenerator();
+            this.level = generator.generateLevel(this.player);
+        }
     }
 
     public static void setGameGraphicsMode(GameGraphicsMode mode) {
