@@ -10,10 +10,17 @@ import java.util.List;
  */
 public interface GraphicsSystem {
 	/**
-	 * Display a message
+	 * Display a message, with support for delays by default
 	 * @param message the message to display
 	 */
 	public void displayText(String message);
+
+	/**
+	 * Display a message
+	 * @param message the message to display
+	 * @param instantly display the message instantly if true
+	 */
+	public void displayText(String message, boolean instantly);
 
 	/**
 	 * Display an error
@@ -29,10 +36,15 @@ public interface GraphicsSystem {
 	public <T> void displayList(List<T> list, boolean withLetterIndex);
 
 	/**
-	 * Display the game title
-	 * @param title the title of the game
+	 * Display the hint already discover
+	 * @param level the current level in the game
 	 */
-	public void displayGameTitle(String title);
+	public void displayHint(Level level);
+
+	/**
+	 * Display the game title
+	 */
+	public void displayGameTitle();
 
 	/**
 	 * Display the current status of the game

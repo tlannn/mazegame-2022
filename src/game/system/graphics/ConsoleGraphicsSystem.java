@@ -8,14 +8,20 @@ import game.character.Inventory;
 import game.character.Player;
 import game.maze.Cell;
 import game.maze.Orientation;
+import game.system.SpeechPauseSystem;
 
 /**
  * Provide a graphics system for a console application
  */
 public class ConsoleGraphicsSystem implements GraphicsSystem {
 	@Override
+	public void displayText(String text, boolean instantly) {
+		SpeechPauseSystem.say(text, instantly);
+	}
+
+	@Override
 	public void displayText(String text) {
-		System.out.println(text);
+		displayText(text, false);
 	}
 
 	@Override
@@ -38,48 +44,51 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 	}
 
 	@Override
-	public void displayGameTitle(String title) {}
+	public void displayHint(Level level){
+		if(level.getHints().size()==0){
+			displayText("Désolée mais tu n'as pas encore trouvé d'indice.");
+		}
+		else{
+			displayText("Voici les indices que tu as découvert, ils te permetront de remplir la quête et gagner le jeu.");
+			displayList(level.getHints(), false);
+		}
+	}
+
+	@Override
+	public void displayGameTitle() {
+
+		displayText("████████╗██╗  ██╗███████╗    ██████╗ ██╗      ██████╗ ███╗   ██╗██████╗     ███╗   ███╗ █████╗ ███████╗███████╗", true);
+		displayText("╚══██╔══╝██║  ██║██╔════╝    ██╔══██╗██║     ██╔═══██╗████╗  ██║██╔══██╗    ████╗ ████║██╔══██╗╚══███╔╝██╔════╝", true);
+		displayText("   ██║   ███████║█████╗      ██████╔╝██║     ██║   ██║██╔██╗ ██║██║  ██║    ██╔████╔██║███████║  ███╔╝ █████╗", true);
+		displayText("   ██║   ██╔══██║██╔══╝      ██╔══██╗██║     ██║   ██║██║╚██╗██║██║  ██║    ██║╚██╔╝██║██╔══██║ ███╔╝  ██╔══╝", true);
+		displayText("   ██║   ██║  ██║███████╗    ██████╔╝███████╗╚██████╔╝██║ ╚████║██████╔╝    ██║ ╚═╝ ██║██║  ██║███████╗███████╗", true);
+		displayText("   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝", true);
+
+	}
 
 	@Override
 	public void displayGameStatus(Level level, Player player) {
 		this.displayLevel(level);
 		this.displayText(""); // Print an empty line
-		this.displayOr(player);
+		this.displayGold(player);
 
-		this.displayText("Vous êtes situé sur la case " + player.getCurrentCell());
+		this.displayText("Tu es situé sur la case " + player.getCurrentCell(), true);
 
 		int i=0;
 		List<Item> items = player.getCurrentCell().getItemsInCell();
 		List<NonPlayerCharacter> characters = player.getCurrentCell().getNonPlayerCharactersInCell();
 		if (items.isEmpty() && characters.isEmpty()){
-				this.displayText("Il n'y a rien sur cette case");
+				this.displayText("Il n'y a rien sur cette case\n", true);
 		}
 		else{
-				this.displayText("Sur cette case se trouve :");
+				this.displayText("Sur cette case se trouve :", true);
 				for (i=0; i<items.size(); i++){
-						this.displayText("- "+items.get(i));
+						this.displayText("- "+items.get(i), true);
 				}
 				for(int j=0; j< characters.size(); j++){
-						this.displayText("- "+characters.get(j));
+						this.displayText("- "+characters.get(j), true);
 				}
 		}
-
-		// if (player.getCurrentCell().getNonPlayerCharactersInCell().size() > 0) {
-		// 	this.displayText("Sur cette case se trouve " + player.getCurrentCell().getNonPlayerCharactersInCell().size() + " personnages");
-		// }
-		// else {
-		// 	this.displayText("Personne ne se trouve sur cette case");
-		// }
-		//
-		// if (player.getCurrentCell().getItemsInCell().size() > 0) {
-		// 	this.displayText("Sur cette case se trouve " + player.getCurrentCell().getItemsInCell().size() + " objets");
-		// }
-		// else {
-		// 	this.displayText("Il n'y a pas d'objets sur cette case");
-		// }
-		//
-		// this.displayText("\nDirections possibles : " + player.getCurrentCell().possibleOrientations().toString());
-		// this.displayText(""); // Print an empty line
 	}
 
 	@Override
@@ -87,12 +96,20 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		// Symbol + represents a corner, symbols - and | stand as a wall
 		StringBuilder string = new StringBuilder();
 
+		System.out.println("\n--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------\n");
+
+		string.append("   ");
+
+		for (int i = 0; i < level.getMaze().getLength(); ++i)
+			string.append("  ").append(i).append(" ");
+
 		// Draw the northernmost walls
-		string.append("+---".repeat(level.getMaze().getLength())).append("+\n");
+		string.append("\n   ").append("+---".repeat(level.getMaze().getLength())).append("+\n");
 
 		// Draw each line of cells
 		for (int i = 0; i < level.getMaze().getHeight(); i++) {
-			string.append("|"); // Start the line of vertical walls
+			string.append(" ").append(i).append(" ").append("|"); // Start the line of vertical walls
 
 			// Draw the line of vertical walls
 			for (int k = 0; k < level.getMaze().getLength(); k++) {
@@ -107,7 +124,10 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 					//cellMarker = currentCell.isVisited() ? " " : "*";
 					cellMarker = level.isCellVisited(currentCell) ? " " : "*";
 
-				if (level.getMaze().isExternalWall(currentCell, Orientation.EAST) || currentCell.hasEastWall()) {
+				if (level.getMaze().isExternalWall(currentCell, Orientation.EAST)) {
+					string.append(" ").append(cellMarker).append(" |");//.append(" " + i);
+				}
+				else if(currentCell.hasEastWall()) {
 					string.append(" ").append(cellMarker).append(" |");
 				} else {
 					string.append(" ").append(cellMarker).append("  ");
@@ -120,6 +140,9 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 			for (int j = 0; j < level.getMaze().getLength(); j++) {
 				Cell currentCell = level.getMaze().getCell(j, i);
 
+				if (j == 0)
+					string.append("   ");
+
 				if (level.getMaze().isExternalWall(currentCell, Orientation.SOUTH) || currentCell.hasSouthWall()) {
 					string.append("+---");
 				} else {
@@ -130,7 +153,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 			string.append("+\n"); // End the line horizontal wall
 		}
 
-		this.displayText(string.toString());
+		this.displayText(string.toString(), true);
 	}
 
 	@Override
@@ -145,20 +168,27 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		this.displayText(string);
 	}
 
-	public void displayOr(Player player){
-		this.displayText("vous avez "+ player.getGold()+ " or.");
+	public void displayGold(Player player) {
+		if (player.getGold() == 0)
+			this.displayText("Tu n'as pas de galons d'or.", true);
+		else
+			this.displayText("Tu as " + player.getGold() + " galons d'or.", true);
 	}
 
 	@Override
 	public void displayHelp() {
-		this.displayText("Un petit peu d'aide ?");
-		this.displayText("Z - Aller vers le nord");
-		this.displayText("S - Aller vers le sud");
-		this.displayText("Q - Aller vers l'est");
-		this.displayText("D - Aller vers l'ouest");
-		this.displayText("P - Parler à un personnage");
-		this.displayText("R - Ramasser un objet");
-		this.displayText("I - Ouvrir l'inventaire");
-		this.displayText(""); // Print an empty line
+		StringBuilder help = new StringBuilder();
+		help.append("Un petit peu d'aide ?\n")
+		.append("Z - Aller vers le nord\n")
+		.append("S - Aller vers le sud\n")
+		.append("Q - Aller vers l'ouest\n")
+		.append("D - Aller vers l'est\n")
+		.append("P - Parler à un personnage\n")
+		.append("R - Ramasser un objet\n")
+		.append("I - Ouvrir l'inventaire\n")
+		.append("V - Voir les indices obtenus\n")
+		.append("\n"); // Print an empty line
+
+		this.displayText(help.toString(), true);
 	}
 }

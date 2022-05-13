@@ -15,7 +15,7 @@ public interface Action {
      * @param player the player that does the action
      * @return true if this Action count as an action done, false if this Action is not significant
      */
-    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem);
+    public boolean execute(Level level, Player player);
 
     public String toString();
 }

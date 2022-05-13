@@ -8,61 +8,67 @@ JAR := jar
 SRC := src
 OUT := classes
 DOCS := docs
-TEST := test
+TEST := tests
+
+CP := jar/json-simple-1.1.1.jar
+JUNIT := jar/junit-1.8.2.jar
+JUNIT_FLAGS := --details=summary --disable-banner
 
 # Variables containing files
 SOURCES := $(shell find $(SRC) -name '*.java') # retrieve all .java files in src/
 TESTS := $(shell find $(TEST) -name '*.java') # same in test/
-CLASSES := $(SOURCES:$(SRC)/%.java=$(OUT)/%.class) # transform all source files paths into class files paths
+SRC_CLASSES := $(SOURCES:%.java=$(OUT)/%.class) # transform all source files paths into class files paths
+TEST_CLASSES := $(TESTS:%.java=$(OUT)/%.class) # same for tests sources files
 
 # Other variables
 MAIN := game.Main # Starting class of program
-JARFILE := mazegame.jar # Name of the jar archive
+JARFILE := jeu.jar # Name of the jar archive
 
 ##########
 
-# Define rules that are not name of files, instead recipes to be executed
-.PHONY: all clean jar docs tests test run play
+# Define rules that are not name of files, but instead recipes to be executed
+.PHONY: cls clean doc tests test run play
 
-# Compile program
-all: $(CLASSES)
+# Compile all files
+cls : $(SRC_CLASSES) $(TEST_CLASSES)
 
-# Compile all classes ; each must match the $(OUT)/%.class pattern ; $(SRC)/%.java is the prerequisite
+# Compile all source classes ; each must match the $(OUT)/%.class pattern ; %.java is the prerequisite
 # See 'static pattern rules'
-$(CLASSES): $(OUT)/%.class: $(SRC)/%.java
-	$(JC) -sourcepath $(SRC) -d $(OUT) $<
+$(SRC_CLASSES): $(OUT)/%.class: %.java
+	$(JC) -sourcepath $(SRC) -d $(OUT)/$(SRC) -classpath $(CP) $<
+
+# Compile all test classes
+$(TEST_CLASSES): $(OUT)/%.class: %.java
+	$(JC) -sourcepath $(SRC):$(TEST) -d $(OUT)/$(TEST) -classpath $(OUT)/$(SRC):$(CP):$(JUNIT) $<
 
 # Create .jar for the program
-jar: $(CLASSES)
-	$(JAR) cvfe $(JARFILE) $(MAIN) -C $(OUT) game
+$(JARFILE): $(CLASSES)
+	@mkdir jar -p
+	cd $(OUT)/$(SRC) && $(JAR) xvf ../../jar/json-simple-1.1.1.jar
+	$(JAR) cvfe jar/$(JARFILE) $(MAIN) -C $(OUT)/$(SRC) .
 
 # Generate documentation
-docs:
-	$(JDOC) -sourcepath $(SRC) -d $(DOCS) -subpackages game
+doc:
+	$(JDOC) -sourcepath $(SRC) -d $(DOCS) -classpath $(CP) -subpackages game
 
-# Compile all test files
-tests: $(CLASSES) $(TESTS:%.java=%.class)
-#$(JC) -sourcepath src -classpath test4poo.jar $(TESTS)
-
-# Compile a single test file
-$(TESTS:%.java=%.class): $(TEST)/%.class: $(TEST)/%.java
-	$(JC) -sourcepath src -classpath test4poo.jar $<
+# Run all test files
+tests: cls
+	$(JVM) -jar $(JUNIT) -classpath $(OUT)/$(SRC):$(OUT)/$(TEST):$(CP):$(TEST) --select-package game $(JUNIT_FLAGS)
 
 # Run the specified test with variable 'class' when calling rule (ex: make test class=game.TestGame)
-test: $(CLASSES) $(TESTS:%.java=%.class)
-	$(JVM) -jar test4poo.jar -classpath classes:test $(class)
+test: cls
+	$(JVM) -jar $(JUNIT) -classpath $(OUT)/$(SRC):$(OUT)/$(TEST):$(CP):$(TEST) --select-class $(class) $(JUNIT_FLAGS)
 
 # Compile and run the program
-run: $(CLASSES)
-	$(JVM) -classpath $(OUT) $(MAIN)
+run: $(SRC_CLASSES)
+	$(JVM) -classpath $(OUT)/$(SRC):$(CP) $(MAIN) $(algo)
 
 # Start the program from jar archive
-play: jar
-	$(JVM) -jar $(JARFILE)
+play: $(JARFILE)
+	$(JVM) -jar jar/$(JARFILE)  $(algo)
 
 # Remove all .class files and generated docs
 clean:
 	rm -rf $(DOCS)
 	rm -rf $(OUT)
-	rm -rf $(JARFILE)
 	find . -name *.class -type f -delete

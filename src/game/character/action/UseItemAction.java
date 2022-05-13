@@ -22,10 +22,17 @@ public class UseItemAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
-            //((Player) character).useItem(item);
+    public boolean execute(Level level, Player player){
         item.use(player);
         return true;
+    }
+
+    /**
+     * getter for attribute item
+     * @return the value of attributes
+     */
+    public Item getItem() {
+        return item;
     }
 
     @Override

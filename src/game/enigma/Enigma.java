@@ -1,31 +1,32 @@
 package game.enigma;
 
+/**
+ * Represents an enigma given by a sphinx
+ */
 public abstract class Enigma {
 
     protected String question;
-    protected boolean isResolved;
+    protected boolean resolved;
 
-    public Enigma(String question){
+    /**
+     * Class constructor
+     * @param question the question of the enigma
+     */
+    public Enigma(String question) {
         this.question = question;
-        this.isResolved = false;
+        this.resolved = false;
     }
 
-    public abstract void resolve(String reponseDonne) throws Exception;
+    /**
+     * Ask the player an answer and check if it is valid
+     */
+    public abstract void resolve();
 
-    public boolean getIsResolved(){
-        return this.isResolved;
+    /**
+     * Return if the enigma is resolved
+     * @return true if it is resolved
+     */
+    public boolean isResolved(){
+        return this.resolved;
     }
-
-    public String getQuestion(){
-        return this.question;
-    }
-
-    public String toString(){
-        return this.question;
-    }
-
-
-    
-
-    
 }

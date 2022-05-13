@@ -2,31 +2,90 @@ package game;
 
 import java.util.*;
 
-import game.system.input.ConsoleInputSystem;
 import game.maze.*;
 import game.character.*;
 import game.character.Character;
-import game.item.*;
-import game.system.graphics.ConsoleGraphicsSystem;
+import game.system.SpeechPauseSystem;
 import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
 
+/**
+ * The game
+ */
 public class Game{
+
     private Player player;
     private Level level;
-    private InputSystem inputSystem;
-    private GraphicsSystem graphicsSystem;
+    private static InputSystem inputSystem;
+    private static GraphicsSystem graphicsSystem;
 
-    public Game(Player player){
-        this.player = player;
-        this.inputSystem = new ConsoleInputSystem();
-        this.graphicsSystem = new ConsoleGraphicsSystem();
-
-        // Create the level
-        LevelGenerator generator = new LevelGenerator();
-        this.level = generator.generateLevel(this.player);
+    /**
+     * Class constructor
+     * @param mode the graphics mode of the game
+     */
+    public Game(GameGraphicsMode mode){
+        Game.setGameGraphicsMode(mode);
     }
 
+    /**
+     * Class constructor
+     * @param mode the graphics mode of the game
+     * @param player the player that will play the game
+     * @param level the first level of the game
+     */
+    public Game(GameGraphicsMode mode, Player player, Level level) {
+        Game.setGameGraphicsMode(mode);
+        this.player = player;
+        this.level = level;
+    }
+
+    /**
+     * Create the player and the level for the game
+     * @param algorithm the algorithm to use to generate the maze
+     */
+    public void init(MazeAlgorithm algorithm) {
+        if (this.player == null) {
+            graphicsSystem.displayGameTitle();
+            graphicsSystem.displayText("\nQuel est ton prénom," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " aventurier ?");
+            String playerName = inputSystem.getMessage();
+            this.player = new Player(playerName);
+        }
+
+        if (this.level == null) {
+            // Create the level
+            LevelGenerator generator = new LevelGenerator();
+            this.level = generator.generateLevel(this.player, algorithm);
+        }
+    }
+
+    /**
+     * Change the game graphics mode
+     * @param mode the new game graphics mode
+     */
+    public static void setGameGraphicsMode(GameGraphicsMode mode) {
+        Game.graphicsSystem = mode.getNewGraphicsSystem();
+        Game.inputSystem = mode.getNewInputSystem();
+    }
+
+    /**
+     * Return the input system of the game
+     * @return the input system
+     */
+    public static InputSystem getInputSystem() {
+        return Game.inputSystem;
+    }
+
+    /**
+     * Return the graphics system of the game
+     * @return the graphics system
+     */
+    public static GraphicsSystem getGraphicsSystem() {
+        return Game.graphicsSystem;
+    }
+
+    /**
+     * Make the player play the game
+     */
     public void play() {
         // Create the list of characters that will be updated each turn
         List<Character> characters = new ArrayList<>();
@@ -44,187 +103,38 @@ public class Game{
 
             // Play the turn of the next character
             Character nextCharacter = iterator.next();
-            nextCharacter.update(this.level, this.inputSystem, this.graphicsSystem);
+            nextCharacter.update(this.level);
         }
 
         this.graphicsSystem.displayGameStatus(level, player);
 
+        this.graphicsSystem.displayText("Felcitation " + this.player + " ! Tu as Gagné !", true);
+        this.graphicsSystem.displayText("Tu as le droit de recommancer une partie" + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + "." + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + ".");
+
         // this.graphicsSystem.displayText("Vous avez gagné !");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("               /$$          ");
-        this.graphicsSystem.displayText("              |__/          ");
-        this.graphicsSystem.displayText("/$$  /$$  /$$ /$$ /$$$$$$$  ");
+        this.graphicsSystem.displayText("\n\n               /$$");
+        this.graphicsSystem.displayText("              |__/");
+        this.graphicsSystem.displayText("/$$  /$$  /$$ /$$ /$$$$$$$");
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$__  $$");
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  \\ $$");
         this.graphicsSystem.displayText("| $$ | $$ | $$| $$| $$  | $$");
         this.graphicsSystem.displayText("|  $$$$$/$$$$/| $$| $$  | $$");
-        this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("");
-        this.graphicsSystem.displayText("");
+        this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/\n\n\n\n");   
     }
 
-    public void playTurn(Player player, Maze maze){
-        System.out.println("---------------------------------------------------");
-        System.out.println(maze);
-        System.out.println("h - aide");
-        System.out.println("Je suis case"+this.player.getCurrentCell().toString());
-        player.look();
-        boolean bonText=false;
-        //while (! bonText){//ATTENTION actuellement je fais une boucle infini
-
-            Scanner scan= new Scanner(System.in);
-            String text= scan.nextLine();
-
-            if (text.equals("h")){
-                System.out.println(this.afficheAide());
-                text= scan.nextLine();
-            }
-
-            if (text.equals("a")){
-                boolean bonAvancement=false;
-                while(! bonAvancement){
-                    System.out.println(this.regarderAutour());
-                    text= scan.nextLine();
-
-                    if(text.equals("z")){
-                        bonAvancement=level.move(this.player, Orientation.NORTH);
-                    }
-                    else if(text.equals("d")){
-                        bonAvancement=level.move(this.player, Orientation.EAST);
-                    }
-                    else if(text.equals("q")){
-                        bonAvancement=level.move(this.player, Orientation.WEST);
-                    }
-                    else if(text.equals("s")){
-                        bonAvancement=level.move(this.player, Orientation.SOUTH);
-                    }
-                    else if (text.equals("a")){
-                        bonAvancement=true;
-                    }
-                    if(bonAvancement==false){
-                        System.out.println("Ce déplacement n'est pas possible, taper 'a' pour quitter ou choisissez une position correcte");
-                    }
-                }
-            }
-
-            if (text.equals("u")){
-                //faire une boucle tant que l'utilisateur a pas envoyé le bon num et faire un truc retour pour si finalement il ne veut plus utiliser d'objet
-                boolean bonNum=false;
-                while (!bonNum){
-                    System.out.println("Quel objet voulez vous utiliser ? (entrer son indice)");
-                    System.out.println(this.player.getInventory().toString());
-                    String text2= scan.nextLine();
-                    if(text2.equals("q")){
-                        bonNum=true;
-                    }
-                    try{
-                        if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<player.getInventory().getItems().size()){
-                            bonNum=true;
-                            Item item = player.getInventory().getItem(Integer.parseInt(text2));
-                            player.useItem(item);
-                        }
-                    }
-                    catch( NumberFormatException e) {
-                        System.out.println("Ce numero n'est pas valide, si vous ne voulez pas utiliser d'objet appyer sur q");
-                    }
-                }
-            }
-
-            if (text.equals("t")){
-                List <Item> items= player.getCurrentCell().getItemsInCell();
-                boolean bonNum=false;
-                while(!bonNum){
-                    System.out.println("quel item voulez vous prendre ? (taper son indice)");
-                    for (int i=0; i<items.size();i++){
-                        System.out.print(i+"-"+items.get(i)+" ");
-                    }
-                    String text2= scan.nextLine();
-                    if(text2.equals("q")){
-                        bonNum=true;
-                    }
-                    try{ if (Integer.parseInt(text2)>=0 && Integer.parseInt(text2)<items.size()){
-                        bonNum=true;
-                        player.getInventory().addItem(items.get(Integer.parseInt(text2)));
-                    }}
-                    catch(Exception NumberFormatException){
-                        System.out.println("Ce numero n'est pas valide, si vous ne voulez pas ramasser d'objet appuyer sur q");
-                    }
-                }
-            }
-            // if (text.equals("p")){
-            //     List <NonPlayerCharacter> characters = player.getCurrentCell().getNonPlayerCharactersInCell();
-            //     boolean bonNum=false;
-            //     while(!bonNum){
-            //         System.out.println("A qui voulez vous parler ? (taper son indice)");
-            //         for (int i=0; i<characters.size();i++){
-            //             System.out.print(i+"-"+characters.get(i)+" ");
-            //         }
-            //         String text2= scan.nextLine();
-            //         if(text2.equals("q")){
-            //             bonNum=true;
-            //             scan.close();
-            //         }
-            //         System.out.println("text2: " + text2);
-            //         try{
-            //             int i = Integer.parseInt(text2);
-            //             if (i>=0 && i<characters.size()){
-            //                 bonNum=true;
-            //                 System.out.println("before talk");
-            //                 characters.get(i).talk(this.player);
-            //                 System.out.println("end of talk");
-            //             }
-            //         }
-            //         catch(Exception NumberFormatException){
-            //           System.out.println(NumberFormatException.getMessage());
-            //             System.out.println("Ce numero n'est pas valide, si vous ne voulez pas parler avec un personnage appuyer sur q");
-            //         }
-            //     }
-            // }
+    /**
+     * Getter for the player
+     * @return the player
+     */
+    public Player getPlayer() {
+        return this.player;
     }
 
-    public String regarderAutour(){
-        List <Orientation> orientationPossible = player.getCurrentCell().possibleOrientations();
-        System.out.println("Vous pouvez aller au:");
-        String res = "";
-        for(Orientation orientation : orientationPossible){
-            switch (orientation){
-                case NORTH:
-                res += "z - "+orientation.toString()+"\n";
-                break;
-                case SOUTH:
-                res += "s - "+orientation.toString()+"\n";
-                break;
-                case EAST:
-                res += "d - "+orientation.toString()+"\n";
-                break;
-                case WEST:
-                res += "q - "+orientation.toString()+"\n";
-                break;
-            }
-        }
-        return res.substring(0,res.length()-1);
-    }
-
-    public String afficheAide(){
-        String res="";
-        res += "appuyer sur:\n";
-        res += "a - avancer\n";
-        //System.out.println("r - regarder autour de vous");
-        res += "u - utiliser un objet de votre inventaire\n";
-        res += "p - parler avec un personnage\n";
-        res += "t - ramasser un objet\n";
-        return res;
-    }
-
-    public String inventoryToString(Player player){
-        String res="";
-        int i=0;
-        for (Item item : player.getInventory().getItems()){
-            res+=i+"-"+item.toString();
-        }
-        return res;
+    /**
+     * Getter for the current level of the game
+     * @return the current level
+     */
+    public Level getLevel() {
+        return this.level;
     }
 }

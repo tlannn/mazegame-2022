@@ -1,5 +1,8 @@
 package game.maze;
 
+/**
+ * Enumeration for cardinal points
+ */
 public enum Orientation {
     NORTH("North"), SOUTH("South"), EAST("East"), WEST("West");
 

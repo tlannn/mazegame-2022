@@ -95,7 +95,7 @@ public class KruskalMaze extends Maze {
 	 */
 	public KruskalMaze(int length, int height) {
 		super(length, height);
-    this.generate();
+    	this.generate();
 	}
 
 	/**
@@ -131,19 +131,21 @@ public class KruskalMaze extends Maze {
 				}
 			}
 
-			// Choose a random cell index among the remaining cells
-			int randIndex = possibleIndex.get(Random.randInt(0, possibleIndex.size()-1));
-			int adjacentIndex = orientation == Orientation.EAST ? randIndex + 1 : randIndex + this.length; // Depending on the orientation (south, east) the adjacent is whether to the right or below
+			if (!possibleIndex.isEmpty()) {
+				// Choose a random cell index among the remaining cells
+				int randIndex = possibleIndex.get(Random.randInt(0, possibleIndex.size() - 1));
+				int adjacentIndex = orientation == Orientation.EAST ? randIndex + 1 : randIndex + this.length; // Depending on the orientation (south, east) the adjacent is whether to the right or below
 
-			/*
-			 * Next step is to unite the sets corresponding to the selected nodes
-			 * If sets are united, the wall can be removed
-			 */
-			if (this.union(nodes[randIndex], nodes[adjacentIndex])) {
-				// Remove the wall from the chosen cell and the adjacent cell, since they share the same wall
-				this.removeWall(this.getCellByNodeIndex(randIndex), orientation);
+				/*
+				 * Next step is to unite the sets corresponding to the selected nodes
+				 * If sets are united, the wall can be removed
+				 */
+				if (this.union(nodes[randIndex], nodes[adjacentIndex])) {
+					// Remove the wall from the chosen cell and the adjacent cell, since they share the same wall
+					this.removeWall(this.getCellByNodeIndex(randIndex), orientation);
 
-				++nbUnion;
+					++nbUnion;
+				}
 			}
 		}
 	}

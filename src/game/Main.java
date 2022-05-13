@@ -1,12 +1,21 @@
 package game;
 
-import game.character.Player;
+import game.maze.*;
 
 public class Main {
 	public static void main(String[] args) {
-		Player player = new Player("Emma");
+		// Check arguments
+		if (args.length == 0 || Integer.parseInt(args[0]) < 1) {
+			System.out.println("Paramètres attendus: <id algorithme>\n\nid algorithme:\n- 1 -> Depth First Search algorithm\n- 2 -> Kruskal Search algorithm");
+		}
 
-		Game game = new Game(player);
-		game.play(); // Start the game
+		else {
+			// Get the maze algorithm according to the argument
+			MazeAlgorithm algorithm = MazeAlgorithm.values()[Integer.parseInt(args[0]) - 1];
+
+			Game game = new Game(GameGraphicsMode.CONSOLE);
+			game.init(algorithm); // Create the level and the player
+			game.play(); // Start the game
+		}
 	}
 }

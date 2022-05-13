@@ -5,10 +5,8 @@ import game.maze.Cell;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.NoSuchElementException;
 
-import game.system.graphics.GraphicsSystem;
-import game.system.input.InputSystem;
 import game.character.dialog.TraderDialog;
 
 
@@ -16,50 +14,82 @@ import game.character.dialog.TraderDialog;
 public class Trader extends NonPlayerCharacter {
 	private int parchmentCost;
 	private List<Parchment> parchments;
+	private int priceMultiplicator;
 
 	/**
 	 * Class constructor
+	 * @param startingCell start cell of trader
+	 * @param basePrice base price of parchment
+	 * @param priceMultiplicator multiplicator for the second parchment and etc...
 	 */
-	public Trader(Cell startingCell) {
-		super("Marchand", startingCell);
+	public Trader(Cell startingCell,int basePrice, int priceMultiplicator) {
+		super("le marchand", startingCell);
 		this.parchments = new ArrayList<>();
-		this.parchmentCost = 5;
+		this.parchmentCost = basePrice;
+		this.dialog = new TraderDialog(this);
+		this.priceMultiplicator = priceMultiplicator;
 	}
 
-	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
-		super.talk(graphicsSystem,inputSystem,player);
-		TraderDialog traderDialogue = new TraderDialog(graphicsSystem, inputSystem, this);
-		traderDialogue.start(player);
-
-
-		// System.out.println("En échange de la modique somme de " + this.parchmentCost + " galons d'or, souhaitez-vous acquérir ce parchemin ?");
-		// Scanner scan= new Scanner(System.in);
-		// String text= scan.nextLine();
-		// if(text.equals("o") ){
-		// 	player.getInventory().addItem(parchments.get(0));
-		// 	this.removeParchment(parchments.get(0));
-		// 	this.increaseParchmentCost();
-		// }
-		// scan.close();
-	}
-
+	/**
+	 * Add a parchment to the list of parchments to sell
+	 * @param parchment the parchment to add
+	 */
 	public void addParchment(Parchment parchment) {
 		this.parchments.add(parchment);
 	}
 
-	public void removeParchment(Parchment parchment){
+	/**
+	 * Remove a parchment from the list of parchments to sell
+	 * @param parchment the parchment to remove
+	 * @throws NoSuchElementException when the parchment is not in the list "parchment"
+	 */
+	public void removeParchment(Parchment parchment) throws NoSuchElementException{
+		if (!this.parchments.contains(parchment)){
+			throw new NoSuchElementException("Parchemin inconnu");
+		}
 		this.parchments.remove(parchment);
 	}
 
+	/**
+	 * Increase the cost of a parchment by the priceMultiplicator
+	 */
 	public void increaseParchmentCost() {
-		this.parchmentCost = this.parchmentCost * 2;
+		this.parchmentCost = this.parchmentCost * this.priceMultiplicator;
 	}
 
+	/**
+	 * Getter for the attribute priceMultiplicator
+	 * @return the value of attribute
+	 */
+	public int getPriceMultiplicator(){
+		return this.priceMultiplicator;
+	}
+
+	/**
+	 * Getter for the attribute parchmentCost
+	 * @return the value of attribute
+	 */
 	public int getParchmentCost(){
 		return this.parchmentCost;
 	}
 
+	/**
+	 * Getter for the attribute parchments
+	 * @return the value of attribute
+	 */
 	public List<Parchment> getParchments(){
 		return this.parchments;
+	}
+
+	/**
+	 * Get the total gold required to buy all parchments
+	 * @return the value
+	 */
+	public int getTotalGoldRequired(){
+		int totalGoldRequired = 0;
+		for(int i = 0; i<this.parchments.size();i++){
+			totalGoldRequired += this.parchmentCost*(Math.pow(priceMultiplicator, i));
+		}
+		return totalGoldRequired;
 	}
 }

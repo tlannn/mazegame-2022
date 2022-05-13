@@ -1,5 +1,6 @@
 package game.character.action;
 
+import game.Game;
 import game.Level;
 import game.character.Player;
 import game.maze.Orientation;
@@ -22,9 +23,21 @@ public class MoveAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
-            level.move(player, this.orientation);
+    public boolean execute(Level level, Player player) {
+        if (!level.move(player, this.orientation)) { // Cannot move in this direction
+            Game.getGraphicsSystem().displayError("Vous ne pouvez pas vous déplacer dans cette direction.");
+            return false;
+        }
+
         return true;
+    }
+
+    /**
+     * getter for attribute orientation
+     * @return the value of attributes
+     */
+    public Orientation getOrientation() {
+        return orientation;
     }
 
     @Override
@@ -32,16 +45,16 @@ public class MoveAction implements Action {
         String string = "Vous vous déplacez ";
         switch (this.orientation) {
             case NORTH:
-                string += "en haut";
+                string += "en haut.";
                 break;
             case SOUTH:
-                string += "en bas";
+                string += "en bas.";
                 break;
             case WEST:
-                string += "à gauche";
+                string += "à gauche.";
                 break;
             case EAST:
-                string += "à droite";
+                string += "à droite.";
                 break;
         }
 

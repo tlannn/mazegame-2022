@@ -122,7 +122,7 @@ public class DepthFirstSearchMaze extends Maze {
 
 				// Update the current cell
 				currentCell = neighborCell;
-			} else {
+			} else if (!cellsInPath.isEmpty()) {
 				currentCell = cellsInPath.pop(); // Go back in the path to the last visited cell
 			}
 		} while (!cellsInPath.isEmpty());

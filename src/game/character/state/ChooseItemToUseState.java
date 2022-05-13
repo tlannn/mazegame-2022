@@ -1,5 +1,6 @@
 package game.character.state;
 
+import game.Game;
 import game.character.Player;
 import game.character.action.Action;
 import game.character.action.ChangeStateAction;
@@ -12,12 +13,15 @@ import java.util.List;
 
 public class ChooseItemToUseState implements BaseState {
     @Override
-    public boolean enter(Player player, GraphicsSystem graphics) {
+    public boolean enter(Player player) {
+        GraphicsSystem graphics = Game.getGraphicsSystem();
         List<Item> itemsInInventory = player.getInventory().getItems();
 
         if (!itemsInInventory.isEmpty()) {
-            graphics.displayText("Quel objet souhaitez-vous utiliser ?");
-            graphics.displayList(itemsInInventory, true);
+            if (itemsInInventory.size() > 1) { // Single items will automatically be used
+                graphics.displayText("Quel objet souhaitez-vous utiliser ?");
+                graphics.displayList(itemsInInventory, true);
+            }
             return true;
         }
 
@@ -28,16 +32,21 @@ public class ChooseItemToUseState implements BaseState {
     }
 
     @Override
-    public Action handleInput(Player player, InputSystem input) {
+    public Action handleInput(Player player) {
         List<Item> itemsInInventory = player.getInventory().getItems();
 
         if (!itemsInInventory.isEmpty()) {
-            int choice = -1;
+            if (itemsInInventory.size() > 1) { // Single items will automatically be used
+                int choice = -1;
 
-            while (choice < 0 || choice >= itemsInInventory.size())
-                choice = input.getIntegerFromLetter();
+                while (choice < 0 || choice >= itemsInInventory.size())
+                    choice = Game.getInputSystem().getIntegerFromLetter();
 
-            return new UseItemAction(itemsInInventory.get(choice));
+                return new UseItemAction(itemsInInventory.get(choice));
+            }
+
+            else
+                return new UseItemAction(itemsInInventory.get(0));
         }
 
         return new ChangeStateAction(new StartTurnState());

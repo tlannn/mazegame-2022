@@ -117,15 +117,26 @@ public class Cell {
 		this.westWall = westWall;
 	}
 
+	/**
+	 * Getter for all items in the cell
+	 * @return the list of items in cell
+	 */
 	public List<Item> getItemsInCell(){
 		return this.items;
 	}
 
+	/**
+	 * Getter for all characters in the cell
+	 * @return the list of characters in cell
+	 */
 	public List<Character> getCharactersInCell(){
 		return this.characters;
 	}
 
-
+	/**
+	 * Getter for all NPCs in the cell
+	 * @return the list of NPCs in cell
+	 */
     public List <NonPlayerCharacter> getNonPlayerCharactersInCell(){
         List <NonPlayerCharacter> nonPlayerCharacters = new ArrayList <NonPlayerCharacter>();
         for (Character character : this.characters){
@@ -137,10 +148,19 @@ public class Cell {
         return nonPlayerCharacters;
     }
 
+	/**
+	 * Getter for a specific item in the cell
+	 * @param item the index of the item to get
+	 */
 	public void addItem(Item item){
 		this.items.add(item);
 	}
 
+	/**
+	 * Remove a specific item in the cell
+	 * @param item the index of the item to remove
+	 * @throws ItemNotInCellException when the item is not in cell
+	 */
 	public void removeItem(Item item) throws ItemNotInCellException {
 		if (this.items.contains(item))
 			this.items.remove(item);
@@ -148,10 +168,19 @@ public class Cell {
 			throw new ItemNotInCellException();
 	}
 
+	/**
+	 * Add a character to the cell
+	 * @param character the character to add
+	 */
 	public void addCharacter(Character character){
 		this.characters.add(character);
 	}
 
+	/**
+	 * Remove a specific character in the cell
+	 * @param character the character to remove
+	 * @throws CharacterNotInCellException when the character is not in cell
+	 */
 	public void removeCharacter(Character character) throws CharacterNotInCellException {
 		if (this.characters.contains(character))
 			this.characters.remove(character);
@@ -159,6 +188,10 @@ public class Cell {
 			throw new CharacterNotInCellException();
 	}
 
+	/**
+	 * Return the list of directions where a cell is accessible
+	 * @return the list of possible directions
+	 */
 	public List<Orientation> possibleOrientations(){
 		List<Orientation> orientations = new ArrayList<Orientation>();
 		if(!this.hasNorthWall()){

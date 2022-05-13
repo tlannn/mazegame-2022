@@ -22,9 +22,17 @@ public class PickUpItemAction implements Action {
     }
 
     @Override
-    public boolean execute(Level level, Player player, InputSystem inputSystem, GraphicsSystem graphicsSystem){
-            level.pickUpItem(player, item);
+    public boolean execute(Level level, Player player){
+        level.pickUpItem(player, item);
         return true;
+    }
+
+    /**
+     * getter for attribute item
+     * @return the value of attributes
+     */
+    public Item getItem() {
+        return item;
     }
 
     @Override

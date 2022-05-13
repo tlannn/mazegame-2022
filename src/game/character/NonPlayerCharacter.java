@@ -1,6 +1,8 @@
 package game.character;
 
+import game.Game;
 import game.Level;
+import game.character.dialog.DefaultDialog;
 import game.character.dialog.Dialog;
 import game.maze.*;
 import game.system.input.InputSystem;
@@ -22,27 +24,31 @@ public abstract class NonPlayerCharacter extends Character {
 
 	/**
 	 * Class constructor
+	 * @param name the name of the NPC
+	 * @param startingCell the starting cell of the NPC
 	 */
 	public NonPlayerCharacter(String name, Cell startingCell) {
 		super(name, startingCell);
+		this.dialog = new DefaultDialog();
 	}
 
-	public  void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player){
+	/**
+	 * Start the dialog of the NPC and notify that it has been met
+	 * @param player the player to interact with
+	 */
+	public void talk(Player player){
 		this.notify(this,ObservableEvent.EVENT_MEET_CHARACTER);
-	};
-
-	public void talkTo(Player player) {
-		dialog.start(player);
+		this.dialog.start(player);
 	}
 
 	@Override
-	public void update(Level level, InputSystem inputSystem, GraphicsSystem graphicsSystem) {
+	public void update(Level level) {
 		// Make the NPC move if it is allowed to
 		if (this.movable) {
 			List<Character> charactersInCell = this.currentCell.getCharactersInCell();
 
-			// If the player isn't in the same cell, move the character
-			if (!charactersInCell.contains(level.getPlayer())) {
+			// If player is in cell, give a chance to the NPC to move
+			if (!charactersInCell.contains(level.getPlayer()) || Random.randInt(0, 1) == 0) {
 				// Choose a random direction
 				List<Orientation> possibleOrientations = this.currentCell.possibleOrientations();
 				int randomOrientation = Random.randInt(0, possibleOrientations.size() - 1);

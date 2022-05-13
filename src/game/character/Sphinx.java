@@ -1,6 +1,7 @@
 // MODIF il faut fermer le scan
 package game.character;
 
+import game.character.dialog.EnigmaDialog;
 import game.enigma.*;
 import game.hint.*;
 import game.maze.*;
@@ -16,62 +17,62 @@ import game.system.input.InputSystem;
 public class Sphinx extends NonPlayerCharacter {
 
 	private Hint hint;
-	private List<Enigma> enigmas;
-	//private int indexCurrentEnigma;
-	private boolean hasGivenHint;
+	private boolean hintGiven;
+	private EnigmaManager enigmaManager;
 
-	public Sphinx(Cell startingCell) {
-		super("Sphinx", startingCell);
+	/**
+	 * Class constructor
+	 * @param startingCell start cell of the sphinx
+	 * @param manager enigmas of the sphinx with EnigmaManager class
+	 */
+	public Sphinx(Cell startingCell, EnigmaManager manager) {
+		super("le sphinx", startingCell);
 
 		this.hint = null;
-		this.enigmas = new ArrayList<>();
-		//this.indexCurrentEnigma = 0;
-		this.hasGivenHint = false;
+		this.hintGiven = false;
 		this.movable = false;
+		this.enigmaManager = manager;
+
+		this.dialog = new EnigmaDialog(this);
 	}
 
+	/**
+	 * Returns true if the sphinx gave its hint. Otherwise false
+	 * @return true if the sphinx gave a hint
+	 */
+	public boolean hasGivenHint() {
+		return this.hintGiven;
+	}
+
+	/**
+	 * put the attribute hint at true
+	 */
+	public void markHintGiven() {
+		this.hintGiven = true;
+	}
+
+	/**
+	 * Set the hint to give of the altruist if he doesn't have any
+	 * @param hint the hint to give
+	 */
 	public void setHint(Hint hint) {
 		if (this.hint == null)
 			this.hint = hint;
 	}
 
-	public void addEnigma(Enigma enigma) {
-		this.enigmas.add(enigma);
+	/**
+	 * Getter of attribute hint
+	 * @return the value of attribute
+	 */
+	public Hint getHint() {
+		return this.hint;
 	}
 
-	public void talk(GraphicsSystem graphicsSystem, InputSystem inputSystem, Player player) {
-		super.talk(graphicsSystem,inputSystem,player);
-		System.out.println("Bonjour, je m'appelle Léo le sphinx");
-		if (!this.hasGivenHint) {
-			int i = 0;
-			System.out.println("je ne t'ai pas encore donné d'indice...");
-
-			if(i < this.enigmas.size() && ! this.enigmas.get(i).getIsResolved()){
-				System.out.println("Voici mon enigme :");
-					System.out.println(this.enigmas.get(i).toString());
-					Scanner scan= new Scanner(System.in);
-					String text = scan.nextLine();
-					try{
-						this.enigmas.get(i).resolve(text);
-            if(this.enigmas.get(i).getIsResolved()){
-							System.out.println("Bien joué, c'est la bonne réponse ! En récompense je te donne cet indice :");
-							System.out.println(this.hint.toString());
-							this.hasGivenHint = true;
-						}
-						else{
-							System.out.println("Désolé c'est la mauvaise réponse");
-						}
-          }
-          catch(Exception AnswerNoContainsQCM) {
-              System.out.println("Cette réponse ne fait pas partit de celles proposées");
-          }
-					// quand je ferme le scan ça fait un bug
-					// scan.close();
-				}
-			}
-		else {
-			System.out.println("Je vous ai déjà donné mon indice.");
-			System.out.println(this.hint);
-		}
+	/**
+	 * Getter for an enigma in enigmaManager
+	 * @return an enigma given by the enigma manager
+	 */
+	public Enigma getEnigma() {
+		return this.enigmaManager.getEnigma();
 	}
 }
