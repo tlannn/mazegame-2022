@@ -140,7 +140,12 @@ Il n'y a pas de difficultés significatives, si ce n'est que les changements dan
 
 ### Atteinte des objectifs
 
+La plupart des objectifs ont été atteints. Les spécifications du cahier des charges sont remplies, ainsi que celles du rendu final.
+
+
 ### Difficultés restant à résoudre
+
+Il reste quelques bugs à résoudre et quelques points peuvent encore être améliorés. Mais cela n'empêche pas le bon fonctionnement du jeu. Le joueur peut effectuer toutes les actions et gagner la partie.
 
 # Journal de bord
 
