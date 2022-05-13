@@ -94,7 +94,7 @@ public class Player extends Character {
      * @throws NotEnoughGoldException when the amount is more than this gold
      */
     public void removeGold(int amount) throws NotEnoughGoldException {
-        if (amount >= this.gold)
+        if (amount > this.gold)
             throw new NotEnoughGoldException("Vous n'avez pas assez de gold.");
 
         this.gold -= amount;
