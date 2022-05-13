@@ -34,31 +34,31 @@ On a une enum:
 On a un main qui affiche les 2 labyrinthes.
 
 ## Exécution
-Pour compiler les fichiers sources:
+Pour compiler les fichiers sources et les tests:
 ```console
-$ make
-$ make tests # Compile les classes de test
+$ make cls
 ```
 
 Pour exécuter le main:
 ``` console
-$ make run # Les fichiers sources sont compilés en même temps si nécessaire
+$ make run algo=1 # Lance le jeu avec l'algorithme 1, les fichiers sources sont compilés en même temps si nécessaire
 ```
 
-Pour lancer un test:
+Pour lancer les tests:
 ```console
+$ make tests
 $ make test class=game.maze.TestMaze # Lance les tests de la classe TestMaze
 ```
 
 Pour créer une archive:
 ```console
-$ make jar # Création de l'archive
-$ make play # Lancement du programme
+$ make jeu.jar # Création de l'archive
+$ java -jar jar/jeu.jar 1 # Lancement de l'archive avec l'algorithme 1
 ```
 
 Pour générer la javadoc:
 ```console
-$ make docs # Crée la documentation dans le dossier 'docs'
+$ make doc # Crée la documentation dans le dossier 'docs'
 ```
 
 Pour supprimer tous les fichiers générés par make:
