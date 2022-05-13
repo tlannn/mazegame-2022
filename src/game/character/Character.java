@@ -18,6 +18,11 @@ public abstract class Character extends Entity {
     protected String name;
     protected boolean movable;
 
+    /**
+     * class constructor
+     * @param name
+     * @param startingCell
+     */
     public Character(String name, Cell startingCell) {
         this.name = name;
         this.currentCell = startingCell;
@@ -30,18 +35,34 @@ public abstract class Character extends Entity {
 
     public abstract void update(Level level);
 
+    /**
+     * getter for attribute currentCell
+     * @return the value of attribute
+     */
     public Cell getCurrentCell(){
         return this.currentCell;
     }
 
+    /**
+     * getter for attribute name
+     * @return the value of attribute
+     */
     public String getName(){
         return this.name;
     }
 
+    /**
+     * change the value of attribute currentCell
+     * @param cell new cell
+     */
     public void setCurrentCell(Cell cell){
         this.currentCell = cell;
     }
 
+    /**
+     * return true if the charcter can move
+     * @return movables
+     */
     public boolean isMovable(){
         return this.movable;
     }

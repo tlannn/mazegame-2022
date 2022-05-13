@@ -7,11 +7,19 @@ import game.maze.*;
 public class Fool extends NonPlayerCharacter {
 	private FakeHint fakeHint;
 
+	/**
+	 * class constructor
+	 * @param startingCell
+	 */
 	public Fool(Cell startingCell) {
 		super("le fou", startingCell);
 		this.fakeHint = null;
 	}
 
+	/**
+	 * change fakeHint if the attribute is null
+	 * @param fakeHint the new fakeHint
+	 */
 	public void setHint(FakeHint fakeHint) {
 		if (this.fakeHint == null) {
 			this.fakeHint = fakeHint;
@@ -19,6 +27,10 @@ public class Fool extends NonPlayerCharacter {
 		}
 	}
 
+	/**
+     * getter for attribute fakeHint
+     * @return the value of attribute
+     */
 	public FakeHint getFakeHint(){
 		return this.fakeHint;
 	}

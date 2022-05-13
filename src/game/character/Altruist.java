@@ -11,11 +11,19 @@ import game.system.input.InputSystem;
 public class Altruist extends NonPlayerCharacter {
 	private Hint hint;
 
+	/**
+	 * class constructor
+	 * @param startingCell the start cell for the altruist
+	 */
 	public Altruist(Cell startingCell) {
 		super("l'altruiste", startingCell);
 		this.hint = null;
 	}
-
+	
+	/**
+	 * change the hint if the attribute is null
+	 * @param hint
+	 */
 	public void setHint(Hint hint) {
 		if (this.hint == null) {
 			this.hint = hint;
