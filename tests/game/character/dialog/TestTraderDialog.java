@@ -1,7 +1,7 @@
 package game.character.dialog;
 
 import game.Level;
-import game.character.Altruist;
+import game.character.Trader;
 import game.character.Character;
 import game.character.NonPlayerCharacter;
 import game.character.Player;
