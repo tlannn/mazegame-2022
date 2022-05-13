@@ -4,17 +4,27 @@ import game.Game;
 
 import java.util.*;
 
-public class QCMEnigma extends Enigma {
+ /**
+  * An enigma with predefined answers
+  */
+ public class QCMEnigma extends Enigma {
 
     private List<String> answers;
     private String solution;
 
+    /**
+     * Class constructor
+     * @param question the question of the enigma
+     * @param answers the possible answers to the enigma
+     * @param solution the correct answer to the enigma
+     */
     public QCMEnigma(String question, List<String> answers, String solution){
         super(question);
         this.answers = answers;
         this.solution = solution;
     }
 
+    @Override
     public void resolve() {
         int choice;
         boolean validAnswer = false;
@@ -34,6 +44,10 @@ public class QCMEnigma extends Enigma {
         } while (!validAnswer);
     }
 
+     /**
+      * Returns a string representation of the enigma, with its question and all possible answers
+      * @return a string representation
+      */
     public String toString(){
         String res = this.question + "\n";
         int i = 0;
