@@ -19,7 +19,16 @@ public class ConsoleInputSystem implements InputSystem {
 
 	@Override
 	public String getMessage() {
-		return this.scanner.nextLine();
+		String message;
+
+		do {
+			message = this.scanner.nextLine();
+
+			if (message.isEmpty())
+				System.out.println("Vous devez entrer quelque chose.");
+		} while (message.isEmpty());
+
+		return message;
 	}
 
 	@Override
