@@ -1,6 +1,7 @@
 package game;
 
 import game.hint.fake.*;
+import game.hint.fake.FakeHint;
 import game.item.*;
 import game.enigma.*;
 import game.quest.*;
