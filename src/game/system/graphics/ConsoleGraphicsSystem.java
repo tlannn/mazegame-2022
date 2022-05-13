@@ -173,7 +173,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 
 	public void displayOr(Player player) {
 		if (player.getGold() == 0)
-			this.displayText("Tu n'as pas d'or.", true);
+			this.displayText("Tu n'as pas de galons d'or.", true);
 		else
 			this.displayText("Tu as " + player.getGold() + " galons d'or.", true);
 	}

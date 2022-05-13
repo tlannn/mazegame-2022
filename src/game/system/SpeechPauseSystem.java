@@ -20,31 +20,36 @@ public class SpeechPauseSystem {
     public static final String SLOW_PAUSE_DELAY_TAG = "[" + SLOW_PAUSE_DELAY + "]";
     public static final String LONG_PAUSE_DELAY_TAG = "[" + LONG_PAUSE_DELAY + "]";
 
+    public static boolean enable = true;
+
     public static void say(String text, boolean skipTags) {
-        String[] parse = text.split("((?=\\[[0-9]{1,4}\\])|(?<=\\[[0-9]{1,4}\\]))");
+        if (enable) {
+            String[] parse = text.split("((?=\\[[0-9]{1,4}\\])|(?<=\\[[0-9]{1,4}\\]))");
 
-        for (String str : parse) {
-            if (!skipTags && str.matches("\\[[0-9]{1,4}\\]")) {
-                Pattern pattern = Pattern.compile("[0-9]{1,4}");
-                Matcher matcher = pattern.matcher(str);
+            for (String str : parse) {
+                if (!skipTags && str.matches("\\[[0-9]{1,4}\\]")) {
+                    Pattern pattern = Pattern.compile("[0-9]{1,4}");
+                    Matcher matcher = pattern.matcher(str);
 
-                if (matcher.find()) {
-                    long delay = Long.parseLong(matcher.group(0));
-                    Sleeper.sleep(delay);
+                    if (matcher.find()) {
+                        long delay = Long.parseLong(matcher.group(0));
+                        Sleeper.sleep(delay);
+                    }
+                } else {
+                    for (int i = 0; i < str.length(); ++i) {
+                        System.out.print(str.charAt(i));
+
+                        if (!skipTags)
+                            Sleeper.sleep(SpeechPauseSystem.FAST_PAUSE_DELAY);
+                    }
                 }
             }
 
-            else {
-                for (int i = 0; i < str.length(); ++i) {
-                    System.out.print(str.charAt(i));
-
-                    if (!skipTags)
-                        Sleeper.sleep(SpeechPauseSystem.FAST_PAUSE_DELAY);
-                }
-            }
+            System.out.print("\n");
         }
 
-        System.out.print("\n");
+        else
+            System.out.println(text);
     }
 
     private String[] parseText(String text) {
