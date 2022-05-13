@@ -1,16 +1,12 @@
 package game;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import game.maze.*;
 import game.character.*;
 import game.character.Character;
-import game.item.*;
 import game.system.SpeechPauseSystem;
-import game.system.graphics.ConsoleGraphicsSystem;
 import game.system.graphics.GraphicsSystem;
-import game.system.input.ConsoleInputSystem;
 import game.system.input.InputSystem;
 
 public class Game{
@@ -30,7 +26,7 @@ public class Game{
         this.level = level;
     }
 
-    public void init() {
+    public void init(MazeAlgorithm algorithm) {
         if (this.player == null) {
             graphicsSystem.displayGameTitle();
             graphicsSystem.displayText("\nQuel est ton prénom," + SpeechPauseSystem.SLOW_PAUSE_DELAY_TAG + " aventurier ?");
@@ -41,7 +37,7 @@ public class Game{
         if (this.level == null) {
             // Create the level
             LevelGenerator generator = new LevelGenerator();
-            this.level = generator.generateLevel(this.player);
+            this.level = generator.generateLevel(this.player, algorithm);
         }
     }
 

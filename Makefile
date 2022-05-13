@@ -61,11 +61,11 @@ test: cls
 
 # Compile and run the program
 run: $(SRC_CLASSES)
-	$(JVM) -classpath $(OUT)/$(SRC):$(CP) $(MAIN)
+	$(JVM) -classpath $(OUT)/$(SRC):$(CP) $(MAIN) $(algo)
 
 # Start the program from jar archive
 play: $(JARFILE)
-	$(JVM) -jar jar/$(JARFILE)
+	$(JVM) -jar jar/$(JARFILE)  $(algo)
 
 # Remove all .class files and generated docs
 clean:

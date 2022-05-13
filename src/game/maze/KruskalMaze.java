@@ -116,7 +116,6 @@ public class KruskalMaze extends Maze {
 		// Execute the algorithm to randomly open walls
 		int nbUnion = 0;
 		while (nbUnion < nodes.length - 1) { // Maze is done when all sets are united
-			System.out.println("nbUnion : " + nbUnion);
 			/*
 			 * First step is to choose a wall to remove.
 			 * We establish the cells that can be selected according to the orientation
