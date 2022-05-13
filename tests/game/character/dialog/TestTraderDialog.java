@@ -75,13 +75,14 @@ public class TestDefaultDialog {
         assertEquals(1, this.player.getInventory().size());
     }
     
-    @Test(expected=NotEnoughGoldException.class)
-    public void TestNotEnoughMoney() throws NotEnoughGoldException{
+    @Test
+    public void TestNotEnoughMoney(){
         this.hint = new WinningCellCoordinatesHint(this.maze.getCell(2, 0), true, true);
         this.parchemin = new Parchment(this.hint);
         this.trader.addParchment(parchemin);
         this.provideInput("O");
         this.dialog.start(player);
+        assertEquals(0,this.player.getInventory().size());
     }
 
     
