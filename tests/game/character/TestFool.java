@@ -29,7 +29,7 @@ public class TestFool extends Tester {
         Cell start = new Cell(0,0);
         Fool pers = new Fool(start);
         assertEquals(start, pers.getCurrentCell());
-        assertEquals("le fou", pers.getName());
+        assertEquals("l'altruiste", pers.getName());
         assertTrue(pers.isMovable());
     }
 

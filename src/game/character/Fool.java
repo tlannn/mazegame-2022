@@ -15,7 +15,7 @@ public class Fool extends NonPlayerCharacter {
 	 * @param startingCell the starting cell of the fool
 	 */
 	public Fool(Cell startingCell) {
-		super("le fou", startingCell);
+		super("l'altruiste", startingCell);
 		this.fakeHint = null;
 	}
 
