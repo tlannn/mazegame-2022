@@ -102,23 +102,42 @@ public class Player extends Character {
 
     }
 
+    /**
+     * add the new state in the attribute stack state
+     * @param state the state to add in stack
+     */
     public void setState(BaseState state) {
         this.state.push(state);
     }
 
+    /**
+     * getter for attribute state
+     * @return the stack
+     */
     public BaseState getState(){
       return this.state.peek();
     }
 
+    /**
+     * start the method "use" of item class for that player use this item
+     * @param item the item at use
+     */
     public void useItem(Item item){
         item.use(this);
     }
 
+    /**
+     * getter for attribute inventory
+     * @return the value of attribute
+     */
     public Inventory getInventory() {
         return this.inventory;
     }
 
-    //return true if there is an item or a character on the cell. else false.
+    /**
+     * return true if there is an item or a character on the cell. else false.
+     * @return true if the player look a character or an item
+     */
     public boolean look(){
         int i=0;
         List<Item> items = this.currentCell.getItemsInCell();
