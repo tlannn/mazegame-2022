@@ -26,6 +26,11 @@ public class Player extends Character {
         this(name, null);
     }
 
+    /**
+     * class construstor
+     * @param name the name of player
+     * @param startingCell the start cell of player
+     */
     public Player(String name, Cell startingCell) {
         super(name, startingCell);
         this.gold = 0;
@@ -65,16 +70,29 @@ public class Player extends Character {
         this.state.push(new StartTurnState());
     }
 
+    /**
+     * getter for attribute gold
+     * @return the value of attribute
+     */
     public int getGold(){
         return this.gold;
     }
 
+    /**
+     * added the amount with the current gold
+     * @param amount the amount to add 
+     */
     public void addGold(int amount){
         this.gold += amount;
         this.notify(this,ObservableEvent.EVENT_PICK_UP_GOLD);
 
     }
 
+    /**
+     * subtracted the maount whith the current gold if this gold is more than this amount
+     * @param amount the amount to subtract
+     * @throws NotEnoughGoldException when the amount is more than this gold
+     */
     public void removeGold(int amount) throws NotEnoughGoldException {
         if (amount >= this.gold)
             throw new NotEnoughGoldException("Vous n'avez pas assez de gold.");
