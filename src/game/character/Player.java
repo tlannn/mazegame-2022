@@ -119,42 +119,10 @@ public class Player extends Character {
     }
 
     /**
-     * start the method "use" of item class for that player use this item
-     * @param item the item at use
-     */
-    public void useItem(Item item){
-        item.use(this);
-    }
-
-    /**
      * getter for attribute inventory
      * @return the value of attribute
      */
     public Inventory getInventory() {
         return this.inventory;
-    }
-
-    /**
-     * return true if there is an item or a character on the cell. else false.
-     * @return true if the player look a character or an item
-     */
-    public boolean look(){
-        int i=0;
-        List<Item> items = this.currentCell.getItemsInCell();
-        List<NonPlayerCharacter> characters = this.currentCell.getNonPlayerCharactersInCell();
-        if (items.isEmpty() && characters.isEmpty()){
-            System.out.println("Il n'y a rien sur cette case");
-            return false;
-        }
-        else{
-            System.out.print("Sur cette case se trouve : \n");
-            for (i=0; i<items.size(); i++){
-                System.out.println(i+"-"+items.get(i));
-            }
-            for(int j=i; j< characters.size(); j++){
-                System.out.println(j+"-"+characters.get(j));
-            }
-            return true;
-        }
     }
 }
