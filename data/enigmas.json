@@ -13,16 +13,32 @@
 		],
 		"answer": [
 			{
-				"question": "3 nains vont à la mine, le premier prend une pioche, le deuxième prend une pelle.\nQue prend le 3 ème ?\n3 nains vont à la mine, le premier prend une pioche, le deuxième prend une pelle.\nQue prend le 3 ème ?\nIl prend la ",
-				"answer": "tête"
+				"question": "J'ai 3 tête, 7 mains et je sais voler. Qui suis-je ?",
+				"answer" : "menteur"
 			},
 			{
 				"question": "Quel est le nom de famille de Timo ?",
 				"answer": "Léon"
 			},
 			{
+				"question" : "Monsieur et Madame Kupai ont un fils comment s'appelle-t-il ?"
+				"answer" : "Théo"
+			},
+			{
+				"question": "C'est mieux que Dieu. C'est pire que le Diable. Les pauvres en ont. Les riches en ont besoin. Si l'on en mange, on meurt. Qui suis-je ?"
+				"answer" : "rien"
+			},
+			{
 				"question": "Quelle était la couleur du cheval blanc d'Henry IV ?",
 				"answer": "Blanc"
+			},
+			{
+				"question" : "Qui a gagné la coupe du monde de football en 2018",
+				"answer" : "France"
+			},
+			{
+				"question": "3 nains vont à la mine, le premier prend une pioche, le deuxième prend une pelle.\nQue prend le 3 ème ?\n3 nains vont à la mine, le premier prend une pioche, le deuxième prend une pelle.\nQue prend le 3 ème ?\nIl prend la ",
+				"answer": "tête"
 			}
 		]
 	}
