@@ -35,7 +35,7 @@ public class TestDefaultDialog {
     private Level level;
     private Maze maze;
     private Player player;
-    private Altruist trader;
+    private Trader trader;
     private TraderDialog dialog;
     private WinningCellCoordinatesHint hint;
     private Parchment parchemin;
