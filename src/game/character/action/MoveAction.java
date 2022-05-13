@@ -32,6 +32,10 @@ public class MoveAction implements Action {
         return true;
     }
 
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
     @Override
     public String toString() {
         String string = "Vous vous déplacez ";
