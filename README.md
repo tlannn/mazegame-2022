@@ -199,8 +199,11 @@ Theo : correction d'erreurs, avancée sur la génération du jeu (GameGenerator)
 
 ## Semaine 12 (vacances)
 Theo : ajout d'un Makefile et réflexion sur la réorganisation du code pour l'extensibilité du jeu
+Emma : travaille sur le generateLevel
 
 ## Semaine 13 (vacances)
 Theo : modification de l'architecture du projet, avec notamment l'implémentation des patterns Command, State et Update + réalisation de l'interaction avec les items
+Emma : travaille sur le generateLevel
 
 ## Semaine 14
+Emma : ajout les tests des actions et les des hints.
