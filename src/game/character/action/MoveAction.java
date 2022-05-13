@@ -32,6 +32,10 @@ public class MoveAction implements Action {
         return true;
     }
 
+    /**
+     * getter for attribute orientation
+     * @return the value of attributes
+     */
     public Orientation getOrientation() {
         return orientation;
     }

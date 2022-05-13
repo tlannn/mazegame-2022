@@ -27,6 +27,10 @@ public class ChangeStateAction implements Action {
         return false;
     }
 
+    /**
+     * getter for attribute nextState
+     * @return the value of attributes
+     */
     public BaseState getNextState() {
         return nextState;
     }

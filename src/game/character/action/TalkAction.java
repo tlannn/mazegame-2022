@@ -27,6 +27,10 @@ public class TalkAction implements Action {
         return true;
     }
 
+    /**
+     * getter for attribute npc
+     * @return the value of attributes
+     */
     public NonPlayerCharacter getNPC() {
         return npc;
     }

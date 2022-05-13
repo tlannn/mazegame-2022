@@ -27,6 +27,10 @@ public class UseItemAction implements Action {
         return true;
     }
 
+    /**
+     * getter for attribute item
+     * @return the value of attributes
+     */
     public Item getItem() {
         return item;
     }
