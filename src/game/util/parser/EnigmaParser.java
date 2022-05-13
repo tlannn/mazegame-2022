@@ -12,8 +12,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A JSON parser for the file containing enigmas
+ */
 public class EnigmaParser {
 
+    /**
+     * Parse the given file
+     * @param filepath the path to the file to parse
+     * @return a list of the enigmas in the file
+     * @throws IOException when an error occur during reading/writing
+     * @throws ParseException when a parse error occur
+     */
     public List<Enigma> parse(String filepath) throws IOException, ParseException {
         JSONObject json = (JSONObject) new org.json.simple.parser.JSONParser().parse(new FileReader(filepath));
         JSONArray qcmEnigmas = (JSONArray) ((JSONObject)json.get("enigmas")).get("qcm");
@@ -26,6 +36,11 @@ public class EnigmaParser {
         return enigmas;
     }
 
+    /**
+     * Parse the part in the file for QCM enigmas
+     * @param json the json array containing the QCM enigmas
+     * @return the list of QCM enigmas
+     */
     private List<Enigma> parseQCMEnigmas(JSONArray json) {
         List<Enigma> enigmas = new ArrayList<>();
 
@@ -50,6 +65,11 @@ public class EnigmaParser {
         return enigmas;
     }
 
+    /**
+     * Parse the part in the file for answer enigmas
+     * @param json the json array containing the answer enigmas
+     * @return the list of answer enigmas
+     */
     private List<Enigma> parseAnswerEnigmas(JSONArray json) {
         List<Enigma> enigmas = new ArrayList<>();
 

@@ -3,7 +3,6 @@ import java.util.*;
 
 import game.character.NonPlayerCharacter;
 import game.item.Item;
-import game.Game;
 import game.Level;
 import game.character.Inventory;
 import game.character.Player;
@@ -44,7 +43,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		}
 	}
 
-
+	@Override
 	public void displayHint(Level level){
 		if(level.getHints().size()==0){
 			displayText("Désolée mais tu n'as pas encore trouvé d'indice.");
@@ -54,8 +53,6 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 			displayList(level.getHints(), false);
 		}
 	}
-
-
 
 	@Override
 	public void displayGameTitle() {
@@ -73,7 +70,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 	public void displayGameStatus(Level level, Player player) {
 		this.displayLevel(level);
 		this.displayText(""); // Print an empty line
-		this.displayOr(player);
+		this.displayGold(player);
 
 		this.displayText("Tu es situé sur la case " + player.getCurrentCell(), true);
 
@@ -171,7 +168,7 @@ public class ConsoleGraphicsSystem implements GraphicsSystem {
 		this.displayText(string);
 	}
 
-	public void displayOr(Player player) {
+	public void displayGold(Player player) {
 		if (player.getGold() == 0)
 			this.displayText("Tu n'as pas de galons d'or.", true);
 		else

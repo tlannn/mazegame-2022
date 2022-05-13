@@ -22,6 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A level in the game
+ *
+ * A level is defined by a quest, a maze, a list of NPCs and items. The level coordinates all these objects
+ */
 public class Level implements Observer{
     private Quest quest;
     private Maze maze;
@@ -30,10 +35,17 @@ public class Level implements Observer{
     private List<Item> items;
     private List<Hint> hintsSeen;
 
-    private Map<Hint, Boolean> hints;
-
     private List<Cell> cellsVisited;
 
+    /**
+     * Class constructor
+     * @param player the player of the game
+     * @param maze the maze of the level
+     * @param quest the quest of the level
+     * @param NPCs the NPCs in the level
+     * @param items the items in the level
+     * @param hints the hints in the level
+     */
     public Level(Player player, Maze maze, Quest quest, List<NonPlayerCharacter> NPCs, List<Item> items, List<Hint> hints) {
         this.player = player;
         this.maze = maze;
@@ -78,12 +90,6 @@ public class Level implements Observer{
             if (!present){
               this.hintsSeen.add(hint);
             }
-
-
-
-            //
-            // if (!this.hintsSeen.contains(hint))
-            //     this.hintsSeen.add(hint);
         }
     }
 
@@ -136,6 +142,11 @@ public class Level implements Observer{
         ((Player) character).getInventory().addItem(item);
     }
 
+    /**
+     * Return if the cell has been visited by the player
+     * @param cell the cell to check
+     * @return true if the cell has been visited
+     */
     public boolean isCellVisited(Cell cell) {
         return this.cellsVisited.contains(cell);
     }

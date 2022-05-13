@@ -9,6 +9,9 @@ import game.system.SpeechPauseSystem;
 import game.system.graphics.GraphicsSystem;
 import game.system.input.InputSystem;
 
+/**
+ * The game
+ */
 public class Game{
 
     private Player player;
@@ -16,16 +19,30 @@ public class Game{
     private static InputSystem inputSystem;
     private static GraphicsSystem graphicsSystem;
 
+    /**
+     * Class constructor
+     * @param mode the graphics mode of the game
+     */
     public Game(GameGraphicsMode mode){
         Game.setGameGraphicsMode(mode);
     }
 
+    /**
+     * Class constructor
+     * @param mode the graphics mode of the game
+     * @param player the player that will play the game
+     * @param level the first level of the game
+     */
     public Game(GameGraphicsMode mode, Player player, Level level) {
         Game.setGameGraphicsMode(mode);
         this.player = player;
         this.level = level;
     }
 
+    /**
+     * Create the player and the level for the game
+     * @param algorithm the algorithm to use to generate the maze
+     */
     public void init(MazeAlgorithm algorithm) {
         if (this.player == null) {
             graphicsSystem.displayGameTitle();
@@ -41,19 +58,34 @@ public class Game{
         }
     }
 
+    /**
+     * Change the game graphics mode
+     * @param mode the new game graphics mode
+     */
     public static void setGameGraphicsMode(GameGraphicsMode mode) {
         Game.graphicsSystem = mode.getNewGraphicsSystem();
         Game.inputSystem = mode.getNewInputSystem();
     }
 
+    /**
+     * Return the input system of the game
+     * @return the input system
+     */
     public static InputSystem getInputSystem() {
         return Game.inputSystem;
     }
 
+    /**
+     * Return the graphics system of the game
+     * @return the graphics system
+     */
     public static GraphicsSystem getGraphicsSystem() {
         return Game.graphicsSystem;
     }
 
+    /**
+     * Make the player play the game
+     */
     public void play() {
         // Create the list of characters that will be updated each turn
         List<Character> characters = new ArrayList<>();
@@ -90,10 +122,18 @@ public class Game{
         this.graphicsSystem.displayText("\\_____/\\___/  |__/|__/  |__/\n\n\n\n");   
     }
 
+    /**
+     * Getter for the player
+     * @return the player
+     */
     public Player getPlayer() {
         return this.player;
     }
 
+    /**
+     * Getter for the current level of the game
+     * @return the current level
+     */
     public Level getLevel() {
         return this.level;
     }

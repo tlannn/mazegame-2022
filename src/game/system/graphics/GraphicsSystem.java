@@ -37,13 +37,12 @@ public interface GraphicsSystem {
 
 	/**
 	 * Display the hint already discover
-	 * @param player the player of the game
+	 * @param level the current level in the game
 	 */
 	public void displayHint(Level level);
 
 	/**
 	 * Display the game title
-	 * @param title the title of the game
 	 */
 	public void displayGameTitle();
 
