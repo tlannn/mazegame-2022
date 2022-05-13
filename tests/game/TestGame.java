@@ -6,6 +6,7 @@ import game.item.Jewel;
 import game.item.JewelRarity;
 import game.maze.KruskalMaze;
 import game.maze.Maze;
+import game.maze.MazeAlgorithm;
 import game.quest.EarnGoldCondition;
 import game.quest.Quest;
 import game.quest.QuestCondition;
@@ -55,7 +56,7 @@ public class TestGame extends Tester {
         assertNull(game.getPlayer());
 
         this.provideInput("Phil");
-        game.init();
+        game.init(MazeAlgorithm.KRUSKAL_SEARCH);
         assertNotNull(game.getPlayer());
         assertEquals("Phil", game.getPlayer().toString());
     }
@@ -66,7 +67,7 @@ public class TestGame extends Tester {
         assertNull(game.getLevel());
 
         this.provideInput("Phil");
-        game.init();
+        game.init(MazeAlgorithm.KRUSKAL_SEARCH);
         assertNotNull(game.getLevel());
     }
 
