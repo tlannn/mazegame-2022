@@ -1,5 +1,5 @@
 # Compiled class files
-classes/
+build/
 *.class
 
 # Documentation
@@ -7,8 +7,10 @@ docs/
 
 # Package files
 *.jar
-!test4poo.jar
+!lib/*.jar
 
 # Others
 .DS_Store/
 .vscode/
+.fleet/
+*.iml

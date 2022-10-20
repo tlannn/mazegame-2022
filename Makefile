@@ -6,23 +6,25 @@ JAR := jar
 
 # Directories
 SRC := src
-OUT := classes
+OUT := build
+BIN := bin
 DOCS := docs
 TEST := tests
+LIB := lib
 
-CP := jar/json-simple-1.1.1.jar
-JUNIT := jar/junit-1.8.2.jar
-JUNIT_FLAGS := --details=summary --disable-banner
+CP := $(LIB)/json-simple-1.1.1.jar
+JUNIT := $(LIB)/junit-1.8.2.jar
+JUNIT_FLAGS := --details=tree --disable-banner
 
 # Variables containing files
 SOURCES := $(shell find $(SRC) -name '*.java') # retrieve all .java files in src/
-TESTS := $(shell find $(TEST) -name '*.java') # same in test/
+TESTS := $(shell find $(TEST) -name '*.java') # same in tests/
 SRC_CLASSES := $(SOURCES:%.java=$(OUT)/%.class) # transform all source files paths into class files paths
 TEST_CLASSES := $(TESTS:%.java=$(OUT)/%.class) # same for tests sources files
 
 # Other variables
 MAIN := game.Main # Starting class of program
-JARFILE := jeu.jar # Name of the jar archive
+JARFILE := game.jar # Name of the jar archive
 
 ##########
 
@@ -30,7 +32,7 @@ JARFILE := jeu.jar # Name of the jar archive
 .PHONY: cls clean doc tests test run play
 
 # Compile all files
-cls : $(SRC_CLASSES) $(TEST_CLASSES)
+cls: $(SRC_CLASSES) $(TEST_CLASSES)
 
 # Compile all source classes ; each must match the $(OUT)/%.class pattern ; %.java is the prerequisite
 # See 'static pattern rules'
@@ -41,15 +43,9 @@ $(SRC_CLASSES): $(OUT)/%.class: %.java
 $(TEST_CLASSES): $(OUT)/%.class: %.java
 	$(JC) -sourcepath $(SRC):$(TEST) -d $(OUT)/$(TEST) -classpath $(OUT)/$(SRC):$(CP):$(JUNIT) $<
 
-# Create .jar for the program
-$(JARFILE): $(CLASSES)
-	@mkdir jar -p
-	cd $(OUT)/$(SRC) && $(JAR) xvf ../../jar/json-simple-1.1.1.jar
-	$(JAR) cvfe jar/$(JARFILE) $(MAIN) -C $(OUT)/$(SRC) .
-
-# Generate documentation
-doc:
-	$(JDOC) -sourcepath $(SRC) -d $(DOCS) -classpath $(CP) -subpackages game
+# Compile and run the program
+run: $(SRC_CLASSES)
+	$(JVM) -classpath $(OUT)/$(SRC):$(CP) $(MAIN) $(algo)
 
 # Run all test files
 tests: cls
@@ -59,16 +55,21 @@ tests: cls
 test: cls
 	$(JVM) -jar $(JUNIT) -classpath $(OUT)/$(SRC):$(OUT)/$(TEST):$(CP):$(TEST) --select-class $(class) $(JUNIT_FLAGS)
 
-# Compile and run the program
-run: $(SRC_CLASSES)
-	$(JVM) -classpath $(OUT)/$(SRC):$(CP) $(MAIN) $(algo)
+# Create .jar for the program
+jar: $(CLASSES)
+	@mkdir $(BIN) -p
+	cd $(OUT)/$(SRC) && $(JAR) xvf ../../$(LIB)/json-simple-1.1.1.jar
+	$(JAR) cvfe $(BIN)/$(JARFILE) $(MAIN) -C $(OUT)/$(SRC) .
 
 # Start the program from jar archive
-play: $(JARFILE)
-	$(JVM) -jar jar/$(JARFILE)  $(algo)
+play: $(BIN)/$(JARFILE)
+	$(JVM) -jar $(BIN)/$(JARFILE) $(algo)
+
+# Generate documentation
+docs:
+	$(JDOC) -sourcepath $(SRC) -d $(DOCS) -classpath $(CP) -subpackages game
 
 # Remove all .class files and generated docs
 clean:
-	rm -rf $(DOCS)
-	rm -rf $(OUT)
+	rm -rf $(DOCS) $(OUT) $(BIN)
 	find . -name *.class -type f -delete
